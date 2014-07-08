@@ -1,6 +1,6 @@
 title: About
 
-This is a personal blog I've started to share share thoughts on data analytics and applied mathematics.
+This is a personal blog I've started to share thoughts on data analytics and applied mathematics.
 
 I am a data scientist in NTT DATA Corporation Japan. I work on building Big Data infrastructure solutions and data analytics algorithms. I also work on business analytics projects for different vertical industries.
 
