@@ -37,6 +37,14 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 
+# Static paths will be copied without parsing their contents
+STATIC_PATHS = ['images', 'extra']
+
+# Shift the installed location of a file
+EXTRA_PATH_METADATA = {
+    'extra/CNAME': {'path': 'CNAME'},
+}
+
 DEFAULT_PAGINATION = 10
 
 # Show most recent posts first
