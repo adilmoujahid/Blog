@@ -4,7 +4,7 @@ Email: adil.mouja@gmail.com
 Date: 2014-07-08
 Category: misc
 Tags: misc
-Summary: This is my first post on this new blog, and I' very excited to embark on this project.
+Summary: This is my first post on this new blog, and I'm very excited to embark on this project.
 
 
 This is my first post on this new blog, and I' very excited to embark on this project.
