@@ -38,7 +38,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 #Set Disqus sitename
 DISQUS_SITENAME = "adilmoujahid"
-
+GOOGLE_ANALYTICS = "UA-52651211-1"
 # Formatting for urls
 
 ARTICLE_URL = "posts/{date:%Y}/{date:%m}/{slug}/"
