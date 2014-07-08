@@ -37,6 +37,25 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 
+# Formatting for urls
+
+ARTICLE_URL = "posts/{date:%Y}/{date:%m}/{slug}/"
+ARTICLE_SAVE_AS = "posts/{date:%Y}/{date:%m}/{slug}/index.html"
+
+CATEGORY_URL = "category/{slug}"
+CATEGORY_SAVE_AS = "category/{slug}/index.html"
+
+TAG_URL = "tag/{slug}/"
+TAG_SAVE_AS = "tag/{slug}/index.html"
+
+# Generate yearly archive
+
+YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
+
+# Show most recent posts first
+
+NEWEST_FIRST_ARCHIVES = False
+
 # Static paths will be copied without parsing their contents
 STATIC_PATHS = ['images', 'extra']
 
