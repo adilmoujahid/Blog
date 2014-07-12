@@ -76,7 +76,7 @@ THEME = "theme/pure"
 
 # Plugins
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['gravatar']
+PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img']
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True

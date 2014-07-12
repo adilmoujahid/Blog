@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+        <title>Baseball Analytics: An Introduction to Sabermatics using Python // Adil Moujahid // Data Analytics and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Wed 23 July 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Baseball Analytics: An Introduction to Sabermatics using Python</h1>
+                        <p class="post-meta">
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/modelling/">modelling</a>
+                                <a class="post-category" href="../../../../tag/pandas/">pandas</a>
+                        </p>
+                </header>
+            </section>
+            <p>Sabermetrics is the apllication of statistics analysis to baseball data in order to measure in-game activity. The term Sabermetrics comes from saber (Society for American Baseball Research) and metrics (as in econometrics).</p>
+<p>In 2003, Michael Lewis published Moneyball about Billy Beane, the Oakland Athletics General Manager since 1997. The book was centered around Billy Beane's use of Sabemetrics to indentify and recruit under-valued baseball players. With this strategy, his team could achieve as many wins as teams with more than double the payroll. The  Oakland Athletics made it to the play-offs 4 successive years: 2000,2001,2002,2003. In 2011, the movie Moneyball based on Lewis' book was released starring Brad Pitt in the role of Beane.</p>
+<p>In this post, I will use Lahman’s Baseball Database and Python programming language to explain some of the techniques used in Sabermetrics. I will used 2 Python libraries: Pandas for data manipulation and analysis, Scipy for building statistical models.</p>
+<h1>A quick introduction to Baseball rules</h1>
+<p><div class="videobox">
+                <iframe width="640" height="390"
+                        src='http://www.youtube.com/v/0bKkGeROiPA'
+                        frameborder='0'
+                        webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+                </iframe>
+            </div></p>
+<p>Machine setup and data download</p>
+<p>Analytics 1 - Cleaning the dataset</p>
+<p>Data sets: Teams.csv, Salaries.csv</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
