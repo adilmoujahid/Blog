@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+        <title>Baseball Analytics: An Introduction to Sabermetrics using Python // Adil Moujahid // Data Analytics and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Wed 23 July 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Baseball Analytics: An Introduction to Sabermetrics using Python</h1>
+                        <p class="post-meta">
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/modelling/">modelling</a>
+                                <a class="post-category" href="../../../../tag/pandas/">pandas</a>
+                        </p>
+                </header>
+            </section>
+            <p>Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. The term Sabermetrics comes from saber (Society for American Baseball Research) and metrics (as in econometrics).</p>
+<p>In 2003, Michael Lewis published Moneyball about Billy Beane, the Oakland Athletics General Manager since 1997. The book was centered around Billy Beane's use of Sabemetrics to identify and recruit under-valued baseball players. With this strategy, his team could achieve as many wins as teams with more than double the payroll. The figures below show the relationship between team salaries and number of wins for years: 1997, 2001, 2003, 2013. The green dot represents the Oakland Athletics, the blue dot represents the New York Yankees, and the red dot represents The Boston Red Sox. We can see that the Oakland Athletics went from the underperforming team in 1997, to became a highly competitive team with a comparable number of wins to the New York Yankees. The  Oakland Athletics made it to the play-offs in 4 successive years: 2000,2001,2002,2003. </p>
+<p>In 2011, the movie Moneyball based on Lewis' book was released starring Brad Pitt in the role of Beane.</p>
+<div style="text-align:left">
+<p><img alt="Alt Text" src="/images/fig1.jpg" />
+<img alt="Alt Text" src="/images/fig2.jpg" /></p>
+</div>
+<p>In this post, I will use Lahman’s Baseball Database and Python programming language to explain some of the techniques used in Sabermetrics. I will use 3 Python libraries: Pandas for data manipulation and analysis, statsmodels for building the statistical models and Matplotlib for data visualization.</p>
+<h2>1. A quick introduction to baseball rules</h2>
+<p><div class="videobox">
+                <iframe width="640" height="390"
+                        src='http://www.youtube.com/v/0bKkGeROiPA'
+                        frameborder='0'
+                        webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+                </iframe>
+            </div></p>
+<h2>2. Getting the data and setting up your machine</h2>
+<p>For this tutorial, we will use the Lahman’s Baseball Database. This Database contains complete batting and pitching statistics from 1871 to 2013, plus fielding statistics, standings, team stats, managerial records, post-season data, and more. You can download the data from this this <a href="http://seanlahman.com/files/database/lahman-csv_2014-02-14.zip">link</a>. 
+We will be using two files from this dataset: <code>Salaries.csv</code> and <code>Teams.csv</code>.
+To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. You can find the source code and installation code in this github repository.</p>
+<h2>3. Reading and understading the data</h2>
+<p>We will start by importing the required libraries using the commands below:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span>
+</pre></div>
+
+
+<p>Next, we will read the <code>Teams.csv</code> file to a Pandas DataFrame called <code>teams</code>. This file contains teams statistics from 1871 to 2013. The dataset has 2745 data points. Each data point has 48 attributes. </p>
+<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/Teams.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, we will select a subset of the data starting from 1985, with 15 Attributes only. For the remaining of this tutorial we will use only this subset and throw the rest of the data.</p>
+<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;yearID&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1985</span><span class="p">]</span>
+<span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[[</span><span class="s">&#39;yearID&#39;</span><span class="p">,</span> <span class="s">&#39;teamID&#39;</span><span class="p">,</span> <span class="s">&#39;Rank&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;RA&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;BB&#39;</span><span class="p">,</span> <span class="s">&#39;HBP&#39;</span><span class="p">,</span> <span class="s">&#39;AB&#39;</span><span class="p">,</span> <span class="s">&#39;SF&#39;</span><span class="p">,</span> <span class="s">&#39;HR&#39;</span><span class="p">,</span> <span class="s">&#39;2B&#39;</span><span class="p">,</span> <span class="s">&#39;3B&#39;</span><span class="p">]]</span>
+</pre></div>
+
+
+<p>Below is an explanation of the <code>teams</code> DataFrame attribtues.</p>
+<ul>
+<li><code>yearID</code>: Year</li>
+<li><code>teamID</code>: Team</li>
+<li><code>Rank</code>: Position in final standings</li>
+<li><code>R</code>: Runs scored</li>
+<li><code>RA</code>: Opponents runs scored</li>
+<li><code>G</code>: Games played</li>
+<li><code>W</code>: Wins</li>
+<li><code>H</code>: Hits by batters</li>
+<li><code>BB</code>: Walks by batters</li>
+<li><code>HBP</code>: Batters hit by pitch</li>
+<li><code>AB</code>: At bats</li>
+<li><code>SF</code>: Sacrifice flies</li>
+<li><code>HR</code>: Homeruns by batters</li>
+<li><code>2B</code>: Doubles</li>
+<li><code>3B</code>: Triples</li>
+</ul>
+<p>Next, we will change the <code>teams</code> DataFrame index to <code>('yearID', 'teamID')</code>. </p>
+<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">&#39;yearID&#39;</span><span class="p">,</span> <span class="s">&#39;teamID&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>This index change will make our queries easier. For example, we can check the number of wins by the Oakland Athletics in 2001 by running the command below. This should return 102. </p>
+<div class="highlight"><pre><span class="n">teams</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s">&#39;OAK&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Next, we will read the <code>Salaries.csv</code> to a Pandas DataFrame called <code>salaries</code>. The <code>salaries</code> DataFrame contains the salaries of all baseball players from 1985 till 2013. The DataFrame has 5 columns: <code>yearID</code>, <code>teamID</code>, <code>lgID</code>, <code>playerID</code>, <code>salary</code>.</p>
+<div class="highlight"><pre><span class="n">salaries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/Salaries.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We are interested in calculating baseball teams payroll. We can do so by running the command below.</p>
+<div class="highlight"><pre><span class="n">salaries_by_yearID_teamID</span> <span class="o">=</span> <span class="n">salaries</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">&#39;yearID&#39;</span><span class="p">,</span> <span class="s">&#39;teamID&#39;</span><span class="p">])[</span><span class="s">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Now we can check the payroll of the Oakland Athletics in 2001 by running the command below. This should return 33810750. </p>
+<div class="highlight"><pre><span class="n">salaries_by_yearID_teamID</span><span class="p">[</span><span class="mi">2001</span><span class="p">,</span> <span class="s">&#39;OAK&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Next, we will add the payroll data to <code>teams</code> DataFrame. We can do so using the command below.</p>
+<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">salaries_by_yearID_teamID</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The payroll data is now stored in a column called <code>salary</code>. Now we can check the payroll of the Oakland Athletics in 2001 by running the command below.</p>
+<div class="highlight"><pre><span class="n">teams</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s">&#39;OAK&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Next we will plot the relationship between salaries and number of wins. We can do so for the year 2001 by using the command below.</p>
+<div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">],</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The following two functions are used to plot the relationship between salaries with labels and axis formating; as well as highlighting the Oakland Athletics, the New York Yankees, and the Boston Red Sox data.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">millions</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="s">&#39;The two args are the value and tick position&#39;</span>
+    <span class="k">return</span> <span class="s">&#39;$</span><span class="si">%1.1f</span><span class="s">M&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">)</span>
+
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">FuncFormatter</span><span class="p">(</span><span class="n">millions</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_spending_wins</span><span class="p">(</span><span class="n">teams</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>    
+    <span class="n">teams_year</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">teams_year</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;OAK&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#4DDB94&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#4DDB94&quot;</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
+                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;NYA&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#0099FF&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#0099FF&quot;</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
+                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;BOS&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#FF6666&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#FF6666&quot;</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
+                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>     
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Salaries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of Wins&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Salaries - Wins: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>We can run the <code>plot_spending_wins</code> by passing the <code>teams</code> DataFrame and the <code>year</code> variable. For example, for plotting 2001 salaries and number of wins relationship, we execute the following:</p>
+<div class="highlight"><pre><span class="n">plot_spending_wins</span><span class="p">(</span><span class="n">teams</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>4. Bill Beane's Formula</h2>
+<p>For a Baseball team to win a game, it needs to score more runs than it allows. In the remaining of this tutorial, we will build a mathematical model for runs scored. Similar logic could be applied for modelling runs allowed.</p>
+<p>Most teams focused on Batting Average (BA) as a statistic to improve their runs Scored. Bill Beane took a different approach, he focused on improving On Base Percentage (OBP), and Slugging Percentage (SLG).</p>
+<p>The Batting Average is defined by the number of hits divided by at bats. It can be calculated using the formula below:</p>
+<p><center><code>BA = H/AB</code></center></p>
+<p>On-base Percentage is a measure of how often a batter reaches base for any reason other than a fielding error, fielder's choice, dropped/uncaught third strike, fielder's obstruction, or catcher's interference. It can be calculated using the formula below:</p>
+<p><center><code>OBP = (H+BB+HBP)/(AB+BB+HBP+SF)</code></center></p>
+<p>Slugging Percentage is a measure of the power of a hitter. It can ve calculated using the formula below:</p>
+<p><center><code>SLG = H+2B+(2*3B)+(3*HR)/AB</code></center></p>
+<p>We will add these 3 measures to our <code>teams</code> DataFrame by running the following commands:</p>
+<div class="highlight"><pre><span class="n">teams</span><span class="p">[</span><span class="s">&#39;BA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;AB&#39;</span><span class="p">]</span>
+<span class="n">teams</span><span class="p">[</span><span class="s">&#39;OBP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;HBP&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;AB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;HBP&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;SF&#39;</span><span class="p">])</span>
+<span class="n">teams</span><span class="p">[</span><span class="s">&#39;SLG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;2B&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;3B&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;HR&#39;</span><span class="p">]))</span> <span class="o">/</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;AB&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Next, we will use a linear regression model to verify which baseball stats are more important to predict runs. We will build 3 different models: The first one will have as features <code>OBP</code>, <code>SLG</code> and <code>BA</code>. The second model will have as features <code>OBP</code> and <code>SLG</code>. The last one will have as feature <code>BA</code> only.</p>
+<p>We will use Python's statsmodels library for building these models. We start first by importing the library by running:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+</pre></div>
+
+
+<p>Next we will build our models:</p>
+<div class="highlight"><pre><span class="c">#First Model</span>
+<span class="n">runs_reg_model1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">&quot;R~OBP+SLG+BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
+<span class="n">runs_reg1</span> <span class="o">=</span> <span class="n">runs_reg_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c">#Second Model</span>
+<span class="n">runs_reg_model2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">&quot;R~OBP+SLG&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
+<span class="n">runs_reg2</span> <span class="o">=</span> <span class="n">runs_reg_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c">#Third Model</span>
+<span class="n">runs_reg_model3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">&quot;R~BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
+<span class="n">runs_reg3</span> <span class="o">=</span> <span class="n">runs_reg_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+
+
+<p>We can look at a summary statistic of these models by running:</p>
+<div class="highlight"><pre><span class="n">runs_reg1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">runs_reg2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">runs_reg3</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The first model has an Adjusted R-squared of 0.918, with 95% confidence interval of BA between -283 and 468. This is counterintuitive, since we expect the BA value to be positive. This is due to a multicollinearity between the variables.</p>
+<p>The second model has an Adjusted R-squared of 0.919, and the last model an Adjusted R-squared of 0.500. </p>
+<p>Based on this analysis, we could confirm that the second model using <code>OBP</code> and <code>SLG</code> is the best model for predicting Run Scored.</p>
+<h3>Recruting strategy based on Bill Beane's Formula</h3>
+<p>Based on the analysis above, a good strategy for recruiting batters would focus on targeting undervalued players with high <code>OBP</code> and <code>SLG</code>. In the late 1990s, the old school scouts overvalued <code>BA</code>, and players with high <code>BA</code> had high salaries. Although <code>BA</code> and <code>OBP</code> have a positive correlation, there were some players that have high <code>OBP</code> and <code>SLG</code>, and relatively small <code>BA</code>. These players were undervalued by the market, and were the target of Billy Beane.</p>
+<h2>5. Conclusion</h2>
+<p>The techniques and Python code introduced in this tutorial could be extended to build different statistical models and data visualizations.</p>
+<p>All the source code of this tutorial will be uploaded to my github account.</p>
+<h2>References</h2>
+<p>http://www.swing-smarter-baseball-hitting-drills.com/oakland-as.html</p>
+<p>MITx: 15.071x The Analytics Edge</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
