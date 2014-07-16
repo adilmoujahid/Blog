@@ -18,7 +18,7 @@
 &lt;h2&gt;2. Getting the data and setting up your machine&lt;/h2&gt;
 &lt;p&gt;For this tutorial, we will use the Lahman’s Baseball Database. This Database contains complete batting and pitching statistics from 1871 to 2013, plus fielding statistics, standings, team stats, managerial records, post-season data, and more. You can download the data from this this &lt;a href="http://seanlahman.com/files/database/lahman-csv_2014-02-14.zip"&gt;link&lt;/a&gt;. 
 We will be using two files from this dataset: &lt;code&gt;Salaries.csv&lt;/code&gt; and &lt;code&gt;Teams.csv&lt;/code&gt;.
-To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. You can find the source code and installation code in this github repository.&lt;/p&gt;
+To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. &lt;/p&gt;
 &lt;h2&gt;3. Reading and understading the data&lt;/h2&gt;
 &lt;p&gt;We will start by importing the required libraries using the commands below:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
@@ -193,7 +193,7 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 &lt;p&gt;Based on the analysis above, a good strategy for recruiting batters would focus on targeting undervalued players with high &lt;code&gt;OBP&lt;/code&gt; and &lt;code&gt;SLG&lt;/code&gt;. In the late 1990s, the old school scouts overvalued &lt;code&gt;BA&lt;/code&gt;, and players with high &lt;code&gt;BA&lt;/code&gt; had high salaries. Although &lt;code&gt;BA&lt;/code&gt; and &lt;code&gt;OBP&lt;/code&gt; have a positive correlation, there were some players that have high &lt;code&gt;OBP&lt;/code&gt; and &lt;code&gt;SLG&lt;/code&gt;, and relatively small &lt;code&gt;BA&lt;/code&gt;. These players were undervalued by the market, and were the target of Billy Beane.&lt;/p&gt;
 &lt;h2&gt;5. Conclusion&lt;/h2&gt;
 &lt;p&gt;The techniques and Python code introduced in this tutorial could be extended to build different statistical models and data visualizations.&lt;/p&gt;
-&lt;p&gt;All the source code of this tutorial will be uploaded to my github account.&lt;/p&gt;
+&lt;p&gt;All the source code and data from this tutorial can be found at this &lt;a href="https://github.com/adilmoujahid/Sabermetrics-intro"&gt;github repo&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;p&gt;http://www.swing-smarter-baseball-hitting-drills.com/oakland-as.html&lt;/p&gt;
 &lt;p&gt;MITx: 15.071x The Analytics Edge&lt;/p&gt;</summary><category term="python"></category><category term="modelling"></category><category term="pandas"></category></entry><entry><title>Hello World!</title><link href="/posts/2014/07/hello-world/" rel="alternate"></link><updated>2014-07-08T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:,2014-07-08:posts/2014/07/hello-world/</id><summary type="html">&lt;p&gt;This is my first post on this new blog, and I'm very excited to embark on this project.&lt;/p&gt;

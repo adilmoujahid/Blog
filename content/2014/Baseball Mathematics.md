@@ -29,8 +29,7 @@ In this post, I will use Lahman’s Baseball Database and Python programming lan
 ##2. Getting the data and setting up your machine
 For this tutorial, we will use the Lahman’s Baseball Database. This Database contains complete batting and pitching statistics from 1871 to 2013, plus fielding statistics, standings, team stats, managerial records, post-season data, and more. You can download the data from this this [link](http://seanlahman.com/files/database/lahman-csv_2014-02-14.zip). 
 We will be using two files from this dataset: `Salaries.csv` and `Teams.csv`.
-To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. You can find the source code and installation code in this github repository.
-
+To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. 
 ##3. Reading and understading the data
 We will start by importing the required libraries using the commands below:
 
@@ -234,7 +233,7 @@ Based on the analysis above, a good strategy for recruiting batters would focus 
 ##5. Conclusion
 The techniques and Python code introduced in this tutorial could be extended to build different statistical models and data visualizations.
 
-All the source code of this tutorial will be uploaded to my github account.
+All the source code and data from this tutorial can be found at this [github repo](https://github.com/adilmoujahid/Sabermetrics-intro).
 
 ##References
 http://www.swing-smarter-baseball-hitting-drills.com/oakland-as.html
