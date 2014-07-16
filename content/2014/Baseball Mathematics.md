@@ -1,7 +1,7 @@
 title: Baseball Analytics: An Introduction to Sabermetrics using Python
 Slug: baseball-analytics
 Email: adil.mouja@gmail.com
-Date: 2014-07-23
+Date: 2014-07-13
 Category: analytics
 Tags: python, modelling, pandas
 Summary: Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. In this post, I will use Lahman’s Baseball Database and Python programming language to explain some of the techniques used in Sabermetrics.
