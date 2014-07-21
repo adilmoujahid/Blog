@@ -74,7 +74,7 @@ if __name__ == '__main__':
     stream.filter(track=['python', 'javascript', 'ruby'])
 ```
 
-If you run the program for your terminal using the command: ```python twitter_streaming.py```, you will see data flowing like the picture below.
+If you run the program from your terminal using the command: ```python twitter_streaming.py```, you will see data flowing like the picture below.
 
 <div style="text-align:center" markdown="1">
 ![Alt Text](/images/twitter_streaming.jpg)
