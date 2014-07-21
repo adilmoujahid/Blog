@@ -26,10 +26,10 @@
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tweepy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Stream&lt;/span&gt;
 
 &lt;span class="c"&gt;#Variables that contains the user credentials to access Twitter API &lt;/span&gt;
-&lt;span class="n"&gt;access_token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;507185539-STm69YI16xTNpLjiuRugjLRqYM7PEFCKTKJlRLOo&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;access_token_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;qzTSrG8bQKaBXPmpCAdrTByJpZAAJ76EwnY5ksa37I&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;consumer_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Gz4OFCGlN9PeO2wzVMAw&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;consumer_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;XQ6jOjDfJ0sdhjO3UcFzqu3HGdEfzpXXQKX28Stnig&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;access_token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ENTER YOUR ACCESS TOKEN&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;access_token_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ENTER YOUR ACCESS TOKEN SECRET&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;consumer_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ENTER YOUR API KEY&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;consumer_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ENTER YOUR API SECRET&amp;quot;&lt;/span&gt;
 
 
 &lt;span class="c"&gt;#This is a basic listener that just prints received tweets to stdout.&lt;/span&gt;
