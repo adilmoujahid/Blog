@@ -100,6 +100,7 @@ We will start first by uploading ```json``` and ```pandas``` using the commands 
 ```python
 import json
 import pandas as pd
+import matplotlib.pyplot as plt
 ```
 
 Next we will read the data in into an array that we call ```tweets```.
