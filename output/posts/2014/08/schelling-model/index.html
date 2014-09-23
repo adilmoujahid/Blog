@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+        <title>An Introduction to Agent-based Models: Simulating Segregation with Python // Adil Moujahid // Data Analytics and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Sun 24 August 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>An Introduction to Agent-based Models: Simulating Segregation with Python</h1>
+                        <p class="post-meta">
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/matplotlib/">matplotlib</a>
+                                <a class="post-category" href="../../../../tag/simulation/">simulation</a>
+                        </p>
+                </header>
+            </section>
+            <p><em>This article was originally published on <a href="https://www.binpress.com/tutorial/introduction-to-agentbased-models-an-implementation-of-schelling-model-in-python/144">Binpress</a></em></p>
+<p>In computer science, agent-based models are used to assess the effects of autonomous agents (i.e. individuals, groups or objects) on an overall system. They're very powerful analytical tools that can be used in situations where experiments aren't feasible or are very expensive to conduct. These models have a wide range of applications in the social sciences, computer science, economics and business.</p>
+<p>In this piece, I'll introduce you to the power of agent-based models when used to understand complex phenomenons. To do this, we'll use some Python, a social science case study and the Schelling model.</p>
+<h1>1. The case study</h1>
+<p>If you look at the racial distribution of multi-ethnic cities, you'll be astonished by the incredible racial segregation. For example, the New York City map below represents data from the 2010 US Census color-coded by race. You can clearly see the racial segregation.</p>
+<p>Many would conclude from such phenomena that people are intolerant, and don't want to live next to people that are different from them. A deeper look, however, might provide some nuance. In the 70's, Thomas Schelling, the 2005 Economics Nobel Prize winner, was interested in this subject and built an agent-based model called the "Schelling segregation model" for explaining this phenomenon. With a very simple model, Schelling could show that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
+<p>We'll run a few simulations using the Schelling model to get a deeper understanding of the segregation phenomena.</p>
+<div style="text-align:left">
+<p><img alt="Alt Text" src="/images/NY_racial_map.jpg" />
+Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://demographics.coopercenter.org/DotMap/index.html</a></p>
+</div>
+<h1>2. Schelling Segregation Model: Setting and Definitions</h1>
+<p>Agent-based models need three parameters: 1) Agents, 2) Behavior (rules) and 3) Metrics at the aggregated level. In the Schelling model, the agents are the people living in the city, the behavior is the house moving based on the similarity ratio and the metrics at the aggregated level is the similarity ratio.</p>
+<p>Let n be the number of races living in a city. We represent each race by a unique color and we represent the city by a grid where each cell represents a house. A house can be either empty or full. A full house can have have only one person living in it. If the house is empty, we color it in white. If the house is full, we color it by the color of the person living in it. We define the neighbors of a person to be the people living in the adjacent houses (Up, Bottom, Left, Right, Up-Left, Up-Right, Bottom-Left, Bottom-Right).</p>
+<p>Schelling's goal was to test what would happen if people had a small preference that their neighbors be of the same color (or even preference for some diversity). If the ratio of neighbors of the same race is above a certain threshold (that we call Similarity Threshold), we say that the person is satisfied. If not, we say that the person is unsatisfied.</p>
+<p>The Schelling simulation goes as follows. We start by randomly putting people in the city and we leave some houses empty. For each person living in the city, we check if he/she is satisfied. If satisfied, we don't do anything. If not, we move the person to an empty house. We run this simulation for a few iterations, and we check the final distribution of the people.</p>
+<h1>3. Python Implementation of Schelling Model</h1>
+<p>Back in the 70s, Schelling used pennies and nickels on a piece of paper for his simulation. We'll use Python for building the same simulation.</p>
+<p>We start by importing the necessary libraries for running the simulations. All libraries except <code>Matplotlib</code> are installed by default in Python. </p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+</pre></div>
+
+
+<p>Next, we define a class called <code>Schelling</code>. This class takes 6 parameters: the width and height of the city, the ratio of empty houses in the city, the similarity threshold, the number of iterations and the number of races. We define 4 methods within the <code>Schelling</code> class: <code>populate</code>, <code>is_unsatisfied</code>, <code>update</code>, <code>move_to_empty</code>, and <code>plot</code>.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Schelling</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">,</span> <span class="n">races</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">races</span> <span class="o">=</span> <span class="n">races</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty_ratio</span> <span class="o">=</span> <span class="n">empty_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_threshold</span> <span class="o">=</span> <span class="n">similarity_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iterations</span> <span class="o">=</span> <span class="n">n_iterations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">populate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">....</span>
+
+    <span class="k">def</span> <span class="nf">is_unsatisfied</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="o">....</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+        <span class="o">....</span>
+
+    <span class="k">def</span> <span class="nf">move_to_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="o">....</span>
+
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">....</span>
+</pre></div>
+
+
+<p>The <code>populate</code> method is used at the beginning of the simulation. This method distributes randomly people in the grid. </p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">populate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)))</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">n_empty</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_ratio</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span><span class="p">)</span> <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">n_empty</span><span class="p">]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">remaining_houses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n_empty</span><span class="p">:]</span>
+    <span class="n">houses_by_race</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">remaining_houses</span><span class="p">[</span><span class="n">i</span><span class="p">::</span><span class="bp">self</span><span class="o">.</span><span class="n">races</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">races</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">races</span><span class="p">):</span>
+        <span class="c">#create agents for each race</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">+</span> 
+                            <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">houses_by_race</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">houses_by_race</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                        <span class="p">)</span>
+</pre></div>
+
+
+<p>The <code>is_unsatisfied</code> method takes as arguments the <code>(x, y)</code> coordinates of a house, check the ratio of neighbors of similar color, and returns <code>True</code> if the ratio is above the happiness threshold, otherwise it returns <code>False</code>.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">is_unsatisfied</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+
+    <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+    <span class="n">count_similar</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">count_different</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>        
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>        
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>        
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+            <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">count_similar</span><span class="o">+</span><span class="n">count_different</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">count_similar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">count_similar</span><span class="o">+</span><span class="n">count_different</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">happy_threshold</span>
+</pre></div>
+
+
+<p>The <code>update</code> method checks if each person in the grid is unsatisfied, if yes it assigns the person to a randomly chosen empty house. It runs this process <code>n_iterations</code> times.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iterations</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_agents</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span>
+        <span class="n">n_changes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_agents</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unhappy</span><span class="p">(</span><span class="n">agent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">agent</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">agent_race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[</span><span class="n">agent</span><span class="p">]</span>
+                <span class="n">empty_house</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[</span><span class="n">empty_house</span><span class="p">]</span> <span class="o">=</span> <span class="n">agent_race</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[</span><span class="n">agent</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">empty_house</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
+                <span class="n">n_changes</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">print</span> <span class="n">n_changes</span>
+        <span class="k">if</span> <span class="n">n_changes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+</pre></div>
+
+
+<p>The <code>move_to_empty</code> method takes as arguments the <code>(x, y)</code> coordinates of a house, and moves the person living in the <code>(x, y)</code> house to an empty house. This method is called within the <code>update</code> method to move the unsatisfied people to empty houses.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">move_to_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+    <span class="n">empty_house</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">updated_agents</span><span class="p">[</span><span class="n">empty_house</span><span class="p">]</span> <span class="o">=</span> <span class="n">race</span>
+    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">updated_agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">empty_house</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+
+<p>The <code>plot</code> method is used to draw the whole city and people living in the city. We can call this method at anytime to check the distribution of people in the city. This method takes 2 arguments <code>title</code>, and <code>file_name</code>.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="c">#If you want to run the simulation with more than 7 colors, you should set agent_colors accordingly</span>
+    <span class="n">agent_colors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span><span class="s">&#39;k&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">agent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">agent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">agent_colors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[</span><span class="n">agent</span><span class="p">]])</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+</pre></div>
+
+
+<h1>4. Simulations</h1>
+<p>Now that we have our implementation of the <code>Schelling</code> class, we can run different simulations and plot the results.  we will build 3 simulations with the following characteristics: </p>
+<ul>
+<li>width = 50, and height = 50 (2500 houses)</li>
+<li>30% of empty houses</li>
+<li>Similarity Threshold = 30% (for Simulation 1), Similarity Threshold = 50% (for Simulation 2), and Similarity Threshold = 80% (for Simulation 3)</li>
+<li>Maximum number of iterations = 500</li>
+<li>Number of races = 2</li>
+</ul>
+<p>We start by creating and populating the cities.</p>
+<div class="highlight"><pre><span class="n">schelling_1</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">schelling_1</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
+
+<span class="n">schelling_2</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">schelling_2</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
+
+<span class="n">schelling_3</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">schelling_3</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Next, we plot the city at the initial phase. Note that the Similarity threshold has no effect on the initial state of the city.</p>
+<div class="highlight"><pre><span class="n">schelling_1_1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s">&#39;Schelling Model with 2 colors: Initial State&#39;</span><span class="p">,</span> <span class="s">&#39;schelling_2_initial.png&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, we run the <code>update</code> method, and we plot the final distribution for both Similarity thresholds.</p>
+<div class="highlight"><pre><span class="n">schelling_1</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="n">schelling_2</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="n">schelling_3</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="n">schelling_1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s">&#39;Schelling Model with 2 colors: Final State with Similarity Threshold 30%&#39;</span><span class="p">,</span> <span class="s">&#39;schelling_2_30_final.png&#39;</span><span class="p">)</span>
+<span class="n">schelling_2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s">&#39;Schelling Model with 2 colors: Final State with Similarity Threshold 50%&#39;</span><span class="p">,</span> <span class="s">&#39;schelling_2_50_final.png&#39;</span><span class="p">)</span>
+<span class="n">schelling_3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s">&#39;Schelling Model with 2 colors: Final State with Similarity Threshold 80%&#39;</span><span class="p">,</span> <span class="s">&#39;schelling_2_80_final.png&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div style="text-align:center">
+<p><img alt="Alt Text" src="/images/schelling_2_initial.png" /></p>
+</div>
+<div style="text-align:center">
+<p><img alt="Alt Text" src="/images/schelling_2_30_final.png" /></p>
+</div>
+<div style="text-align:center">
+<p><img alt="Alt Text" src="/images/schelling_2_50_final.png" /></p>
+</div>
+<div style="text-align:center">
+<p><img alt="Alt Text" src="/images/schelling_2_80_final.png" /></p>
+</div>
+<p>Looking at the plots above, we can see that the higher the similarity threshold, the more segregated the city becomes. Furthermore, we can see that even with a small similarity threshold, we get segregated cities. In other words, even if the people are very tolerant (i.e. having a small Similarity threshold), we end up with segregation. We can conclude that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
+<h1>5. Measuring Segregation</h1>
+<p>In the simulation above, we used visual representations to confirm the segregation. However, we don't have any quantitative measure for calculating segregation. We will define this measure in this section, and we will run a few simulations to check the relationship between the happiness threshold and the segregation level.</p>
+<p>First we will add a method to the <code>Schelling</code> class called <code>calculate_similarity</code>. This method returns the calculate the similarity ratio for each agent and returns the mean similarity ratio. We will use the mean similarity ratio as a measure of segregation.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">:</span>
+        <span class="n">count_similar</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">count_different</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">agent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">agent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>        
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>        
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>        
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">==</span> <span class="n">race</span><span class="p">:</span>
+                <span class="n">count_similar</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">similarity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">count_similar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">count_similar</span><span class="o">+</span><span class="n">count_different</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">similarity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, we will calculate the mean similarity ratio for different similarity thresholds, and we will plot the relationship between the similarity threshold and the similarity ratio.</p>
+<div class="highlight"><pre><span class="n">similarity_threshold_ratio</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]:</span>
+    <span class="n">schelling</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">schelling</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
+    <span class="n">schelling</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">similarity_threshold_ratio</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">schelling</span><span class="o">.</span><span class="n">calculate_similarity</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">similarity_threshold_ratio</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">similarity_threshold_ratio</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="s">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Similarity Threshold vs. Mean Similarity Ratio&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&quot;Similarity Threshold&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&quot;Mean Similarity Ratio&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;schelling_segregation_measure.png&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div style="text-align:center">
+<p><img alt="Alt Text" src="/images/schelling_segregation_measure.png" /></p>
+</div>
+<p>You can see from the plot above that for very small similarity thresholds, we get very high segregation (defined by the mean similarity ratio). For example, for a similarity threshold of 0.3, we got a mean similarity ratio of 0.75. We could confirm quantitatively that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
+<h1>6. Wrap-up</h1>
+<p>In this article, we've introduced one example of agent-based models called, the Schelling segregation model, and we implemented it in Python. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in these cities doesn't necessarily translate into intolerance at the individual level.</p>
+<p>All source code from this post can be found in this <a href="https://github.com/adilmoujahid/schelling_simulations">github repository</a></p>
+<h1>References</h1>
+<p>https://www.coursera.org/course/modelthinking</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
