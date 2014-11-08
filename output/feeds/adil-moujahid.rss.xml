@@ -382,7 +382,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;For the remaining of this tutorial, we will using 4 Python libraries &lt;code&gt;json&lt;/code&gt; for parsing the data, &lt;code&gt;pandas&lt;/code&gt; for data manipulation, &lt;code&gt;matplotlib&lt;/code&gt; for creating charts, adn &lt;code&gt;re&lt;/code&gt; for regular expressions. The &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;re&lt;/code&gt; libraries are installed by default in Python.  You should install &lt;code&gt;pandas&lt;/code&gt; and &lt;code&gt;matplotlib&lt;/code&gt; if you don't have them in your machine.&lt;/p&gt;
+&lt;p&gt;For the remaining of this tutorial, we will be using 4 Python libraries &lt;code&gt;json&lt;/code&gt; for parsing the data, &lt;code&gt;pandas&lt;/code&gt; for data manipulation, &lt;code&gt;matplotlib&lt;/code&gt; for creating charts, adn &lt;code&gt;re&lt;/code&gt; for regular expressions. The &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;re&lt;/code&gt; libraries are installed by default in Python.  You should install &lt;code&gt;pandas&lt;/code&gt; and &lt;code&gt;matplotlib&lt;/code&gt; if you don't have them in your machine.&lt;/p&gt;
 &lt;p&gt;We will start first by uploading &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;pandas&lt;/code&gt; using the commands below:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
