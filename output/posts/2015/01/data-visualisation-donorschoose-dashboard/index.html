@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+        <title>Interactive Data Visualisation using Python, d3.js, dc.js and mongoDB // Adil Moujahid // Data Analytics and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+
+                <div>
+                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+                    Follow @AdilMouja
+                </a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+
+                <h5>Published</h5>
+                <p>Thu 15 January 2015</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Interactive Data Visualisation using Python, d3.js, dc.js and mongoDB</h1>
+                        <p class="post-meta">
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/javascript/">javascript</a>
+                                <a class="post-category" href="../../../../tag/data-visualisation/">data visualisation</a>
+                                <a class="post-category" href="../../../../tag/d3js/">d3.js</a>
+                                <a class="post-category" href="../../../../tag/dcjs/">dc.js</a>
+                                <a class="post-category" href="../../../../tag/mongodb/">MongoDB</a>
+                        </p>
+                </header>
+            </section>
+            <p>Data visualisation plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualisation is an interdisciplinary field, which requires design, web development, database and coding skills.</p>
+<p>The goal of this tutorial is to introduce the building blocks for creating a meaningful interactive data visualisation. To do this, we will use a dataset from DonorsChoose.org to build a data visualisation that represents school donations broken down by different attributes. We will be covering a wide range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts. By the end of this tutorial, you will get enough knowledge that you can leverage for other projects that require interactive data visualisation.</p>
+<p>Below is a video of the interactive data visualisation dashboard that we will be building in this tutorial.</p>
+<h1>1. The case study</h1>
+<p>DonorsChoose.org is a US based nonprofit organization that allows individuals to donate money directly to public school classroom projects. Public school teachers post classroom project requests on the platform, and individuals have the option to donate money directly to fund these projects. The classroom projects range from pencils and books to computers and other expensive equipments for classrooms. In 10 years of existence, this platform helped more than 165,000 teachers at 43,000 public schools to post 300,000 classroom project requests and raise more than $80,000,000 from 400,000 donors. DonorsChoose.org is making the platform data open and available for making discoveries and building applications. In this tutorial we will be using one of the available datasets for building an interactive data visualisation that represents school donations broken down by different attributes.</p>
+<h2>Getting and understanding the data</h2>
+<p>DonorsChoose.org data is available on this <a href="http://data.donorschoose.org/open-data/overview/">url</a>. We will be using the “project” dataset.  This dataset contains information about all classroom projects that have been posted to the site. This dataset can be downloaded directly from this <a href="https://s3.amazonaws.com/open_data/csv/opendata_projects.zip">url</a>.</p>
+<p>After downloading and unziping the data, we will get a file called <code>opendata_projects.csv</code> with a size of around 324MB (at the time of writing). The data is represented in csv format. csv stands for "comma-separated values". csv files are used for storing tabular data and its metadata. These files can be open by any standard text editor, or more conveniently by spreadsheet application like Microsoft Excel or Google Spreadsheet. </p>
+<p>This file contains 771,929 records along 44 attributes. In this tutorial, we will be using only 5 attributes, namely <code>school_state</code>, <code>resource_type</code>, <code>poverty_level</code>, <code>date_posted</code> and <code>total_donations</code>. Below is the first record along the 5 attributes.</p>
+<ul>
+<li>school_state: NY</li>
+<li>resource_type: Technology</li>
+<li>poverty_level: highest poverty</li>
+<li>date_posted: 2002-11-11</li>
+<li>total_donations: 329.00</li>
+</ul>
+<h1>2. Storing and querying the data: A crash course in MongoDB</h1>
+<p>Now that we have our dataset, we will store the data into a database called MongoDB. MongoDB is the most popular non-relational database. Relational databases represent data in rows and columns (similar to a spreadsheet). In relational databases, we have to specify the data schema in advance. Furthermore, relational database don’t scale very well. in contrast, MongoDB is a schemaless database, which provides more flexibly in storing records of different formats in the same database. mongoDB scales very well. However, it doesn’t support joins and transactions that relational databases provide. MongoDB stores data in BSON format (similar to JSON), which stands for Binary JSON. JSON stands for JavaScript Object Notation. This format makes it easy to humans to read the data, and for machines to parse it. </p>
+<p>MongoDB can be used with all major operating systems. The installation guides can be found in this <a href="http://docs.mongodb.org/manual/installation/">page</a>.</p>
+<h2>Storing the data in MongoDB and running queries from a mongo shell</h2>
+<p>The commands that follow are run on Mac OS. For Windows or other operating systems users, the commands shouldn’t be that different. If you have any problem executing the commands, leave a message in the comments section at the end of this page.</p>
+<p>After installing MongoDB, open a Terminal window, and run the command below to start the database.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">mongodb</span>
+</pre></div>
+
+
+<p>Next, open another Terminal window, go the folder where you stored the dataset, and run the command below to copy the dataset to MongoDB. The data will be stored in a database called <code>donorschoose</code> under a collection called <code>projects</code>.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">mongoimport</span> <span class="o">-</span><span class="n">d</span> <span class="n">donorschoose</span> <span class="o">-</span><span class="n">c</span> <span class="n">projects</span> <span class="o">--</span><span class="n">type</span> <span class="n">csv</span> <span class="o">--</span><span class="n">file</span> <span class="n">opendata_projects</span><span class="p">.</span><span class="n">csv</span> <span class="err">—</span><span class="n">headerline</span>
+</pre></div>
+
+
+<p>Next, run the command below to start a <code>mongo</code> shell. This <code>mongo</code> shell allows us to interact with the database and query the data.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">mongo</span>
+</pre></div>
+
+
+<p>In the <code>mongo</code> shell, run the command below to choose the database <code>donorschoose</code>.</p>
+<div class="highlight"><pre><span class="o">&gt;</span> <span class="n">use</span> <span class="n">donorschoose</span>
+</pre></div>
+
+
+<p>Next run the command below to return all collections that are stored in <code>donorschoose</code> DB. This will return <code>projects</code> since it’s the only collection that we stored inside <code>donorschoose</code> DB.</p>
+<div class="highlight"><pre><span class="o">&gt;</span> <span class="n">show</span> <span class="n">collections</span>
+</pre></div>
+
+
+<p>Next run the command below to retrieve one random record from the <code>donorschoose</code> DB. </p>
+<div class="highlight"><pre><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">projects</span><span class="p">.</span><span class="n">findOne</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The command above returns the following record with 45 key-values. 44 key-values are from the original data, and the key <code>"_id"</code> with its value is a unique id assigned automatically by MongoDB.</p>
+<p><code>{"_id" : ObjectId("54954c1441606439933b93d8"), "_projectid" : "\"e565fb42185c6e9f22806ad9d5ac8a77\"", "_teacher_acctid" : "\"2e17c8c91cb58132d8103a9aa8797e80\"", "_schoolid" : "\"45e7ddbdd7023f1eb65a6cc028d7414f\"", "school_ncesid" : NumberLong("360009001332"), "school_latitude" : 40.841691, "school_longitude" : -73.875457, "school_city" : "Bronx", "school_state" : "NY", "school_zip" : 10460, "school_metro" : "urban", "school_district" : "New York City Dept Of Ed", "school_county" : "Bronx", "school_charter" : "f", "school_magnet" : "f", "school_year_round" : "f", "school_nlns" : "f", "school_kipp" : "f", "school_charter_ready_promise" : "f", "teacher_prefix" : "Mr.", "teacher_teach_for_america" : "f", "teacher_ny_teaching_fellow" : "f", "primary_focus_subject" : "Literacy", "primary_focus_area" : "Literacy &amp; Language", "secondary_focus_subject" : "", "secondary_focus_area" : "", "resource_type" : "Books", "poverty_level" : "highest poverty", "grade_level" : "Grades 9-12", "vendor_shipping_charges" : "", "sales_tax" : "", "payment_processing_charges" : "", "fulfillment_labor_materials" : "", "total_price_excluding_optional_support" : 280.02, "total_price_including_optional_support" : 341.49, "students_reached" : 0, "total_donations" : 308, "num_donors" : 1, "eligible_double_your_impact_match" : "f", "eligible_almost_home_match" : "f", "funding_status" : "completed", "date_posted" : "2007-03-08", "date_completed" : "2007-03-08", "date_thank_you_packet_mailed" : "2007-03-08", "date_expiration" : "2003-12-31"}</code></p>
+<p>In this tutorial, we are interested only the 5 attributes: <code>school_state</code>, <code>resource_type</code>, <code>poverty_level</code>, <code>date_posted</code> and <code>total_donations</code>. We can query one random record and return only these 5 attributes by running the following command.</p>
+<div class="highlight"><pre><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">projects</span><span class="p">.</span><span class="n">findOne</span><span class="p">({},</span> <span class="p">{</span><span class="n">school_state</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">resource_type</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">poverty_level</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">date_posted</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_donations</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">funding_status</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">_id</span><span class="o">:</span><span class="mi">0</span><span class="p">})</span>
+</pre></div>
+
+
+<p>This returns <code>{"school_state" : "NY", "resource_type" : "Books", "poverty_level" : "highest poverty", "total_donations" : 308, "funding_status" : "completed", "date_posted" : "2007-03-08"}</code>.</p>
+<p>We can get all records with the 5 attributes by running the following command.</p>
+<div class="highlight"><pre><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">projects</span><span class="p">.</span><span class="n">find</span><span class="p">({},</span> <span class="p">{</span><span class="n">school_state</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">resource_type</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">poverty_level</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">date_posted</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_donations</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">funding_status</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">_id</span><span class="o">:</span><span class="mi">0</span><span class="p">})</span>
+</pre></div>
+
+
+<h2>Interacting with MongoDB using Python</h2>
+<p>In the previous section, we queried MongoDB database using the <code>mongo</code> shell. Next, we will do the same by using <code>python</code> programming language. Understanding how to query MongoDB using <code>python</code> is important because we’re planning to build our server using <code>python</code>, and we will include within the server code MongoDB queries.</p>
+<p>We will be using Python 2.7 and a Python library called <code>PyMongo</code> for connecting to MongoDB and querying the data. You should install <a href="http://api.mongodb.org/python/current/installation.html"><code>Pymongo</code></a> first before executing the commands below.</p>
+<p>Start a <code>python</code> shell by running the command below from your Terminal window.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">python</span>
+</pre></div>
+
+
+<p>Next import the <code>Connection</code> method from <code>PyMongo</code> by running the command below. This method will allow us to connect to MongoDB and query the data.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">pymongo</span> <span class="n">import</span> <span class="n">Connection</span>
+</pre></div>
+
+
+<p>Next, we will define 4 variables that represent respectively MongoDB ip address, MongoDB port, MongoDB database name and MongoDB collection name.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">MONGODB_HOST</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">localhost</span><span class="err">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">MONGODB_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">DBS_NAME</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">donorschoose</span><span class="err">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">projects</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<p>Next, we will define the 5 attributes that we will use for our query. Note that we had to explicitly set the records unique id <code>_id</code> to <code>False</code>. If we don't do so, it will be included in the query's response.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">FIELDS</span> <span class="o">=</span> <span class="p">{</span><span class="err">&#39;</span><span class="n">school_state</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">True</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">resource_type</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">True</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">poverty_level</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">True</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">date_posted</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">True</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">total_donations</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">True</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">_id</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">False</span><span class="p">}</span>
+</pre></div>
+
+
+<p>And finally, let's connect to MongoDB and retrieve all the records along the 5 attributes that we are interested in. We can do so by running the following.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="p">[</span><span class="n">DBS_NAME</span><span class="p">][</span><span class="n">COLLECTION_NAME</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">projects</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span>
+</pre></div>
+
+
+<p>All the records are stored in <code>projects</code>, we can print all them by running the following command.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">project</span> <span class="n">in</span> <span class="n">projects</span><span class="o">:</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">print</span> <span class="n">project</span>
+</pre></div>
+
+
+<h1>2. Building the server</h1>
+<p>For this tutorial, we will be using Python Flask for building a server that interact with MongoDB and render the html page that contains our charts. Flask is one of the most popular web frameworks for Python. It’s minimal and very easy to learn. INSTALLATION GUIDES...</p>
+<p>We start by creating a folder called <code>project</code>. Inside the <code>project</code> folder, we create a folder called <code>templates</code>, and inside the <code>templates</code> folder we create an hmtl file called <code>index.html</code>.</p>
+<p>Inside the <code>index.html</code> page, copy the code below.</p>
+<div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Hello World!<span class="nt">&lt;/h1&gt;</span>
+</pre></div>
+
+
+<p>Next, we create another file called <code>app.py</code> inside the <code>project</code> folder. We copy the code below inside the <code>app.py</code> file. This is server side code.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;index.html&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>From a Terminal window, go to the <code>project</code> folder, and start the server by running the following command.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">python</span> <span class="n">app</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>Now, if you open a browser and go to <code>http://localhost:5000/</code>, you will see the message <code>Hello World!</code>.</p>
+<p>Next, we will modify the <code>app.py</code> folder to include the MongoDB query to retieve all the records from MongoDB along the 5 attributes. You can see many lines of code from the previous MongoDB section. We added one <code>route</code> decorator <code>@app.route("/donorschoose/projects")</code> to map the URL <code>/donorschoose/projects</code> to the data from MongoDB.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">Connection</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">bson</span> <span class="kn">import</span> <span class="n">json_util</span>
+<span class="kn">from</span> <span class="nn">bson.json_util</span> <span class="kn">import</span> <span class="n">dumps</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">MONGODB_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+<span class="n">MONGODB_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
+<span class="n">DBS_NAME</span> <span class="o">=</span> <span class="s">&#39;donorschoose&#39;</span>
+<span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s">&#39;projects&#39;</span>
+<span class="n">FIELDS</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;school_state&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;resource_type&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;poverty_level&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;date_posted&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;total_donations&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;_id&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;index4.html&quot;</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/donorschoose/projects&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">donorschoose_projects</span><span class="p">():</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="p">[</span><span class="n">DBS_NAME</span><span class="p">][</span><span class="n">COLLECTION_NAME</span><span class="p">]</span>
+    <span class="n">projects</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
+    <span class="n">json_projects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">:</span>
+        <span class="n">json_projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
+    <span class="n">json_projects</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_projects</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">json_util</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">json_projects</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If you start the server by running <code>python app.py</code> and go to <code>http://localhost:5000/donorschoose/projects</code>, you will see all the projects data printed in the browser. </p>
+<h1>3. Building the charts</h1>
+<div class="highlight"><pre><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;/donorschoose/projects&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span> 
+
+    <span class="kd">var</span> <span class="nx">donorschoose_projects</span> <span class="o">=</span> <span class="nx">json</span><span class="p">;</span>
+    <span class="c1">// since its a csv file we need to format the data a bit</span>
+    <span class="kd">var</span> <span class="nx">dateFormat</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;%Y-%m-%d&quot;</span><span class="p">);</span>
+    <span class="nx">donorschoose_projects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span> <span class="o">=</span> <span class="nx">dateFormat</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span><span class="p">);</span>
+        <span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="c1">//Make the format of total_donations to numeric values</span>
+        <span class="nx">d</span><span class="p">.</span><span class="nx">total_donations</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">total_donations</span><span class="p">;</span>
+    <span class="p">});</span>
+
+    <span class="c1">// feed it through crossfilter</span>
+    <span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">donorschoose_projects</span><span class="p">);</span>
+    <span class="c1">// define a dimension</span>
+    <span class="c1">//var volumeByMonth = ndx.dimension(function(d) { return d3.time.month(d.date_posted); });</span>
+    <span class="kd">var</span> <span class="nx">volumeByDate</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span><span class="p">;</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">volumeByResourceType</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">resource_type</span><span class="p">;</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">volumeByGradeLevel</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">grade_level</span><span class="p">;</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">volumeByPovertyLevel</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">poverty_level</span><span class="p">;</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">school_state</span><span class="p">;</span> <span class="p">});</span>
+
+    <span class="kd">var</span> <span class="nx">totalDonations</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">().</span><span class="nx">reduceSum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">total_donations</span><span class="p">;</span> <span class="p">}).</span><span class="nx">value</span><span class="p">();</span>
+
+    <span class="c1">// map/reduce to group sum</span>
+    <span class="kd">var</span> <span class="nx">volumeByDateGroup</span> <span class="o">=</span> <span class="nx">volumeByDate</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">volumeByResourceTypeGroup</span> <span class="o">=</span> <span class="nx">volumeByResourceType</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">volumeByByGradeLevelGroup</span> <span class="o">=</span> <span class="nx">volumeByGradeLevel</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">volumeByPovertyLevelGroup</span> <span class="o">=</span> <span class="nx">volumeByPovertyLevel</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">stateRaisedSum</span> <span class="o">=</span> <span class="nx">states</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+
+    <span class="c1">//Charts</span>
+    <span class="kd">var</span> <span class="nx">timeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">barChart</span><span class="p">(</span><span class="s2">&quot;#dc-time-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">resourceTypeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">pieChart</span><span class="p">(</span><span class="s2">&quot;#dc-resource-type-pie-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">gradeLevelChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">pieChart</span><span class="p">(</span><span class="s2">&quot;#dc-grade-level-pie-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">povertyLevelChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">pieChart</span><span class="p">(</span><span class="s2">&quot;#dc-poverty-level-pie-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">usChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">geoChoroplethChart</span><span class="p">(</span><span class="s2">&quot;#us-chart&quot;</span><span class="p">);</span>
+
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totalDonations</span><span class="p">);</span> 
+
+    <span class="kd">var</span> <span class="nx">projection</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geo</span><span class="p">.</span><span class="nx">albersUsa</span><span class="p">()</span>
+                        <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+                        <span class="p">.</span><span class="nx">translate</span><span class="p">([</span><span class="mi">380</span><span class="p">,</span> <span class="mi">150</span><span class="p">]);</span>
+
+    <span class="nx">timeChart</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">margins</span><span class="p">({</span><span class="nx">top</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">40</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByDate</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByDateGroup</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">transitionDuration</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">elasticY</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">x</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">scale</span><span class="p">().</span><span class="nx">domain</span><span class="p">([</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)]));</span>
+
+    <span class="nx">resourceTypeChart</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">532</span><span class="p">)</span> <span class="c1">// (optional) define chart width, :default = 200</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span> <span class="c1">// (optional) define chart height, :default = 200</span>
+        <span class="p">.</span><span class="nx">radius</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="c1">// define pie radius</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByResourceType</span><span class="p">)</span> <span class="c1">// set dimension</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByResourceTypeGroup</span><span class="p">);</span>
+
+    <span class="nx">gradeLevelChart</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">radius</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByGradeLevel</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByByGradeLevelGroup</span><span class="p">);</span>
+
+    <span class="nx">povertyLevelChart</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">radius</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByPovertyLevel</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByPovertyLevelGroup</span><span class="p">);</span>
+
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;static/geojson/us-states.json&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">statesJson</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">usChart</span><span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">states</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">stateRaisedSum</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">colors</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">quantize</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="s2">&quot;#E2F2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#C4E4FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#9ED2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#81C5FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#6BBAFF&quot;</span><span class="p">,</span> <span class="s2">&quot;#51AEFF&quot;</span><span class="p">,</span> <span class="s2">&quot;#36A2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#1E96FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#0089FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#0061B5&quot;</span><span class="p">]))</span>
+                <span class="p">.</span><span class="nx">colorDomain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+                <span class="p">.</span><span class="nx">colorCalculator</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span> <span class="o">?</span> <span class="nx">usChart</span><span class="p">.</span><span class="nx">colors</span><span class="p">()(</span><span class="nx">d</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;#ccc&#39;</span><span class="p">;</span> <span class="p">})</span>
+                <span class="p">.</span><span class="nx">overlayGeoJson</span><span class="p">(</span><span class="nx">statesJson</span><span class="p">.</span><span class="nx">features</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+                <span class="p">})</span>
+                <span class="p">.</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projection</span><span class="p">);</span>
+
+        <span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</pre></div>
+
+
+<h1>4. Putting in all together</h1>
+<p>keen.io
+Graphs that explains the architecture.</p>
+<h1>5. Technical considerations</h1>
+<p>Size of query...</p>
+<h1>Conclusion</h1>
+<p>sdsdsdsdsdsds</p>
+<p>If you like what you read follow me on twitter</p>
+<h1>References</h1>
+<p>http://bl.ocks.org/jun9/raw/5631952/</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>

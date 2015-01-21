@@ -6,7 +6,7 @@
     <meta name="description" content="Adil Moujahid, Data Analytics and more">
 
 
-        <title>Hello World! // Adil Moujahid // Data Analytics and more</title>
+        <title>Predicting Bad Loans: // Adil Moujahid // Data Analytics and more</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
@@ -32,16 +32,8 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
-
-                <div>
-                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
-                    Follow @AdilMouja
-                </a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                </div>
-
                 <h5>Published</h5>
-                <p>Tue 08 July 2014</p>
+                <p>Mon 01 December 2014</p>
                 <a href="/">&larr;Home</a>
             </hgroup>
         </header>
@@ -50,15 +42,29 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>Hello World!</h1>
+                    <h1>Predicting Bad Loans:</h1>
                         <p class="post-meta">
-                            // tags                                 <a class="post-category" href="../../../../tag/misc/">misc</a>
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/matplotlib/">matplotlib</a>
+                                <a class="post-category" href="../../../../tag/scikit-learn/">scikit-learn</a>
+                                <a class="post-category" href="../../../../tag/classification/">classification</a>
+                                <a class="post-category" href="../../../../tag/svm/">svm</a>
                         </p>
                 </header>
             </section>
-            <p>This is my first post on this new blog, and I'm very excited to embark on this project.</p>
-<p>I'm planning to use this blog to share some thoughts on topics I'm interested in. These topics are mainly centered around technology with a deep focus on data analytics and applied mathematics. I will try to keep the content focused on practical use cases with many tutorials on how to build algorithms and mathematical models for analyzing data and how to implement these models using programming languages such as Python and Java as well as new Software packages.</p>
-<p>I would love to get your comments on the blog posts and suggestions for new tutorials.</p>
+            <p>New and creative applications for machine learning are cropping up all over the place. Who knew that agriculturalists are using image recognition to evaluate the health of plants? Or that researchers are able to generate music imitating the styles of masters from Chopin to Charlie Parker? While there's a ton of interest in applying machine learning in new fields, there's no shortage of creativity among analysts solving age-old prediction problems.</p>
+<p>This is a post exploring one of the oldest prediction problems--predicting risk on consumer loans.</p>
+<p>Predicting Bad Loans
+We're going to be using the publicly available dataset of Lending Club loan performance. It's a real world data set with a nice mix of categorical and continuous variables.</p>
+<p>LendingClub makes several datasets available on their website. We're going to use the 2007 to 2011 file (LoanStats3a.csv), and our goal will be to build a web app which can approve and decline new loan applications.</p>
+<h1>1. The case study</h1>
+<p>If you look at the racial distribution of multi-ethnic cities, you'll be astonished by the incredible racial segregation. For example, the New York City map below represents data from the 2010 US Census color-coded by race. You can clearly see the racial segregation.</p>
+<p>A loan listing contains five different types of information to enable investors to make an informed decision whether to invest or not.</p>
+<p>1) The loan details – there is information about the loan itself such as the loan grade, loan purpose, interest rate, monthly payments, loan length and funding information.</p>
+<p>2) Borrower details – while personally identifying details such as name, address and social security number are withheld from investors, information such as employer, profession, gross income and location are included.</p>
+<p>3) Credit information – Lending Club pulls a complete credit report during the application process and shares much of this information, such as credit score range, delinquencies and credit line details, with investors.</p>
+<p>4) Loan Description – filled out by the borrower to provide more information for investors. This field is optional and is sometimes left blank.</p>
+<p>5) Questions and Answers – investors can ask predefined questions of the borrower and responses are available for all investors to see.</p>
             <div class="hr"></div>
             <a href="#" class="go-top">Go Top</a>
 <div class="comments">

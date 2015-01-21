@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+        <title>Predicting Bad Loans: Practical Machine Learning with Python // Adil Moujahid // Data Analytics and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Mon 01 December 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Predicting Bad Loans: Practical Machine Learning with Python</h1>
+                        <p class="post-meta">
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/matplotlib/">matplotlib</a>
+                                <a class="post-category" href="../../../../tag/scikit-learn/">scikit-learn</a>
+                                <a class="post-category" href="../../../../tag/classification/">classification</a>
+                                <a class="post-category" href="../../../../tag/svm/">svm</a>
+                        </p>
+                </header>
+            </section>
+            <p>Machine learning deals with the construction and study of algorithms that can learn from data without being explicitly programmed. These algorithms are used for making predictions and automating the decision making. </p>
+<p>Machine learning play an important role in the increasingly popular field of data science. </p>
+<p>In this piece, I'll introduce you to the end-to-end workflow of building a machine learning algorithm. To do this, we'll use some Python, a real dataset and the case study of predicting risk on consumer loans.</p>
+<h1>1. The case study</h1>
+<p>In this blog post, we will use real consumer loans data from Lending Club. Lending Club is is a US peer-to-peer lending company that connects borrowers with lenders. It allows its users to either apply for up to a $35,000 loan or fund loans on the platform. </p>
+<p>The lending process goes as follows: The borrower start by applying for a loan if they meet certain criteria such as FICO score. Lending Club verifies the loan details and decides whether or not the borrower qualify of the loan. If qualified, Lending Club offers the applicant an interest rate as well as the option to increase or decrease the loan amount. If the applicant accetps, the loan get added to Lending Club's online platform. The lenders browse all the loans on the platform and decide whether to invest or not in a range of loans in increments as little as $25.</p>
+<p>For investors, it is very important to assess the default risk of the loans they're investing in. Lending Club provides detailed information about the loan and the borrower. This information is used by the investors to make informed decisions on their investements. </p>
+<p>Lending Club also provides historical loan data to build and test investement strategies. In this tutorial, we will be using one of the datasets to build a model that can predict bad loans.</p>
+<h1>2. Getting the data and setting up your machine</h1>
+<p>Go to this <a href="https://www.lendingclub.com/info/download-data.action">link</a>, download and unzip the file containing data for the period 2012-2013. The file is called <code>LoanStats3b.csv</code>. This file contains complete loan data for all loans issued through the 2012-2013 period, including the loan status (Current, Late, Fully Paid, etc.) and latest payment information as of September 30th, 2014. The datasets from Lending Club get updated quartely. If you're reading this post anytime from January 2015, the dataset might be updated and the analysis results might be a bit different.</p>
+<p>To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: <code>pandas</code>, <code>matplotlib</code> and <code>scikit-learn</code>. </p>
+<h1>3. Preparing the data for analysis</h1>
+<h2>2.1. Reading the data</h2>
+<p>First, le's start by importing <code>pandas</code> library, and read the <code>LoanStats3b.csv</code> file into a <code>pandas DataFrame</code> called <code>data</code>. We assume that the <code>LoanStats3b.csv</code> is saved under and a folder called <code>data</code>.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="s">&#39;./data/LoanStats3b.csv&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+</pre></div>
+
+
+<p>PRINT NUMBER OF TRANSACTIONS</p>
+<p>We can print all the columns in this data set, by executing the command below.</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+
+<p><code>Index([u'id', u'member_id', u'loan_amnt', u'funded_amnt', u'funded_amnt_inv', u'term', u'int_rate', u'installment', u'grade', u'sub_grade', u'emp_title', u'emp_length', u'home_ownership', u'annual_inc', u'is_inc_v', u'issue_d', u'loan_status', u'pymnt_plan', u'url', u'desc', u'purpose', u'title', u'zip_code', u'addr_state', u'dti', u'delinq_2yrs', u'earliest_cr_line', u'inq_last_6mths', u'mths_since_last_delinq', u'mths_since_last_record', u'open_acc', u'pub_rec', u'revol_bal', u'revol_util', u'total_acc', u'initial_list_status', u'out_prncp', u'out_prncp_inv', u'total_pymnt', u'total_pymnt_inv', u'total_rec_prncp', u'total_rec_int', u'total_rec_late_fee', u'recoveries', u'collection_recovery_fee', u'last_pymnt_d', u'last_pymnt_amnt', u'next_pymnt_d', u'last_credit_pull_d', u'collections_12_mths_ex_med', u'mths_since_last_major_derog', u'policy_code'], dtype='object')</code></p>
+<p>As you can see from the metadata above, the dataset contains detailed information about each loan. We can get detailed information about each column from the following <a href="https://resources.lendingclub.com/LCDataDictionary.xlsx">file</a> also available at Lending Club's dataset page.</p>
+<p>Select metadata</p>
+<div class="highlight"><pre><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;issue_d&#39;</span><span class="p">,</span> <span class="s">&#39;pub_rec&#39;</span><span class="p">,</span> <span class="s">&#39;revol_util&#39;</span><span class="p">,</span> <span class="s">&#39;inq_last_6mths&#39;</span><span class="p">,</span> <span class="s">&#39;home_ownership&#39;</span><span class="p">,</span> <span class="s">&#39;annual_inc&#39;</span><span class="p">,</span> <span class="s">&#39;loan_amnt&#39;</span><span class="p">,</span> <span class="s">&#39;purpose&#39;</span><span class="p">,</span> <span class="s">&#39;dti&#39;</span><span class="p">,</span> <span class="s">&#39;grade&#39;</span><span class="p">,</span> <span class="s">&#39;loan_status&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<ul>
+<li>pub_rec: Number of public record bankruptcies</li>
+<li>revol_util: Revolving line utilization rate, or the amount of credit the borrower is using relative to all available revolving * credit.</li>
+<li>inq_last_6mths: The number of inquiries by creditors during the past 6 months.</li>
+<li>home_ownership: The home ownership status provided by the borrower during registration. Our values are: RENT, OWN, MORTGAGE, OTHER.   </li>
+<li>annual_inc: The annual income provided by the borrower during registration.</li>
+<li>loan_amnt: The listed amount of the loan applied for by the borrower. If at some point in time, the credit department reduces the * loan amount, then it will be reflected in this value.</li>
+<li>purpose: A category provided by the borrower for the loan request. </li>
+<li>dti: A ratio calculated using the borrower’s total monthly debt payments on the total debt obligations, excluding mortgage and the * requested LC loan, divided by the borrower’s self-reported monthly income.</li>
+<li>grade: LC assigned loan grade</li>
+</ul>
+<p>Next, we will do some cleaning on the data. We will change the date to have python datetime format, and we will select the columns that looks relevant for our task. We can change the date type by running the following command.</p>
+<div class="highlight"><pre><span class="c">#Change datetime</span>
+<span class="n">data</span><span class="p">[</span><span class="s">&#39;issue_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;issue_d&#39;</span><span class="p">],</span> <span class="n">format</span><span class="o">=</span><span class="s">&quot;%b-%Y&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">&#39;earliest_cr_line&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;earliest_cr_line&#39;</span><span class="p">],</span> <span class="n">format</span><span class="o">=</span><span class="s">&quot;%b-%Y&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">&#39;next_pymnt_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;next_pymnt_d&#39;</span><span class="p">],</span> <span class="n">format</span><span class="o">=</span><span class="s">&quot;%b-%Y&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">&#39;last_credit_pull_d&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;last_credit_pull_d&#39;</span><span class="p">],</span> <span class="n">format</span><span class="o">=</span><span class="s">&quot;%b-%Y&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, we will delete the transaction that have missing data.</p>
+<div class="highlight"><pre><span class="n">Delete</span> <span class="n">missing</span> <span class="n">data</span>
+</pre></div>
+
+
+<p>Next, we will divide the dataset into 2 datasets. The first one contains data from 2012, and the second one data from 2013. We will be using the data from 2012 for building the model. Data from 2012 has more time to mature and potential turn bad...</p>
+<div class="highlight"><pre><span class="n">data_2012</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;issue_d&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2012</span><span class="p">]</span>
+<span class="n">data_2013</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;issue_d&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2013</span><span class="p">]</span>
+</pre></div>
+
+
+<h1>2.3. Preparing data for analysis</h1>
+<ul>
+<li>Defining bad loans (Maybe divide the data later)</li>
+<li>Transforming categorical variables</li>
+<li>Transforming ordinal variables (An ordinal variable is similar to categorical variables. The difference between the two is that there is a clear ordering for the ordinal variables.)</li>
+</ul>
+<h1>2.2. Understanding the data</h1>
+<h1>3. The dataset</h1>
+<h1>4. Data analysis 1 - Predicting bad loans</h1>
+<h1>5. Data analysis 2 - Predicting the probabilities of bad loans</h1>
+<h1>6. Deeper analysis</h1>
+<h1>7. Investement strategy</h1>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>
