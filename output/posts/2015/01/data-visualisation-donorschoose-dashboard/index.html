@@ -231,100 +231,121 @@
 
 
 <p>If you start the server by running <code>python app.py</code> and go to <code>http://localhost:5000/donorschoose/projects</code>, you will see all the projects data printed in the browser. </p>
-<h1>3. Building the charts</h1>
-<div class="highlight"><pre><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;/donorschoose/projects&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span> 
+<h1>3. Preparing the web application</h1>
+<p>The goal of this section is to </p>
+<h1>4. Building the charts</h1>
+<div class="highlight"><pre><span class="nx">queue</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">,</span> <span class="s2">&quot;/donorschoose/projects&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">,</span> <span class="s2">&quot;static/geojson/us-states.json&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">await</span><span class="p">(</span><span class="nx">makeGraphs</span><span class="p">);</span>
 
-    <span class="kd">var</span> <span class="nx">donorschoose_projects</span> <span class="o">=</span> <span class="nx">json</span><span class="p">;</span>
-    <span class="c1">// since its a csv file we need to format the data a bit</span>
+<span class="kd">function</span> <span class="nx">makeGraphs</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">projectsJson</span><span class="p">,</span> <span class="nx">statesJson</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">//Clean projectsJson data</span>
+    <span class="kd">var</span> <span class="nx">donorschooseProjects</span> <span class="o">=</span> <span class="nx">projectsJson</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">dateFormat</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;%Y-%m-%d&quot;</span><span class="p">);</span>
-    <span class="nx">donorschoose_projects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span> <span class="o">=</span> <span class="nx">dateFormat</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span><span class="p">);</span>
-        <span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-        <span class="c1">//Make the format of total_donations to numeric values</span>
-        <span class="nx">d</span><span class="p">.</span><span class="nx">total_donations</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">total_donations</span><span class="p">;</span>
+    <span class="nx">donorschooseProjects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">dateFormat</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">]);</span>
+        <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">].</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];</span>
     <span class="p">});</span>
 
-    <span class="c1">// feed it through crossfilter</span>
-    <span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">donorschoose_projects</span><span class="p">);</span>
-    <span class="c1">// define a dimension</span>
-    <span class="c1">//var volumeByMonth = ndx.dimension(function(d) { return d3.time.month(d.date_posted); });</span>
-    <span class="kd">var</span> <span class="nx">volumeByDate</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">date_posted</span><span class="p">;</span> <span class="p">});</span>
-    <span class="kd">var</span> <span class="nx">volumeByResourceType</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">resource_type</span><span class="p">;</span> <span class="p">});</span>
-    <span class="kd">var</span> <span class="nx">volumeByGradeLevel</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">grade_level</span><span class="p">;</span> <span class="p">});</span>
-    <span class="kd">var</span> <span class="nx">volumeByPovertyLevel</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">poverty_level</span><span class="p">;</span> <span class="p">});</span>
-    <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">school_state</span><span class="p">;</span> <span class="p">});</span>
+    <span class="c1">//Create a Crossfilter instance</span>
+    <span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">donorschooseProjects</span><span class="p">);</span>
 
-    <span class="kd">var</span> <span class="nx">totalDonations</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">().</span><span class="nx">reduceSum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">total_donations</span><span class="p">;</span> <span class="p">}).</span><span class="nx">value</span><span class="p">();</span>
+    <span class="c1">//Define Dimensions</span>
+    <span class="kd">var</span> <span class="nx">dateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">resourceTypeDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;resource_type&quot;</span><span class="p">];</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">povertyLevelDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;poverty_level&quot;</span><span class="p">];</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">stateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;school_state&quot;</span><span class="p">];</span> <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">totalDonationsDim</span>  <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];</span> <span class="p">});</span>
 
-    <span class="c1">// map/reduce to group sum</span>
-    <span class="kd">var</span> <span class="nx">volumeByDateGroup</span> <span class="o">=</span> <span class="nx">volumeByDate</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
-    <span class="kd">var</span> <span class="nx">volumeByResourceTypeGroup</span> <span class="o">=</span> <span class="nx">volumeByResourceType</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
-    <span class="kd">var</span> <span class="nx">volumeByByGradeLevelGroup</span> <span class="o">=</span> <span class="nx">volumeByGradeLevel</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
-    <span class="kd">var</span> <span class="nx">volumeByPovertyLevelGroup</span> <span class="o">=</span> <span class="nx">volumeByPovertyLevel</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
-    <span class="kd">var</span> <span class="nx">stateRaisedSum</span> <span class="o">=</span> <span class="nx">states</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+
+    <span class="c1">//Calculate metrics</span>
+    <span class="kd">var</span> <span class="nx">numProjectsByDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span> 
+    <span class="kd">var</span> <span class="nx">numProjectsByResourceType</span> <span class="o">=</span> <span class="nx">resourceTypeDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">numProjectsByPovertyLevel</span> <span class="o">=</span> <span class="nx">povertyLevelDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">totalDonationsByState</span> <span class="o">=</span> <span class="nx">stateDim</span><span class="p">.</span><span class="nx">group</span><span class="p">().</span><span class="nx">reduceSum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">totalDonations</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">().</span><span class="nx">reduceSum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];});</span>
+
+    <span class="kd">var</span> <span class="nx">max_state</span> <span class="o">=</span> <span class="nx">totalDonationsByState</span><span class="p">.</span><span class="nx">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+
+    <span class="c1">//Define values (to be used in charts)</span>
+    <span class="kd">var</span> <span class="nx">minDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">bottom</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">maxDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span>
 
     <span class="c1">//Charts</span>
-    <span class="kd">var</span> <span class="nx">timeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">barChart</span><span class="p">(</span><span class="s2">&quot;#dc-time-chart&quot;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">resourceTypeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">pieChart</span><span class="p">(</span><span class="s2">&quot;#dc-resource-type-pie-chart&quot;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">gradeLevelChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">pieChart</span><span class="p">(</span><span class="s2">&quot;#dc-grade-level-pie-chart&quot;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">povertyLevelChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">pieChart</span><span class="p">(</span><span class="s2">&quot;#dc-poverty-level-pie-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">timeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">barChart</span><span class="p">(</span><span class="s2">&quot;#time-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">resourceTypeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#resource-type-row-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">povertyLevelChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#poverty-level-row-chart&quot;</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">usChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">geoChoroplethChart</span><span class="p">(</span><span class="s2">&quot;#us-chart&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">numberProjectsND</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">numberDisplay</span><span class="p">(</span><span class="s2">&quot;#number-projects-nd&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">totalDonationsND</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">numberDisplay</span><span class="p">(</span><span class="s2">&quot;#total-donations-nd&quot;</span><span class="p">);</span>
 
+    <span class="nx">numberProjectsND</span>
+        <span class="p">.</span><span class="nx">formatNumber</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">valueAccessor</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">;</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">all</span><span class="p">);</span>
 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totalDonations</span><span class="p">);</span> 
-
-    <span class="kd">var</span> <span class="nx">projection</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geo</span><span class="p">.</span><span class="nx">albersUsa</span><span class="p">()</span>
-                        <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
-                        <span class="p">.</span><span class="nx">translate</span><span class="p">([</span><span class="mi">380</span><span class="p">,</span> <span class="mi">150</span><span class="p">]);</span>
+    <span class="nx">totalDonationsND</span>
+        <span class="p">.</span><span class="nx">formatNumber</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">valueAccessor</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">;</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">totalDonations</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">formatNumber</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;.3s&quot;</span><span class="p">));</span>
 
     <span class="nx">timeChart</span>
-        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">margins</span><span class="p">({</span><span class="nx">top</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">40</span><span class="p">})</span>
-        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByDate</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByDateGroup</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">130</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">margins</span><span class="p">({</span><span class="nx">top</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">dateDim</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">numProjectsByDate</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">transitionDuration</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">x</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">scale</span><span class="p">().</span><span class="nx">domain</span><span class="p">([</span><span class="nx">minDate</span><span class="p">,</span> <span class="nx">maxDate</span><span class="p">]))</span>
         <span class="p">.</span><span class="nx">elasticY</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">x</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">scale</span><span class="p">().</span><span class="nx">domain</span><span class="p">([</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)]));</span>
+        <span class="p">.</span><span class="nx">yAxisLabel</span><span class="p">(</span><span class="s2">&quot;N Donations&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">yAxis</span><span class="p">().</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
     <span class="nx">resourceTypeChart</span>
-        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">532</span><span class="p">)</span> <span class="c1">// (optional) define chart width, :default = 200</span>
-        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span> <span class="c1">// (optional) define chart height, :default = 200</span>
-        <span class="p">.</span><span class="nx">radius</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="c1">// define pie radius</span>
-        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByResourceType</span><span class="p">)</span> <span class="c1">// set dimension</span>
-        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByResourceTypeGroup</span><span class="p">);</span>
-
-    <span class="nx">gradeLevelChart</span>
-        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">radius</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByGradeLevel</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByByGradeLevelGroup</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">240</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">resourceTypeDim</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">numProjectsByResourceType</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">xAxis</span><span class="p">().</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
     <span class="nx">povertyLevelChart</span>
-        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">radius</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">volumeByPovertyLevel</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">volumeByPovertyLevelGroup</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">240</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">povertyLevelDim</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">numProjectsByPovertyLevel</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">xAxis</span><span class="p">().</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;static/geojson/us-states.json&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">statesJson</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">usChart</span><span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">states</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">stateRaisedSum</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">colors</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">quantize</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="s2">&quot;#E2F2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#C4E4FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#9ED2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#81C5FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#6BBAFF&quot;</span><span class="p">,</span> <span class="s2">&quot;#51AEFF&quot;</span><span class="p">,</span> <span class="s2">&quot;#36A2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#1E96FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#0089FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#0061B5&quot;</span><span class="p">]))</span>
-                <span class="p">.</span><span class="nx">colorDomain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
-                <span class="p">.</span><span class="nx">colorCalculator</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span> <span class="o">?</span> <span class="nx">usChart</span><span class="p">.</span><span class="nx">colors</span><span class="p">()(</span><span class="nx">d</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;#ccc&#39;</span><span class="p">;</span> <span class="p">})</span>
-                <span class="p">.</span><span class="nx">overlayGeoJson</span><span class="p">(</span><span class="nx">statesJson</span><span class="p">.</span><span class="nx">features</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-                <span class="p">})</span>
-                <span class="p">.</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projection</span><span class="p">);</span>
 
-        <span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
-    <span class="p">});</span>
+    <span class="nx">usChart</span><span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">324</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="nx">stateDim</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">totalDonationsByState</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">colors</span><span class="p">([</span><span class="s2">&quot;#E2F2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#C4E4FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#9ED2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#81C5FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#6BBAFF&quot;</span><span class="p">,</span> <span class="s2">&quot;#51AEFF&quot;</span><span class="p">,</span> <span class="s2">&quot;#36A2FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#1E96FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#0089FF&quot;</span><span class="p">,</span> <span class="s2">&quot;#0061B5&quot;</span><span class="p">])</span>
+        <span class="p">.</span><span class="nx">colorDomain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">max_state</span><span class="p">])</span>
+        <span class="p">.</span><span class="nx">overlayGeoJson</span><span class="p">(</span><span class="nx">statesJson</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">],</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">projection</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">geo</span><span class="p">.</span><span class="nx">albersUsa</span><span class="p">()</span>
+                    <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">translate</span><span class="p">([</span><span class="mi">380</span><span class="p">,</span> <span class="mi">150</span><span class="p">]))</span>
+        <span class="p">.</span><span class="nx">title</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s2">&quot;State: &quot;</span> <span class="o">+</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+                    <span class="o">+</span> <span class="s2">&quot;\n&quot;</span>
+                    <span class="o">+</span> <span class="s2">&quot;Total Donations: &quot;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; $&quot;</span><span class="p">;</span>
+        <span class="p">})</span>
 
-<span class="p">});</span>
+    <span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
+
+<span class="p">};</span>
 </pre></div>
 
 
