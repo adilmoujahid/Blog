@@ -6,7 +6,7 @@
     <meta name="description" content="Adil Moujahid, Data Analytics and more">
 
 
-        <title>Interactive Data Visualisation using Python, d3.js, dc.js and mongoDB // Adil Moujahid // Data Analytics and more</title>
+        <title>Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB // Adil Moujahid // Data Analytics and more</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
@@ -50,29 +50,29 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>Interactive Data Visualisation using Python, d3.js, dc.js and mongoDB</h1>
+                    <h1>Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB</h1>
                         <p class="post-meta">
                             // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
                                 <a class="post-category" href="../../../../tag/javascript/">javascript</a>
-                                <a class="post-category" href="../../../../tag/data-visualisation/">data visualisation</a>
+                                <a class="post-category" href="../../../../tag/data-visualization/">data visualization</a>
                                 <a class="post-category" href="../../../../tag/d3js/">d3.js</a>
                                 <a class="post-category" href="../../../../tag/dcjs/">dc.js</a>
-                                <a class="post-category" href="../../../../tag/mongodb/">MongoDB</a>
+                                <a class="post-category" href="../../../../tag/mongodb/">mongodb</a>
     <div class="addthis_sharing_toolbox"></div>
         <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54c667f5423e719f" async="async"></script>
                         </p>
                 </header>
             </section>
-            <p>Data visualisation plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualisation is an interdisciplinary field, which requires design, web development, database and coding skills.</p>
-<p>The goal of this tutorial is to introduce the building blocks for creating a meaningful interactive data visualisation. To do this, we will use a dataset from DonorsChoose.org to build a data visualisation that represents school donations broken down by different attributes. We will be covering a wide range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts. By the end of this tutorial, you will get enough knowledge that you can leverage for other projects that require interactive data visualisation.</p>
-<p>The source code for this tutorial can be found in this <a href="#">github</a> repository.</p>
-<p>Below is an animated gif of the interactive data visualisation dashboard that we will be building in this tutorial.</p>
+            <p>Data visualization plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualization is an interdisciplinary field, which requires design, web development, database and coding skills.</p>
+<p>The goal of this tutorial is to introduce the building blocks for creating a meaningful interactive data visualization. To do this, we will use a dataset from DonorsChoose.org to build a data visualization that represents school donations broken down by different attributes. We will be covering a wide range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts. By the end of this tutorial, you will get enough knowledge that you can leverage for other projects that require interactive data visualization.</p>
+<p>The source code for this tutorial can be found in this <a href="https://github.com/adilmoujahid/DonorsChoose_Visualization">github repository</a>.</p>
+<p>Below is an animated gif of the interactive data visualization dashboard that we will be building in this tutorial.</p>
 <div style="text-align:center">
 <p><img alt="Alt Text" src="/images/viz_demo.gif" /></p>
 </div>
 <h1>1. The case study</h1>
-<p>DonorsChoose.org is a US based nonprofit organization that allows individuals to donate money directly to public school classroom projects. Public school teachers post classroom project requests on the platform, and individuals have the option to donate money directly to fund these projects. The classroom projects range from pencils and books to computers and other expensive equipments for classrooms. In more than 10 years of existence, this platform helped teachers in all US states to post more than 7700,000 classroom project requests and raise more than $280,000,000. DonorsChoose.org is making the platform data open and available for making discoveries and building applications. In this tutorial we will be using one of the available datasets for building an interactive data visualisation that represents school donations broken down by different attributes.</p>
+<p>DonorsChoose.org is a US based nonprofit organization that allows individuals to donate money directly to public school classroom projects. Public school teachers post classroom project requests on the platform, and individuals have the option to donate money directly to fund these projects. The classroom projects range from pencils and books to computers and other expensive equipments for classrooms. In more than 10 years of existence, this platform helped teachers in all US states to post more than 7700,000 classroom project requests and raise more than $280,000,000. DonorsChoose.org is making the platform data open and available for making discoveries and building applications. In this tutorial we will be using one of the available datasets for building an interactive data visualization that represents school donations broken down by different attributes.</p>
 <h2>Getting and understanding the data</h2>
 <p>DonorsChoose.org data is available on this <a href="http://data.donorschoose.org/open-data/overview/">url</a>. We will be using the “project” dataset.  This dataset contains information about all classroom projects that have been posted to the site. This dataset can be downloaded directly from this <a href="https://s3.amazonaws.com/open_data/csv/opendata_projects.zip">url</a>.</p>
 <p>After downloading and unziping the data, we will get a file called <code>opendata_projects.csv</code> with a size of around 324MB (at the time of writing). The data is represented in csv format. csv stands for "comma-separated values". csv files are used for storing tabular data and its metadata. These files can be open by any standard text editor, or more conveniently by spreadsheet application like Microsoft Excel or Google Spreadsheet. </p>
@@ -244,10 +244,13 @@
 <ul>
 <li><a href="http://square.github.io/crossfilter/">crossfilter.js</a> is a Javascript library for grouping, filtering, and aggregating large datasets.</li>
 <li><a href="http://d3js.org/">d3.js</a> is a Javascript library for controlling the data and building charts.</li>
-<li><a href="http://dc-js.github.io/dc.js/">dc.js</a> is a Javascript charting library that leverages both crossfilter.js and d3.js, and makes the creation of highly interactive data visualisation simple.</li>
+<li><a href="http://dc-js.github.io/dc.js/">dc.js</a> is a Javascript charting library that leverages both crossfilter.js and d3.js, and makes the creation of highly interactive data visualization simple.</li>
 </ul>
 <p>We will also be using <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> which is a keen.io template dependency, and <a href="https://github.com/mbostock/queue">queue.js</a> which is an asynchronous helper library for Javascript.</p>
 <p>Below is the folder structure of our project.</p>
+<div style="text-align:center">
+<p><img alt="Alt Text" src="/images/folder_structure.png" /></p>
+</div>
 <p>Note that the only files that we need to create from scratch are: </p>
 <ul>
 <li>app.js: Server side code for rendering html pages and querying MongoDB</li>
@@ -394,7 +397,7 @@
 
 <h1>Conclusion</h1>
 <p>In this tutorial, I introduced the building blocks for building an interactive data visualization. The lessons learned from this tutorial can be easily leveraged for other projects that require similar interactive visualization. </p>
-<p>All source code from this post can be found in this <a href="#">github repository</a>.</p>
+<p>All source code from this post can be found in this <a href="https://github.com/adilmoujahid/DonorsChoose_Visualization">github repository</a>.</p>
             <div class="hr"></div>
     <div class="addthis_sharing_toolbox"></div>
         <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>

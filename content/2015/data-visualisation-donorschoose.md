@@ -1,19 +1,25 @@
-title: Interactive Data Visualisation using Python, d3.js, dc.js and mongoDB
-Slug: data-visualisation-donorschoose-dashboard
+title: Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB
+Slug: interactive-data-visualization-d3-dc-python-mongodb
 Email: adil.mouja@gmail.com
 Date: 2015-01-15
-Category: analytics, data visualisation
-Tags: python, javascript, data visualisation, d3.js, dc.js, MongoDB
-Summary: Step by step tutorial for building an interactive data visualisation dashboard using a dataset from DonorsChoose.org. This tutorial introduces a range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts.
+Category: analytics, data visualization
+Tags: python, javascript, data visualization, d3.js, dc.js, mongodb
+Summary: Step by step tutorial for building an interactive data visualization dashboard using a dataset from DonorsChoose.org. This tutorial introduces a range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts.
 
-Data visualisation plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualisation is an interdisciplinary field, which requires design, web development, database and coding skills.
+Data visualization plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualization is an interdisciplinary field, which requires design, web development, database and coding skills.
 
-The goal of this tutorial is to introduce the building blocks for creating a meaningful interactive data visualisation. To do this, we will use a dataset from DonorsChoose.org to build a data visualisation that represents school donations broken down by different attributes. We will be covering a wide range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts. By the end of this tutorial, you will get enough knowledge that you can leverage for other projects that require interactive data visualisation.
+The goal of this tutorial is to introduce the building blocks for creating a meaningful interactive data visualization. To do this, we will use a dataset from DonorsChoose.org to build a data visualization that represents school donations broken down by different attributes. We will be covering a wide range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts. By the end of this tutorial, you will get enough knowledge that you can leverage for other projects that require interactive data visualization.
 
-Below is a video of the interactive data visualisation dashboard that we will be building in this tutorial.
+The source code for this tutorial can be found in this [github repository](https://github.com/adilmoujahid/DonorsChoose_Visualization).
+
+Below is an animated gif of the interactive data visualization dashboard that we will be building in this tutorial.
+
+<div style="text-align:center" markdown="1">
+![Alt Text](/images/viz_demo.gif)
+</div>
 
 #1. The case study
-DonorsChoose.org is a US based nonprofit organization that allows individuals to donate money directly to public school classroom projects. Public school teachers post classroom project requests on the platform, and individuals have the option to donate money directly to fund these projects. The classroom projects range from pencils and books to computers and other expensive equipments for classrooms. In 10 years of existence, this platform helped more than 165,000 teachers at 43,000 public schools to post 300,000 classroom project requests and raise more than $80,000,000 from 400,000 donors. DonorsChoose.org is making the platform data open and available for making discoveries and building applications. In this tutorial we will be using one of the available datasets for building an interactive data visualisation that represents school donations broken down by different attributes.
+DonorsChoose.org is a US based nonprofit organization that allows individuals to donate money directly to public school classroom projects. Public school teachers post classroom project requests on the platform, and individuals have the option to donate money directly to fund these projects. The classroom projects range from pencils and books to computers and other expensive equipments for classrooms. In more than 10 years of existence, this platform helped teachers in all US states to post more than 7700,000 classroom project requests and raise more than $280,000,000. DonorsChoose.org is making the platform data open and available for making discoveries and building applications. In this tutorial we will be using one of the available datasets for building an interactive data visualization that represents school donations broken down by different attributes.
 
 ##Getting and understanding the data
 DonorsChoose.org data is available on this [url](http://data.donorschoose.org/open-data/overview/). We will be using the “project” dataset.  This dataset contains information about all classroom projects that have been posted to the site. This dataset can be downloaded directly from this [url](https://s3.amazonaws.com/open_data/csv/opendata_projects.zip).
@@ -93,7 +99,7 @@ Next import the ```Connection``` method from ```PyMongo``` by running the comman
 ```
 >>> from pymongo import Connection
 ```
-Next, we will define 4 variables that represent respectively MongoDB ip address, MongoDB port, MongoDB database name and MongoDB collection name.
+Next, we will define 4 variables that represent respectively MongoDB IP address, MongoDB port, MongoDB database name and MongoDB collection name.
 ```
 >>> MONGODB_HOST = 'localhost'
 >>> MONGODB_PORT = 27017
@@ -101,6 +107,7 @@ Next, we will define 4 variables that represent respectively MongoDB ip address,
 >>> COLLECTION_NAME = 'projects'
 ```
 Next, we will define the 5 attributes that we will use for our query. Note that we had to explicitly set the records unique id ```_id``` to ```False```. If we don't do so, it will be included in the query's response.
+
 ```
 >>> FIELDS = {'school_state': True, 'resource_type': True, 'poverty_level': True, 'date_posted': True, 'total_donations': True, '_id': False}
 ```
@@ -117,9 +124,9 @@ All the records are stored in ```projects```, we can print all them by running t
 ```
 
 #2. Building the server
-For this tutorial, we will be using Python Flask for building a server that interact with MongoDB and render the html page that contains our charts. Flask is one of the most popular web frameworks for Python. It’s minimal and very easy to learn. INSTALLATION GUIDES...
+For this tutorial, we will be using Python Flask for building a server that interact with MongoDB and render the html page that contains our charts. Flask is one of the most popular web frameworks for Python. It’s minimal and very easy to learn. Flask installation guidelines can be found in this [url](http://flask.pocoo.org/docs/0.10/installation/).
 
-We start by creating a folder called ```project```. Inside the ```project``` folder, we create a folder called ```templates```, and inside the ```templates``` folder we create an hmtl file called ```index.html```.
+We start by creating a folder called ```project```. Inside the ```project``` folder, we create a folder called ```templates```, and inside the ```templates``` folder we create an html file called ```index.html```.
 
 Inside the ```index.html``` page, copy the code below.
 ```html
@@ -167,13 +174,13 @@ FIELDS = {'school_state': True, 'resource_type': True, 'poverty_level': True, 'd
 
 @app.route("/")
 def index():
-    return render_template("index4.html")
+    return render_template("index.html")
 
 @app.route("/donorschoose/projects")
 def donorschoose_projects():
     connection = Connection(MONGODB_HOST, MONGODB_PORT)
     collection = connection[DBS_NAME][COLLECTION_NAME]
-    projects = collection.find(fields=FIELDS, limit=50000)
+    projects = collection.find(fields=FIELDS)
     json_projects = []
     for project in projects:
         json_projects.append(project)
@@ -186,138 +193,173 @@ if __name__ == "__main__":
 ```
 If you start the server by running ```python app.py``` and go to ```http://localhost:5000/donorschoose/projects```, you will see all the projects data printed in the browser. 
 
-#3. Preparing the web application
-The goal of this section is to 
+#3. Front-end side preparation
+Now that we have the server side code and the MongoDB query ready, we will start building the front end code. We will be using a great responsive dashboard template from [keen.io](https://github.com/keen/dashboards). keen.io templates provide the skeleton for analytics dashboards. With these pre-built templates, we only need to focus on building the charts without spending much effort in customizing the layout. For this tutorial, I created a new layout based on keen.io Javascript and css libraries. The template can be found in this [github repository](#).
+
+For building the charts, we will be mainly using 3 Javascript libraries [crossfilter.js](http://square.github.io/crossfilter/), [d3.js](http://d3js.org/) and [dc.js](http://dc-js.github.io/dc.js/).
+
+* [crossfilter.js](http://square.github.io/crossfilter/) is a Javascript library for grouping, filtering, and aggregating large datasets.
+* [d3.js](http://d3js.org/) is a Javascript library for controlling the data and building charts.
+* [dc.js](http://dc-js.github.io/dc.js/) is a Javascript charting library that leverages both crossfilter.js and d3.js, and makes the creation of highly interactive data visualization simple.
+
+We will also be using [Bootstrap](http://getbootstrap.com/2.3.2/) which is a keen.io template dependency, and [queue.js](https://github.com/mbostock/queue) which is an asynchronous helper library for Javascript.
+
+Below is the folder structure of our project.
+
+<div style="text-align:center" markdown="1">
+![Alt Text](/images/folder_structure.png)
+</div>
+
+Note that the only files that we need to create from scratch are: 
+
+* app.js: Server side code for rendering html pages and querying MongoDB
+* charts.js: Javascript file that will contain the code of our charts
+* custom.css: css file that will contain our custom css code
+
+We also need to make a few modifications to the index.html (keen.io template). Inside index.html, we need to define all the Javascript and css dependencies, and we need to reference the charts from charts.js.
 
 #4. Building the charts
+
+We will write all the code for building the charts inside the chart.js file. We start by using a ```queue()``` function from the ```queue.js``` library. The lines that start with ```.defer``` are for reading the projects data and US states json file. Inside the ```.await``` function we call a function named ```makeGraphs``` that we define later. This allows us to read both the projects and US states json data in parallel, and wait for all the data to be read before executing the ```makeGraphs``` function. The ```makeGraphs``` function contains the code for cleaning the data, building the crossfilter dimensions for filtering the data, and the dc.js charts. It takes 3 arguments, the first one is ```error``` which can be used for handling any error from the the ```.defer``` functions, and as second and third arguments ```projectsJson```, ```statesJson``` which contain the data that we read from the ```.defer``` functions.
+
 ```javascript
 queue()
     .defer(d3.json, "/donorschoose/projects")
     .defer(d3.json, "static/geojson/us-states.json")
     .await(makeGraphs);
+```
 
+```javascript
 function makeGraphs(error, projectsJson, statesJson) {
-    
-    //Clean projectsJson data
-    var donorschooseProjects = projectsJson;
-    var dateFormat = d3.time.format("%Y-%m-%d");
-    donorschooseProjects.forEach(function(d) {
-        d["date_posted"] = dateFormat.parse(d["date_posted"]);
-        d["date_posted"].setDate(1);
-        d["total_donations"] = +d["total_donations"];
-    });
-
-    //Create a Crossfilter instance
-    var ndx = crossfilter(donorschooseProjects);
-
-    //Define Dimensions
-    var dateDim = ndx.dimension(function(d) { return d["date_posted"]; });
-    var resourceTypeDim = ndx.dimension(function(d) { return d["resource_type"]; });
-    var povertyLevelDim = ndx.dimension(function(d) { return d["poverty_level"]; });
-    var stateDim = ndx.dimension(function(d) { return d["school_state"]; });
-    var totalDonationsDim  = ndx.dimension(function(d) { return d["total_donations"]; });
-
-
-    //Calculate metrics
-    var numProjectsByDate = dateDim.group(); 
-    var numProjectsByResourceType = resourceTypeDim.group();
-    var numProjectsByPovertyLevel = povertyLevelDim.group();
-    var totalDonationsByState = stateDim.group().reduceSum(function(d) {
-        return d["total_donations"];
-    });
-
-
-    var all = ndx.groupAll();
-    var totalDonations = ndx.groupAll().reduceSum(function(d) {return d["total_donations"];});
-
-    var max_state = totalDonationsByState.top(1)[0].value;
-
-    //Define values (to be used in charts)
-    var minDate = dateDim.bottom(1)[0]["date_posted"];
-    var maxDate = dateDim.top(1)[0]["date_posted"];
-
-    //Charts
-    var timeChart = dc.barChart("#time-chart");
-    var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
-    var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
-    var usChart = dc.geoChoroplethChart("#us-chart");
-    var numberProjectsND = dc.numberDisplay("#number-projects-nd");
-    var totalDonationsND = dc.numberDisplay("#total-donations-nd");
-
-    numberProjectsND
-        .formatNumber(d3.format("d"))
-        .valueAccessor(function(d){return d; })
-        .group(all);
-
-    totalDonationsND
-        .formatNumber(d3.format("d"))
-        .valueAccessor(function(d){return d; })
-        .group(totalDonations)
-        .formatNumber(d3.format(".3s"));
-
-    timeChart
-        .width(600)
-        .height(130)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
-        .dimension(dateDim)
-        .group(numProjectsByDate)
-        .transitionDuration(500)
-        .x(d3.time.scale().domain([minDate, maxDate]))
-        .elasticY(true)
-        .yAxisLabel("N Donations")
-        .yAxis().ticks(4);
-
-    resourceTypeChart
-        .width(300)
-        .height(240)
-        .dimension(resourceTypeDim)
-        .group(numProjectsByResourceType)
-        .xAxis().ticks(4);
-
-    povertyLevelChart
-        .width(300)
-        .height(240)
-        .dimension(povertyLevelDim)
-        .group(numProjectsByPovertyLevel)
-        .xAxis().ticks(4);
-
-
-    usChart.width(1000)
-        .height(324)
-        .dimension(stateDim)
-        .group(totalDonationsByState)
-        .colors(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"])
-        .colorDomain([0, max_state])
-        .overlayGeoJson(statesJson["features"], "state", function (d) {
-            return d.properties.name;
-        })
-        .projection(d3.geo.albersUsa()
-                    .scale(600)
-                    .translate([380, 150]))
-        .title(function (p) {
-            return "State: " + p["key"]
-                    + "\n"
-                    + "Total Donations: " + Math.round(p["value"]) + " $";
-        })
-
-    dc.renderAll();
-
+    ...
 };
 ```
-#4. Putting in all together
-keen.io
-Graphs that explains the architecture.
 
-#5. Technical considerations
-Size of query...
+Inside the makeGraphs function, we start by cleaning the projects data. We change the date type from ```string``` to ```datetime``` objects, and we set all projects date days to 1. All projects from the same month will have the same datetime value.
+
+```javascript
+var donorschooseProjects = projectsJson;
+var dateFormat = d3.time.format("%Y-%m-%d");
+donorschooseProjects.forEach(function(d) {
+    d["date_posted"] = dateFormat.parse(d["date_posted"]);
+    d["date_posted"].setDate(1);
+    d["total_donations"] = +d["total_donations"];
+});
+```
+Next, we create a Crossfilter instance.
+
+```javascript
+var ndx = crossfilter(donorschooseProjects);
+```
+
+Next, we define our 5 data dimensions. 
+```javascript
+var dateDim = ndx.dimension(function(d) { return d["date_posted"]; });
+var resourceTypeDim = ndx.dimension(function(d) { return d["resource_type"]; });
+var povertyLevelDim = ndx.dimension(function(d) { return d["poverty_level"]; });
+var stateDim = ndx.dimension(function(d) { return d["school_state"]; });
+var totalDonationsDim  = ndx.dimension(function(d) { return d["total_donations"]; });
+```
+Next, we define 6 data groups.
+```javascript
+var all = ndx.groupAll();
+var numProjectsByDate = dateDim.group(); 
+var numProjectsByResourceType = resourceTypeDim.group();
+var numProjectsByPovertyLevel = povertyLevelDim.group();
+var totalDonationsByState = stateDim.group().reduceSum(function(d) {
+    return d["total_donations"];
+});
+var totalDonations = ndx.groupAll().reduceSum(function(d) {return d["total_donations"];});
+```
+
+Next, we define 3 values: The maximum donation in all states, the date of the first and last posts.
+```javascript
+var max_state = totalDonationsByState.top(1)[0].value;
+var minDate = dateDim.bottom(1)[0]["date_posted"];
+var maxDate = dateDim.top(1)[0]["date_posted"];
+```
+
+Next, we define 6 dc charts. The first one is a bar chart that will show the number of projects by date. The second and third charts will show the number of projects broken down by the resource type and poverty level of school. The fourth graph will show a US map color-coded by the toal amount of donations for each US state. And the last two are numbers that will show the total number of projects and the total donations in USD.
+
+```javascript
+var timeChart = dc.barChart("#time-chart");
+var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
+var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
+var usChart = dc.geoChoroplethChart("#us-chart");
+var numberProjectsND = dc.numberDisplay("#number-projects-nd");
+var totalDonationsND = dc.numberDisplay("#total-donations-nd");
+```
+For each chart, we pass the necessary parameters. 
+
+```javascript
+numberProjectsND
+    .formatNumber(d3.format("d"))
+    .valueAccessor(function(d){return d; })
+    .group(all);
+
+totalDonationsND
+    .formatNumber(d3.format("d"))
+    .valueAccessor(function(d){return d; })
+    .group(totalDonations)
+    .formatNumber(d3.format(".3s"));
+
+timeChart
+    .width(600)
+    .height(160)
+    .margins({top: 10, right: 50, bottom: 30, left: 50})
+    .dimension(dateDim)
+    .group(numProjectsByDate)
+    .transitionDuration(500)
+    .x(d3.time.scale().domain([minDate, maxDate]))
+    .elasticY(true)
+    .xAxisLabel("Year")
+    .yAxis().ticks(4);
+
+resourceTypeChart
+    .width(300)
+    .height(250)
+    .dimension(resourceTypeDim)
+    .group(numProjectsByResourceType)
+    .xAxis().ticks(4);
+
+povertyLevelChart
+    .width(300)
+    .height(250)
+    .dimension(povertyLevelDim)
+    .group(numProjectsByPovertyLevel)
+    .xAxis().ticks(4);
+
+usChart.width(1000)
+    .height(330)
+    .dimension(stateDim)
+    .group(totalDonationsByState)
+    .colors(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"])
+    .colorDomain([0, max_state])
+    .overlayGeoJson(statesJson["features"], "state", function (d) {
+        return d.properties.name;
+    })
+    .projection(d3.geo.albersUsa()
+                .scale(600)
+                .translate([340, 150]))
+    .title(function (p) {
+        return "State: " + p["key"]
+                + "\n"
+                + "Total Donations: " + Math.round(p["value"]) + " $";
+    })
+```
+And finally, we call the ```renderAll()``` function for rendering all the charts.
+```javascript
+dc.renderAll();
+
+```
+Within the ```index.html``` file, we have to reference all the charts that we defined in the ```charts.js``` file. For example, if we want to show the US map chart, we have to add the line below to the ```index.html``` file.
+
+```html
+<div id="us-chart"></div>
+```
 
 #Conclusion
-sdsdsdsdsdsds
+In this tutorial, I introduced the building blocks for building an interactive data visualization. The lessons learned from this tutorial can be easily leveraged for other projects that require similar interactive visualization. 
 
-If you like what you read follow me on twitter
-
-#References
-http://bl.ocks.org/jun9/raw/5631952/
-
-
+All source code from this post can be found in this [github repository](https://github.com/adilmoujahid/DonorsChoose_Visualization).
 
