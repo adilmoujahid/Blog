@@ -194,7 +194,7 @@ if __name__ == "__main__":
 If you start the server by running ```python app.py``` and go to ```http://localhost:5000/donorschoose/projects```, you will see all the projects data printed in the browser. 
 
 #3. Front-end side preparation
-Now that we have the server side code and the MongoDB query ready, we will start building the front end code. We will be using a great responsive dashboard template from [keen.io](https://github.com/keen/dashboards). keen.io templates provide the skeleton for analytics dashboards. With these pre-built templates, we only need to focus on building the charts without spending much effort in customizing the layout. For this tutorial, I created a new layout based on keen.io Javascript and css libraries. The template can be found in this [github repository](#).
+Now that we have the server side code and the MongoDB query ready, we will start building the front end code. We will be using a great responsive dashboard template from [keen.io](https://github.com/keen/dashboards). keen.io templates provide the skeleton for analytics dashboards. With these pre-built templates, we only need to focus on building the charts without spending much effort in customizing the layout. For this tutorial, I created a new layout based on keen.io Javascript and css libraries. The template can be found in this [github repository](https://github.com/adilmoujahid/Custom-KeenIO-Template).
 
 For building the charts, we will be mainly using 3 Javascript libraries [crossfilter.js](http://square.github.io/crossfilter/), [d3.js](http://d3js.org/) and [dc.js](http://dc-js.github.io/dc.js/).
 
