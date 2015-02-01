@@ -212,7 +212,7 @@ Below is the folder structure of our project.
 
 Note that the only files that we need to create from scratch are: 
 
-* app.js: Server side code for rendering html pages and querying MongoDB
+* app.py: Server side code for rendering html pages and querying MongoDB
 * charts.js: Javascript file that will contain the code of our charts
 * custom.css: css file that will contain our custom css code
 

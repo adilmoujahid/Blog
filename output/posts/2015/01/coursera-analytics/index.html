@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+        <title>Hacking Education with Python - Mining Coursera for popular Courses // Adil Moujahid // Data Analytics and more</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+
+                <div>
+                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+                    Follow @AdilMouja
+                </a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+
+                <h5>Published</h5>
+                <p>Wed 28 January 2015</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Hacking Education with Python - Mining Coursera for popular Courses</h1>
+                        <p class="post-meta">
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/pandas/">pandas</a>
+    <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54c667f5423e719f" async="async"></script>
+                        </p>
+                </header>
+            </section>
+            <p>In a few years, massive open online courses, most commonly referred to as MOOCs, have exploded in popularity. These online courses provide high quality content taught by the best professors in their respective fields. With more that 20 million students, Coursera is one of the leaders of the MOOC movement. Coursera provides a platform that connects leading universities with student worldwide. I took my first Coursera course back in 2012, and since then I try to take one course a month. 
+In 2015, Coursera has around 1000 courses offered by 100+ universities in more than 10 languages. With this huge number of courses, it became difficult to decide on what course to take.
+In this tutorial, I will combine coursera data together with social media data to assess the popularity of courses. To to this, I will use the Coursera API to retrieve the course catalogue, I will use the sharecount.com API to get social media metrics for each course, and I will use python Pandas to query and order the courses by popularity.</p>
+<h1>Getting Data</h1>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/courses?fields=shortName,name,language&amp;includes=universities,categories&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">courses_response</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span> <span class="o">=</span> <span class="n">courses_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span><span class="n">courses_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">2163</span><span class="p">,</span>
+ <span class="s">u&#39;language&#39;</span><span class="p">:</span> <span class="s">u&#39;en&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">u&#39;categories&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="s">u&#39;universities&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">]},</span>
+ <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;shortName&#39;</span><span class="p">:</span> <span class="s">u&#39;perceptivehunting&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/universities?fields=name,locationCountry&#39;</span><span class="p">)</span>
+<span class="n">universities_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">universities_response</span><span class="p">)</span>
+<span class="n">universities_data</span> <span class="o">=</span> <span class="n">universities_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">234</span><span class="p">,</span>
+ <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{},</span>
+ <span class="s">u&#39;locationCountry&#39;</span><span class="p">:</span> <span class="s">u&#39;CN&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&quot;Xi&#39;an Jiaotong University&quot;</span><span class="p">,</span>
+ <span class="s">u&#39;shortName&#39;</span><span class="p">:</span> <span class="s">u&#39;xjtu&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/categories&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">categories_response</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span> <span class="o">=</span> <span class="n">categories_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">categories_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<h1>Structuring the Data</h1>
+            <div class="hr"></div>
+    <div class="addthis_sharing_toolbox"></div>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54c667f5423e719f" async="async"></script>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+</html>

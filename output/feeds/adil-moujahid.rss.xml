@@ -188,7 +188,7 @@
 &lt;/div&gt;
 &lt;p&gt;Note that the only files that we need to create from scratch are: &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;app.js: Server side code for rendering html pages and querying MongoDB&lt;/li&gt;
+&lt;li&gt;app.py: Server side code for rendering html pages and querying MongoDB&lt;/li&gt;
 &lt;li&gt;charts.js: Javascript file that will contain the code of our charts&lt;/li&gt;
 &lt;li&gt;custom.css: css file that will contain our custom css code&lt;/li&gt;
 &lt;/ul&gt;
