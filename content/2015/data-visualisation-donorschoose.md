@@ -2,7 +2,7 @@ title: Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB
 Slug: interactive-data-visualization-d3-dc-python-mongodb
 Email: adil.mouja@gmail.com
 Date: 2015-01-28
-Category: analytics, data visualization
+Category: data visualization
 Tags: python, javascript, data visualization, d3.js, dc.js, mongodb
 Summary: Step by step tutorial for building an interactive data visualization dashboard using a dataset from DonorsChoose.org. This tutorial introduces a range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts.
 
