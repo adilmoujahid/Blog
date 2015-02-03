@@ -49,13 +49,12 @@
                             // tags {% for tag in article.tags %}
                                 <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
                             {% endfor %}
-                            {% include 'addthis.html' %}
                         </p>
                 </header>
             </section>
             {{ article.content }}
             <div class="hr"></div>
-            {% include 'addthis.html' %}
+
             <a href="#" class="go-top">Go Top</a>
             {% if DISQUS_SITENAME %}
                 {% include 'disqus.html' %}
