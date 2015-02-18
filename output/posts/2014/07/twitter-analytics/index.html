@@ -241,7 +241,10 @@
 
 
 <p>This returns: 21839 for python, 16154 for javascript and 31410 for ruby. We can make a simple comparaison chart by executing the following: </p>
-<div class="highlight"><pre><span class="n">x_pos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)))</span>
+<div class="highlight"><pre><span class="n">prg_langs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">,</span> <span class="s">&#39;javascript&#39;</span><span class="p">,</span> <span class="s">&#39;ruby&#39;</span><span class="p">]</span>
+<span class="n">tweets_by_prg_lang</span> <span class="o">=</span> <span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]]</span>
+
+<span class="n">x_pos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)))</span>
 <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">tweets_by_prg_lang</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;g&#39;</span><span class="p">)</span>
@@ -279,14 +282,29 @@
 
 
 <p>This returns, 871 for <code>programming</code> column, 511 for <code>tutorial</code> column, and 1356 for <code>relevant</code> column.</p>
-<p>We can compare now the popularity of the programming languages by executing the commands below. Python is the most popular with a count of 732, followed by javascript by a count of 473, and ruby by a count of 185.</p>
+<p>We can compare now the popularity of the programming languages by executing the commands below. </p>
 <div class="highlight"><pre><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
 <span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
 <span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
 </pre></div>
 
 
-<p>We can plot this by executing the commands below:</p>
+<p>Python is the most popular with a count of 732, followed by javascript by a count of 473, and ruby by a count of 185. We can make a comparaison graph by executing the commands below:</p>
+<div class="highlight"><pre><span class="n">tweets_by_prg_lang</span> <span class="o">=</span> <span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> 
+                      <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> 
+                      <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]]</span>
+<span class="n">x_pos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">tweets_by_prg_lang</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of tweets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Ranking: python vs. javascript vs. ruby (Relevant data)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="n">p</span> <span class="o">+</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">width</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">x_pos</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+
+
 <div style="text-align:center">
 <p><img alt="Alt Text" src="/images/top_prg_lang_relevant.png" /></p>
 </div>
@@ -337,7 +355,7 @@
 <li><a href="http://t.co/ytms7bcsQV">http://t.co/ytms7bcsQV</a></li>
 </ul>
 <h1>Conclusion</h1>
-<p>In this tutorial, we covered many techniques used in text mining. The code provide in this post could be modified to create a deeper analysis or could be adapted to another use case. For those who want to go further in text mining, I recommend to follow up by studying Regular Expressions.</p>
+<p>In this tutorial, we covered many techniques used in text mining. The code provide in this post could be modified to create a deeper analysis or could be adapted to another use case. For those who want to go further in text mining, I recommend to follow up by studying regular expressions.</p>
 <p>All the source code from this tutorial will be organized and uploaded to my <a href="https://github.com/adilmoujahid">github account</a>. </p>
 <h1>references</h1>
 <ul>

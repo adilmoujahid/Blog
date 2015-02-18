@@ -20,6 +20,8 @@
             $(".content").fitVids();
         });
     </script>
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 </head>
 
 <body>
@@ -54,31 +56,43 @@
                         <p class="post-meta">
                             // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
                                 <a class="post-category" href="../../../../tag/pandas/">pandas</a>
-    <div class="addthis_sharing_toolbox"></div>
-        <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};</script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54c667f5423e719f" async="async"></script>
                         </p>
                 </header>
             </section>
-            <p>In a few years, massive open online courses, most commonly referred to as MOOCs, have exploded in popularity. These online courses provide high quality content taught by the best professors in their respective fields. With more that 20 million students, Coursera is one of the leaders of the MOOC movement. Coursera provides a platform that connects leading universities with student worldwide. I took my first Coursera course back in 2012, and since then I try to take one course a month. 
-In 2015, Coursera has around 1000 courses offered by 100+ universities in more than 10 languages. With this huge number of courses, it became difficult to decide on what course to take.
-In this tutorial, I will combine coursera data together with social media data to assess the popularity of courses. To to this, I will use the Coursera API to retrieve the course catalogue, I will use the sharecount.com API to get social media metrics for each course, and I will use python Pandas to query and order the courses by popularity.</p>
-<h1>Getting Data</h1>
-<p>Coursera provides an API for accessing the course catalogue, university data, courses categories and sessions. </p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">urllib2</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+            <p>In a few years, massive open online courses, most commonly referred to as MOOCs, have exploded in popularity. These online courses provide high quality content taught by the best professors in their respective fields. With more that 20 million students, Coursera is one of the leaders of the MOOC movement. Coursera provides a platform that connects leading universities with students worldwide. I took my first Coursera course back in 2012, and since then I try to take one course a month. </p>
+<p>In 2015, Coursera has around 1000 courses offered by 100+ universities in more than 10 languages. With this huge number of courses, it became difficult to decide on what course to take.</p>
+<p>In this tutorial, I will combine coursera data together with social media data to assess the popularity of courses. To to this, I will use the Coursera API to retrieve the course catalogue, I will use the sharecount.com API to get social media metrics for each course, and I will use python's <code>pandas</code> library to query and order the courses by popularity.</p>
+<p>Make sure you have <a href="http://pandas.pydata.org/"><code>pandas</code></a> library installed to follow with this tutorial.</p>
+<h1>1. Getting Courses Data</h1>
+<p>Coursera provides an <a href="https://tech.coursera.org/app-platform/catalog/">API</a> for accessing the courses, universities, categories, instructors and sessions data. For this tutorial, we will be using the courses, universities and categories data. </p>
+<p>Start a python shell by running the command below from your Terminal window.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">python</span>
 </pre></div>
 
 
+<p>Next, import the 3 following libraries: <code>urllib2</code>, <code>json</code>, and <code>pandas</code>. Both <code>urllib2</code> and <code>json</code> libraries are part of the core python libraries and don't need to be installed separately.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">json</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
+
+
+<p>Next, we will access the coursera API and download the course catalogue. For each course, we are interested in 3 fields:</p>
+<ul>
+<li><code>shortName</code>: The short name associated with the course.</li>
+<li><code>name</code>: The course name or title.</li>
+<li><code>language</code>: The language code for the course. (e.g. 'en' means English.)</li>
+</ul>
+<p>We will also include in the query <code>universities</code> and <code>categories</code> parameters. This will return the ids that matches each course with their corresponding universities and categories. Below are the python commands to do so.</p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/courses?fields=shortName,name,language&amp;includes=universities,categories&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">courses_response</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span> <span class="o">=</span> <span class="n">courses_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span><span class="n">courses_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<p>If we want to get the data about the first course in the <code>courses_data</code> array, we simply execute the command below.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
 <span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">2163</span><span class="p">,</span>
  <span class="s">u&#39;language&#39;</span><span class="p">:</span> <span class="s">u&#39;en&#39;</span><span class="p">,</span>
  <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">u&#39;categories&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="s">u&#39;universities&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">]},</span>
@@ -87,13 +101,17 @@ In this tutorial, I will combine coursera data together with social media data t
 </pre></div>
 
 
+<p>The first course in the <code>courses_data</code> array is 'The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation', offered in English by the university with id=65, and under categories 8, 10, 19 and 20.</p>
+<p>Next, we will retrieve the universities and categories data from the Coursera API. For the universities data, we are interested in the university name and its location. </p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/universities?fields=name,locationCountry&#39;</span><span class="p">)</span>
-<span class="n">universities_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">universities_response</span><span class="p">)</span>
-<span class="n">universities_data</span> <span class="o">=</span> <span class="n">universities_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">universities_response</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_data</span> <span class="o">=</span> <span class="n">universities_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
 </pre></div>
 
 
+<p>We can get the data about the first university from <code>universities_data</code> by executing the following command:</p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
 <span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">234</span><span class="p">,</span>
  <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{},</span>
  <span class="s">u&#39;locationCountry&#39;</span><span class="p">:</span> <span class="s">u&#39;CN&#39;</span><span class="p">,</span>
@@ -102,21 +120,103 @@ In this tutorial, I will combine coursera data together with social media data t
 </pre></div>
 
 
+<p>Similarly to get the courses categories data, we execute the following commands.</p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/categories&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">categories_response</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span> <span class="o">=</span> <span class="n">categories_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="n">categories_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<p>We can get the data about the the first category from <code>categories_data</code> by executing the following command:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;Mathematics&#39;</span><span class="p">,</span> <span class="s">u&#39;shortName&#39;</span><span class="p">:</span> <span class="s">u&#39;math&#39;</span><span class="p">}</span>
 </pre></div>
 
 
-<h1>Structuring the Data</h1>
+<h1>2. Structuring the Data</h1>
+<p>In this section, we will structure the <code>courses_data</code>, <code>universities_data</code> and <code>categories_data</code> array into a <code>pandas</code> DataFrame, and we will map the universities and categories ids with the corresponding names. By the end of this section, we will have one <code>pandas</code> DataFrame called <code>courses_df</code> that will have all the necessary data in a well structured format.</p>
+<h2>2.1. Putting the Data into Pandas DataFrames</h2>
+<p>First, we start by creating a <code>pandas</code> DataFrame for the courses data.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Next, we add the <code>course_name</code>, <code>course_language</code>, <code>course_short_name</code>, <code>categories</code> and <code>universities</code> columns to the <code>courses_df</code> DataFrame.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_language&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;language&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_short_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;shortName&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">][</span><span class="s">&#39;categories&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;categories&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;universities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">][</span><span class="s">&#39;universities&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;universities&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Similarly, we create a <code>python</code> DataFrame for the universities data, and we add the <code>university_id</code>, <code>university_name</code> and <code>university_location_country</code> columns to it.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_location_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;locationCountry&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, we change the <code>universities_df</code> index to <code>university_id</code>. </p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span> <span class="o">=</span> <span class="n">universities_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;university_id&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, we create a <code>python</code> DataFrame for the categories data, and we add the <code>category_id</code> and <code>category_name</code> columns to it.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span><span class="p">[</span><span class="s">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span><span class="p">[</span><span class="s">&#39;category_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Similarly, we change the <code>categories_df</code> index to <code>category_id</code>. </p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span> <span class="o">=</span> <span class="n">categories_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;category_id&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>2.2. Mapping ids with the corresponding names</h2>
+<p>In the <code>courses_df</code> DataFrame, the universities and the categories are referred to by their ids and not by their name. To change that, we start by defining a function that change the ids to their corresponding names.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">map_ids_names</span><span class="p">(</span><span class="n">ids_array</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">names_array</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">for</span> <span class="n">object_id</span> <span class="ow">in</span> <span class="n">ids_array</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>         <span class="k">try</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>             <span class="n">names_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">object_id</span><span class="p">][</span><span class="n">object_name</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span>         <span class="k">except</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>             <span class="k">continue</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">return</span> <span class="n">names_array</span>
+</pre></div>
+
+
+<p>We can know for example change the categories with ids [4,5,15,16] to their corresponding names.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">map_ids_names</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s">&#39;category_name&#39;</span><span class="p">)</span>
+
+<span class="p">[</span><span class="s">u&#39;Information, Tech &amp; Design&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;Mathematics&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;Engineering&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;Statistics and Data Analysis&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Similarly, we can change the university with id to its corresponding name.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">map_ids_names</span><span class="p">([</span><span class="mi">234</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s">&#39;university_name&#39;</span><span class="p">)</span>
+
+<span class="p">[</span><span class="s">u&quot;Xi&#39;an Jiaotong University&quot;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Next, we will add both the categories and universities name to the <code>courses_df</code> DataFrame.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;categories_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;categories&#39;</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s">&#39;category_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;universities_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;universities&#39;</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s">&#39;university_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<h1>3. Getting Social Sharing Counts</h1>
+<h2>3.1. Sharedcount.com</h2>
+<h2>3.2. Sharedcount.com API</h2>
             <div class="hr"></div>
-    <div class="addthis_sharing_toolbox"></div>
-        <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};</script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54c667f5423e719f" async="async"></script>
+
             <a href="#" class="go-top">Go Top</a>
 <div class="comments">
     <div id="disqus_thread"></div>

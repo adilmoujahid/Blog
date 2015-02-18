@@ -207,6 +207,9 @@ print tweets['ruby'].value_counts()[True]
 This returns: 21839 for python, 16154 for javascript and 31410 for ruby. We can make a simple comparaison chart by executing the following: 
 
 ```python
+prg_langs = ['python', 'javascript', 'ruby']
+tweets_by_prg_lang = [tweets['python'].value_counts()[True], tweets['javascript'].value_counts()[True], tweets['ruby'].value_counts()[True]]
+
 x_pos = list(range(len(prg_langs)))
 width = 0.8
 fig, ax = plt.subplots()
@@ -247,7 +250,7 @@ print tweets['relevant'].value_counts()[True]
 
 This returns, 871 for ```programming``` column, 511 for ```tutorial``` column, and 1356 for ```relevant``` column.
 
-We can compare now the popularity of the programming languages by executing the commands below. Python is the most popular with a count of 732, followed by javascript by a count of 473, and ruby by a count of 185.
+We can compare now the popularity of the programming languages by executing the commands below. 
 
 ```python
 print tweets[tweets['relevant'] == True]['python'].value_counts()[True]
@@ -255,8 +258,22 @@ print tweets[tweets['relevant'] == True]['javascript'].value_counts()[True]
 print tweets[tweets['relevant'] == True]['ruby'].value_counts()[True]
 ```
 
-We can plot this by executing the commands below:
+Python is the most popular with a count of 732, followed by javascript by a count of 473, and ruby by a count of 185. We can make a comparaison graph by executing the commands below:
 
+```python
+tweets_by_prg_lang = [tweets[tweets['relevant'] == True]['python'].value_counts()[True], 
+                      tweets[tweets['relevant'] == True]['javascript'].value_counts()[True], 
+                      tweets[tweets['relevant'] == True]['ruby'].value_counts()[True]]
+x_pos = list(range(len(prg_langs)))
+width = 0.8
+fig, ax = plt.subplots()
+plt.bar(x_pos, tweets_by_prg_lang, width,alpha=1,color='g')
+ax.set_ylabel('Number of tweets', fontsize=15)
+ax.set_title('Ranking: python vs. javascript vs. ruby (Relevant data)', fontsize=10, fontweight='bold')
+ax.set_xticks([p + 0.4 * width for p in x_pos])
+ax.set_xticklabels(prg_langs)
+plt.grid()
+```
 <div style="text-align:center" markdown="1">
 ![Alt Text](/images/top_prg_lang_relevant.png)
 </div>
@@ -313,7 +330,7 @@ This returns 644 links for python, 413 links for javascript, and 136 for ruby. B
 * [http://t.co/ytms7bcsQV](http://t.co/ytms7bcsQV)
 
 #Conclusion
-In this tutorial, we covered many techniques used in text mining. The code provide in this post could be modified to create a deeper analysis or could be adapted to another use case. For those who want to go further in text mining, I recommend to follow up by studying Regular Expressions.
+In this tutorial, we covered many techniques used in text mining. The code provide in this post could be modified to create a deeper analysis or could be adapted to another use case. For those who want to go further in text mining, I recommend to follow up by studying regular expressions.
 
 All the source code from this tutorial will be organized and uploaded to my [github account](https://github.com/adilmoujahid). 
 
