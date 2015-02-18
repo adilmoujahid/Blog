@@ -332,7 +332,7 @@ This returns 644 links for python, 413 links for javascript, and 136 for ruby. B
 #Conclusion
 In this tutorial, we covered many techniques used in text mining. The code provide in this post could be modified to create a deeper analysis or could be adapted to another use case. For those who want to go further in text mining, I recommend to follow up by studying regular expressions.
 
-All the source code from this tutorial will be organized and uploaded to my [github account](https://github.com/adilmoujahid). 
+You can find the source code from this tutorial in this github repository [github account](https://github.com/adilmoujahid/Twitter_Analytics). 
 
 #references
 * http://en.wikipedia.org/wiki/Text_mining
