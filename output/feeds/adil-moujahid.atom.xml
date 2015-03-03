@@ -939,7 +939,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 &lt;/ul&gt;
 &lt;h1&gt;Conclusion&lt;/h1&gt;
 &lt;p&gt;In this tutorial, we covered many techniques used in text mining. The code provide in this post could be modified to create a deeper analysis or could be adapted to another use case. For those who want to go further in text mining, I recommend to follow up by studying regular expressions.&lt;/p&gt;
-&lt;p&gt;You can find the source code from this tutorial in this github repository &lt;a href="https://github.com/adilmoujahid/Twitter_Analytics"&gt;github account&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;You can find the source code from this tutorial in this github repository &lt;a href="https://github.com/adilmoujahid/Twitter_Analytics"&gt;github link&lt;/a&gt;. &lt;/p&gt;
 &lt;h1&gt;references&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;http://en.wikipedia.org/wiki/Text_mining&lt;/li&gt;
