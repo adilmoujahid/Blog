@@ -71,9 +71,9 @@
 
 
 <p>Next, import the 3 following libraries: <code>urllib2</code>, <code>json</code>, and <code>pandas</code>. Both <code>urllib2</code> and <code>json</code> libraries are part of the core python libraries and don't need to be installed separately.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">json</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 </pre></div>
 
 
@@ -84,20 +84,22 @@
 <li><code>language</code>: The language code for the course. (e.g. 'en' means English.)</li>
 </ul>
 <p>We will also include in the query <code>universities</code> and <code>categories</code> parameters. This will return the ids that matches each course with their corresponding universities and categories. Below are the python commands to do so.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/courses?fields=shortName,name,language&amp;includes=universities,categories&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">courses_response</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span> <span class="o">=</span> <span class="n">courses_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">courses_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/courses?fields=shortName,name,language&amp;includes=universities,categories&#39;</span><span class="p">)</span>
+<span class="n">courses_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">courses_response</span><span class="p">)</span>
+<span class="n">courses_data</span> <span class="o">=</span> <span class="n">courses_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>If we want to get the data about the first course in the <code>courses_data</code> array, we simply execute the command below.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">courses_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
 
-<span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">2163</span><span class="p">,</span>
- <span class="s">u&#39;language&#39;</span><span class="p">:</span> <span class="s">u&#39;en&#39;</span><span class="p">,</span>
- <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">u&#39;categories&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="s">u&#39;universities&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">]},</span>
- <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation&#39;</span><span class="p">,</span>
- <span class="s">u&#39;shortName&#39;</span><span class="p">:</span> <span class="s">u&#39;perceptivehunting&#39;</span><span class="p">}</span>
+
+<div class="highlight"><pre><span class="p">{</span><span class="n">u</span><span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="o">:</span> <span class="mi">2163</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">language</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">en</span><span class="err">&#39;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">links</span><span class="err">&#39;</span><span class="o">:</span> <span class="p">{</span><span class="n">u</span><span class="err">&#39;</span><span class="n">categories</span><span class="err">&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">universities</span><span class="err">&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">]},</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">name</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">The</span> <span class="n">Land</span> <span class="n">Ethic</span> <span class="n">Reclaimed</span><span class="o">:</span> <span class="n">Perceptive</span> <span class="n">Hunting</span><span class="p">,</span> <span class="n">Aldo</span> <span class="n">Leopold</span><span class="p">,</span> <span class="n">and</span> <span class="n">Conservation</span><span class="err">&#39;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">shortName</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">perceptivehunting</span><span class="err">&#39;</span><span class="p">}</span>
 </pre></div>
 
 
@@ -110,27 +112,31 @@
 
 
 <p>We can get the data about the first university from <code>universities_data</code> by executing the following command:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">universities_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
 
-<span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">234</span><span class="p">,</span>
- <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{},</span>
- <span class="s">u&#39;locationCountry&#39;</span><span class="p">:</span> <span class="s">u&#39;CN&#39;</span><span class="p">,</span>
- <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&quot;Xi&#39;an Jiaotong University&quot;</span><span class="p">,</span>
- <span class="s">u&#39;shortName&#39;</span><span class="p">:</span> <span class="s">u&#39;xjtu&#39;</span><span class="p">}</span>
+
+<div class="highlight"><pre><span class="p">{</span><span class="n">u</span><span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="o">:</span> <span class="mi">234</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">links</span><span class="err">&#39;</span><span class="o">:</span> <span class="p">{},</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">locationCountry</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">CN</span><span class="err">&#39;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">name</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="s">&quot;Xi&#39;an Jiaotong University&quot;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">shortName</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">xjtu</span><span class="err">&#39;</span><span class="p">}</span>
 </pre></div>
 
 
 <p>Similarly to get the courses categories data, we execute the following commands.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/categories&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">categories_response</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span> <span class="o">=</span> <span class="n">categories_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">categories_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://api.coursera.org/api/catalog.v1/categories&#39;</span><span class="p">)</span>
+<span class="n">categories_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">categories_response</span><span class="p">)</span>
+<span class="n">categories_data</span> <span class="o">=</span> <span class="n">categories_data</span><span class="p">[</span><span class="s">&#39;elements&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>We can get the data about the the first category from <code>categories_data</code> by executing the following command:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">categories_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
 
-<span class="p">{</span><span class="s">u&#39;id&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">u&#39;links&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">u&#39;name&#39;</span><span class="p">:</span> <span class="s">u&#39;Mathematics&#39;</span><span class="p">,</span> <span class="s">u&#39;shortName&#39;</span><span class="p">:</span> <span class="s">u&#39;math&#39;</span><span class="p">}</span>
+
+<div class="highlight"><pre><span class="p">{</span><span class="n">u</span><span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">links</span><span class="err">&#39;</span><span class="o">:</span> <span class="p">{},</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">name</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">Mathematics</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">shortName</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">u</span><span class="err">&#39;</span><span class="n">math</span><span class="err">&#39;</span><span class="p">}</span>
 </pre></div>
 
 
@@ -138,90 +144,101 @@
 <p>In this section, we will structure the <code>courses_data</code>, <code>universities_data</code> and <code>categories_data</code> array into a <code>pandas</code> DataFrame, and we will map the universities and categories ids with the corresponding names. By the end of this section, we will have one <code>pandas</code> DataFrame called <code>courses_df</code> that will have all the necessary data in a well structured format.</p>
 <h2>2.1. Putting the Data into Pandas DataFrames</h2>
 <p>First, we start by creating a <code>pandas</code> DataFrame for the courses data.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<div class="highlight"><pre><span class="n">courses_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
 
 
 <p>Next, we add the <code>course_name</code>, <code>course_language</code>, <code>course_short_name</code>, <code>categories</code> and <code>universities</code> columns to the <code>courses_df</code> DataFrame.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_language&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;language&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_short_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;shortName&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">][</span><span class="s">&#39;categories&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;categories&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;universities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">][</span><span class="s">&#39;universities&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;universities&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_language&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;language&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_short_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;shortName&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">][</span><span class="s">&#39;categories&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;categories&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;universities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">][</span><span class="s">&#39;universities&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;universities&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Similarly, we create a <code>python</code> DataFrame for the universities data, and we add the <code>university_id</code>, <code>university_name</code> and <code>university_location_country</code> columns to it.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_location_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;locationCountry&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">universities_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="n">universities_df</span><span class="p">[</span><span class="s">&#39;university_location_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s">&#39;locationCountry&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Next, we change the <code>universities_df</code> index to <code>university_id</code>. </p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">universities_df</span> <span class="o">=</span> <span class="n">universities_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;university_id&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">universities_df</span> <span class="o">=</span> <span class="n">universities_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;university_id&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Next, we create a <code>python</code> DataFrame for the categories data, and we add the <code>category_id</code> and <code>category_name</code> columns to it.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span><span class="p">[</span><span class="s">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span><span class="p">[</span><span class="s">&#39;category_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">categories_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">categories_df</span><span class="p">[</span><span class="s">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
+<span class="n">categories_df</span><span class="p">[</span><span class="s">&#39;category_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Similarly, we change the <code>categories_df</code> index to <code>category_id</code>. </p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">categories_df</span> <span class="o">=</span> <span class="n">categories_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;category_id&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">categories_df</span> <span class="o">=</span> <span class="n">categories_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;category_id&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <h2>2.2. Mapping ids with the corresponding names</h2>
 <p>In the <code>courses_df</code> DataFrame, the universities and the categories are referred to by their ids and not by their name. To change that, we start by defining a function that change the ids to their corresponding names.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">map_ids_names</span><span class="p">(</span><span class="n">ids_array</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
-<span class="o">&gt;&gt;&gt;</span>     <span class="n">names_array</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="o">&gt;&gt;&gt;</span>     <span class="k">for</span> <span class="n">object_id</span> <span class="ow">in</span> <span class="n">ids_array</span><span class="p">:</span>
-<span class="o">&gt;&gt;&gt;</span>         <span class="k">try</span><span class="p">:</span>
-<span class="o">&gt;&gt;&gt;</span>             <span class="n">names_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">object_id</span><span class="p">][</span><span class="n">object_name</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span>         <span class="k">except</span><span class="p">:</span>
-<span class="o">&gt;&gt;&gt;</span>             <span class="k">continue</span>
-<span class="o">&gt;&gt;&gt;</span>     <span class="k">return</span> <span class="n">names_array</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">map_ids_names</span><span class="p">(</span><span class="n">ids_array</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
+    <span class="n">names_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">object_id</span> <span class="ow">in</span> <span class="n">ids_array</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">names_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">object_id</span><span class="p">][</span><span class="n">object_name</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">names_array</span>
 </pre></div>
 
 
 <p>We can know for example change the categories with ids [4,5,15,16] to their corresponding names.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">map_ids_names</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s">&#39;category_name&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">map_ids_names</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s">&#39;category_name&#39;</span><span class="p">)</span>
+</pre></div>
 
-<span class="p">[</span><span class="s">u&#39;Information, Tech &amp; Design&#39;</span><span class="p">,</span>
- <span class="s">u&#39;Mathematics&#39;</span><span class="p">,</span>
- <span class="s">u&#39;Engineering&#39;</span><span class="p">,</span>
- <span class="s">u&#39;Statistics and Data Analysis&#39;</span><span class="p">]</span>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">u</span><span class="err">&#39;</span><span class="n">Information</span><span class="p">,</span> <span class="n">Tech</span> <span class="o">&amp;</span> <span class="n">Design</span><span class="err">&#39;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">Mathematics</span><span class="err">&#39;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">Engineering</span><span class="err">&#39;</span><span class="p">,</span>
+ <span class="n">u</span><span class="err">&#39;</span><span class="n">Statistics</span> <span class="n">and</span> <span class="n">Data</span> <span class="n">Analysis</span><span class="err">&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Similarly, we can change the university with id to its corresponding name.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">map_ids_names</span><span class="p">([</span><span class="mi">234</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s">&#39;university_name&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">map_ids_names</span><span class="p">([</span><span class="mi">234</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s">&#39;university_name&#39;</span><span class="p">)</span>
+</pre></div>
 
-<span class="p">[</span><span class="s">u&quot;Xi&#39;an Jiaotong University&quot;</span><span class="p">]</span>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">u</span><span class="s">&quot;Xi&#39;an Jiaotong University&quot;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Next, we will add both the categories and universities name to the <code>courses_df</code> DataFrame.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;categories_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;categories&#39;</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s">&#39;category_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;universities_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;universities&#39;</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s">&#39;university_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;categories_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;categories&#39;</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s">&#39;category_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;universities_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;universities&#39;</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s">&#39;university_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 
-<h2>2.3. Cleaning the data</h2>
+<h2>2.3. Adding course URLs to the data</h2>
+<div class="highlight"><pre><span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;https://www.coursera.org/course/&#39;</span> <span class="o">+</span> <span class="n">courses_df</span><span class="p">[</span><span class="s">&#39;course_short_name&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<h2>2.4. Cleaning the data</h2>
 <h1>3. Getting Social Sharing Counts</h1>
 <h2>3.1. Sharedcount.com</h2>
+<p>SharedCount is a service that looks up the number of times a given URL has been shared on major social networks.</p>
 <h2>3.2. Sharedcount.com API</h2>
             <div class="hr"></div>
             
             <!-- Begin MailChimp Signup Form -->
             <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
             <style type="text/css">
-                #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                #mc_embed_signup{background:#F1F3F3; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                #mc-embedded-subscribe.button{background-color: #0f52ba;}
                 /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
                    We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
             </style>
