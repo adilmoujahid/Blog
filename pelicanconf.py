@@ -25,6 +25,7 @@ STATIC_PATHS = ['images', 'pdfs']
 
 COVER_IMG_URL = '/images/cover-img.jpg'
 
+
 # Social widget
 SOCIAL = (('twitter', 'https://twitter.com/AdilMouja'),
           ('linkedin', 'https://www.linkedin.com/pub/adil-moujahid/65/51/83a'),
@@ -52,15 +53,18 @@ TAG_URL = "tag/{slug}/"
 TAG_SAVE_AS = "tag/{slug}/index.html"
 
 # Generate yearly archive
-
 YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
 
 # Show most recent posts first
-
 NEWEST_FIRST_ARCHIVES = False
 
 # Static paths will be copied without parsing their contents
 STATIC_PATHS = ['images', 'extra']
+
+# Ipython setting
+NOTEBOOK_DIR = 'notebooks'
+EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
+
 
 # Shift the installed location of a file
 EXTRA_PATH_METADATA = {
@@ -76,8 +80,8 @@ NEWEST_FIRST_ARCHIVES = False
 THEME = "theme/pure"
 
 # Plugins
-PLUGIN_PATH = 'plugins'
-PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img']
+PLUGIN_PATHS = ['./plugins']
+PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'liquid_tags.notebook']
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True

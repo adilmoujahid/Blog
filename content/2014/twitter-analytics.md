@@ -3,7 +3,7 @@ Slug: twitter-analytics
 Email: adil.mouja@gmail.com
 Date: 2014-07-21
 Category: analytics
-Tags: python, pandas, text mining, matplotlib, twitter
+Tags: python, pandas, text mining, matplotlib, twitter, api
 Summary: In this tutorial, I will use Twitter data to compare the popularity of 3 programming languages: Python, Javascript and Ruby, and to retrieve links to programming tutorials.
 
 
