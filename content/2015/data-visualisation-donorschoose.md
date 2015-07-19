@@ -97,7 +97,7 @@ $ python
 ```
 Next import the ```Connection``` method from ```PyMongo``` by running the command below. This method will allow us to connect to MongoDB and query the data.
 ```
->>> from pymongo import Connection
+>>> from pymongo import MongoClient
 ```
 Next, we will define 4 variables that represent respectively MongoDB IP address, MongoDB port, MongoDB database name and MongoDB collection name.
 ```
@@ -113,9 +113,9 @@ Next, we will define the 5 attributes that we will use for our query. Note that 
 ```
 And finally, let's connect to MongoDB and retrieve all the records along the 5 attributes that we are interested in. We can do so by running the following.
 ```
->>> connection = Connection(MONGODB_HOST, MONGODB_PORT)
+>>> connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
 >>> collection = connection[DBS_NAME][COLLECTION_NAME]
->>> projects = collection.find(fields=FIELDS)
+>>> projects = collection.find(projection=FIELDS)
 ```
 All the records are stored in ```projects```, we can print all them by running the following command.
 ```
@@ -159,7 +159,7 @@ Next, we will modify the ```app.py``` folder to include the MongoDB query to ret
 ```python
 from flask import Flask
 from flask import render_template
-from pymongo import Connection
+from pymongo import MongoClient
 import json
 from bson import json_util
 from bson.json_util import dumps
@@ -178,14 +178,14 @@ def index():
 
 @app.route("/donorschoose/projects")
 def donorschoose_projects():
-    connection = Connection(MONGODB_HOST, MONGODB_PORT)
+    connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
     collection = connection[DBS_NAME][COLLECTION_NAME]
-    projects = collection.find(fields=FIELDS)
+    projects = collection.find(projection=FIELDS)
     json_projects = []
     for project in projects:
         json_projects.append(project)
     json_projects = json.dumps(json_projects, default=json_util.default)
-    connection.disconnect()
+    connection.close()
     return json_projects
 
 if __name__ == "__main__":

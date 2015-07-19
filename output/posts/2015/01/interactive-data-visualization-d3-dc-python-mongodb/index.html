@@ -198,8 +198,8 @@ init_mathjax();
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/theme/css/pure.css">
-    <link rel="stylesheet" href="/theme/css/pygments.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
@@ -217,7 +217,7 @@ init_mathjax();
     <div class="sidebar sidebar-article pure-u">
         <header class="header-article">
             <hgroup>
-                <a href="/author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
                         <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
@@ -242,12 +242,12 @@ init_mathjax();
                 <header class="post-header">
                     <h1>Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB</h1>
                         <p class="post-meta">
-                            // tags                                 <a class="post-category" href="/tag/python/">python</a>
-                                <a class="post-category" href="/tag/javascript/">javascript</a>
-                                <a class="post-category" href="/tag/data-visualization/">data visualization</a>
-                                <a class="post-category" href="/tag/d3js/">d3.js</a>
-                                <a class="post-category" href="/tag/dcjs/">dc.js</a>
-                                <a class="post-category" href="/tag/mongodb/">mongodb</a>
+                            // tags                                 <a class="post-category" href="../../../../tag/python/">python</a>
+                                <a class="post-category" href="../../../../tag/javascript/">javascript</a>
+                                <a class="post-category" href="../../../../tag/data-visualization/">data visualization</a>
+                                <a class="post-category" href="../../../../tag/d3js/">d3.js</a>
+                                <a class="post-category" href="../../../../tag/dcjs/">dc.js</a>
+                                <a class="post-category" href="../../../../tag/mongodb/">mongodb</a>
                         </p>
                 </header>
             </section>
@@ -328,7 +328,7 @@ init_mathjax();
 
 
 <p>Next import the <code>Connection</code> method from <code>PyMongo</code> by running the command below. This method will allow us to connect to MongoDB and query the data.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">pymongo</span> <span class="n">import</span> <span class="n">Connection</span>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">pymongo</span> <span class="n">import</span> <span class="n">MongoClient</span>
 </pre></div>
 
 
@@ -346,9 +346,9 @@ init_mathjax();
 
 
 <p>And finally, let's connect to MongoDB and retrieve all the records along the 5 attributes that we are interested in. We can do so by running the following.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="p">[</span><span class="n">DBS_NAME</span><span class="p">][</span><span class="n">COLLECTION_NAME</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">projects</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">projects</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span>
 </pre></div>
 
 
@@ -390,7 +390,7 @@ init_mathjax();
 <p>Next, we will modify the <code>app.py</code> folder to include the MongoDB query to retieve all the records from MongoDB along the 5 attributes. You can see many lines of code from the previous MongoDB section. We added one <code>route</code> decorator <code>@app.route("/donorschoose/projects")</code> to map the URL <code>/donorschoose/projects</code> to the data from MongoDB.</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
-<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">Connection</span>
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">bson</span> <span class="kn">import</span> <span class="n">json_util</span>
 <span class="kn">from</span> <span class="nn">bson.json_util</span> <span class="kn">import</span> <span class="n">dumps</span>
@@ -409,14 +409,14 @@ init_mathjax();
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/donorschoose/projects&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">donorschoose_projects</span><span class="p">():</span>
-    <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
     <span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="p">[</span><span class="n">DBS_NAME</span><span class="p">][</span><span class="n">COLLECTION_NAME</span><span class="p">]</span>
-    <span class="n">projects</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span>
+    <span class="n">projects</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span>
     <span class="n">json_projects</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">:</span>
         <span class="n">json_projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
     <span class="n">json_projects</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_projects</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">json_util</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
-    <span class="n">connection</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">json_projects</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
