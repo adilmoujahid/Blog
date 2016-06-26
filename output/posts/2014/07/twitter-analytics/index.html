@@ -6,200 +6,14 @@
     <meta name="description" content="Adil Moujahid, Data Analytics and more">
 
 
-        <style type="text/css">
-/*some stuff for output/input prompts*/
-div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
-div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
-div.cell{width:100%;padding:0px 0px 0px 0;margin:0;outline:none}
-div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
-@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
-div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
-div.prompt:empty{padding-top:0;padding-bottom:0}
-div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}
-@media (max-width:480px){div.input{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:#000080;border-top:1px solid transparent}
-div.input_area>div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}
-div.input_area>div.highlight>pre{margin:0;border:none;padding:0;background-color:transparent}
-.CodeMirror{line-height:1.21429em;height:auto;background:none;}
-.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}
-.CodeMirror-lines{padding:.4em}
-.CodeMirror-linenumber{padding:0 8px 0 4px}
-.CodeMirror-gutters{border-bottom-left-radius:4px;border-top-left-radius:4px}
-.CodeMirror pre{padding:0;border:0;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
-pre code{display:block;padding:.5em}
-.highlight-base,pre code,pre .subst,pre .tag .title,pre .lisp .title,pre .clojure .built_in,pre .nginx .title{color:#000}
-.highlight-string,pre .string,pre .constant,pre .parent,pre .tag .value,pre .rules .value,pre .rules .value .number,pre .preprocessor,pre .ruby .symbol,pre .ruby .symbol .string,pre .aggregate,pre .template_tag,pre .django .variable,pre .smalltalk .class,pre .addition,pre .flow,pre .stream,pre .bash .variable,pre .apache .tag,pre .apache .cbracket,pre .tex .command,pre .tex .special,pre .erlang_repl .function_or_atom,pre .markdown .header{color:#ba2121}
-.highlight-comment,pre .comment,pre .annotation,pre .template_comment,pre .diff .header,pre .chunk,pre .markdown .blockquote{color:#408080;font-style:italic}
-.highlight-number,pre .number,pre .date,pre .regexp,pre .literal,pre .smalltalk .symbol,pre .smalltalk .char,pre .go .constant,pre .change,pre .markdown .bullet,pre .markdown .link_url{color:#080}
-pre .label,pre .javadoc,pre .ruby .string,pre .decorator,pre .filter .argument,pre .localvars,pre .array,pre .attr_selector,pre .important,pre .pseudo,pre .pi,pre .doctype,pre .deletion,pre .envvar,pre .shebang,pre .apache .sqbracket,pre .nginx .built_in,pre .tex .formula,pre .erlang_repl .reserved,pre .prompt,pre .markdown .link_label,pre .vhdl .attribute,pre .clojure .attribute,pre .coffeescript .property{color:#88f}
-.highlight-keyword,pre .keyword,pre .id,pre .phpdoc,pre .aggregate,pre .css .tag,pre .javadoctag,pre .phpdoc,pre .yardoctag,pre .smalltalk .class,pre .winutils,pre .bash .variable,pre .apache .tag,pre .go .typename,pre .tex .command,pre .markdown .strong,pre .request,pre .status{color:#008000;font-weight:bold}
-.highlight-builtin,pre .built_in{color:#008000}
-pre .markdown .emphasis{font-style:italic}
-pre .nginx .built_in{font-weight:normal}
-pre .coffeescript .javascript,pre .javascript .xml,pre .tex .formula,pre .xml .javascript,pre .xml .vbscript,pre .xml .css,pre .xml .cdata{opacity:.5}
-.cm-s-ipython span.cm-variable{color:#000}
-.cm-s-ipython span.cm-keyword{color:#008000;font-weight:bold}
-.cm-s-ipython span.cm-number{color:#080}
-.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}
-.cm-s-ipython span.cm-string{color:#ba2121}
-.cm-s-ipython span.cm-builtin{color:#008000}
-.cm-s-ipython span.cm-error{color:#f00}
-.cm-s-ipython span.cm-operator{color:#a2f;font-weight:bold}
-.cm-s-ipython span.cm-meta{color:#a2f}
-.cm-s-ipython span.cm-tab{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);background-position:right;background-repeat:no-repeat}
-div.output_wrapper{position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}
-div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,0.8);-moz-box-shadow:inset 0 2px 8px rgba(0,0,0,0.8);box-shadow:inset 0 2px 8px rgba(0,0,0,0.8);display:block}
-div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}
-div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:4px}
-div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;-moz-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,0.5)}
-div.output_prompt{color:#8b0000}
-div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left !important}
-div.output_area .rendered_html table{margin-left:0;margin-right:0}
-div.output_area .rendered_html img{margin-left:0;margin-right:0}
-.output{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}
-@media (max-width:480px){div.output_area{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;color:#000;background-color:transparent;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
-div.output_subarea{padding:.4em .4em 0 .4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
-div.output_text{text-align:left;color:#000;line-height:1.21429em}
-div.output_stderr{background:#fdd;}
-div.output_latex{text-align:left}
-div.output_javascript:empty{padding:0}
-div.output_pyout{font-size:75%}
-th{text-align:center}
-.js-error{color:#8b0000}
-div.raw_input_container{font-family:monospace;padding-top:5px}
-span.raw_input_prompt{}
-input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}
-input.raw_input:focus{box-shadow:none}
-/* end stuff for output/input prompts*/
-.highlight-ipynb .hll { background-color: #ffffcc }
-.highlight-ipynb  { background: #f8f8f8; }
-.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
-.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
-.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight-ipynb .o { color: #666666 } /* Operator */
-.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
-.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
-.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
-.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
-.highlight-ipynb .go { color: #888888 } /* Generic.Output */
-.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
-.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
-.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
-.highlight-ipynb .m { color: #666666 } /* Literal.Number */
-.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
-.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
-.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
-.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight-ipynb .no { color: #880000 } /* Name.Constant */
-.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
-.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
-.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
-.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
-.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
-.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
-.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
-.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
-.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
-</style>
-
-<style type="text/css">
-/* Overrides of notebook CSS for static HTML export */
-div.entry-content {
-  overflow: visible;
-  padding: 8px;
-}
-.input_area {
-  padding: 0.2em;
-}
-a.heading-anchor {
- white-space: normal;
-}
-.rendered_html
-code {
- font-size: .8em;
-}
-pre.ipynb {
-  color: black;
-  background: #f7f7f7;
-  border: none;
-  box-shadow: none;
-  margin-bottom: 0;
-  padding: 0;
-  margin: 0px;
-  font-size: 13px;
-}
-/* remove the prompt div from text cells */
-div.text_cell .prompt {
-    display: none;
-}
-/* remove horizontal padding from text cells, */
-/* so it aligns with outer body text */
-div.text_cell_render {
-    padding: 0em 0em;
-}
-img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
-</style>
-
-<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
-<script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    }
-}
-init_mathjax();
-</script>
 
 
         <title>An Introduction to Text Mining using Twitter Streaming API and Python // Adil Moujahid // Data Analytics and more</title>
-
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../../theme/css/pure.css">
     <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+    <link rel="stylesheet" href="../../../../theme/css/custom.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
@@ -272,19 +86,19 @@ init_mathjax();
 <h2>Step 2: Connecting to Twitter Streaming API and downloading data</h2>
 <p>We will be using a Python library called <code>Tweepy</code> to connect to Twitter Streaming API and downloading the data. If you don't have <code>Tweepy</code> installed in your machine, go to this <a href="https://github.com/tweepy/tweepy">link</a>, and follow the installation instructions.</p>
 <p>Next create, a file called <code>twitter_streaming.py</code>, and copy into it the code below. Make sure to enter your credentials into <code>access_token</code>, <code>access_token_secret</code>, <code>consumer_key</code>, and <code>consumer_secret</code>.</p>
-<div class="highlight"><pre><span class="c">#Import the necessary methods from tweepy library</span>
+<div class="highlight"><pre><span></span><span class="c1">#Import the necessary methods from tweepy library</span>
 <span class="kn">from</span> <span class="nn">tweepy.streaming</span> <span class="kn">import</span> <span class="n">StreamListener</span>
 <span class="kn">from</span> <span class="nn">tweepy</span> <span class="kn">import</span> <span class="n">OAuthHandler</span>
 <span class="kn">from</span> <span class="nn">tweepy</span> <span class="kn">import</span> <span class="n">Stream</span>
 
-<span class="c">#Variables that contains the user credentials to access Twitter API </span>
-<span class="n">access_token</span> <span class="o">=</span> <span class="s">&quot;ENTER YOUR ACCESS TOKEN&quot;</span>
-<span class="n">access_token_secret</span> <span class="o">=</span> <span class="s">&quot;ENTER YOUR ACCESS TOKEN SECRET&quot;</span>
-<span class="n">consumer_key</span> <span class="o">=</span> <span class="s">&quot;ENTER YOUR API KEY&quot;</span>
-<span class="n">consumer_secret</span> <span class="o">=</span> <span class="s">&quot;ENTER YOUR API SECRET&quot;</span>
+<span class="c1">#Variables that contains the user credentials to access Twitter API </span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOUR ACCESS TOKEN&quot;</span>
+<span class="n">access_token_secret</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOUR ACCESS TOKEN SECRET&quot;</span>
+<span class="n">consumer_key</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOUR API KEY&quot;</span>
+<span class="n">consumer_secret</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOUR API SECRET&quot;</span>
 
 
-<span class="c">#This is a basic listener that just prints received tweets to stdout.</span>
+<span class="c1">#This is a basic listener that just prints received tweets to stdout.</span>
 <span class="k">class</span> <span class="nc">StdOutListener</span><span class="p">(</span><span class="n">StreamListener</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">on_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -295,16 +109,16 @@ init_mathjax();
         <span class="k">print</span> <span class="n">status</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
-    <span class="c">#This handles Twitter authetification and the connection to Twitter Streaming API</span>
+    <span class="c1">#This handles Twitter authetification and the connection to Twitter Streaming API</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">StdOutListener</span><span class="p">()</span>
     <span class="n">auth</span> <span class="o">=</span> <span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
     <span class="n">auth</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">access_token_secret</span><span class="p">)</span>
     <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
 
-    <span class="c">#This line filter Twitter Streams to capture data by the keywords: &#39;python&#39;, &#39;javascript&#39;, &#39;ruby&#39;</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">track</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">,</span> <span class="s">&#39;javascript&#39;</span><span class="p">,</span> <span class="s">&#39;ruby&#39;</span><span class="p">])</span>
+    <span class="c1">#This line filter Twitter Streams to capture data by the keywords: &#39;python&#39;, &#39;javascript&#39;, &#39;ruby&#39;</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">track</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;ruby&#39;</span><span class="p">])</span>
 </pre></div>
 
 
@@ -317,23 +131,23 @@ init_mathjax();
 <p>I run the program for 2 days (from 2014/07/15 till 2014/07/17) to get a meaningful data sample. This file size is 242 MB.</p>
 <h1>2. Reading and Understanding the data</h1>
 <p>The data that we stored <code>twitter_data.txt</code> is in JSON format. JSON stands for JavaScript Object Notation. This format makes it easy to humans to read the data, and for machines to parse it. Below is an example for one tweet in JSON format. You can see that the tweet contains additional information in addition to the main text which in this example: <code>"Yaayyy I learned some JavaScript today! #thatwasntsohard #yesitwas #stoptalkingtoyourself #hashbrown #hashtag"</code>. </p>
-<div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;Tue Jul 15 14:19:30 +0000 2014&quot;</span><span class="p">,</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">489051636304990208</span><span class="p">,</span><span class="nt">&quot;id_str&quot;</span><span class="p">:</span><span class="s2">&quot;489051636304990208&quot;</span><span class="p">,</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;Yaayyy I learned some JavaScript today! #thatwasntsohard #yesitwas #stoptalkingtoyourself #hashbrown #hashtag&quot;</span><span class="p">,</span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="s2">&quot;\u003ca href=\&quot;http:\/\/twitter.com\/download\/iphone\&quot; rel=\&quot;nofollow\&quot;\u003eTwitter for iPhone\u003c\/a\u003e&quot;</span><span class="p">,</span><span class="nt">&quot;truncated&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;in_reply_to_status_id&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_status_id_str&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_user_id&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_user_id_str&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_screen_name&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;user&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">2301702187</span><span class="p">,</span><span class="nt">&quot;id_str&quot;</span><span class="p">:</span><span class="s2">&quot;2301702187&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Toni Barlettano&quot;</span><span class="p">,</span><span class="nt">&quot;screen_name&quot;</span><span class="p">:</span><span class="s2">&quot;itsmetonib&quot;</span><span class="p">,</span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="s2">&quot;Greater NYC Area&quot;</span><span class="p">,</span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;http:\/\/www.tonib.me&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;So Full of Art   |   \nToni Barlettano Creative Media + Design&quot;</span><span class="p">,</span><span class="nt">&quot;protected&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;followers_count&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="nt">&quot;friends_count&quot;</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="nt">&quot;listed_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;Mon Jan 20 16:49:46 +0000 2014&quot;</span><span class="p">,</span><span class="nt">&quot;favourites_count&quot;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="nt">&quot;utc_offset&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;time_zone&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;geo_enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;verified&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;statuses_count&quot;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="nt">&quot;contributors_enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;is_translator&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;is_translation_enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;profile_background_color&quot;</span><span class="p">:</span><span class="s2">&quot;C0DEED&quot;</span><span class="p">,</span><span class="nt">&quot;profile_background_image_url&quot;</span><span class="p">:</span><span class="s2">&quot;http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png&quot;</span><span class="p">,</span><span class="nt">&quot;profile_background_image_url_https&quot;</span><span class="p">:</span><span class="s2">&quot;https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png&quot;</span><span class="p">,</span><span class="nt">&quot;profile_background_tile&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;profile_image_url&quot;</span><span class="p">:</span><span class="s2">&quot;http:\/\/pbs.twimg.com\/profile_images\/425313048320958464\/Z2GcderW_normal.jpeg&quot;</span><span class="p">,</span><span class="nt">&quot;profile_image_url_https&quot;</span><span class="p">:</span><span class="s2">&quot;https:\/\/pbs.twimg.com\/profile_images\/425313048320958464\/Z2GcderW_normal.jpeg&quot;</span><span class="p">,</span><span class="nt">&quot;profile_link_color&quot;</span><span class="p">:</span><span class="s2">&quot;0084B4&quot;</span><span class="p">,</span><span class="nt">&quot;profile_sidebar_border_color&quot;</span><span class="p">:</span><span class="s2">&quot;C0DEED&quot;</span><span class="p">,</span><span class="nt">&quot;profile_sidebar_fill_color&quot;</span><span class="p">:</span><span class="s2">&quot;DDEEF6&quot;</span><span class="p">,</span><span class="nt">&quot;profile_text_color&quot;</span><span class="p">:</span><span class="s2">&quot;333333&quot;</span><span class="p">,</span><span class="nt">&quot;profile_use_background_image&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;default_profile&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;default_profile_image&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;following&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;follow_request_sent&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;notifications&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">},</span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;place&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;contributors&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;retweet_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;favorite_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;entities&quot;</span><span class="p">:{</span><span class="nt">&quot;hashtags&quot;</span><span class="p">:[{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;thatwasntsohard&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">40</span><span class="p">,</span><span class="mi">56</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;yesitwas&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">57</span><span class="p">,</span><span class="mi">66</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;stoptalkingtoyourself&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">67</span><span class="p">,</span><span class="mi">89</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;hashbrown&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">90</span><span class="p">,</span><span class="mi">100</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;hashtag&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">101</span><span class="p">,</span><span class="mi">109</span><span class="p">]}],</span><span class="nt">&quot;symbols&quot;</span><span class="p">:[],</span><span class="nt">&quot;urls&quot;</span><span class="p">:[],</span><span class="nt">&quot;user_mentions&quot;</span><span class="p">:[]},</span><span class="nt">&quot;favorited&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;retweeted&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;filter_level&quot;</span><span class="p">:</span><span class="s2">&quot;medium&quot;</span><span class="p">,</span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="s2">&quot;en&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;Tue Jul 15 14:19:30 +0000 2014&quot;</span><span class="p">,</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">489051636304990208</span><span class="p">,</span><span class="nt">&quot;id_str&quot;</span><span class="p">:</span><span class="s2">&quot;489051636304990208&quot;</span><span class="p">,</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;Yaayyy I learned some JavaScript today! #thatwasntsohard #yesitwas #stoptalkingtoyourself #hashbrown #hashtag&quot;</span><span class="p">,</span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="s2">&quot;\u003ca href=\&quot;http:\/\/twitter.com\/download\/iphone\&quot; rel=\&quot;nofollow\&quot;\u003eTwitter for iPhone\u003c\/a\u003e&quot;</span><span class="p">,</span><span class="nt">&quot;truncated&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;in_reply_to_status_id&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_status_id_str&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_user_id&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_user_id_str&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;in_reply_to_screen_name&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;user&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">2301702187</span><span class="p">,</span><span class="nt">&quot;id_str&quot;</span><span class="p">:</span><span class="s2">&quot;2301702187&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Toni Barlettano&quot;</span><span class="p">,</span><span class="nt">&quot;screen_name&quot;</span><span class="p">:</span><span class="s2">&quot;itsmetonib&quot;</span><span class="p">,</span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="s2">&quot;Greater NYC Area&quot;</span><span class="p">,</span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;http:\/\/www.tonib.me&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;So Full of Art   |   \nToni Barlettano Creative Media + Design&quot;</span><span class="p">,</span><span class="nt">&quot;protected&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;followers_count&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="nt">&quot;friends_count&quot;</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="nt">&quot;listed_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;Mon Jan 20 16:49:46 +0000 2014&quot;</span><span class="p">,</span><span class="nt">&quot;favourites_count&quot;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="nt">&quot;utc_offset&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;time_zone&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;geo_enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;verified&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;statuses_count&quot;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="nt">&quot;contributors_enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;is_translator&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;is_translation_enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;profile_background_color&quot;</span><span class="p">:</span><span class="s2">&quot;C0DEED&quot;</span><span class="p">,</span><span class="nt">&quot;profile_background_image_url&quot;</span><span class="p">:</span><span class="s2">&quot;http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png&quot;</span><span class="p">,</span><span class="nt">&quot;profile_background_image_url_https&quot;</span><span class="p">:</span><span class="s2">&quot;https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png&quot;</span><span class="p">,</span><span class="nt">&quot;profile_background_tile&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;profile_image_url&quot;</span><span class="p">:</span><span class="s2">&quot;http:\/\/pbs.twimg.com\/profile_images\/425313048320958464\/Z2GcderW_normal.jpeg&quot;</span><span class="p">,</span><span class="nt">&quot;profile_image_url_https&quot;</span><span class="p">:</span><span class="s2">&quot;https:\/\/pbs.twimg.com\/profile_images\/425313048320958464\/Z2GcderW_normal.jpeg&quot;</span><span class="p">,</span><span class="nt">&quot;profile_link_color&quot;</span><span class="p">:</span><span class="s2">&quot;0084B4&quot;</span><span class="p">,</span><span class="nt">&quot;profile_sidebar_border_color&quot;</span><span class="p">:</span><span class="s2">&quot;C0DEED&quot;</span><span class="p">,</span><span class="nt">&quot;profile_sidebar_fill_color&quot;</span><span class="p">:</span><span class="s2">&quot;DDEEF6&quot;</span><span class="p">,</span><span class="nt">&quot;profile_text_color&quot;</span><span class="p">:</span><span class="s2">&quot;333333&quot;</span><span class="p">,</span><span class="nt">&quot;profile_use_background_image&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;default_profile&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;default_profile_image&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;following&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;follow_request_sent&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;notifications&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">},</span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;place&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;contributors&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;retweet_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;favorite_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;entities&quot;</span><span class="p">:{</span><span class="nt">&quot;hashtags&quot;</span><span class="p">:[{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;thatwasntsohard&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">40</span><span class="p">,</span><span class="mi">56</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;yesitwas&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">57</span><span class="p">,</span><span class="mi">66</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;stoptalkingtoyourself&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">67</span><span class="p">,</span><span class="mi">89</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;hashbrown&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">90</span><span class="p">,</span><span class="mi">100</span><span class="p">]},{</span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;hashtag&quot;</span><span class="p">,</span><span class="nt">&quot;indices&quot;</span><span class="p">:[</span><span class="mi">101</span><span class="p">,</span><span class="mi">109</span><span class="p">]}],</span><span class="nt">&quot;symbols&quot;</span><span class="p">:[],</span><span class="nt">&quot;urls&quot;</span><span class="p">:[],</span><span class="nt">&quot;user_mentions&quot;</span><span class="p">:[]},</span><span class="nt">&quot;favorited&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;retweeted&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;filter_level&quot;</span><span class="p">:</span><span class="s2">&quot;medium&quot;</span><span class="p">,</span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="s2">&quot;en&quot;</span><span class="p">}</span>
 </pre></div>
 
 
 <p>For the remaining of this tutorial, we will be using 4 Python libraries <code>json</code> for parsing the data, <code>pandas</code> for data manipulation, <code>matplotlib</code> for creating charts, adn <code>re</code> for regular expressions. The <code>json</code> and <code>re</code> libraries are installed by default in Python.  You should install <code>pandas</code> and <code>matplotlib</code> if you don't have them in your machine.</p>
 <p>We will start first by uploading <code>json</code> and <code>pandas</code> using the commands below:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 </pre></div>
 
 
 <p>Next we will read the data in into an array that we call <code>tweets</code>.</p>
-<div class="highlight"><pre><span class="n">tweets_data_path</span> <span class="o">=</span> <span class="s">&#39;../data/twitter_data.txt&#39;</span>
+<div class="highlight"><pre><span></span><span class="n">tweets_data_path</span> <span class="o">=</span> <span class="s1">&#39;../data/twitter_data.txt&#39;</span>
 
 <span class="n">tweets_data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">tweets_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">tweets_data_path</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">tweets_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">tweets_data_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">tweets_file</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">tweet</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -344,47 +158,47 @@ init_mathjax();
 
 
 <p>We can print the number of tweets using the command below. For the dataset that I prepared, the number is 71238.</p>
-<div class="highlight"><pre><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweets_data</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweets_data</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Next, we will structure the tweets data into a pandas DataFrame to simplify the data manipulation. We will start by creating an empty DataFrame called <code>tweets</code> using the following command.</p>
-<div class="highlight"><pre><span class="n">tweets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">tweets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
 
 
 <p>Next, we will add 3 columns to the <code>tweets</code> DataFrame called <code>text</code>, <code>lang</code>, and <code>country</code>. <code>text</code> column contains the tweet, <code>lang</code> column contains the language in which the tweet was written, and <code>country</code> the country from which the tweet was sent.</p>
-<div class="highlight"><pre><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">],</span> <span class="n">tweets_data</span><span class="p">)</span>
-<span class="n">tweets</span><span class="p">[</span><span class="s">&#39;lang&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s">&#39;lang&#39;</span><span class="p">],</span> <span class="n">tweets_data</span><span class="p">)</span>
-<span class="n">tweets</span><span class="p">[</span><span class="s">&#39;country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s">&#39;place&#39;</span><span class="p">][</span><span class="s">&#39;country&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">tweet</span><span class="p">[</span><span class="s">&#39;place&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span> <span class="n">tweets_data</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="n">tweets_data</span><span class="p">)</span>
+<span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">],</span> <span class="n">tweets_data</span><span class="p">)</span>
+<span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;place&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;place&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span> <span class="n">tweets_data</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Next, we will create 2 charts: The first one describing the Top 5 languages in which the tweets were written, and the second the Top 5 countries from which the tweets were sent.</p>
-<div class="highlight"><pre><span class="n">tweets_by_lang</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;lang&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">tweets_by_lang</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Languages&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of tweets&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Top 5 languages&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">tweets_by_lang</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Languages&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of tweets&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Top 5 languages&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">tweets_by_lang</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <div style="text-align:center">
 <p><img alt="Alt Text" src="/images/tweets_top_langs.png" /></p>
 </div>
-<div class="highlight"><pre><span class="n">tweets_by_country</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">tweets_by_country</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Countries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of tweets&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Top 5 countries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">tweets_by_country</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Countries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of tweets&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Top 5 countries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">tweets_by_country</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -400,12 +214,12 @@ init_mathjax();
 </ul>
 <h2>Adding Python, Ruby, and Javascript tags</h2>
 <p>First, we will create a function that checks if a specific keyword is present in a text. We will do this by using <a href="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>. Python provides a library for regular expression called <code>re</code>. We will start by importing this library</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 </pre></div>
 
 
 <p>Next we will create a function called <code>word_in_text(word, text)</code>. This function return <code>True</code> if a <code>word</code> is found in <code>text</code>, otherwise it returns <code>False</code>.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">word_in_text</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">word_in_text</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
     <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
@@ -416,31 +230,31 @@ init_mathjax();
 
 
 <p>Next, we will add 3 columns to our <code>tweets</code> DataFrame. </p>
-<div class="highlight"><pre><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;python&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
-<span class="n">tweets</span><span class="p">[</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;javascript&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
-<span class="n">tweets</span><span class="p">[</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;ruby&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
+<span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;javascript&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;javascript&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
+<span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;ruby&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
 </pre></div>
 
 
 <p>We can calculate the number of tweets for each programming language as follows:</p>
-<div class="highlight"><pre><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
 </pre></div>
 
 
 <p>This returns: 21839 for python, 16154 for javascript and 31410 for ruby. We can make a simple comparaison chart by executing the following: </p>
-<div class="highlight"><pre><span class="n">prg_langs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">,</span> <span class="s">&#39;javascript&#39;</span><span class="p">,</span> <span class="s">&#39;ruby&#39;</span><span class="p">]</span>
-<span class="n">tweets_by_prg_lang</span> <span class="o">=</span> <span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><span class="n">prg_langs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;ruby&#39;</span><span class="p">]</span>
+<span class="n">tweets_by_prg_lang</span> <span class="o">=</span> <span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]]</span>
 
 <span class="n">x_pos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)))</span>
 <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">tweets_by_prg_lang</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">tweets_by_prg_lang</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
-<span class="c"># Setting axis labels and ticks</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of tweets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Ranking: python vs. javascript vs. ruby (Raw data)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># Setting axis labels and ticks</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of tweets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Ranking: python vs. javascript vs. ruby (Raw data)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="n">p</span> <span class="o">+</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">width</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">x_pos</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -453,41 +267,41 @@ init_mathjax();
 <p>This shows, that the keyword <code>ruby</code> is the most popular, followed by <code>python</code> then <code>javascript</code>. However, the <code>tweets</code> DataFrame contains information about all tweets that contains one of the 3 keywords and doesn't restrict the information to the programming languages. For example, there are a lot tweets that contains the keyword <code>ruby</code> and that are related to a political scandal called <a href="http://en.wikipedia.org/wiki/Rubygate">Rubygate</a>. In the next section, we will filter the tweets and re-run the analysis to make a more accurate comparison.</p>
 <h2>Targeting relevant tweets</h2>
 <p>We are intersted in targetting tweets that are related to programming languages. Such tweets often have one of the 2 keywords: "programming" or "tutorial". We will create 2 additional columns to our <code>tweets</code> DataFrame where we will add this information.</p>
-<div class="highlight"><pre><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;programming&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;programming&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
-<span class="n">tweets</span><span class="p">[</span><span class="s">&#39;tutorial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;tutorial&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;programming&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;programming&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
+<span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;tutorial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;tutorial&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
 </pre></div>
 
 
 <p>We will add an additional column called <code>relevant</code> that take value <code>True</code> if the tweet has either "programming" or "tutorial" keyword, otherwise it takes value <code>False</code>.</p>
-<div class="highlight"><pre><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;programming&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">)</span> <span class="ow">or</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s">&#39;tutorial&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;programming&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">)</span> <span class="ow">or</span> <span class="n">word_in_text</span><span class="p">(</span><span class="s1">&#39;tutorial&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">))</span>
 </pre></div>
 
 
 <p>We can print the counts of relevant tweet by executing the commands below.</p>
-<div class="highlight"><pre><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;programming&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;tutorial&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;programming&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;tutorial&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
 </pre></div>
 
 
 <p>This returns, 871 for <code>programming</code> column, 511 for <code>tutorial</code> column, and 1356 for <code>relevant</code> column.</p>
 <p>We can compare now the popularity of the programming languages by executing the commands below. </p>
-<div class="highlight"><pre><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Python is the most popular with a count of 732, followed by javascript by a count of 473, and ruby by a count of 185. We can make a comparaison graph by executing the commands below:</p>
-<div class="highlight"><pre><span class="n">tweets_by_prg_lang</span> <span class="o">=</span> <span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> 
-                      <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> 
-                      <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><span class="n">tweets_by_prg_lang</span> <span class="o">=</span> <span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;python&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> 
+                      <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;javascript&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">],</span> 
+                      <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;ruby&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="bp">True</span><span class="p">]]</span>
 <span class="n">x_pos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)))</span>
 <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">tweets_by_prg_lang</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of tweets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Ranking: python vs. javascript vs. ruby (Relevant data)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">tweets_by_prg_lang</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of tweets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Ranking: python vs. javascript vs. ruby (Relevant data)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="n">p</span> <span class="o">+</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">width</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">x_pos</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">prg_langs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -499,30 +313,30 @@ init_mathjax();
 </div>
 <h2>Extracting links from the relevants tweets</h2>
 <p>Now that we extracted the relevant tweets, we want to retrieve links to programming tutorials. We will start by creating a function that uses regular expressions for retrieving link that start with "http://" or "https://" from a text. This function will return the url if found, otherwise it returns an empty string.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">extract_link</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="s">r&#39;https?://[^\s&lt;&gt;&quot;]+|www\.[^\s&lt;&gt;&quot;]+&#39;</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_link</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="s1">r&#39;https?://[^\s&lt;&gt;&quot;]+|www\.[^\s&lt;&gt;&quot;]+&#39;</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
-    <span class="k">return</span> <span class="s">&#39;&#39;</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span>
 </pre></div>
 
 
 <p>Next, we will add a column called <code>link</code> to our <code>tweets</code> DataFrame. This column will contain the urls information.</p>
-<div class="highlight"><pre><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">extract_link</span><span class="p">(</span><span class="n">tweet</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tweet</span><span class="p">:</span> <span class="n">extract_link</span><span class="p">(</span><span class="n">tweet</span><span class="p">))</span>
 </pre></div>
 
 
 <p>Next we will create a new DataFrame called <code>tweets_relevant_with_link</code>. This DataFrame is a subset of <code>tweets</code> DataFrame and contains all relevant tweets that have a link.</p>
-<div class="highlight"><pre><span class="n">tweets_relevant</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
-<span class="n">tweets_relevant_with_link</span> <span class="o">=</span> <span class="n">tweets_relevant</span><span class="p">[</span><span class="n">tweets_relevant</span><span class="p">[</span><span class="s">&#39;link&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">tweets_relevant</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
+<span class="n">tweets_relevant_with_link</span> <span class="o">=</span> <span class="n">tweets_relevant</span><span class="p">[</span><span class="n">tweets_relevant</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>We can now print out all links for <code>python</code>, <code>javascript</code>, and <code>ruby</code> by executing the commands below:</p>
-<div class="highlight"><pre><span class="k">print</span> <span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;link&#39;</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="s">&#39;javascript&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;link&#39;</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="s">&#39;ruby&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s">&#39;link&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="s1">&#39;python&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;link&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="s1">&#39;javascript&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;link&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="n">tweets_relevant_with_link</span><span class="p">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">][</span><span class="s1">&#39;link&#39;</span><span class="p">]</span>
 </pre></div>
 
 

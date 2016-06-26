@@ -63,8 +63,9 @@ STATIC_PATHS = ['images', 'extra']
 
 # Ipython setting
 NOTEBOOK_DIR = 'notebooks'
-EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
-
+#EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
+IPYNB_STOP_SUMMARY_TAGS = [('div', ('class', 'input')), ('div', ('class', 'output')), 
+						('div', ('content')), 'h1']
 
 # Shift the installed location of a file
 EXTRA_PATH_METADATA = {
@@ -81,7 +82,10 @@ THEME = "theme/pure"
 
 # Plugins
 PLUGIN_PATHS = ['./plugins']
-PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'liquid_tags.notebook']
+#PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'liquid_tags.notebook', 'pelican_gist']
+MARKUP = ('md', 'ipynb')
+#PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'liquid_tags.include_code', 'liquid_tags.notebook', 'pelican_gist']
+PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img',  'pelican_gist', 'ipynb.liquid']
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True

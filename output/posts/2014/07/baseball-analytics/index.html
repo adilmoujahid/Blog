@@ -6,200 +6,14 @@
     <meta name="description" content="Adil Moujahid, Data Analytics and more">
 
 
-        <style type="text/css">
-/*some stuff for output/input prompts*/
-div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
-div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
-div.cell{width:100%;padding:0px 0px 0px 0;margin:0;outline:none}
-div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
-@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
-div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
-div.prompt:empty{padding-top:0;padding-bottom:0}
-div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}
-@media (max-width:480px){div.input{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:#000080;border-top:1px solid transparent}
-div.input_area>div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}
-div.input_area>div.highlight>pre{margin:0;border:none;padding:0;background-color:transparent}
-.CodeMirror{line-height:1.21429em;height:auto;background:none;}
-.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}
-.CodeMirror-lines{padding:.4em}
-.CodeMirror-linenumber{padding:0 8px 0 4px}
-.CodeMirror-gutters{border-bottom-left-radius:4px;border-top-left-radius:4px}
-.CodeMirror pre{padding:0;border:0;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
-pre code{display:block;padding:.5em}
-.highlight-base,pre code,pre .subst,pre .tag .title,pre .lisp .title,pre .clojure .built_in,pre .nginx .title{color:#000}
-.highlight-string,pre .string,pre .constant,pre .parent,pre .tag .value,pre .rules .value,pre .rules .value .number,pre .preprocessor,pre .ruby .symbol,pre .ruby .symbol .string,pre .aggregate,pre .template_tag,pre .django .variable,pre .smalltalk .class,pre .addition,pre .flow,pre .stream,pre .bash .variable,pre .apache .tag,pre .apache .cbracket,pre .tex .command,pre .tex .special,pre .erlang_repl .function_or_atom,pre .markdown .header{color:#ba2121}
-.highlight-comment,pre .comment,pre .annotation,pre .template_comment,pre .diff .header,pre .chunk,pre .markdown .blockquote{color:#408080;font-style:italic}
-.highlight-number,pre .number,pre .date,pre .regexp,pre .literal,pre .smalltalk .symbol,pre .smalltalk .char,pre .go .constant,pre .change,pre .markdown .bullet,pre .markdown .link_url{color:#080}
-pre .label,pre .javadoc,pre .ruby .string,pre .decorator,pre .filter .argument,pre .localvars,pre .array,pre .attr_selector,pre .important,pre .pseudo,pre .pi,pre .doctype,pre .deletion,pre .envvar,pre .shebang,pre .apache .sqbracket,pre .nginx .built_in,pre .tex .formula,pre .erlang_repl .reserved,pre .prompt,pre .markdown .link_label,pre .vhdl .attribute,pre .clojure .attribute,pre .coffeescript .property{color:#88f}
-.highlight-keyword,pre .keyword,pre .id,pre .phpdoc,pre .aggregate,pre .css .tag,pre .javadoctag,pre .phpdoc,pre .yardoctag,pre .smalltalk .class,pre .winutils,pre .bash .variable,pre .apache .tag,pre .go .typename,pre .tex .command,pre .markdown .strong,pre .request,pre .status{color:#008000;font-weight:bold}
-.highlight-builtin,pre .built_in{color:#008000}
-pre .markdown .emphasis{font-style:italic}
-pre .nginx .built_in{font-weight:normal}
-pre .coffeescript .javascript,pre .javascript .xml,pre .tex .formula,pre .xml .javascript,pre .xml .vbscript,pre .xml .css,pre .xml .cdata{opacity:.5}
-.cm-s-ipython span.cm-variable{color:#000}
-.cm-s-ipython span.cm-keyword{color:#008000;font-weight:bold}
-.cm-s-ipython span.cm-number{color:#080}
-.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}
-.cm-s-ipython span.cm-string{color:#ba2121}
-.cm-s-ipython span.cm-builtin{color:#008000}
-.cm-s-ipython span.cm-error{color:#f00}
-.cm-s-ipython span.cm-operator{color:#a2f;font-weight:bold}
-.cm-s-ipython span.cm-meta{color:#a2f}
-.cm-s-ipython span.cm-tab{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);background-position:right;background-repeat:no-repeat}
-div.output_wrapper{position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}
-div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,0.8);-moz-box-shadow:inset 0 2px 8px rgba(0,0,0,0.8);box-shadow:inset 0 2px 8px rgba(0,0,0,0.8);display:block}
-div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}
-div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:4px}
-div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;-moz-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,0.5)}
-div.output_prompt{color:#8b0000}
-div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left !important}
-div.output_area .rendered_html table{margin-left:0;margin-right:0}
-div.output_area .rendered_html img{margin-left:0;margin-right:0}
-.output{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}
-@media (max-width:480px){div.output_area{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;color:#000;background-color:transparent;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
-div.output_subarea{padding:.4em .4em 0 .4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
-div.output_text{text-align:left;color:#000;line-height:1.21429em}
-div.output_stderr{background:#fdd;}
-div.output_latex{text-align:left}
-div.output_javascript:empty{padding:0}
-div.output_pyout{font-size:75%}
-th{text-align:center}
-.js-error{color:#8b0000}
-div.raw_input_container{font-family:monospace;padding-top:5px}
-span.raw_input_prompt{}
-input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}
-input.raw_input:focus{box-shadow:none}
-/* end stuff for output/input prompts*/
-.highlight-ipynb .hll { background-color: #ffffcc }
-.highlight-ipynb  { background: #f8f8f8; }
-.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
-.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
-.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight-ipynb .o { color: #666666 } /* Operator */
-.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
-.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
-.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
-.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
-.highlight-ipynb .go { color: #888888 } /* Generic.Output */
-.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
-.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
-.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
-.highlight-ipynb .m { color: #666666 } /* Literal.Number */
-.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
-.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
-.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
-.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight-ipynb .no { color: #880000 } /* Name.Constant */
-.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
-.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
-.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
-.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
-.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
-.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
-.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
-.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
-.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
-</style>
-
-<style type="text/css">
-/* Overrides of notebook CSS for static HTML export */
-div.entry-content {
-  overflow: visible;
-  padding: 8px;
-}
-.input_area {
-  padding: 0.2em;
-}
-a.heading-anchor {
- white-space: normal;
-}
-.rendered_html
-code {
- font-size: .8em;
-}
-pre.ipynb {
-  color: black;
-  background: #f7f7f7;
-  border: none;
-  box-shadow: none;
-  margin-bottom: 0;
-  padding: 0;
-  margin: 0px;
-  font-size: 13px;
-}
-/* remove the prompt div from text cells */
-div.text_cell .prompt {
-    display: none;
-}
-/* remove horizontal padding from text cells, */
-/* so it aligns with outer body text */
-div.text_cell_render {
-    padding: 0em 0em;
-}
-img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
-</style>
-
-<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
-<script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    }
-}
-init_mathjax();
-</script>
 
 
         <title>Baseball Analytics: An Introduction to Sabermetrics using Python // Adil Moujahid // Data Analytics and more</title>
-
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../../theme/css/pure.css">
     <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+    <link rel="stylesheet" href="../../../../theme/css/custom.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
@@ -270,7 +84,7 @@ We will be using two files from this dataset: <code>Salaries.csv</code> and <cod
 To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. </p>
 <h2>3. Reading and understading the data</h2>
 <p>We will start by importing the required libraries using the commands below:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span>
@@ -278,13 +92,13 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 
 
 <p>Next, we will read the <code>Teams.csv</code> file to a Pandas DataFrame called <code>teams</code>. This file contains teams statistics from 1871 to 2013. The dataset has 2745 data points. Each data point has 48 attributes. </p>
-<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/Teams.csv&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Teams.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Next, we will select a subset of the data starting from 1985, with 15 Attributes only. For the remaining of this tutorial we will use only this subset and throw the rest of the data.</p>
-<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;yearID&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1985</span><span class="p">]</span>
-<span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[[</span><span class="s">&#39;yearID&#39;</span><span class="p">,</span> <span class="s">&#39;teamID&#39;</span><span class="p">,</span> <span class="s">&#39;Rank&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;RA&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;BB&#39;</span><span class="p">,</span> <span class="s">&#39;HBP&#39;</span><span class="p">,</span> <span class="s">&#39;AB&#39;</span><span class="p">,</span> <span class="s">&#39;SF&#39;</span><span class="p">,</span> <span class="s">&#39;HR&#39;</span><span class="p">,</span> <span class="s">&#39;2B&#39;</span><span class="p">,</span> <span class="s">&#39;3B&#39;</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;yearID&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1985</span><span class="p">]</span>
+<span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[[</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;RA&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;HBP&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">,</span> <span class="s1">&#39;HR&#39;</span><span class="p">,</span> <span class="s1">&#39;2B&#39;</span><span class="p">,</span> <span class="s1">&#39;3B&#39;</span><span class="p">]]</span>
 </pre></div>
 
 
@@ -307,50 +121,50 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 <li><code>3B</code>: Triples</li>
 </ul>
 <p>Next, we will change the <code>teams</code> DataFrame index to <code>('yearID', 'teamID')</code>. </p>
-<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">&#39;yearID&#39;</span><span class="p">,</span> <span class="s">&#39;teamID&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">])</span>
 </pre></div>
 
 
 <p>This index change will make our queries easier. For example, we can check the number of wins by the Oakland Athletics in 2001 by running the command below. This should return 102. </p>
-<div class="highlight"><pre><span class="n">teams</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s">&#39;OAK&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Next, we will read the <code>Salaries.csv</code> to a Pandas DataFrame called <code>salaries</code>. The <code>salaries</code> DataFrame contains the salaries of all baseball players from 1985 till 2013. The DataFrame has 5 columns: <code>yearID</code>, <code>teamID</code>, <code>lgID</code>, <code>playerID</code>, <code>salary</code>.</p>
-<div class="highlight"><pre><span class="n">salaries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/Salaries.csv&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">salaries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Salaries.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>We are interested in calculating baseball teams payroll. We can do so by running the command below.</p>
-<div class="highlight"><pre><span class="n">salaries_by_yearID_teamID</span> <span class="o">=</span> <span class="n">salaries</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">&#39;yearID&#39;</span><span class="p">,</span> <span class="s">&#39;teamID&#39;</span><span class="p">])[</span><span class="s">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">salaries_by_yearID_teamID</span> <span class="o">=</span> <span class="n">salaries</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">])[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 
 
 <p>Now we can check the payroll of the Oakland Athletics in 2001 by running the command below. This should return 33810750. </p>
-<div class="highlight"><pre><span class="n">salaries_by_yearID_teamID</span><span class="p">[</span><span class="mi">2001</span><span class="p">,</span> <span class="s">&#39;OAK&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">salaries_by_yearID_teamID</span><span class="p">[</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Next, we will add the payroll data to <code>teams</code> DataFrame. We can do so using the command below.</p>
-<div class="highlight"><pre><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">salaries_by_yearID_teamID</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">salaries_by_yearID_teamID</span><span class="p">)</span>
 </pre></div>
 
 
 <p>The payroll data is now stored in a column called <code>salary</code>. Now we can check the payroll of the Oakland Athletics in 2001 by running the command below.</p>
-<div class="highlight"><pre><span class="n">teams</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s">&#39;OAK&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Next we will plot the relationship between salaries and number of wins. We can do so for the year 2001 by using the command below.</p>
-<div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">],</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">],</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
 <p>The following two functions are used to plot the relationship between salaries with labels and axis formating; as well as highlighting the Oakland Athletics, the New York Yankees, and the Boston Red Sox data.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">millions</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-    <span class="s">&#39;The two args are the value and tick position&#39;</span>
-    <span class="k">return</span> <span class="s">&#39;$</span><span class="si">%1.1f</span><span class="s">M&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">millions</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="s1">&#39;The two args are the value and tick position&#39;</span>
+    <span class="k">return</span> <span class="s1">&#39;$</span><span class="si">%1.1f</span><span class="s1">M&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">)</span>
 
 <span class="n">formatter</span> <span class="o">=</span> <span class="n">FuncFormatter</span><span class="p">(</span><span class="n">millions</span><span class="p">)</span>
 
@@ -358,38 +172,38 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
     <span class="n">teams_year</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">teams_year</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;OAK&#39;</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#4DDB94&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
-                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#4DDB94&quot;</span><span class="p">),</span>
-                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
-                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;NYA&#39;</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#0099FF&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
-                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#0099FF&quot;</span><span class="p">),</span>
-                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
-                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;BOS&#39;</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#FF6666&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
-                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#FF6666&quot;</span><span class="p">),</span>
-                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s">&#39;offset points&#39;</span><span class="p">,</span>
-                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>     
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;OAK&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#4DDB94&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#4DDB94&quot;</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;NYA&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0099FF&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0099FF&quot;</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;BOS&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FF6666&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FF6666&quot;</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                        <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;angle,angleA=0,angleB=90,rad=10&quot;</span><span class="p">))</span>     
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">teams_year</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span> 
-    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Salaries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Number of Wins&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Salaries - Wins: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Salaries&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Wins&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Salaries - Wins: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
 <p>We can run the <code>plot_spending_wins</code> by passing the <code>teams</code> DataFrame and the <code>year</code> variable. For example, for plotting 2001 salaries and number of wins relationship, we execute the following:</p>
-<div class="highlight"><pre><span class="n">plot_spending_wins</span><span class="p">(</span><span class="n">teams</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">plot_spending_wins</span><span class="p">(</span><span class="n">teams</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)</span>
 </pre></div>
 
 
@@ -403,33 +217,33 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 <p>Slugging Percentage is a measure of the power of a hitter. It can ve calculated using the formula below:</p>
 <p><center><code>SLG = H+2B+(2*3B)+(3*HR)/AB</code></center></p>
 <p>We will add these 3 measures to our <code>teams</code> DataFrame by running the following commands:</p>
-<div class="highlight"><pre><span class="n">teams</span><span class="p">[</span><span class="s">&#39;BA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;AB&#39;</span><span class="p">]</span>
-<span class="n">teams</span><span class="p">[</span><span class="s">&#39;OBP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;HBP&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;AB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;HBP&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;SF&#39;</span><span class="p">])</span>
-<span class="n">teams</span><span class="p">[</span><span class="s">&#39;SLG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;2B&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;3B&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s">&#39;HR&#39;</span><span class="p">]))</span> <span class="o">/</span> <span class="n">teams</span><span class="p">[</span><span class="s">&#39;AB&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span>
+<span class="n">teams</span><span class="p">[</span><span class="s1">&#39;OBP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;HBP&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;HBP&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;SF&#39;</span><span class="p">])</span>
+<span class="n">teams</span><span class="p">[</span><span class="s1">&#39;SLG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;2B&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;3B&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;HR&#39;</span><span class="p">]))</span> <span class="o">/</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Next, we will use a linear regression model to verify which baseball stats are more important to predict runs. We will build 3 different models: The first one will have as features <code>OBP</code>, <code>SLG</code> and <code>BA</code>. The second model will have as features <code>OBP</code> and <code>SLG</code>. The last one will have as feature <code>BA</code> only.</p>
 <p>We will use Python's statsmodels library for building these models. We start first by importing the library by running:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">sm</span>
 </pre></div>
 
 
 <p>Next we will build our models:</p>
-<div class="highlight"><pre><span class="c">#First Model</span>
-<span class="n">runs_reg_model1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">&quot;R~OBP+SLG+BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="c1">#First Model</span>
+<span class="n">runs_reg_model1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;R~OBP+SLG+BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
 <span class="n">runs_reg1</span> <span class="o">=</span> <span class="n">runs_reg_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="c">#Second Model</span>
-<span class="n">runs_reg_model2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">&quot;R~OBP+SLG&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
+<span class="c1">#Second Model</span>
+<span class="n">runs_reg_model2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;R~OBP+SLG&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
 <span class="n">runs_reg2</span> <span class="o">=</span> <span class="n">runs_reg_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="c">#Third Model</span>
-<span class="n">runs_reg_model3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">&quot;R~BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
+<span class="c1">#Third Model</span>
+<span class="n">runs_reg_model3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;R~BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
 <span class="n">runs_reg3</span> <span class="o">=</span> <span class="n">runs_reg_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 
 
 <p>We can look at a summary statistic of these models by running:</p>
-<div class="highlight"><pre><span class="n">runs_reg1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">runs_reg1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 <span class="n">runs_reg2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 <span class="n">runs_reg3</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>

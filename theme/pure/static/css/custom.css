@@ -1,0 +1,21 @@
+div.input_prompt {
+
+	min-width: 0ex;
+}
+
+pre {
+	box-shadow: none;
+}
+
+.hl-ipython2 .n {color: #000000;}
+.hl-ipython2 .p {color: #6f6f6f;} /* Punctuation */
+
+table.dataframe {font-size: 15px;}
+
+th {
+	text-align: center;
+}
+
+img.element.style {
+    text-align: center;
+}

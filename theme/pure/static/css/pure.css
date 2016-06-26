@@ -14,6 +14,7 @@ a:focus {
 }
 
 
+
 .comments {
     padding: 50px 0 0;
 }
@@ -357,3 +358,8 @@ pre {
         background-position: 0;
     }
 }
+
+
+.gist {width:700px !important;}
+.gist-file
+.gist-data {max-height: 500px; max-width: 700px;}
