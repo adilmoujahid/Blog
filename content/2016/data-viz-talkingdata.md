@@ -111,9 +111,9 @@ with open(data_path + '/geojson/china_provinces_en.json') as data_file:
 def get_location(longitude, latitude, provinces_json):
     point = Point(longitude, latitude)
     for record in provinces_json['features']:
-    polygon = shape(record['geometry'])
-    if polygon.contains(point):
-    return record['properties']['name']
+        polygon = shape(record['geometry'])
+        if polygon.contains(point):
+            return record['properties']['name']
     return 'other'
 
 df['location'] = df.apply(lambda row: get_location(row['longitude'], row['latitude'], provinces_json), axis=1)
