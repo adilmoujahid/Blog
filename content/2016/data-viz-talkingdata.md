@@ -82,17 +82,17 @@ Next, we add the age segment of users to the DataFrame.
 ```python
 def get_age_segment(age):
     if age <= 22:
-    return '22-'
+        return '22-'
     elif age <= 26:
-    return '23-26'
+        return '23-26'
     elif age <= 28:
-    return '27-28'
+        return '27-28'
     elif age <= 32:
-    return '29-32'
+        return '29-32'
     elif age <= 38:
-    return '33-38'
+        return '33-38'
     else:
-    return '39+'
+        return '39+'
 
 df['age_segment'] = df['age'].apply(lambda age: get_age_segment(age))
 ```
