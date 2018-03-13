@@ -46,13 +46,15 @@
             <section class="post">
                 <header class="post-header">
                     <h1>{{ article.title }}</h1>
-                        <p class="post-meta">
-                            // tags {% for tag in article.tags %}
-                                <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
-                            {% endfor %}
-                        </p>
+                    <br>
+                    <p class="post-meta">
+                        // tags {% for tag in article.tags %}
+                            <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                        {% endfor %}
+                    </p>
                 </header>
             </section>
+            <br>
             {{ article.content }}
             <div class="hr"></div>
             

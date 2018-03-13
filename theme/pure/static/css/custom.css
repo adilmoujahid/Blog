@@ -19,3 +19,13 @@ th {
 img.element.style {
     text-align: center;
 }
+
+
+/* fix bootstrap conflict with Pygments */
+.highlight pre {background-color: #000000;
+				border: inherit;
+				color: inherit;
+}
+
+/* fix conflict with other sytlesheets */
+.highlight .m { margin: inherit; }
