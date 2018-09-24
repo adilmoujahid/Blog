@@ -24,7 +24,6 @@
 
     <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 
-
 </head>
 
 <body>
@@ -37,6 +36,12 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
 
                 <div>
                 <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
@@ -69,18 +74,18 @@
 <p>In 2003, Michael Lewis published Moneyball about Billy Beane, the Oakland Athletics General Manager since 1997. The book was centered around Billy Beane's use of Sabemetrics to identify and recruit under-valued baseball players. With this strategy, his team could achieve as many wins as teams with more than double the payroll. The figures below show the relationship between team salaries and number of wins for years: 1997, 2001, 2003, 2013. The green dot represents the Oakland Athletics, the blue dot represents the New York Yankees, and the red dot represents The Boston Red Sox. We can see that the Oakland Athletics went from the underperforming team in 1997, to became a highly competitive team with a comparable number of wins to the New York Yankees. The  Oakland Athletics made it to the play-offs in 4 successive years: 2000,2001,2002,2003. </p>
 <p>In 2011, the movie Moneyball based on Lewis' book was released starring Brad Pitt in the role of Beane.</p>
 <div style="text-align:left">
-<p><img alt="Alt Text" src="/images/fig1.jpg" />
-<img alt="Alt Text" src="/images/fig2.jpg" /></p>
+<p><img alt="Alt Text" src="/images/fig1.jpg">
+<img alt="Alt Text" src="/images/fig2.jpg"></p>
 </div>
 <p>In this post, I will use Lahman’s Baseball Database and Python programming language to explain some of the techniques used in Sabermetrics. I will use 3 Python libraries: Pandas for data manipulation and analysis, statsmodels for building the statistical models and Matplotlib for data visualization.</p>
 <h2>1. A quick introduction to baseball rules</h2>
-<p><div class="videobox">
+<p><span class="videobox">
                 <iframe width="640" height="390"
                     src='https://www.youtube.com/embed/0bKkGeROiPA'
                     frameborder='0' webkitAllowFullScreen mozallowfullscreen
                     allowFullScreen>
                 </iframe>
-            </div></p>
+            </span></p>
 <h2>2. Getting the data and setting up your machine</h2>
 <p>For this tutorial, we will use the Lahman’s Baseball Database. This Database contains complete batting and pitching statistics from 1871 to 2013, plus fielding statistics, standings, team stats, managerial records, post-season data, and more. You can download the data from this this <a href="http://seanlahman.com/files/database/lahman-csv_2014-02-14.zip">link</a>. 
 We will be using two files from this dataset: <code>Salaries.csv</code> and <code>Teams.csv</code>.

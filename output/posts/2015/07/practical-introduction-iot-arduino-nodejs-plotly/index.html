@@ -24,7 +24,6 @@
 
     <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 
-
 </head>
 
 <body>
@@ -37,6 +36,12 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
 
                 <div>
                 <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
@@ -84,7 +89,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 </ul>
 <p>I recommend getting an <a href="http://www.amazon.com/gp/product/B00BT0NDB8/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00BT0NDB8&amp;linkCode=as2&amp;tag=adilmoujahid-20&amp;linkId=YIE327HRS23JUFIW">Arduino Kit</a> that contains an Arduino board with other electronic parts and components. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/iot_components.png" /></p>
+<p><img alt="Alt Text" src="/images/iot_components.png"></p>
 </div>
 <h2>Architecture</h2>
 <p>To build this application, we need 3 main components:</p>
@@ -94,13 +99,13 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 <li>An application layer for visualizing the measurements in real-time. We will implement this using a data visualization cloud service called Plotly.</li>
 </ul>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/iot_architecture.png" /></p>
+<p><img alt="Alt Text" src="/images/iot_architecture.png"></p>
 </div>
 <h1>2. Microcontroller Programming 101 - A crash course in Arduino</h1>
 <p>Arduino is an open-source rapid electronic prototyping platform composed by the Arduino board (microcontroller) and the Arduino IDE  (Integrated Development Environment) that runs on your computer. Arduino IDE is used to write and upload computer code to the physical board.</p>
 <p>Arduino became very popular for electronic prototyping because of its very simple interface and low cost (under 30 USD for the board).</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/arduino_board_ide.png" /></p>
+<p><img alt="Alt Text" src="/images/arduino_board_ide.png"></p>
 </div>
 <h2>Getting Started with Arduino</h2>
 <p>To setup your Arduino, I recommend starting with the following guides. It should take you around 10 min for the basic setup. </p>
@@ -112,7 +117,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 <p>After setting up the Arduino board and the Arduino IDE, we can start building the physical layer for capturing light intensities.</p>
 <p>Start by connecting the electronic components (One Photocell and one 1k Ohms resistance) to the Arduino board and the bread board as shown in the picture below. Once done, connect the Arduino board to the computer using a USB cable. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/arduino_schema.png" /></p>
+<p><img alt="Alt Text" src="/images/arduino_schema.png"></p>
 </div>
 <p>Next, open the IDE, copy the code below and upload the logic to the Arduino board. The code below implements a simple logic that configure the Arduino board to read the light intensity every second (1000 milliseconds) from the photocell (that is connected to the analogue input 0), and print the measurement to the serial monitor.</p>
 <div class="highlight"><pre><span></span><span class="cp">#define CDS_INPUT 0 </span>
@@ -133,7 +138,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 <p>To see the measurements, open the serial monitor from the Arduino IDE.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/arduino_ide.png" /></p>
+<p><img alt="Alt Text" src="/images/arduino_ide.png"></p>
 </div>
 <h1>3. Reading the measurements from Node.js</h1>
 <h2>What is node.js?</h2>
@@ -161,7 +166,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 <p>To start the node.js server, from you terminal go to the folder where <code>server1.js</code> is saved, and execute <code>node server1.js</code>. You will see the measurements displayed on the terminal.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/iot_server1js.png" /></p>
+<p><img alt="Alt Text" src="/images/iot_server1js.png"></p>
 </div>
 <h1>4. Sending data to Plotly</h1>
 <h2>What is Plotly?</h2>
@@ -225,12 +230,12 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 <p>To start the node.js server, from you terminal go to the folder where server2.js is saved, and execute <code>node server2.js</code>. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/iot_server2js.png" /></p>
+<p><img alt="Alt Text" src="/images/iot_server2js.png"></p>
 </div>
 <h2>Viewing light intensities from Plotly</h2>
 <p>When you run server2.js code, it creates a file in Plotly called <code>sensor-test</code>. From Plotly website, click on <code>sensor-test</code> and you will be able to see a real-time graph that shows light intensities. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/iot_plotly.gif" /></p>
+<p><img alt="Alt Text" src="/images/iot_plotly.gif"></p>
 </div>
 <h1>5. Conclusion</h1>
 <p>In this tutorial, we learned how to build an end-to-end IoT application covering:</p>

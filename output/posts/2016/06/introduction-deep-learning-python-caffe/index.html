@@ -24,7 +24,6 @@
 
     <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 
-
 </head>
 
 <body>
@@ -37,6 +36,12 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
 
                 <div>
                 <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
@@ -77,7 +82,7 @@
 <p>Our goal is to build a machine learning algorithm capable of detecting the correct animal (cat or dog) in new unseen images. </p>
 <p>In Machine learning, this type of problems is called classification. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/cats-dogs.jpg" /></p>
+<p><img alt="Alt Text" src="/images/cats-dogs.jpg"></p>
 </div>
 <h1>2. Classification using Traditional Machine Learning vs. Deep Learning</h1>
 <p>Classification using a machine learning algorithm has 2 phases:</p>
@@ -96,12 +101,12 @@
 </ol>
 <p>In the predicition phase, we apply the same feature extraction process to the new images and we pass the features to the trained machine learning algorithm to predict the label.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/machine-learning-training-prediction-2.png" /></p>
+<p><img alt="Alt Text" src="/images/machine-learning-training-prediction-2.png"></p>
 </div>
 <p>The main difference between traditional machine learning and deep learning algorithms is in the feature engineering. In traditional machine learning algorithms, we need to hand-craft the features. By contrast, in deep learning algorithms feature engineering is done automatically by the algorithm. 
 Feature engineering is difficult, time-consuming and requires domain expertise. The promise of deep learning is more accurate machine learning algorithms compared to traditional machine learning with less or no feature engineering.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/traditional-ml-deep-learning-2.png" /></p>
+<p><img alt="Alt Text" src="/images/traditional-ml-deep-learning-2.png"></p>
 </div>
 <h1>3. A Crash Course in Deep Learning</h1>
 <p>Deep learning refers to a class of artificial neural networks (ANNs) composed of many processing layers. ANNs existed for many decades, but attempts at training deep architectures of ANNs failed until Geoffrey Hinton's breakthrough work of the mid-2000s. In addition to algorithmic innovations, the increase in computing capabilities using GPUs and the collection of larger datasets are all factors that helped in the recent surge of deep learning.</p>
@@ -112,7 +117,7 @@ Feature engineering is difficult, time-consuming and requires domain expertise. 
 <p>A basic model for how the neurons work goes as follows: Each synapse has a strength that is learnable and control the strength of influence of one neuron on another. The dendrites carry the signals to the target neuron's body where they get summed. If the final sum is above a certain threshold, the neuron get fired, sending a spike along its axon.[1]</p>
 <p>Artificial neurons are inspired by biological neurons, and try to formulate the model explained above in a computational form. An artificial neuron has a finite number of inputs with weights associated to them, and an activation function (also called transfer function). The output of the neuron is the result of the activation function applied to the weighted sum of inputs. Artificial neurons are connected with each others to form artificial neural networks.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/neurons.png" /></p>
+<p><img alt="Alt Text" src="/images/neurons.png"></p>
 </div>
 <h3>Feedforward Neural Networks</h3>
 <p>Feedforward Neural Networks are the simplest form of Artificial Neural Networks. </p>
@@ -120,12 +125,12 @@ Feature engineering is difficult, time-consuming and requires domain expertise. 
 <p>Below is an example of a fully-connected feedforward neural network with 2 hidden layers. "Fully-connected" means that each node is connected to all the nodes in the next layer. </p>
 <p>Note that, the number of hidden layers and their size are the only free parameters. The larger and deeper the hidden layers, the more complex patterns we can model in theory.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/feedforward-nn.png" /></p>
+<p><img alt="Alt Text" src="/images/feedforward-nn.png"></p>
 </div>
 <h3>Activation Functions</h3>
 <p>Activation functions transform the weighted sum of inputs that goes into the artificial neurons. These functions should be non-linear to encode complex patterns of the data. The most popular activation functions are Sigmoid, Tanh and ReLU. ReLU is the most popular activation function in deep neural networks.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/activation.png" /></p>
+<p><img alt="Alt Text" src="/images/activation.png"></p>
 </div>
 <h3>Training Artificial Neural Networks</h3>
 <p>The goal of the training phase is to learn the network's weights.  We need 2 elements to train an artificial neural network:</p>
@@ -138,24 +143,24 @@ Feature engineering is difficult, time-consuming and requires domain expertise. 
 <p>Convolutional neural networks are a special type of feed-forward networks. These models are designed to emulate the behaviour of a visual cortex. CNNs perform very well on visual recognition tasks. 
 CNNs have special layers called convolutional layers and pooling layers that allow the network to encode certain images properties. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/lenet.png" /></p>
+<p><img alt="Alt Text" src="/images/lenet.png"></p>
 </div>
 <h2>Convolution Layer</h2>
 <p>This layer consists of a set of learnable filters that we slide over the image spatially, computing dot products between the entries of the filter and the input image. The filters should extend to the full depth of the input image. For example, if we want to apply a filter of size 5x5 to a colored image of size 32x32, then the filter should have depth 3 (5x5x3) to cover all 3 color channels (Red, Green, Blue) of the image. These filters will activate when they see same specific structure in the images. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/conv-layer.png" /></p>
+<p><img alt="Alt Text" src="/images/conv-layer.png"></p>
 </div>
 <h2>Pooling Layer</h2>
 <p>Pooling is a form of non-linear down-sampling. The goal of the pooling layer is to progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network, and hence to also control overfitting. There are several functions to implement pooling among which max pooling is the most common one. Pooling is often applied with filters of size 2x2 applied with a stride of 2 at every depth slice. A pooling layer of size 2x2 with stride of 2 shrinks the input image to a 1/4 of its original size. [2]</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/max-pooling.png" /></p>
+<p><img alt="Alt Text" src="/images/max-pooling.png"></p>
 </div>
 <h2>Convolutional Neural Networks Architecture</h2>
 <p>The simplest architecture of a convolutional neural networks starts with an input layer (images) followed by a sequence of convolutional layers and pooling layers, and ends with fully-connected layers. The convolutional layers are usually followed by one layer of ReLU activation functions. </p>
 <p>The convolutional, pooling and ReLU layers act as learnable features extractors, while the fully connected layers acts as a machine learning classifier. Furthermore, the early layers of the network encode generic patterns of the images, while later layers encode the details patterns of the images.</p>
 <p>Note that only the convolutional layers and fully-connected layers have weights. These weights are learned in the training phase. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/cnn-architecture.png" /></p>
+<p><img alt="Alt Text" src="/images/cnn-architecture.png"></p>
 </div>
 <h1>4. Building a Cat/Dog Classifier using a Convolutional Neural Network</h1>
 <p>In this section, we will implement a cat/dog classifier using a convolutional neural network. We will use a dataset from Kaggle's <a href="https://www.kaggle.com/c/dogs-vs-cats">Dogs vs. Cats competition</a>. To implement the convolutional neural network, we will use a deep learning framework called Caffe and some Python code.</p>
@@ -225,7 +230,7 @@ python create_lmdb.py
 
 <p><code>transform_img</code> takes a colored images as input, does the histogram equalization of the 3 color channels and resize the image.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/image-transform.jpg" /></p>
+<p><img alt="Alt Text" src="/images/image-transform.jpg"></p>
 </div>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_datum</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
 
@@ -682,7 +687,7 @@ layer {
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/caffe_model_1.png" /></p>
+<p><img alt="Alt Text" src="/images/caffe_model_1.png"></p>
 </div>
 <h2>4.5 Solver Definition</h2>
 <p>The solver is responsible for model optimization. We define the solver's parameters in a <code>.prototxt</code> file. You can find our solver under <code>deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/</code> with name <code>solver_1.prototxt</code>. Below is a copy of the same.</p>
@@ -726,7 +731,7 @@ solver_mode: GPU</code></pre>
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/caffe_model_1_learning_curve.png" /></p>
+<p><img alt="Alt Text" src="/images/caffe_model_1_learning_curve.png"></p>
 </div>
 <h2>4.7 Prediction on New Data</h2>
 <p>Now that we have a trained model, we can use it to make predictions on new unseen data (images from test1). The Python code for making the predictions is <code>make_predictions_1.py</code> and it's stored under <code>deeplearning-cats-dogs-tutorial/code</code>. The code needs 4 files to run:</p>
@@ -777,7 +782,7 @@ python make_predictions_1.py
 <p>The code above read an image, apply similar image processing steps to training phase, calculates each class' probability and prints the class with the largest probability (0 for cats, and 1 for dogs). </p>
 <p>After submitting the predicitions to <a href="https://www.kaggle.com/c/dogs-vs-cats/submissions/attach">Kaggle</a>, it give an accuracy of 0.89691.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/kaggle-1.png" /></p>
+<p><img alt="Alt Text" src="/images/kaggle-1.png"></p>
 </div>
 <h1>5. Building a Cat/Dog Classifier using Transfer Learning</h1>
 <p>In this section, we will use a very practical and powerful technique called transfer learning for building our cat/dog classifier.</p>
@@ -1248,13 +1253,13 @@ solver_mode: GPU</code></pre>
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/caffe_model_2_learning_curve.png" /></p>
+<p><img alt="Alt Text" src="/images/caffe_model_2_learning_curve.png"></p>
 </div>
 <h3>Prediction on New Data</h3>
 <p>Similary to section 4.7, we will generate predictions on the test data and upload the results to Kaggle to get the model accuracy. The code for making the predicitions is under <code>deeplearning-cats-dogs-tutorial/code/make_predictions_2.py</code>. </p>
 <p>The model got an accuracy of 0.97154 which is better than the model that we trained from scratch. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/kaggle-2.png" /></p>
+<p><img alt="Alt Text" src="/images/kaggle-2.png"></p>
 </div>
 <h1>Conclusion</h1>
 <p>In this blog post, we covered core concepts of deep learning and convolutional neural networks. We also learned how to build convolutional neural networks using Caffe and Python from scratch and using transfer learning. If you want to learn more about this topic, I highly recommend Stanford's <a href="http://cs231n.github.io/">"Convolutional Neural Networks for Visual Recognition" course</a>. </p>

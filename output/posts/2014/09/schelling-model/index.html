@@ -24,7 +24,6 @@
 
     <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 
-
 </head>
 
 <body>
@@ -37,6 +36,12 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
 
                 <div>
                 <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
@@ -73,7 +78,7 @@
 <p>Many would conclude from such phenomena that people are intolerant, and don't want to live next to people that are different from them. A deeper look, however, might provide some nuance. In the 70's, Thomas Schelling, the 2005 Economics Nobel Prize winner, was interested in this subject and built an agent-based model called the "Schelling segregation model" for explaining this phenomenon. With a very simple model, Schelling could show that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
 <p>We'll run a few simulations using the Schelling model to get a deeper understanding of the segregation phenomena.</p>
 <div style="text-align:left">
-<p><img alt="Alt Text" src="/images/NY_racial_map.jpg" />
+<p><img alt="Alt Text" src="/images/NY_racial_map.jpg">
 Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://demographics.coopercenter.org/DotMap/index.html</a></p>
 </div>
 <h1>2. Schelling Segregation Model: Setting and Definitions</h1>
@@ -93,7 +98,7 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 
 <p>Next, we define a class called <code>Schelling</code>. This class takes 6 parameters: the width and height of the city, the ratio of empty houses in the city, the similarity threshold, the number of iterations and the number of races. We define 4 methods within the <code>Schelling</code> class: <code>populate</code>, <code>is_unsatisfied</code>, <code>update</code>, <code>move_to_empty</code>, and <code>plot</code>.</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Schelling</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">,</span> <span class="n">races</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">,</span> <span class="n">races</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">races</span> <span class="o">=</span> <span class="n">races</span>
@@ -280,16 +285,16 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/schelling_2_initial.png" /></p>
+<p><img alt="Alt Text" src="/images/schelling_2_initial.png"></p>
 </div>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/schelling_2_30_final.png" /></p>
+<p><img alt="Alt Text" src="/images/schelling_2_30_final.png"></p>
 </div>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/schelling_2_50_final.png" /></p>
+<p><img alt="Alt Text" src="/images/schelling_2_50_final.png"></p>
 </div>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/schelling_2_80_final.png" /></p>
+<p><img alt="Alt Text" src="/images/schelling_2_80_final.png"></p>
 </div>
 <p>Looking at the plots above, we can see that the higher the similarity threshold, the more segregated the city becomes. Furthermore, we can see that even with a small similarity threshold, we get segregated cities. In other words, even if the people are very tolerant (i.e. having a small Similarity threshold), we end up with segregation. We can conclude that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
 <h1>5. Measuring Segregation</h1>
@@ -371,7 +376,7 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/schelling_segregation_measure.png" /></p>
+<p><img alt="Alt Text" src="/images/schelling_segregation_measure.png"></p>
 </div>
 <p>You can see from the plot above that for very small similarity thresholds, we get very high segregation (defined by the mean similarity ratio). For example, for a similarity threshold of 0.3, we got a mean similarity ratio of 0.75. We could confirm quantitatively that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
 <h1>6. Wrap-up</h1>

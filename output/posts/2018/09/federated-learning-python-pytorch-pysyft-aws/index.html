@@ -8,7 +8,7 @@
 
 
 
-        <title>Hello World! // Adil Moujahid // Data Analytics and more</title>
+        <title>A Tutorial on Federated Learning using Python, Pytorch, PySyft and AWS // Adil Moujahid // Data Analytics and more</title>
 
 
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <h5>Published</h5>
-                <p>Tue 08 July 2014</p>
+                <p>Sat 22 September 2018</p>
                 <a href="/">&larr;Home</a>
             </hgroup>
         </header>
@@ -60,17 +60,48 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>Hello World!</h1>
+                    <h1>A Tutorial on Federated Learning using Python, Pytorch, PySyft and AWS</h1>
                     <br>
                     <p class="post-meta">
-                        // tags                             <a class="post-category" href="../../../../tag/misc/">misc</a>
+                        // tags                             <a class="post-category" href="../../../../tag/python/">python</a>
+                            <a class="post-category" href="../../../../tag/deep-learning/">deep learning</a>
+                            <a class="post-category" href="../../../../tag/machine-learning/">machine learning</a>
+                            <a class="post-category" href="../../../../tag/pytorch/">pytorch</a>
                     </p>
                 </header>
             </section>
             <br>
-            <p>This is my first post on this new blog, and I'm very excited to embark on this project.</p>
-<p>I'm planning to use this blog to share some thoughts on topics I'm interested in. These topics are mainly centered around technology with a deep focus on data analytics and applied mathematics. I will try to keep the content focused on practical use cases with many tutorials on how to build algorithms and mathematical models for analyzing data and how to implement these models using programming languages such as Python and Java as well as new Software packages.</p>
-<p>I would love to get your comments on the blog posts and suggestions for new tutorials.</p>
+            <p>Federated learning is a distributed method for training machine learning models. The main idea behind federated learning is to train machine learning models on multiple clients without direct access to data. This approach solves 2 main issues in machine learning: Data collection and data privacy. </p>
+<p>Federated learning may seem too technical at first glance, but it could spark the developement of new machine learning use cases in which the access to data is difficult or the protection of sensitive information is necessary. From a business point of view, federated learning could provide a way for startups and smaller firms to compete with bigger ones in use cases that requires a large amount of data.</p>
+<p>The goal of this blog post is to give you a practical introduction to federated learning. To do this, we will use the MNIST dataset to train a machine learning model that can classify hand-written digits using a federated approach. We will use some Python code and Pytorch to build the machine learning model and a library called PySyft to distribute the training on multiple AWS instances.</p>
+<p>This post is divided into 2 main parts. The first part covers core concepts behind federated learning, its implications and some of its potential uses cases; while the second part is structured in a hands-on tutorial format. In the first part of the hands-on tutorial (section 2-1), we will build a hand-written digit classifier using Pytorch in a "traditional non-federated" way. In the second part of the tutorial (section 2-2), we will use Pysyft to train a similar model as in section 2-1 in a federated way.</p>
+<h1>1. What is Federated Learning?</h1>
+<p>The first mention of federated learning was in a <a href="https://arxiv.org/abs/1602.05629v3">paper</a> published by Google Research in 2016. The paper introduced federated learning as a new approach for training deep neural networks on decentralized data, and presented the results of an extensive empirical evaluation to demonstrate the robustness of the approach. </p>
+<p>In 2017, Google AI team published a <a href="https://ai.googleblog.com/2017/04/federated-learning-collaborative.html">blog post</a> where they announced the testing of federated learning in Android's Gboard (the Google Keyboard) to train and improve Gboard’s query suggestion model. </p>
+<p>Note that the paper introducing federated learning only covers neural networks models. Extending the federated learning approach to other types of machine learning models may or may not be possible depending on how the model get trained and how it can manage the data.</p>
+<p>To understand the value proposition of federated learning, we need to take a look at the traditional approach of training machine learning models and the drawbacks of this approach.</p>
+<h2>1.1. Traditional Approach of Training Machine Learning Models</h2>
+<p>A typical workflow for building a machine learning model goes as follows:</p>
+<ol>
+<li>
+<p><strong>Problem Definition:</strong> In this step, we define the problem that we want to solve using machine learning. For example, in the case of an image classification problem we need to decide on the categories (labels) in which we want to classify images.</p>
+</li>
+<li>
+<p><strong>Data Collection:</strong> In this step, we collect a dataset that matches the requirements defined in step 1. In the case of an image classification problem, we need to collect a dataset comprised of images and their corresponding labels.</p>
+</li>
+<li>
+<p><strong>Data Discovery:</strong> In this step, we look at the data from different angles in order to have a better understanding of the dataset. In the case an image classification problem, we can view some sample images to check the quality of the dataset, compute the number of images per category and check the sizes of the different images.</p>
+</li>
+<li>
+<p><strong>Data Cleaning:</strong> In this step, we clean data and make it ready to be used for training the machine learning model. This step could include: deleting bad data or outliers, resizing images and storing the data in the right format that can be processed by a machine learning model.</p>
+</li>
+<li>
+<p><strong>Model Training:</strong> In this step, we decide on a machine learning model and we use the clean data to train the model. The outcome of this step is a trained model that we can use on new unseen data to make predictions. This step could include other tasks such as model evaluation to compute the expected accuracy and assess the quality of the trained model.</p>
+</li>
+<li>
+<p><strong>Model Utilization:</strong> In this step, we use the trained machine learning model on new unseen data. This can be done either by accessing the trained model directly or through an API.</p>
+</li>
+</ol>
             <div class="hr"></div>
             
             <!-- Begin MailChimp Signup Form -->

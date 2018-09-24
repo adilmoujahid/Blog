@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adil Moujahid</title><link href="/" rel="alternate"></link><link href="/feeds/adil-moujahid.atom.xml" rel="self"></link><id>/</id><updated>2018-03-14T00:00:00+09:00</updated><entry><title>A Practical Introduction to Blockchain with Python</title><link href="/posts/2018/03/intro-blockchain-bitcoin-python/" rel="alternate"></link><published>2018-03-14T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2018-03-14:posts/2018/03/intro-blockchain-bitcoin-python/</id><summary type="html">&lt;p&gt;Blockchain is arguably one of the most significant and disruptive technologies that came into existence since the inception of the Internet. It's the core technology behind Bitcoin and other crypto-currencies that drew a lot of attention in the last few years.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adil Moujahid - Adil Moujahid</title><link href="/" rel="alternate"></link><link href="/feeds/adil-moujahid.atom.xml" rel="self"></link><id>/</id><updated>2018-03-14T00:00:00+09:00</updated><entry><title>A Practical Introduction to Blockchain with Python</title><link href="/posts/2018/03/intro-blockchain-bitcoin-python/" rel="alternate"></link><published>2018-03-14T00:00:00+09:00</published><updated>2018-03-14T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2018-03-14:/posts/2018/03/intro-blockchain-bitcoin-python/</id><summary type="html">&lt;p&gt;Blockchain is arguably one of the most significant and disruptive technologies that came into existence since the inception of the Internet. It's the core technology behind Bitcoin and other crypto-currencies that drew a lot of attention in the last few years. This blog post covers the core concepts behind blockchain and shows how to implement one using Python.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Blockchain is arguably one of the most significant and disruptive technologies that came into existence since the inception of the Internet. It's the core technology behind Bitcoin and other crypto-currencies that drew a lot of attention in the last few years.&lt;/p&gt;
 &lt;p&gt;As its core, a blockchain is a distributed database that allows direct transactions between two parties without the need of a central authority. This simple yet powerful concept has great implications for various institutions such as banks, governments and marketplaces, just to name a few. Any business or organization that relies on a centralized database as a core competitive advantage can potentially be disrupted by blockchain technology.&lt;/p&gt;
 &lt;p&gt;Putting aside all the hype around the price of Bitcoin and other cryptocurrencies, the goal of this blog post is to give you a practical introduction to blockchain technology. Sections 1 and 2 cover some core concepts behind blockchain, while section 3 shows how to implement a blockchain using Python. We will also implement 2 web applications to make it easy for end users to interact with our blockchain.&lt;/p&gt;
 &lt;p&gt;Please note that I'm using Bitcoin here as a medium for explaning the more general technology of "Blockchain", and most of the concepts described in this post are applicable to other blockchain use cases and crypto-currencies. &lt;/p&gt;
@@ -13,7 +13,7 @@
 &lt;h2&gt;1.1. What is Double-Spending?&lt;/h2&gt;
 &lt;p&gt;Suppose that Alice wants to pay Bob 1$. If Alice and Bob use physical cash, then Alice will not longer have the 1$ after the transaction is executed. If Alice and Bob use digital money, then the problem gets more complicated. Digital money is in digital form and can be easily duplicated. If Alice sends a digital file worth 1$ to Bob by email for example, Bob cannot know for sure if Alice has deleted her copy of the file. If Alice still has the 1$ digital file, then she can choose to send the same file to Carol. This problem is called double-spending.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-double-spending.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-double-spending.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;One way of solving the double-spending problem is to have a trusted third party (a bank for example) between Alice, Bob and all other participants in the network. This third party is responsible for managing a centralized ledger that keeps track of and validates all the transactions in the network. The drawback of this solution is that for the system to function, it requires trust in a centralized third party.&lt;/p&gt;
 &lt;h2&gt;1.2. Bitcoin: A Decentralized Solution for the Double-Spending Problem&lt;/h2&gt;
@@ -25,7 +25,7 @@
 &lt;li&gt;Uses Proof of Work (PoW): A special type of participants in the network called miners compete on searching for the solution to a cryptographic puzzle that will allow them to add a block of transactions to Bitcoin’s blockchain. This process is called Proof of Work and it allows the system to be secure (more on this later).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-cash-bitcoin.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-cash-bitcoin.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Sending bitcoin money goes as follows: &lt;/p&gt;
 &lt;ul&gt;
@@ -43,7 +43,7 @@
 &lt;p&gt;In the case of Bitcoin, ECDSA algorithm is used to generate Bitcoin wallets. Bitcoin uses a variety of keys and addresses, but for the sake of simplicity, we will assume in this blog post that each Bitcoin wallet has one pair of private/public keys and that a Bitcoin address is the wallet's public key. I recommend this &lt;a href="https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses"&gt;article&lt;/a&gt;, if you're interested in the complete technical details of Bitcoin wallets. &lt;/p&gt;
 &lt;p&gt;To send or receive BTCs, a user starts by generating a wallet which contains a pair of private and public keys. If Alice wants to send Bob some BTCs, she creates a transaction in which she enters both her and Bob's public keys, and the amount of BTCs she wants to send. She then sign the transaction using her private key. A computer on the blockchain uses Alice's public key to verify that the transaction is authentic and adds the transaction to a block that will be later added to the blockchain. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-public-crypto.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-public-crypto.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;2.2. Hashing Functions and Mining&lt;/h2&gt;
 &lt;p&gt;All Bitcoin transactions are grouped in files called blocks.  Bitcoin adds a new block of transactions every 10 minutes. Once a new block is added to the blockchain, it becomes immutable and can't be deleted or modified.
@@ -99,7 +99,6 @@ Miners are completely free to choose which transactions to include in the blocks
 
 &lt;/form&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 
 &lt;script&gt;
@@ -130,7 +129,7 @@ Miners are completely free to choose which transactions to include in the blocks
 &lt;p&gt;As discussed in the previous section, transactions are grouped in blocks and blocks are appended to the blockchain. In order to create a chain of blocks, each new block uses the previous block’s hash as part of its data. To create a new block, a miner selects a set of transactions, adds the previous block’s hash and mines the block in a similar fashion described above. &lt;/p&gt;
 &lt;p&gt;Any changes to the data in any block will affect all the hash values of the blocks that come after it and they will become invalid. This give the blockchain its immutability characteristic. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-from-blocks.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-from-blocks.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can use the app below to simulate a blockchain with 3 blocks. When you type in the "Data" text box or change the nonce value, you can notice the change in the hash value and the "Prev" value (previous hash) of the next block. You can simulate the mining process by clicking on the “Mine” button of each individual block. After mining the 3 blocks, try changing the data in block 1 or 2, and you will notice that all the blocks that come after become invalid.&lt;/p&gt;
 &lt;div class="container col-sm-12"&gt;
@@ -185,7 +184,7 @@ Miners are completely free to choose which transactions to include in the blocks
     &lt;/form&gt;
   &lt;/div&gt;
 
-&lt;p&gt;&lt;div id="block2chain1well" class="well"&gt;
+  &lt;div id="block2chain1well" class="well"&gt;
     &lt;form class="form-horizontal"&gt;
       &lt;div class="form-group"&gt;
         &lt;label for="block2chain1number" class="col-sm-2 control-label"&gt;Block:&lt;/label&gt;
@@ -231,8 +230,9 @@ Miners are completely free to choose which transactions to include in the blocks
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/form&gt;
-  &lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div id="block3chain1well" class="well"&gt;
+  &lt;/div&gt;
+
+  &lt;div id="block3chain1well" class="well"&gt;
     &lt;form class="form-horizontal"&gt;
       &lt;div class="form-group"&gt;
         &lt;label for="block3chain1number" class="col-sm-2 control-label"&gt;Block:&lt;/label&gt;
@@ -278,7 +278,8 @@ Miners are completely free to choose which transactions to include in the blocks
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/form&gt;
-  &lt;/div&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
 &lt;/div&gt;
 
 &lt;script&gt;$(function() {
@@ -313,7 +314,7 @@ function setup(block, chain) {
 &lt;h3&gt;Resolving Conflicts&lt;/h3&gt;
 &lt;p&gt;If 2 miners solve a block at almost the same time, then we will have 2 different blockchains in the network, and we need to wait for the next block to resolve the conflict. Some miners will decide to mine on top of blockchain 1 and others on top of blockchain 2. The first miner to find a new block resolves the conflict. If the new block was mined on top of blockchain 1, then blockchain 2 becomes invalid, the reward of the previous block goes to the miner from blockchain 1 and the transactions that were part of blockchain 2 and weren’t added to the blockchain go back to the transactions pool and get added to the next blocks. In short, if there is a conflict on the blockchain, then the the longest chain wins.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-the-longest-chain-wins.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/blockchain-the-longest-chain-wins.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;2.5. Blockchain and Double-Spending&lt;/h2&gt;
 &lt;p&gt;In this section, we will cover the most popular ways for performing double-spending attacks on the blockchain, and the measures that users should take to prevent damages from them.&lt;/p&gt;
@@ -363,13 +364,13 @@ function setup(block, chain) {
 &lt;p&gt;The &lt;code&gt;to_dict()&lt;/code&gt; method returns the transaction information in a Python dictionary format (without the sender's private key). The &lt;code&gt;sign_transaction()&lt;/code&gt; method takes the transaction information (without the sender's private key) and signs it using the sender's private key.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Transaction&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender_private_key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;recipient_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender_private_key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;recipient_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sender_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sender_address&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sender_private_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sender_private_key&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recipient_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;recipient_address&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__getattr__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__getattr__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;to_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -389,7 +390,7 @@ function setup(block, chain) {
 
 
 &lt;p&gt;The line below initate a &lt;code&gt;Python Flask&lt;/code&gt; app that we will use to create different APIs to interact with the blockchain and its client.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -486,7 +487,7 @@ function setup(block, chain) {
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Blockchain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transactions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
@@ -555,7 +556,7 @@ function setup(block, chain) {
 
 
 &lt;p&gt;The line below initate a &lt;code&gt;Python Flask&lt;/code&gt; app that we will use to create different APIs to interact with the blockchain.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;CORS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -710,13 +711,13 @@ function setup(block, chain) {
 &lt;li&gt;2 - &lt;a href="https://en.wikipedia.org/wiki/Hash_function"&gt;Wikipedia - Hash function&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;3 - &lt;a href="https://bitcoin.stackexchange.com/questions/58687/what-happens-to-a-transaction-once-generated"&gt;Bitcoin Stackexchange - What happens to a transaction once generated?&lt;/a&gt; &lt;/li&gt;
 &lt;li&gt;4 - &lt;a href="https://en.bitcoin.it/wiki/Majority_attack"&gt;Bitcoin Wiki - Majority attack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="python"></category><category term="blockchain"></category></entry><entry><title>Interactive Data Visualization of Geospatial Data using D3.js, DC.js, Leaflet.js and Python</title><link href="/posts/2016/08/interactive-data-visualization-geospatial-d3-dc-leaflet-python/" rel="alternate"></link><published>2016-08-13T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2016-08-13:posts/2016/08/interactive-data-visualization-geospatial-d3-dc-leaflet-python/</id><summary type="html">&lt;p&gt;The goal of this tutorial is to introduce the steps for building an interactive visualization of geospatial data.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="python"></category><category term="blockchain"></category></entry><entry><title>Interactive Data Visualization of Geospatial Data using D3.js, DC.js, Leaflet.js and Python</title><link href="/posts/2016/08/interactive-data-visualization-geospatial-d3-dc-leaflet-python/" rel="alternate"></link><published>2016-08-13T00:00:00+09:00</published><updated>2016-08-13T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2016-08-13:/posts/2016/08/interactive-data-visualization-geospatial-d3-dc-leaflet-python/</id><summary type="html">&lt;p&gt;In this tutorial, you will learn how to build an interactive data visualization using geospatial data. We will cover a wide range of technologies: Pandas for cleaning the data, Flask for building the server, Javascript libraries d3.js, dc.js and crossfilter.js for building the charts and Leaflet.js for building the map.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The goal of this tutorial is to introduce the steps for building an interactive visualization of geospatial data.&lt;/p&gt;
 &lt;p&gt;To do this, we will use a dataset from a Kaggle competition to build a data visualization that shows the distribution of mobile phone users in China. We will also create additional charts that show the usage patterns, the most popular phone brands, and users’ age segments and gender. We will be able to filter the data by the different attributes and see the results reflected in the map and all charts.&lt;/p&gt;
 &lt;p&gt;We will cover a wide range of technologies in this tutorial: Pandas for cleaning the data, Flask for building the server, Javascript libraries d3.js, dc.js and crossfilter.js for building the charts and Leaflet.js for building the map.&lt;/p&gt;
 &lt;p&gt;The source code for this tutorial can be found in this &lt;a href="https://github.com/adilmoujahid/kaggle-talkingdata-visualization"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Below is an animated gif of the interactive data visualization dashboard that we will be building in this tutorial.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/data-viz-talkingdata.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/data-viz-talkingdata.gif"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;1. The Case Study&lt;/h1&gt;
 &lt;p&gt;In this tutorial, we will use a dataset from a Kaggle competition called &lt;a href="https://www.kaggle.com/c/talkingdata-mobile-user-demographics"&gt;"TalkingData Mobile User Demographics"&lt;/a&gt;. This dataset is provided by TalkingData, China’s largest third-party mobile data platform. It contains app usage data, geolocation data and mobile device properties.The goal of the competition is to predict the gender and age segments of users based on the data provided.&lt;/p&gt;
@@ -829,7 +830,7 @@ function setup(block, chain) {
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
 
-&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -843,7 +844,7 @@ function setup(block, chain) {
     &lt;span class="o"&gt;.&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;df_clean&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_json&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;orient&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;records&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -867,7 +868,7 @@ function setup(block, chain) {
 &lt;p&gt;In addition to the Javascript libraries above, we will use &lt;a href="https://github.com/d3/d3-queue"&gt;queue.js&lt;/a&gt; which is an asynchronous helper library for Javascript, and &lt;a href="http://underscorejs.org/"&gt;underscore.js&lt;/a&gt; which is Javascript library that contains useful functional programming helpers.&lt;/p&gt;
 &lt;p&gt;Below is the folder structure of our project.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/talkingdata-folder-structure.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/talkingdata-folder-structure.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Note that the only files that we need to create from scratch are:&lt;/p&gt;
 &lt;ul&gt;
@@ -1071,7 +1072,7 @@ function setup(block, chain) {
 
 
 &lt;h1&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;In this tutorial, we learned how to build an interactive data visualization of geospatial data by combining DC.js charts with Leaflet.js. If you liked this tutorial, we might want to check a &lt;a href="http://adilmoujahid.com/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/"&gt;similar one&lt;/a&gt; where I used MongoDB as a data source instead of csv files.&lt;/p&gt;</summary><category term="python"></category><category term="javascript"></category><category term="data visualization"></category><category term="d3.js"></category><category term="dc.js"></category><category term="leaflet.js"></category></entry><entry><title>A Practical Introduction to Deep Learning with Caffe and Python</title><link href="/posts/2016/06/introduction-deep-learning-python-caffe/" rel="alternate"></link><published>2016-06-26T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2016-06-26:posts/2016/06/introduction-deep-learning-python-caffe/</id><summary type="html">&lt;p&gt;Deep learning is the new big trend in machine learning. It had many recent successes in computer vision, automatic speech recognition and natural language processing.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we learned how to build an interactive data visualization of geospatial data by combining DC.js charts with Leaflet.js. If you liked this tutorial, we might want to check a &lt;a href="http://adilmoujahid.com/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/"&gt;similar one&lt;/a&gt; where I used MongoDB as a data source instead of csv files.&lt;/p&gt;</content><category term="python"></category><category term="javascript"></category><category term="data visualization"></category><category term="d3.js"></category><category term="dc.js"></category><category term="leaflet.js"></category></entry><entry><title>A Practical Introduction to Deep Learning with Caffe and Python</title><link href="/posts/2016/06/introduction-deep-learning-python-caffe/" rel="alternate"></link><published>2016-06-26T00:00:00+09:00</published><updated>2016-06-26T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2016-06-26:/posts/2016/06/introduction-deep-learning-python-caffe/</id><summary type="html">&lt;p&gt;The goal of this blog post is to give you a hands-on introduction to deep learning. To do this, we will build a Cat/Dog image classifier using a deep learning algorithm called convolutional neural network. This post is divided into 2 main parts. The first part covers some core concepts behind deep learning, while the second part is structured in a hands-on tutorial format. We will use some Python code and a popular open source deep learning framework called Caffe to build the classifier.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Deep learning is the new big trend in machine learning. It had many recent successes in computer vision, automatic speech recognition and natural language processing.&lt;/p&gt;
 &lt;p&gt;The goal of this blog post is to give you a hands-on introduction to deep learning. To do this, we will build a Cat/Dog image classifier using a deep learning algorithm called convolutional neural network (CNN) and a &lt;a href="https://www.kaggle.com/c/dogs-vs-cats"&gt;Kaggle dataset&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post is divided into 2 main parts. The first part covers some core concepts behind deep learning, while the second part is structured in a hands-on tutorial format.&lt;/p&gt;
 &lt;p&gt;In the first part of the hands-on tutorial (section 4), we will build a Cat/Dog image classifier using a convolutional neural network from scratch. In the second part of the tutorial (section 5), we will cover an advanced technique for training convolutional neural networks called transfer learning. We will use some Python code and a popular open source deep learning framework called Caffe to build the classifier. Our classifier will be able to achieve a classification accuracy of 97%.&lt;/p&gt;
@@ -1082,7 +1083,7 @@ function setup(block, chain) {
 &lt;p&gt;Our goal is to build a machine learning algorithm capable of detecting the correct animal (cat or dog) in new unseen images. &lt;/p&gt;
 &lt;p&gt;In Machine learning, this type of problems is called classification. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/cats-dogs.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/cats-dogs.jpg"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;2. Classification using Traditional Machine Learning vs. Deep Learning&lt;/h1&gt;
 &lt;p&gt;Classification using a machine learning algorithm has 2 phases:&lt;/p&gt;
@@ -1101,12 +1102,12 @@ function setup(block, chain) {
 &lt;/ol&gt;
 &lt;p&gt;In the predicition phase, we apply the same feature extraction process to the new images and we pass the features to the trained machine learning algorithm to predict the label.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/machine-learning-training-prediction-2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/machine-learning-training-prediction-2.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;The main difference between traditional machine learning and deep learning algorithms is in the feature engineering. In traditional machine learning algorithms, we need to hand-craft the features. By contrast, in deep learning algorithms feature engineering is done automatically by the algorithm. 
 Feature engineering is difficult, time-consuming and requires domain expertise. The promise of deep learning is more accurate machine learning algorithms compared to traditional machine learning with less or no feature engineering.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/traditional-ml-deep-learning-2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/traditional-ml-deep-learning-2.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;3. A Crash Course in Deep Learning&lt;/h1&gt;
 &lt;p&gt;Deep learning refers to a class of artificial neural networks (ANNs) composed of many processing layers. ANNs existed for many decades, but attempts at training deep architectures of ANNs failed until Geoffrey Hinton's breakthrough work of the mid-2000s. In addition to algorithmic innovations, the increase in computing capabilities using GPUs and the collection of larger datasets are all factors that helped in the recent surge of deep learning.&lt;/p&gt;
@@ -1117,7 +1118,7 @@ Feature engineering is difficult, time-consuming and requires domain expertise. 
 &lt;p&gt;A basic model for how the neurons work goes as follows: Each synapse has a strength that is learnable and control the strength of influence of one neuron on another. The dendrites carry the signals to the target neuron's body where they get summed. If the final sum is above a certain threshold, the neuron get fired, sending a spike along its axon.[1]&lt;/p&gt;
 &lt;p&gt;Artificial neurons are inspired by biological neurons, and try to formulate the model explained above in a computational form. An artificial neuron has a finite number of inputs with weights associated to them, and an activation function (also called transfer function). The output of the neuron is the result of the activation function applied to the weighted sum of inputs. Artificial neurons are connected with each others to form artificial neural networks.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/neurons.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/neurons.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3&gt;Feedforward Neural Networks&lt;/h3&gt;
 &lt;p&gt;Feedforward Neural Networks are the simplest form of Artificial Neural Networks. &lt;/p&gt;
@@ -1125,12 +1126,12 @@ Feature engineering is difficult, time-consuming and requires domain expertise. 
 &lt;p&gt;Below is an example of a fully-connected feedforward neural network with 2 hidden layers. "Fully-connected" means that each node is connected to all the nodes in the next layer. &lt;/p&gt;
 &lt;p&gt;Note that, the number of hidden layers and their size are the only free parameters. The larger and deeper the hidden layers, the more complex patterns we can model in theory.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/feedforward-nn.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/feedforward-nn.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3&gt;Activation Functions&lt;/h3&gt;
 &lt;p&gt;Activation functions transform the weighted sum of inputs that goes into the artificial neurons. These functions should be non-linear to encode complex patterns of the data. The most popular activation functions are Sigmoid, Tanh and ReLU. ReLU is the most popular activation function in deep neural networks.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/activation.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/activation.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3&gt;Training Artificial Neural Networks&lt;/h3&gt;
 &lt;p&gt;The goal of the training phase is to learn the network's weights.  We need 2 elements to train an artificial neural network:&lt;/p&gt;
@@ -1143,24 +1144,24 @@ Feature engineering is difficult, time-consuming and requires domain expertise. 
 &lt;p&gt;Convolutional neural networks are a special type of feed-forward networks. These models are designed to emulate the behaviour of a visual cortex. CNNs perform very well on visual recognition tasks. 
 CNNs have special layers called convolutional layers and pooling layers that allow the network to encode certain images properties. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/lenet.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/lenet.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Convolution Layer&lt;/h2&gt;
 &lt;p&gt;This layer consists of a set of learnable filters that we slide over the image spatially, computing dot products between the entries of the filter and the input image. The filters should extend to the full depth of the input image. For example, if we want to apply a filter of size 5x5 to a colored image of size 32x32, then the filter should have depth 3 (5x5x3) to cover all 3 color channels (Red, Green, Blue) of the image. These filters will activate when they see same specific structure in the images. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/conv-layer.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/conv-layer.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Pooling Layer&lt;/h2&gt;
 &lt;p&gt;Pooling is a form of non-linear down-sampling. The goal of the pooling layer is to progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network, and hence to also control overfitting. There are several functions to implement pooling among which max pooling is the most common one. Pooling is often applied with filters of size 2x2 applied with a stride of 2 at every depth slice. A pooling layer of size 2x2 with stride of 2 shrinks the input image to a 1/4 of its original size. [2]&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/max-pooling.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/max-pooling.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Convolutional Neural Networks Architecture&lt;/h2&gt;
 &lt;p&gt;The simplest architecture of a convolutional neural networks starts with an input layer (images) followed by a sequence of convolutional layers and pooling layers, and ends with fully-connected layers. The convolutional layers are usually followed by one layer of ReLU activation functions. &lt;/p&gt;
 &lt;p&gt;The convolutional, pooling and ReLU layers act as learnable features extractors, while the fully connected layers acts as a machine learning classifier. Furthermore, the early layers of the network encode generic patterns of the images, while later layers encode the details patterns of the images.&lt;/p&gt;
 &lt;p&gt;Note that only the convolutional layers and fully-connected layers have weights. These weights are learned in the training phase. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/cnn-architecture.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/cnn-architecture.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;4. Building a Cat/Dog Classifier using a Convolutional Neural Network&lt;/h1&gt;
 &lt;p&gt;In this section, we will implement a cat/dog classifier using a convolutional neural network. We will use a dataset from Kaggle's &lt;a href="https://www.kaggle.com/c/dogs-vs-cats"&gt;Dogs vs. Cats competition&lt;/a&gt;. To implement the convolutional neural network, we will use a deep learning framework called Caffe and some Python code.&lt;/p&gt;
@@ -1230,7 +1231,7 @@ python create_lmdb.py
 
 &lt;p&gt;&lt;code&gt;transform_img&lt;/code&gt; takes a colored images as input, does the histogram equalization of the 3 color channels and resize the image.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/image-transform.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/image-transform.jpg"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;make_datum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
@@ -1687,7 +1688,7 @@ layer {
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/caffe_model_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/caffe_model_1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;4.5 Solver Definition&lt;/h2&gt;
 &lt;p&gt;The solver is responsible for model optimization. We define the solver's parameters in a &lt;code&gt;.prototxt&lt;/code&gt; file. You can find our solver under &lt;code&gt;deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/&lt;/code&gt; with name &lt;code&gt;solver_1.prototxt&lt;/code&gt;. Below is a copy of the same.&lt;/p&gt;
@@ -1731,7 +1732,7 @@ solver_mode: GPU&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/caffe_model_1_learning_curve.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/caffe_model_1_learning_curve.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;4.7 Prediction on New Data&lt;/h2&gt;
 &lt;p&gt;Now that we have a trained model, we can use it to make predictions on new unseen data (images from test1). The Python code for making the predictions is &lt;code&gt;make_predictions_1.py&lt;/code&gt; and it's stored under &lt;code&gt;deeplearning-cats-dogs-tutorial/code&lt;/code&gt;. The code needs 4 files to run:&lt;/p&gt;
@@ -1782,7 +1783,7 @@ python make_predictions_1.py
 &lt;p&gt;The code above read an image, apply similar image processing steps to training phase, calculates each class' probability and prints the class with the largest probability (0 for cats, and 1 for dogs). &lt;/p&gt;
 &lt;p&gt;After submitting the predicitions to &lt;a href="https://www.kaggle.com/c/dogs-vs-cats/submissions/attach"&gt;Kaggle&lt;/a&gt;, it give an accuracy of 0.89691.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/kaggle-1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/kaggle-1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;5. Building a Cat/Dog Classifier using Transfer Learning&lt;/h1&gt;
 &lt;p&gt;In this section, we will use a very practical and powerful technique called transfer learning for building our cat/dog classifier.&lt;/p&gt;
@@ -2253,13 +2254,13 @@ solver_mode: GPU&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/caffe_model_2_learning_curve.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/caffe_model_2_learning_curve.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3&gt;Prediction on New Data&lt;/h3&gt;
 &lt;p&gt;Similary to section 4.7, we will generate predictions on the test data and upload the results to Kaggle to get the model accuracy. The code for making the predicitions is under &lt;code&gt;deeplearning-cats-dogs-tutorial/code/make_predictions_2.py&lt;/code&gt;. &lt;/p&gt;
 &lt;p&gt;The model got an accuracy of 0.97154 which is better than the model that we trained from scratch. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/kaggle-2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/kaggle-2.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;Conclusion&lt;/h1&gt;
 &lt;p&gt;In this blog post, we covered core concepts of deep learning and convolutional neural networks. We also learned how to build convolutional neural networks using Caffe and Python from scratch and using transfer learning. If you want to learn more about this topic, I highly recommend Stanford's &lt;a href="http://cs231n.github.io/"&gt;"Convolutional Neural Networks for Visual Recognition" course&lt;/a&gt;. &lt;/p&gt;
@@ -2270,7 +2271,7 @@ solver_mode: GPU&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;a href="http://cs231n.github.io/transfer-learning/"&gt;CS231n - Transfer Learning Notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/"&gt;A Step by Step Backpropagation Example&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://cs231n.github.io/"&gt;CS231n Convolutional Neural Networks for Visual Recognition&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="deep learning"></category><category term="machine learning"></category><category term="python"></category><category term="caffe"></category></entry><entry><title>A Practical Introduction to IoT using Arduino, Node.js and Plotly</title><link href="/posts/2015/07/practical-introduction-iot-arduino-nodejs-plotly/" rel="alternate"></link><published>2015-07-19T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2015-07-19:posts/2015/07/practical-introduction-iot-arduino-nodejs-plotly/</id><summary type="html">&lt;p&gt;Internet of Things (IoT) has been a hot buzzword for the last few years. Simply put, IoT is the concept of connecting objects to a network in order to transfer data without human-to-human or human-to-computer interaction. This simple, yet powerful concept has a wide range of applications in manufacturing, healthcare and home automation, just to name a few. 
+&lt;/ol&gt;</content><category term="deep learning"></category><category term="machine learning"></category><category term="python"></category><category term="caffe"></category></entry><entry><title>A Practical Introduction to IoT using Arduino, Node.js and Plotly</title><link href="/posts/2015/07/practical-introduction-iot-arduino-nodejs-plotly/" rel="alternate"></link><published>2015-07-19T00:00:00+09:00</published><updated>2015-07-19T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2015-07-19:/posts/2015/07/practical-introduction-iot-arduino-nodejs-plotly/</id><summary type="html">&lt;p&gt;In this blog post, I will introduce the building blocks for creating a simple IoT application. To do this, I will use an Arduino microcontroller with a photocell (light intensity sensor), a node.js server for capturing and transferring the data, and a cloud service called plotly to visualise the data. By the end of this tutorial, we will have a functioning IoT application that you can customise to other use-cases.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Internet of Things (IoT) has been a hot buzzword for the last few years. Simply put, IoT is the concept of connecting objects to a network in order to transfer data without human-to-human or human-to-computer interaction. This simple, yet powerful concept has a wide range of applications in manufacturing, healthcare and home automation, just to name a few. 
 IoT is an interdisciplinary field, which requires working with electronics and sensors to capture data from physical objects, computer networking for data transfer and IT skills for building meaningful applications.&lt;/p&gt;
 &lt;p&gt;In this blog post, I will introduce the building blocks for creating a simple IoT application. To do this, I will use an Arduino microcontroller with a photocell (light intensity sensor), a node.js server for capturing and transferring the data, and a cloud service called plotly to visualise the data. By the end of this tutorial, we will have a functioning IoT application that you can customise to other use-cases. &lt;/p&gt;
 &lt;h1&gt;1. Use case definition and architecture&lt;/h1&gt;
@@ -2287,7 +2288,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/ul&gt;
 &lt;p&gt;I recommend getting an &lt;a href="http://www.amazon.com/gp/product/B00BT0NDB8/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00BT0NDB8&amp;amp;linkCode=as2&amp;amp;tag=adilmoujahid-20&amp;amp;linkId=YIE327HRS23JUFIW"&gt;Arduino Kit&lt;/a&gt; that contains an Arduino board with other electronic parts and components. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_components.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_components.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Architecture&lt;/h2&gt;
 &lt;p&gt;To build this application, we need 3 main components:&lt;/p&gt;
@@ -2297,13 +2298,13 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;li&gt;An application layer for visualizing the measurements in real-time. We will implement this using a data visualization cloud service called Plotly.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_architecture.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_architecture.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;2. Microcontroller Programming 101 - A crash course in Arduino&lt;/h1&gt;
 &lt;p&gt;Arduino is an open-source rapid electronic prototyping platform composed by the Arduino board (microcontroller) and the Arduino IDE  (Integrated Development Environment) that runs on your computer. Arduino IDE is used to write and upload computer code to the physical board.&lt;/p&gt;
 &lt;p&gt;Arduino became very popular for electronic prototyping because of its very simple interface and low cost (under 30 USD for the board).&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/arduino_board_ide.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/arduino_board_ide.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Getting Started with Arduino&lt;/h2&gt;
 &lt;p&gt;To setup your Arduino, I recommend starting with the following guides. It should take you around 10 min for the basic setup. &lt;/p&gt;
@@ -2315,7 +2316,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;p&gt;After setting up the Arduino board and the Arduino IDE, we can start building the physical layer for capturing light intensities.&lt;/p&gt;
 &lt;p&gt;Start by connecting the electronic components (One Photocell and one 1k Ohms resistance) to the Arduino board and the bread board as shown in the picture below. Once done, connect the Arduino board to the computer using a USB cable. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/arduino_schema.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/arduino_schema.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Next, open the IDE, copy the code below and upload the logic to the Arduino board. The code below implements a simple logic that configure the Arduino board to read the light intensity every second (1000 milliseconds) from the photocell (that is connected to the analogue input 0), and print the measurement to the serial monitor.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define CDS_INPUT 0 &lt;/span&gt;
@@ -2336,7 +2337,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 &lt;p&gt;To see the measurements, open the serial monitor from the Arduino IDE.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/arduino_ide.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/arduino_ide.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;3. Reading the measurements from Node.js&lt;/h1&gt;
 &lt;h2&gt;What is node.js?&lt;/h2&gt;
@@ -2364,7 +2365,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 &lt;p&gt;To start the node.js server, from you terminal go to the folder where &lt;code&gt;server1.js&lt;/code&gt; is saved, and execute &lt;code&gt;node server1.js&lt;/code&gt;. You will see the measurements displayed on the terminal.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_server1js.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_server1js.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;4. Sending data to Plotly&lt;/h1&gt;
 &lt;h2&gt;What is Plotly?&lt;/h2&gt;
@@ -2428,12 +2429,12 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 &lt;p&gt;To start the node.js server, from you terminal go to the folder where server2.js is saved, and execute &lt;code&gt;node server2.js&lt;/code&gt;. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_server2js.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_server2js.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Viewing light intensities from Plotly&lt;/h2&gt;
 &lt;p&gt;When you run server2.js code, it creates a file in Plotly called &lt;code&gt;sensor-test&lt;/code&gt;. From Plotly website, click on &lt;code&gt;sensor-test&lt;/code&gt; and you will be able to see a real-time graph that shows light intensities. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_plotly.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_plotly.gif"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;5. Conclusion&lt;/h1&gt;
 &lt;p&gt;In this tutorial, we learned how to build an end-to-end IoT application covering:&lt;/p&gt;
@@ -2447,11 +2448,872 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;li&gt;Wireless communication between Arduino and Node.js. This can be done using an Arduino Xbee shield.&lt;/li&gt;
 &lt;li&gt;Saving the data to a database server. This can be done by customising the node.js code to push the data to a database, for example &lt;a href="https://www.mongodb.org/"&gt;mongodb&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Adding additional input to the application, for example a temperature sensor.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="iot"></category><category term="arduino"></category><category term="node.js"></category><category term="plotly"></category><category term="data visualization"></category></entry><entry><title>Data Mining Coursera for Popular Courses with Python</title><link href="/posts/2015/03/coursera-data-mining/" rel="alternate"></link><published>2015-03-23T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2015-03-23:posts/2015/03/coursera-data-mining/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+&lt;/ul&gt;</content><category term="iot"></category><category term="arduino"></category><category term="node.js"></category><category term="plotly"></category><category term="data visualization"></category></entry><entry><title>Data Mining Coursera for Popular Courses with Python</title><link href="/posts/2015/03/coursera-data-mining/" rel="alternate"></link><published>2015-03-23T00:00:00+09:00</published><updated>2015-03-23T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2015-03-23:/posts/2015/03/coursera-data-mining/</id><summary type="html">&lt;p&gt;In this tutorial, I will combine Coursera course catalogue together with social media data to assess the popularity of courses. To to this, I will use the Coursera API to retrieve the course catalogue, I will use the sharecount.com API to get social media metrics for each course, and I will use python's &lt;code&gt;pandas&lt;/code&gt; library to query and order the courses by popularity. The technique introduced in this tutorial can be leveraged to other use cases that require a popularity ranking system for measuring the relevance of a list of links.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
-*/.ansibold{font-weight:700}.ansiblack{}.ansired{color:#8b0000}.ansigreen{6400}.ansiyellow{color:#c4a000}.ansiblue{8b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-f}.ansibgpurple{background-color:#ff00ff}.ansibgcyan{background-ff}.ansibggray{background-color:gray}div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;border-radius:2px;box-sizing:border-box;-moz-box-sizing:border-box;border-width:thin;border-style:solid;width:100%;padding:5px;margin:0;outline:0}div.cell.selected{border-color:#ababab}@media print{div.cell.selected{border-color:transparent}}.edit_mode div.cell.selected{border-color:green}.prompt{min-width:14ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}@-moz-document url-prefix(){div.inner_cell{overflow-x:hidden}}div.input_area{border:1px solid #cfcfcf;border-radius:2px;background:#f7f7f7;line-height:1.21429em}div.prompt:empty{padding-top:0;padding-bottom:0}div.unrecognized_cell{padding:5px 5px 5px 0;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.unrecognized_cell .inner_cell{border-radius:2px;padding:5px;font-weight:700;color:red;border:1px solid #cfcfcf;background:#eaeaea}div.unrecognized_cell .inner_cell a,div.unrecognized_cell .inner_cell a:hover{color:inherit;text-decoration:none}@media (max-width:540px){.prompt{text-align:left}div.unrecognized_cell&gt;div.prompt{display:none}}div.code_cell{}div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.input{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:navy;border-top:1px solid transparent}div.input_area&gt;div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}div.input_area&gt;div.highlight&gt;pre{margin:0;border:none;padding:0;background-color:transparent}.CodeMirror{line-height:1.21429em;font-size:14px;height:auto;background:0 0}.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}.CodeMirror-lines{padding:.4em}.CodeMirror-linenumber{padding:0 8px 0 4px}.CodeMirror-gutters{border-bottom-left-radius:2px;border-top-left-radius:2px}.CodeMirror pre{padding:0;border:0;border-radius:0}.highlight-base,.highlight-variable{}.highlight-variable-2{color:#1a1a1a}.highlight-variable-3{color:#333}.highlight-string{color:#BA2121}.highlight-comment{color:#408080;font-style:italic}.highlight-number{80}.highlight-atom{color:#88F}.highlight-keyword{color:green;font-weight:700}.highlight-builtin{color:green}.highlight-error{color:red}.highlight-operator{color:#A2F;font-weight:700}.highlight-meta{color:#A2F}.highlight-def{f}.highlight-string-2{color:#f50}.highlight-qualifier{color:#555}.highlight-bracket{color:#997}.highlight-tag{color:#170}.highlight-attribute{c}.highlight-header{f}.highlight-quote{90}.highlight-link{c}.cm-s-ipython span.cm-keyword{color:green;font-weight:700}.cm-s-ipython span.cm-atom{color:#88F}.cm-s-ipython span.cm-number{80}.cm-s-ipython span.cm-def{f}.cm-s-ipython span.cm-variable{}.cm-s-ipython span.cm-operator{color:#A2F;font-weight:700}.cm-s-ipython span.cm-variable-2{color:#1a1a1a}.cm-s-ipython span.cm-variable-3{color:#333}.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}.cm-s-ipython span.cm-string{color:#BA2121}.cm-s-ipython span.cm-string-2{color:#f50}.cm-s-ipython span.cm-meta{color:#A2F}.cm-s-ipython span.cm-qualifier{color:#555}.cm-s-ipython span.cm-builtin{color:green}.cm-s-ipython span.cm-bracket{color:#997}.cm-s-ipython span.cm-tag{color:#170}.cm-s-ipython span.cm-attribute{c}.cm-s-ipython span.cm-header{f}.cm-s-ipython span.cm-quote{90}.cm-s-ipython span.cm-link{c}.cm-s-ipython span.cm-error{color:red}.cm-s-ipython span.cm-tab{background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=')right no-repeat}div.output_wrapper{display:-webkit-box;-webkit-box-align:stretch;display:-moz-box;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;z-index:1}div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:2px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,.8);box-shadow:inset 0 2px 8px rgba(0,0,0,.8);display:block}div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:2px}div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,.5)}div.output_prompt{color:#8b0000}div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left!important}div.output_area div.output_area img,div.output_area svg{max-width:100%;height:auto}div.output_area img.unconfined,div.output_area svg.unconfined{max-width:none}.output{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}@media (max-width:540px){div.output_area{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;background-color:transparent;border-radius:0}div.output_subarea{overflow-x:auto;padding:.4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1;max-width:calc(100% - 14ex)}div.output_text{text-align:left;line-height:1.21429em}div.output_stderr{background:#fdd}div.output_latex{text-align:left}div.output_javascript:empty{padding:0}.js-error{color:#8b0000}div.raw_input_container{font-family:monospace;padding-top:5px}span.raw_input_prompt{}input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}input.raw_input:focus{box-shadow:none}p.p-space{margin-bottom:10px}div.output_unrecognized{padding:5px;font-weight:700;color:red}div.output_unrecognized a,div.output_unrecognized a:hover{color:inherit;text-decoration:none}.rendered_html{}.rendered_html :link,.rendered_html :visited,.rendered_html h1:first-child{margin-top:.538em}.rendered_html h2:first-child{margin-top:.636em}.rendered_html h3:first-child{margin-top:.777em}.rendered_html h4:first-child,.rendered_html h5:first-child,.rendered_html h6:first-child{margin-top:1em}.rendered_html *+ol,.rendered_html *+ul{margin-top:1em}.rendered_html *+table{margin-top:1em}.rendered_html *+p{margin-top:1em}.rendered_html *+img{margin-top:1em}div.text_cell{display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.text_cell&gt;div.prompt{display:none}}div.text_cell_render{outline:0;resize:none;width:inherit;border-style:none;padding:.5em .5em .5em .4em;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}a.anchor-link:link{text-decoration:none;padding:0 20px;visibility:hidden}h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible}.text_cell.rendered .input_area{display:none}.text_cell.rendered .text_cell.unrendered .text_cell_render{display:none}.cm-header-1,.cm-header-2,.cm-header-3,.cm-header-4,.cm-header-5,.cm-header-6{font-weight:700;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.cm-header-1{font-size:185.7%}.cm-header-2{font-size:157.1%}.cm-header-3{font-size:128.6%}.cm-header-4{font-size:110%}.cm-header-5,.cm-header-6{font-size:100%;font-style:italic}&lt;/style&gt;
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
 &lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
@@ -2501,8 +3363,10 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -2513,12 +3377,50 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2531,8 +3433,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2554,8 +3455,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2582,8 +3482,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2603,20 +3502,20 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;{u&amp;apos;id&amp;apos;: 2163,
- u&amp;apos;language&amp;apos;: u&amp;apos;en&amp;apos;,
- u&amp;apos;links&amp;apos;: {u&amp;apos;categories&amp;apos;: [8, 10, 19, 20], u&amp;apos;universities&amp;apos;: [65]},
- u&amp;apos;name&amp;apos;: u&amp;apos;The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation&amp;apos;,
- u&amp;apos;shortName&amp;apos;: u&amp;apos;perceptivehunting&amp;apos;}&lt;/pre&gt;
+&lt;pre&gt;{u'id': 2163,
+ u'language': u'en',
+ u'links': {u'categories': [8, 10, 19, 20], u'universities': [65]},
+ u'name': u'The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation',
+ u'shortName': u'perceptivehunting'}&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2638,8 +3537,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2659,20 +3557,20 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;{u&amp;apos;id&amp;apos;: 234,
- u&amp;apos;links&amp;apos;: {},
- u&amp;apos;locationCountry&amp;apos;: u&amp;apos;CN&amp;apos;,
- u&amp;apos;name&amp;apos;: u"Xi&amp;apos;an Jiaotong University",
- u&amp;apos;shortName&amp;apos;: u&amp;apos;xjtu&amp;apos;}&lt;/pre&gt;
+&lt;pre&gt;{u'id': 234,
+ u'links': {},
+ u'locationCountry': u'CN',
+ u'name': u"Xi'an Jiaotong University",
+ u'shortName': u'xjtu'}&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2693,8 +3591,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2714,16 +3611,16 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;{u&amp;apos;id&amp;apos;: 5, u&amp;apos;links&amp;apos;: {}, u&amp;apos;name&amp;apos;: u&amp;apos;Mathematics&amp;apos;, u&amp;apos;shortName&amp;apos;: u&amp;apos;math&amp;apos;}&lt;/pre&gt;
+&lt;pre&gt;{u'id': 5, u'links': {}, u'name': u'Mathematics', u'shortName': u'math'}&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2743,8 +3640,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2767,8 +3663,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2788,7 +3683,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -2851,8 +3747,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2874,8 +3769,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2894,8 +3788,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2915,7 +3808,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -2965,8 +3859,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -2987,8 +3880,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3007,8 +3899,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3028,7 +3919,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -3071,8 +3963,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3098,8 +3989,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3119,19 +4009,19 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[18]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[18]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;[u&amp;apos;Information, Tech &amp; Design&amp;apos;,
- u&amp;apos;Mathematics&amp;apos;,
- u&amp;apos;Engineering&amp;apos;,
- u&amp;apos;Statistics and Data Analysis&amp;apos;]&lt;/pre&gt;
+&lt;pre&gt;[u'Information, Tech &amp; Design',
+ u'Mathematics',
+ u'Engineering',
+ u'Statistics and Data Analysis']&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3151,16 +4041,16 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[19]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[19]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;[u"Xi&amp;apos;an Jiaotong University"]&lt;/pre&gt;
+&lt;pre&gt;[u"Xi'an Jiaotong University"]&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3180,8 +4070,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3189,8 +4078,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3209,8 +4097,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3230,7 +4117,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[22]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[22]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -3311,8 +4199,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3335,8 +4222,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3366,8 +4252,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3388,8 +4273,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3409,7 +4293,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[27]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[27]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -3514,8 +4399,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3541,7 +4425,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[28]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[28]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -3655,8 +4540,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3682,7 +4566,8 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[29]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[29]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -3796,8 +4681,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -3806,6 +4690,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -3832,12 +4717,12 @@ IoT is an interdisciplinary field, which requires working with electronics and s
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="python"></category><category term="pandas"></category><category term="api"></category></entry><entry><title>Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB</title><link href="/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/" rel="alternate"></link><published>2015-01-28T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2015-01-28:posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/</id><summary type="html">&lt;p&gt;Data visualization plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualization is an interdisciplinary field, which requires design, web development, database and coding skills.&lt;/p&gt;
+&lt;/script&gt;</content><category term="python"></category><category term="pandas"></category><category term="api"></category></entry><entry><title>Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB</title><link href="/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/" rel="alternate"></link><published>2015-01-28T00:00:00+09:00</published><updated>2015-01-28T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2015-01-28:/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/</id><summary type="html">&lt;p&gt;Step by step tutorial for building an interactive data visualization dashboard using a dataset from DonorsChoose.org. This tutorial introduces a range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Data visualization plays an important role in data analysis workflows. It enables data analysts to effectively discover patterns in large datasets through graphical means, and to represent these findings in a meaningful and effective way. Data visualization is an interdisciplinary field, which requires design, web development, database and coding skills.&lt;/p&gt;
 &lt;p&gt;The goal of this tutorial is to introduce the building blocks for creating a meaningful interactive data visualization. To do this, we will use a dataset from DonorsChoose.org to build a data visualization that represents school donations broken down by different attributes. We will be covering a wide range of technologies: MongoDB for storing and querying the data, Python for building a web server that interacts with MongoDB and serving html pages, Javascript libraries d3.js, dc.js and crossfilter.js for building interactive charts. By the end of this tutorial, you will get enough knowledge that you can leverage for other projects that require interactive data visualization.&lt;/p&gt;
 &lt;p&gt;The source code for this tutorial can be found in this &lt;a href="https://github.com/adilmoujahid/DonorsChoose_Visualization"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Below is an animated gif of the interactive data visualization dashboard that we will be building in this tutorial.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/viz_demo.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/viz_demo.gif"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;1. The case study&lt;/h1&gt;
 &lt;p&gt;DonorsChoose.org is a US based nonprofit organization that allows individuals to donate money directly to public school classroom projects. Public school teachers post classroom project requests on the platform, and individuals have the option to donate money directly to fund these projects. The classroom projects range from pencils and books to computers and other expensive equipments for classrooms. In more than 10 years of existence, this platform helped teachers in all US states to post more than 7700,000 classroom project requests and raise more than $280,000,000. DonorsChoose.org is making the platform data open and available for making discoveries and building applications. In this tutorial we will be using one of the available datasets for building an interactive data visualization that represents school donations broken down by different attributes.&lt;/p&gt;
@@ -3951,13 +4836,13 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;
 
-&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -3976,7 +4861,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bson&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;json_util&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bson.json_util&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;dumps&lt;/span&gt;
 
-&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;MONGODB_HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;MONGODB_PORT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;27017&lt;/span&gt;
@@ -4000,7 +4885,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
     &lt;span class="n"&gt;connection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;json_projects&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -4017,7 +4902,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;p&gt;We will also be using &lt;a href="http://getbootstrap.com/2.3.2/"&gt;Bootstrap&lt;/a&gt; which is a keen.io template dependency, and &lt;a href="https://github.com/mbostock/queue"&gt;queue.js&lt;/a&gt; which is an asynchronous helper library for Javascript.&lt;/p&gt;
 &lt;p&gt;Below is the folder structure of our project.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/folder_structure.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/folder_structure.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Note that the only files that we need to create from scratch are: &lt;/p&gt;
 &lt;ul&gt;
@@ -4165,7 +5050,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
 &lt;h1&gt;Conclusion&lt;/h1&gt;
 &lt;p&gt;In this tutorial, I introduced the building blocks for building an interactive data visualization. The lessons learned from this tutorial can be easily leveraged for other projects that require similar interactive visualization. &lt;/p&gt;
-&lt;p&gt;All source code from this post can be found in this &lt;a href="https://github.com/adilmoujahid/DonorsChoose_Visualization"&gt;github repository&lt;/a&gt;.&lt;/p&gt;</summary><category term="python"></category><category term="javascript"></category><category term="data visualization"></category><category term="d3.js"></category><category term="dc.js"></category><category term="mongodb"></category></entry><entry><title>An Introduction to Agent-based Models: Simulating Segregation with Python</title><link href="/posts/2014/09/schelling-model/" rel="alternate"></link><published>2014-09-23T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2014-09-23:posts/2014/09/schelling-model/</id><summary type="html">&lt;p&gt;&lt;em&gt;This article was originally published on &lt;a href="https://www.binpress.com/tutorial/introduction-to-agentbased-models-an-implementation-of-schelling-model-in-python/144"&gt;Binpress&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;All source code from this post can be found in this &lt;a href="https://github.com/adilmoujahid/DonorsChoose_Visualization"&gt;github repository&lt;/a&gt;.&lt;/p&gt;</content><category term="python"></category><category term="javascript"></category><category term="data visualization"></category><category term="d3.js"></category><category term="dc.js"></category><category term="mongodb"></category></entry><entry><title>An Introduction to Agent-based Models: Simulating Segregation with Python</title><link href="/posts/2014/09/schelling-model/" rel="alternate"></link><published>2014-09-23T00:00:00+09:00</published><updated>2014-09-23T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2014-09-23:/posts/2014/09/schelling-model/</id><summary type="html">&lt;p&gt;In this post, I will explain about Schelling's segregation model, implement the same in Python programming language, and explain the power of agent based simulations for understanding complex phenomenon.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;This article was originally published on &lt;a href="https://www.binpress.com/tutorial/introduction-to-agentbased-models-an-implementation-of-schelling-model-in-python/144"&gt;Binpress&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;In computer science, agent-based models are used to assess the effects of autonomous agents (i.e. individuals, groups or objects) on an overall system. They're very powerful analytical tools that can be used in situations where experiments aren't feasible or are very expensive to conduct. These models have a wide range of applications in the social sciences, computer science, economics and business.&lt;/p&gt;
 &lt;p&gt;In this piece, I'll introduce you to the power of agent-based models when used to understand complex phenomenons. To do this, we'll use some Python, a social science case study and the Schelling model.&lt;/p&gt;
 &lt;h1&gt;1. The case study&lt;/h1&gt;
@@ -4173,7 +5058,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;p&gt;Many would conclude from such phenomena that people are intolerant, and don't want to live next to people that are different from them. A deeper look, however, might provide some nuance. In the 70's, Thomas Schelling, the 2005 Economics Nobel Prize winner, was interested in this subject and built an agent-based model called the "Schelling segregation model" for explaining this phenomenon. With a very simple model, Schelling could show that what we see at the macro level may not in fact represent what's going down in the micro level.&lt;/p&gt;
 &lt;p&gt;We'll run a few simulations using the Schelling model to get a deeper understanding of the segregation phenomena.&lt;/p&gt;
 &lt;div style="text-align:left"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/NY_racial_map.jpg" /&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/NY_racial_map.jpg"&gt;
 Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;http://demographics.coopercenter.org/DotMap/index.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;2. Schelling Segregation Model: Setting and Definitions&lt;/h1&gt;
@@ -4193,7 +5078,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 &lt;p&gt;Next, we define a class called &lt;code&gt;Schelling&lt;/code&gt;. This class takes 6 parameters: the width and height of the city, the ratio of empty houses in the city, the similarity threshold, the number of iterations and the number of races. We define 4 methods within the &lt;code&gt;Schelling&lt;/code&gt; class: &lt;code&gt;populate&lt;/code&gt;, &lt;code&gt;is_unsatisfied&lt;/code&gt;, &lt;code&gt;update&lt;/code&gt;, &lt;code&gt;move_to_empty&lt;/code&gt;, and &lt;code&gt;plot&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Schelling&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;empty_ratio&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;similarity_threshold&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_iterations&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;races&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;empty_ratio&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;similarity_threshold&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_iterations&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;races&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt; 
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; 
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;races&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;races&lt;/span&gt;
@@ -4380,16 +5265,16 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_initial.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_initial.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_30_final.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_30_final.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_50_final.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_50_final.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_80_final.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_2_80_final.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Looking at the plots above, we can see that the higher the similarity threshold, the more segregated the city becomes. Furthermore, we can see that even with a small similarity threshold, we get segregated cities. In other words, even if the people are very tolerant (i.e. having a small Similarity threshold), we end up with segregation. We can conclude that what we see at the macro level may not in fact represent what's going down in the micro level.&lt;/p&gt;
 &lt;h1&gt;5. Measuring Segregation&lt;/h1&gt;
@@ -4471,18 +5356,18 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_segregation_measure.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/schelling_segregation_measure.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can see from the plot above that for very small similarity thresholds, we get very high segregation (defined by the mean similarity ratio). For example, for a similarity threshold of 0.3, we got a mean similarity ratio of 0.75. We could confirm quantitatively that what we see at the macro level may not in fact represent what's going down in the micro level.&lt;/p&gt;
 &lt;h1&gt;6. Wrap-up&lt;/h1&gt;
 &lt;p&gt;In this article, we've introduced one example of agent-based models called, the Schelling segregation model, and we implemented it in Python. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in these cities doesn't necessarily translate into intolerance at the individual level.&lt;/p&gt;
 &lt;p&gt;All source code from this post can be found in this &lt;a href="https://github.com/adilmoujahid/schelling_simulations"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h1&gt;References&lt;/h1&gt;
-&lt;p&gt;https://www.coursera.org/course/modelthinking&lt;/p&gt;</summary><category term="python"></category><category term="matplotlib"></category><category term="simulation"></category></entry><entry><title>An Introduction to Text Mining using Twitter Streaming API and Python</title><link href="/posts/2014/07/twitter-analytics/" rel="alternate"></link><published>2014-07-21T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2014-07-21:posts/2014/07/twitter-analytics/</id><summary type="html">&lt;p&gt;Text mining is the application of natural language processing techniques and analytical methods to text data in order to derive relevant information. Text mining is getting a lot attention these last years, due to an exponential increase in digital text data from web pages, google's projects such as &lt;a href="http://books.google.com/"&gt;google books&lt;/a&gt; and &lt;a href="https://books.google.com/ngrams"&gt;google ngram&lt;/a&gt;, and social media services such as Twitter. Twitter data constitutes a rich source that can be used for capturing information about any topic imaginable. This data can be used in different use cases such as finding trends related to a specific keyword, measuring brand sentiment, and gathering feedback about new products and services.&lt;/p&gt;
+&lt;p&gt;https://www.coursera.org/course/modelthinking&lt;/p&gt;</content><category term="python"></category><category term="matplotlib"></category><category term="simulation"></category></entry><entry><title>An Introduction to Text Mining using Twitter Streaming API and Python</title><link href="/posts/2014/07/twitter-analytics/" rel="alternate"></link><published>2014-07-21T00:00:00+09:00</published><updated>2014-07-21T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2014-07-21:/posts/2014/07/twitter-analytics/</id><summary type="html">&lt;p&gt;In this tutorial, I will use Twitter data to compare the popularity of 3 programming languages: Python, Javascript and Ruby, and to retrieve links to programming tutorials.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Text mining is the application of natural language processing techniques and analytical methods to text data in order to derive relevant information. Text mining is getting a lot attention these last years, due to an exponential increase in digital text data from web pages, google's projects such as &lt;a href="http://books.google.com/"&gt;google books&lt;/a&gt; and &lt;a href="https://books.google.com/ngrams"&gt;google ngram&lt;/a&gt;, and social media services such as Twitter. Twitter data constitutes a rich source that can be used for capturing information about any topic imaginable. This data can be used in different use cases such as finding trends related to a specific keyword, measuring brand sentiment, and gathering feedback about new products and services.&lt;/p&gt;
 &lt;p&gt;In this tutorial, I will use Twitter data to compare the popularity of 3 programming languages: Python, Javascript and Ruby, and to retrieve links to programming tutorials. In the first paragraph, I will explaing how to connect to Twitter Streaming API and how to get the data. In the second paragraph, I will explain how to structure the data for analysis, and in the last paragraph, I will explain how to filter the data and extract links from tweets.&lt;/p&gt;
 &lt;p&gt;Using only 2 days worth of Twitter data, I could retrieve 644 links to python tutorials, 413 to javascript tutorials and 136 to ruby tutorials. Furthermore, I could confirm that python is 1.5 times more popular than javascript and 4 times more popular than ruby.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/Twitter-analytics.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/Twitter-analytics.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;1. Getting Data from Twitter Streaming API&lt;/h1&gt;
 &lt;p&gt;API stands for Application Programming Interface. It is a tool that makes the interaction with computer programs and web services easy. Many web services provides APIs to developers to interact with their services and to access data in programmatic way. For this tutorial, we will use Twitter Streaming API to download tweets related to 3 keywords: "python", "javascript", and "ruby".&lt;/p&gt;
@@ -4522,7 +5407,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;
 
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
     &lt;span class="c1"&gt;#This handles Twitter authetification and the connection to Twitter Streaming API&lt;/span&gt;
     &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;StdOutListener&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -4537,7 +5422,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 &lt;p&gt;If you run the program from your terminal using the command: &lt;code&gt;python twitter_streaming.py&lt;/code&gt;, you will see data flowing like the picture below.&lt;/p&gt;
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/twitter_streaming.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/twitter_streaming.jpg"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can stop the program by pressing Ctrl-C.&lt;/p&gt;
 &lt;p&gt;We want to capture this data into a file that we will use later for the analysis. You can do so by piping the output to a file using the following command: &lt;code&gt;python twitter_streaming.py &amp;gt; twitter_data.txt&lt;/code&gt;.&lt;/p&gt;
@@ -4601,7 +5486,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/tweets_top_langs.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/tweets_top_langs.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;tweets_by_country&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tweets&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;country&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
@@ -4616,7 +5501,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/tweets_top_countries.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/tweets_top_countries.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1&gt;3. Mining the tweets&lt;/h1&gt;
 &lt;p&gt;Our main goals in these text mining tasks are: compare the popularity of Python, Ruby and Javascript programming languages and to retrieve programming tutorial links. We will do this in 3 steps:&lt;/p&gt;
@@ -4675,7 +5560,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/top_prg_lang_raw.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/top_prg_lang_raw.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This shows, that the keyword &lt;code&gt;ruby&lt;/code&gt; is the most popular, followed by &lt;code&gt;python&lt;/code&gt; then &lt;code&gt;javascript&lt;/code&gt;. However, the &lt;code&gt;tweets&lt;/code&gt; DataFrame contains information about all tweets that contains one of the 3 keywords and doesn't restrict the information to the programming languages. For example, there are a lot tweets that contains the keyword &lt;code&gt;ruby&lt;/code&gt; and that are related to a political scandal called &lt;a href="http://en.wikipedia.org/wiki/Rubygate"&gt;Rubygate&lt;/a&gt;. In the next section, we will filter the tweets and re-run the analysis to make a more accurate comparison.&lt;/p&gt;
 &lt;h2&gt;Targeting relevant tweets&lt;/h2&gt;
@@ -4722,12 +5607,12 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 
 &lt;div style="text-align:center"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/top_prg_lang_relevant.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/top_prg_lang_relevant.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2&gt;Extracting links from the relevants tweets&lt;/h2&gt;
 &lt;p&gt;Now that we extracted the relevant tweets, we want to retrieve links to programming tutorials. We will start by creating a function that uses regular expressions for retrieving link that start with "http://" or "https://" from a text. This function will return the url if found, otherwise it returns an empty string.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;extract_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;r&amp;#39;https?://[^\s&amp;lt;&amp;gt;&amp;quot;]+|www\.[^\s&amp;lt;&amp;gt;&amp;quot;]+&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https?://[^\s&amp;lt;&amp;gt;&amp;quot;]+|www\.[^\s&amp;lt;&amp;gt;&amp;quot;]+&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -4778,22 +5663,22 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 &lt;li&gt;http://en.wikipedia.org/wiki/Text_mining&lt;/li&gt;
 &lt;li&gt;http://en.wikipedia.org/wiki/Word-sense_disambiguation&lt;/li&gt;
 &lt;li&gt;http://en.wikipedia.org/wiki/Regular_expression&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="python"></category><category term="pandas"></category><category term="text mining"></category><category term="matplotlib"></category><category term="twitter"></category><category term="api"></category></entry><entry><title>Baseball Analytics: An Introduction to Sabermetrics using Python</title><link href="/posts/2014/07/baseball-analytics/" rel="alternate"></link><published>2014-07-13T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2014-07-13:posts/2014/07/baseball-analytics/</id><summary type="html">&lt;p&gt;Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. The term Sabermetrics comes from saber (Society for American Baseball Research) and metrics (as in econometrics).&lt;/p&gt;
+&lt;/ul&gt;</content><category term="python"></category><category term="pandas"></category><category term="text mining"></category><category term="matplotlib"></category><category term="twitter"></category><category term="api"></category></entry><entry><title>Baseball Analytics: An Introduction to Sabermetrics using Python</title><link href="/posts/2014/07/baseball-analytics/" rel="alternate"></link><published>2014-07-13T00:00:00+09:00</published><updated>2014-07-13T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2014-07-13:/posts/2014/07/baseball-analytics/</id><summary type="html">&lt;p&gt;Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. In this post, I will use Lahman’s Baseball Database and Python programming language to explain some of the techniques used in Sabermetrics.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. The term Sabermetrics comes from saber (Society for American Baseball Research) and metrics (as in econometrics).&lt;/p&gt;
 &lt;p&gt;In 2003, Michael Lewis published Moneyball about Billy Beane, the Oakland Athletics General Manager since 1997. The book was centered around Billy Beane's use of Sabemetrics to identify and recruit under-valued baseball players. With this strategy, his team could achieve as many wins as teams with more than double the payroll. The figures below show the relationship between team salaries and number of wins for years: 1997, 2001, 2003, 2013. The green dot represents the Oakland Athletics, the blue dot represents the New York Yankees, and the red dot represents The Boston Red Sox. We can see that the Oakland Athletics went from the underperforming team in 1997, to became a highly competitive team with a comparable number of wins to the New York Yankees. The  Oakland Athletics made it to the play-offs in 4 successive years: 2000,2001,2002,2003. &lt;/p&gt;
 &lt;p&gt;In 2011, the movie Moneyball based on Lewis' book was released starring Brad Pitt in the role of Beane.&lt;/p&gt;
 &lt;div style="text-align:left"&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="/images/fig1.jpg" /&gt;
-&lt;img alt="Alt Text" src="/images/fig2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="/images/fig1.jpg"&gt;
+&lt;img alt="Alt Text" src="/images/fig2.jpg"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In this post, I will use Lahman’s Baseball Database and Python programming language to explain some of the techniques used in Sabermetrics. I will use 3 Python libraries: Pandas for data manipulation and analysis, statsmodels for building the statistical models and Matplotlib for data visualization.&lt;/p&gt;
 &lt;h2&gt;1. A quick introduction to baseball rules&lt;/h2&gt;
-&lt;p&gt;&lt;div class="videobox"&gt;
+&lt;p&gt;&lt;span class="videobox"&gt;
                 &lt;iframe width="640" height="390"
                     src='https://www.youtube.com/embed/0bKkGeROiPA'
                     frameborder='0' webkitAllowFullScreen mozallowfullscreen
                     allowFullScreen&gt;
                 &lt;/iframe&gt;
-            &lt;/div&gt;&lt;/p&gt;
+            &lt;/span&gt;&lt;/p&gt;
 &lt;h2&gt;2. Getting the data and setting up your machine&lt;/h2&gt;
 &lt;p&gt;For this tutorial, we will use the Lahman’s Baseball Database. This Database contains complete batting and pitching statistics from 1871 to 2013, plus fielding statistics, standings, team stats, managerial records, post-season data, and more. You can download the data from this this &lt;a href="http://seanlahman.com/files/database/lahman-csv_2014-02-14.zip"&gt;link&lt;/a&gt;. 
 We will be using two files from this dataset: &lt;code&gt;Salaries.csv&lt;/code&gt; and &lt;code&gt;Teams.csv&lt;/code&gt;.
@@ -4975,6 +5860,6 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 &lt;p&gt;All the source code and data from this tutorial can be found at this &lt;a href="https://github.com/adilmoujahid/Sabermetrics-intro"&gt;github repo&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;p&gt;http://www.swing-smarter-baseball-hitting-drills.com/oakland-as.html&lt;/p&gt;
-&lt;p&gt;MITx: 15.071x The Analytics Edge&lt;/p&gt;</summary><category term="python"></category><category term="modelling"></category><category term="pandas"></category></entry><entry><title>Hello World!</title><link href="/posts/2014/07/hello-world/" rel="alternate"></link><published>2014-07-08T00:00:00+09:00</published><author><name>Adil Moujahid</name></author><id>tag:,2014-07-08:posts/2014/07/hello-world/</id><summary type="html">&lt;p&gt;This is my first post on this new blog, and I'm very excited to embark on this project.&lt;/p&gt;
+&lt;p&gt;MITx: 15.071x The Analytics Edge&lt;/p&gt;</content><category term="python"></category><category term="modelling"></category><category term="pandas"></category></entry><entry><title>Hello World!</title><link href="/posts/2014/07/hello-world/" rel="alternate"></link><published>2014-07-08T00:00:00+09:00</published><updated>2014-07-08T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2014-07-08:/posts/2014/07/hello-world/</id><summary type="html">&lt;p&gt;This is my first post on this new blog, and I'm very excited to embark on this project.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my first post on this new blog, and I'm very excited to embark on this project.&lt;/p&gt;
 &lt;p&gt;I'm planning to use this blog to share some thoughts on topics I'm interested in. These topics are mainly centered around technology with a deep focus on data analytics and applied mathematics. I will try to keep the content focused on practical use cases with many tutorials on how to build algorithms and mathematical models for analyzing data and how to implement these models using programming languages such as Python and Java as well as new Software packages.&lt;/p&gt;
-&lt;p&gt;I would love to get your comments on the blog posts and suggestions for new tutorials.&lt;/p&gt;</summary><category term="misc"></category></entry></feed>
+&lt;p&gt;I would love to get your comments on the blog posts and suggestions for new tutorials.&lt;/p&gt;</content><category term="misc"></category></entry></feed>

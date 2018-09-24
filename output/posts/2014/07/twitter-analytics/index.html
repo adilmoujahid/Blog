@@ -24,7 +24,6 @@
 
     <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 
-
 </head>
 
 <body>
@@ -37,6 +36,12 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
 
                 <div>
                 <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
@@ -72,7 +77,7 @@
 <p>In this tutorial, I will use Twitter data to compare the popularity of 3 programming languages: Python, Javascript and Ruby, and to retrieve links to programming tutorials. In the first paragraph, I will explaing how to connect to Twitter Streaming API and how to get the data. In the second paragraph, I will explain how to structure the data for analysis, and in the last paragraph, I will explain how to filter the data and extract links from tweets.</p>
 <p>Using only 2 days worth of Twitter data, I could retrieve 644 links to python tutorials, 413 to javascript tutorials and 136 to ruby tutorials. Furthermore, I could confirm that python is 1.5 times more popular than javascript and 4 times more popular than ruby.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/Twitter-analytics.png" /></p>
+<p><img alt="Alt Text" src="/images/Twitter-analytics.png"></p>
 </div>
 <h1>1. Getting Data from Twitter Streaming API</h1>
 <p>API stands for Application Programming Interface. It is a tool that makes the interaction with computer programs and web services easy. Many web services provides APIs to developers to interact with their services and to access data in programmatic way. For this tutorial, we will use Twitter Streaming API to download tweets related to 3 keywords: "python", "javascript", and "ruby".</p>
@@ -112,7 +117,7 @@
         <span class="k">print</span> <span class="n">status</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
     <span class="c1">#This handles Twitter authetification and the connection to Twitter Streaming API</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">StdOutListener</span><span class="p">()</span>
@@ -127,7 +132,7 @@
 
 <p>If you run the program from your terminal using the command: <code>python twitter_streaming.py</code>, you will see data flowing like the picture below.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/twitter_streaming.jpg" /></p>
+<p><img alt="Alt Text" src="/images/twitter_streaming.jpg"></p>
 </div>
 <p>You can stop the program by pressing Ctrl-C.</p>
 <p>We want to capture this data into a file that we will use later for the analysis. You can do so by piping the output to a file using the following command: <code>python twitter_streaming.py &gt; twitter_data.txt</code>.</p>
@@ -191,7 +196,7 @@
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/tweets_top_langs.png" /></p>
+<p><img alt="Alt Text" src="/images/tweets_top_langs.png"></p>
 </div>
 <div class="highlight"><pre><span></span><span class="n">tweets_by_country</span> <span class="o">=</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
@@ -206,7 +211,7 @@
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/tweets_top_countries.png" /></p>
+<p><img alt="Alt Text" src="/images/tweets_top_countries.png"></p>
 </div>
 <h1>3. Mining the tweets</h1>
 <p>Our main goals in these text mining tasks are: compare the popularity of Python, Ruby and Javascript programming languages and to retrieve programming tutorial links. We will do this in 3 steps:</p>
@@ -265,7 +270,7 @@
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/top_prg_lang_raw.png" /></p>
+<p><img alt="Alt Text" src="/images/top_prg_lang_raw.png"></p>
 </div>
 <p>This shows, that the keyword <code>ruby</code> is the most popular, followed by <code>python</code> then <code>javascript</code>. However, the <code>tweets</code> DataFrame contains information about all tweets that contains one of the 3 keywords and doesn't restrict the information to the programming languages. For example, there are a lot tweets that contains the keyword <code>ruby</code> and that are related to a political scandal called <a href="http://en.wikipedia.org/wiki/Rubygate">Rubygate</a>. In the next section, we will filter the tweets and re-run the analysis to make a more accurate comparison.</p>
 <h2>Targeting relevant tweets</h2>
@@ -312,12 +317,12 @@
 
 
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/top_prg_lang_relevant.png" /></p>
+<p><img alt="Alt Text" src="/images/top_prg_lang_relevant.png"></p>
 </div>
 <h2>Extracting links from the relevants tweets</h2>
 <p>Now that we extracted the relevant tweets, we want to retrieve links to programming tutorials. We will start by creating a function that uses regular expressions for retrieving link that start with "http://" or "https://" from a text. This function will return the url if found, otherwise it returns an empty string.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_link</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="s1">r&#39;https?://[^\s&lt;&gt;&quot;]+|www\.[^\s&lt;&gt;&quot;]+&#39;</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https?://[^\s&lt;&gt;&quot;]+|www\.[^\s&lt;&gt;&quot;]+&#39;</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>

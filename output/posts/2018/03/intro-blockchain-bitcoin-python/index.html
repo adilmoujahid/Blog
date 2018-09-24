@@ -26,7 +26,6 @@
 
     <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
 
-
 </head>
 
 <body>
@@ -39,6 +38,12 @@
                 </a>
                 <h2 class="article-info">Adil Moujahid</h2>
                 <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
 
                 <div>
                 <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
@@ -80,7 +85,7 @@
 <h2>1.1. What is Double-Spending?</h2>
 <p>Suppose that Alice wants to pay Bob 1$. If Alice and Bob use physical cash, then Alice will not longer have the 1$ after the transaction is executed. If Alice and Bob use digital money, then the problem gets more complicated. Digital money is in digital form and can be easily duplicated. If Alice sends a digital file worth 1$ to Bob by email for example, Bob cannot know for sure if Alice has deleted her copy of the file. If Alice still has the 1$ digital file, then she can choose to send the same file to Carol. This problem is called double-spending.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/blockchain-double-spending.png" /></p>
+<p><img alt="Alt Text" src="/images/blockchain-double-spending.png"></p>
 </div>
 <p>One way of solving the double-spending problem is to have a trusted third party (a bank for example) between Alice, Bob and all other participants in the network. This third party is responsible for managing a centralized ledger that keeps track of and validates all the transactions in the network. The drawback of this solution is that for the system to function, it requires trust in a centralized third party.</p>
 <h2>1.2. Bitcoin: A Decentralized Solution for the Double-Spending Problem</h2>
@@ -92,7 +97,7 @@
 <li>Uses Proof of Work (PoW): A special type of participants in the network called miners compete on searching for the solution to a cryptographic puzzle that will allow them to add a block of transactions to Bitcoin’s blockchain. This process is called Proof of Work and it allows the system to be secure (more on this later).</li>
 </ul>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/blockchain-cash-bitcoin.png" /></p>
+<p><img alt="Alt Text" src="/images/blockchain-cash-bitcoin.png"></p>
 </div>
 <p>Sending bitcoin money goes as follows: </p>
 <ul>
@@ -110,7 +115,7 @@
 <p>In the case of Bitcoin, ECDSA algorithm is used to generate Bitcoin wallets. Bitcoin uses a variety of keys and addresses, but for the sake of simplicity, we will assume in this blog post that each Bitcoin wallet has one pair of private/public keys and that a Bitcoin address is the wallet's public key. I recommend this <a href="https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses">article</a>, if you're interested in the complete technical details of Bitcoin wallets. </p>
 <p>To send or receive BTCs, a user starts by generating a wallet which contains a pair of private and public keys. If Alice wants to send Bob some BTCs, she creates a transaction in which she enters both her and Bob's public keys, and the amount of BTCs she wants to send. She then sign the transaction using her private key. A computer on the blockchain uses Alice's public key to verify that the transaction is authentic and adds the transaction to a block that will be later added to the blockchain. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/blockchain-public-crypto.png" /></p>
+<p><img alt="Alt Text" src="/images/blockchain-public-crypto.png"></p>
 </div>
 <h2>2.2. Hashing Functions and Mining</h2>
 <p>All Bitcoin transactions are grouped in files called blocks.  Bitcoin adds a new block of transactions every 10 minutes. Once a new block is added to the blockchain, it becomes immutable and can't be deleted or modified.
@@ -166,7 +171,6 @@ Miners are completely free to choose which transactions to include in the blocks
 
 </form>
 </div>
-
 </div>
 
 <script>
@@ -197,7 +201,7 @@ Miners are completely free to choose which transactions to include in the blocks
 <p>As discussed in the previous section, transactions are grouped in blocks and blocks are appended to the blockchain. In order to create a chain of blocks, each new block uses the previous block’s hash as part of its data. To create a new block, a miner selects a set of transactions, adds the previous block’s hash and mines the block in a similar fashion described above. </p>
 <p>Any changes to the data in any block will affect all the hash values of the blocks that come after it and they will become invalid. This give the blockchain its immutability characteristic. </p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/blockchain-from-blocks.png" /></p>
+<p><img alt="Alt Text" src="/images/blockchain-from-blocks.png"></p>
 </div>
 <p>You can use the app below to simulate a blockchain with 3 blocks. When you type in the "Data" text box or change the nonce value, you can notice the change in the hash value and the "Prev" value (previous hash) of the next block. You can simulate the mining process by clicking on the “Mine” button of each individual block. After mining the 3 blocks, try changing the data in block 1 or 2, and you will notice that all the blocks that come after become invalid.</p>
 <div class="container col-sm-12">
@@ -252,7 +256,7 @@ Miners are completely free to choose which transactions to include in the blocks
     </form>
   </div>
 
-<p><div id="block2chain1well" class="well">
+  <div id="block2chain1well" class="well">
     <form class="form-horizontal">
       <div class="form-group">
         <label for="block2chain1number" class="col-sm-2 control-label">Block:</label>
@@ -298,8 +302,9 @@ Miners are completely free to choose which transactions to include in the blocks
         </div>
       </div>
     </form>
-  </div></p>
-<p><div id="block3chain1well" class="well">
+  </div>
+
+  <div id="block3chain1well" class="well">
     <form class="form-horizontal">
       <div class="form-group">
         <label for="block3chain1number" class="col-sm-2 control-label">Block:</label>
@@ -345,7 +350,8 @@ Miners are completely free to choose which transactions to include in the blocks
         </div>
       </div>
     </form>
-  </div></p>
+  </div>
+
 </div>
 
 <script>$(function() {
@@ -380,7 +386,7 @@ function setup(block, chain) {
 <h3>Resolving Conflicts</h3>
 <p>If 2 miners solve a block at almost the same time, then we will have 2 different blockchains in the network, and we need to wait for the next block to resolve the conflict. Some miners will decide to mine on top of blockchain 1 and others on top of blockchain 2. The first miner to find a new block resolves the conflict. If the new block was mined on top of blockchain 1, then blockchain 2 becomes invalid, the reward of the previous block goes to the miner from blockchain 1 and the transactions that were part of blockchain 2 and weren’t added to the blockchain go back to the transactions pool and get added to the next blocks. In short, if there is a conflict on the blockchain, then the the longest chain wins.</p>
 <div style="text-align:center">
-<p><img alt="Alt Text" src="/images/blockchain-the-longest-chain-wins.png" /></p>
+<p><img alt="Alt Text" src="/images/blockchain-the-longest-chain-wins.png"></p>
 </div>
 <h2>2.5. Blockchain and Double-Spending</h2>
 <p>In this section, we will cover the most popular ways for performing double-spending attacks on the blockchain, and the measures that users should take to prevent damages from them.</p>
@@ -430,13 +436,13 @@ function setup(block, chain) {
 <p>The <code>to_dict()</code> method returns the transaction information in a Python dictionary format (without the sender's private key). The <code>sign_transaction()</code> method takes the transaction information (without the sender's private key) and signs it using the sender's private key.</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Transaction</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender_address</span><span class="p">,</span> <span class="n">sender_private_key</span><span class="p">,</span> <span class="n">recipient_address</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender_address</span><span class="p">,</span> <span class="n">sender_private_key</span><span class="p">,</span> <span class="n">recipient_address</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sender_address</span> <span class="o">=</span> <span class="n">sender_address</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sender_private_key</span> <span class="o">=</span> <span class="n">sender_private_key</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">recipient_address</span> <span class="o">=</span> <span class="n">recipient_address</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
 
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -456,7 +462,7 @@ function setup(block, chain) {
 
 
 <p>The line below initate a <code>Python Flask</code> app that we will use to create different APIs to interact with the blockchain and its client.</p>
-<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 
 
@@ -553,7 +559,7 @@ function setup(block, chain) {
 </ul>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Blockchain</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">transactions</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="p">[]</span>
@@ -622,7 +628,7 @@ function setup(block, chain) {
 
 
 <p>The line below initate a <code>Python Flask</code> app that we will use to create different APIs to interact with the blockchain.</p>
-<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 </pre></div>
 

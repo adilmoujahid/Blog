@@ -82,10 +82,10 @@ THEME = "theme/pure"
 
 # Plugins
 PLUGIN_PATHS = ['./plugins']
-#PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'liquid_tags.notebook', 'pelican_gist']
 MARKUP = ('md', 'ipynb')
-#PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'liquid_tags.include_code', 'liquid_tags.notebook', 'pelican_gist']
-PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img',  'pelican_gist', 'ipynb.liquid', 'pelican_javascript']
+
+
+PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'pelican_gist', 'ipynb.liquid', 'pelican_javascript']
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
