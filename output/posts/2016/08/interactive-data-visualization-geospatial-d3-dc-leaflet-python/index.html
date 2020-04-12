@@ -102,30 +102,30 @@
 <li>phone_brand_device_model.csv: This file contains the brand and model for each device.</li>
 </ul>
 <p>We start by importing <code>pandas</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
 
 
 <p>Next, we read and merge the different datasets into a single Pandas DataFrame that we call <code>df</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">gen_age_tr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;gender_age_train.csv&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">gen_age_tr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;gender_age_train.csv&#39;</span><span class="p">)</span>
 <span class="n">ev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;events.csv&#39;</span><span class="p">)</span>
 <span class="n">ph_br_dev_model</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;phone_brand_device_model.csv&#39;</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">gen_age_tr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ev</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;device_id&#39;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ph_br_dev_model</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;device_id&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next we add the english phone brand to our DataFrame.</p>
-<div class="highlight"><pre><span></span><code><span class="n">top_10_brands_en</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;华为&#39;</span><span class="p">:</span><span class="s1">&#39;Huawei&#39;</span><span class="p">,</span> <span class="s1">&#39;小米&#39;</span><span class="p">:</span><span class="s1">&#39;Xiaomi&#39;</span><span class="p">,</span> <span class="s1">&#39;三星&#39;</span><span class="p">:</span><span class="s1">&#39;Samsung&#39;</span><span class="p">,</span> <span class="s1">&#39;vivo&#39;</span><span class="p">:</span><span class="s1">&#39;vivo&#39;</span><span class="p">,</span> <span class="s1">&#39;OPPO&#39;</span><span class="p">:</span><span class="s1">&#39;OPPO&#39;</span><span class="p">,</span> 
+<div class="highlight"><pre><span></span><span class="n">top_10_brands_en</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;华为&#39;</span><span class="p">:</span><span class="s1">&#39;Huawei&#39;</span><span class="p">,</span> <span class="s1">&#39;小米&#39;</span><span class="p">:</span><span class="s1">&#39;Xiaomi&#39;</span><span class="p">,</span> <span class="s1">&#39;三星&#39;</span><span class="p">:</span><span class="s1">&#39;Samsung&#39;</span><span class="p">,</span> <span class="s1">&#39;vivo&#39;</span><span class="p">:</span><span class="s1">&#39;vivo&#39;</span><span class="p">,</span> <span class="s1">&#39;OPPO&#39;</span><span class="p">:</span><span class="s1">&#39;OPPO&#39;</span><span class="p">,</span> 
                     <span class="s1">&#39;魅族&#39;</span><span class="p">:</span><span class="s1">&#39;Meizu&#39;</span><span class="p">,</span> <span class="s1">&#39;酷派&#39;</span><span class="p">:</span><span class="s1">&#39;Coolpad&#39;</span><span class="p">,</span> <span class="s1">&#39;乐视&#39;</span><span class="p">:</span><span class="s1">&#39;LeEco&#39;</span><span class="p">,</span> <span class="s1">&#39;联想&#39;</span><span class="p">:</span><span class="s1">&#39;Lenovo&#39;</span><span class="p">,</span> <span class="s1">&#39;HTC&#39;</span><span class="p">:</span><span class="s1">&#39;HTC&#39;</span><span class="p">}</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phone_brand_en&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phone_brand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">phone_brand</span><span class="p">:</span> <span class="n">top_10_brands_en</span><span class="p">[</span><span class="n">phone_brand</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">phone_brand</span> <span class="ow">in</span> <span class="n">top_10_brands_en</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;Other&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we add the age segment of users to the DataFrame.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_age_segment</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_age_segment</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39;22-&#39;</span>
     <span class="k">elif</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="mi">26</span><span class="p">:</span>
@@ -140,7 +140,7 @@
         <span class="k">return</span> <span class="s1">&#39;39+&#39;</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age_segment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">age</span><span class="p">:</span> <span class="n">get_age_segment</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we add to each record the Chinese province where the event was recorded. To do this, we need 2 elements:</p>
@@ -148,7 +148,7 @@
 <li>China provinces' borders. I prepared this data and stored it in a json file called china_provinces_en.json.</li>
 <li>A function that takes as input the longitude and latitude of the event and outputs the Chinese province where the event was recorded. The function is called <code>get_location</code>. This function uses a python library called <code>shapely</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">shape</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">shape</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;/geojson/china_provinces_en.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
     <span class="n">provinces_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
@@ -162,18 +162,18 @@
     <span class="k">return</span> <span class="s1">&#39;other&#39;</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">get_location</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span> <span class="n">provinces_json</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we define the columns that we will need for the data visualization and we delete the records with missing values.</p>
-<div class="highlight"><pre><span></span><code><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;phone_brand_en&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;age_segment&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;phone_brand_en&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;age_segment&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">]</span>
 <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>To communicate the data to the browser, we need to transform the format from a Pandas DataFrame to a JSON object. We can do that by simply calling to_json() function on our Pandas DataFrame.</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_clean</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">df_clean</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</pre></div>
 
 
 <h1>4. Building the Server</h1>
@@ -183,9 +183,9 @@
 <li>The first route is used for serving the html file (that we will build in the next section).</li>
 <li>The second route serves the data that we prepared in the previous section in json format.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">shape</span>
 
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
@@ -194,11 +194,11 @@
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/data&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/data&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
     <span class="c1"># Code from the previous section: Data preparation</span>
     <span class="o">.</span>
@@ -207,13 +207,13 @@
     <span class="k">return</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 
 
 <p>We can start the server, by executing the command below from the command line. </p>
-<div class="highlight"><pre><span></span><code><span class="err">python app.py</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>python app.py
+</pre></div>
 
 
 <p>From your browser, go to <code>localhost:5000/data</code> and you will see the data printed in json format.</p>
@@ -243,22 +243,22 @@
 <p>The source code for the charts and map goes into <code>graphs.js</code>.</p>
 <p>We start by using a <code>queue()</code> function from the queue.js library for reading the data from the server and executing the function <code>makegraphs()</code>. The <code>queue()</code> function makes sure that we have all the data transferred to the browser before drawing the graphs. </p>
 <p>The <code>makeGraphs()</code> function contains the code for cleaning the data, building the crossfilter dimensions for filtering the data, the dc.js charts and the map. It takes 2 arguments, the first one is <code>error</code> which can be used for handling any error from the the <code>.defer</code> function, and as second argument <code>recordsJson</code> which contain the data that we read from the server.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">queue</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="nx">queue</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">,</span> <span class="s2">&quot;/data&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">await</span><span class="p">(</span><span class="nx">makeGraphs</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
-<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">makeGraphs</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">recordsJson</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">makeGraphs</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">recordsJson</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">.</span>
 <span class="p">.</span>
 <span class="p">.</span>
 <span class="p">};</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Inside the makeGraphs function, we start by cleaning the projects data. We change the date type from string to datetime objects, and we set all timestamps' minutes and seconds to 0. We also make sure that the longitute and latitude types are numeric.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">records</span> <span class="o">=</span> <span class="nx">recordsJson</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">records</span> <span class="o">=</span> <span class="nx">recordsJson</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">dateFormat</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">);</span>
 
 <span class="nx">records</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
@@ -268,52 +268,52 @@
     <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">];</span>
     <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">];</span>
 <span class="p">});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we create a <code>crossfilter</code> instance.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">records</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">records</span><span class="p">);</span>
+</pre></div>
 
 
 <p>Next, we define data dimensions.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">dateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">];</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">genderDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">ageSegmentDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;age_segment&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">phoneBrandDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;phone_brand_en&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">locationdDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">allDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">d</span><span class="p">;});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we define data groups.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">numRecordsByDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">numRecordsByDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">genderGroup</span> <span class="o">=</span> <span class="nx">genderDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">ageSegmentGroup</span> <span class="o">=</span> <span class="nx">ageSegmentDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">phoneBrandGroup</span> <span class="o">=</span> <span class="nx">phoneBrandDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">locationGroup</span> <span class="o">=</span> <span class="nx">locationdDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">();</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we define the first and last timestamps. </p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">minDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">bottom</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;timestamp&quot;</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">minDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">bottom</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;timestamp&quot;</span><span class="p">];</span>
 <span class="kd">var</span> <span class="nx">maxDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;timestamp&quot;</span><span class="p">];</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next we define the DC.js charts. The first one is a number that will show the total number of events. The second one is a bar chart that will show the number of events by time. The remaining ones are row charts that will show the data broken down by gender, age segments, phone brands and Chinese provinces.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">numberRecordsND</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">numberDisplay</span><span class="p">(</span><span class="s2">&quot;#number-records-nd&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">numberRecordsND</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">numberDisplay</span><span class="p">(</span><span class="s2">&quot;#number-records-nd&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">timeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">barChart</span><span class="p">(</span><span class="s2">&quot;#time-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">genderChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#gender-row-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">ageSegmentChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#age-segment-row-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">phoneBrandChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#phone-brand-row-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">locationChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#location-row-chart&quot;</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>For each DC.js chart, we pass the necessary parameters.</p>
-<div class="highlight"><pre><span></span><code>  <span class="nx">numberRecordsND</span>
+<div class="highlight"><pre><span></span>  <span class="nx">numberRecordsND</span>
     <span class="p">.</span><span class="nx">formatNumber</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">valueAccessor</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">;</span> <span class="p">})</span>
     <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">all</span><span class="p">);</span>
@@ -370,16 +370,16 @@
         <span class="p">.</span><span class="nx">elasticX</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">labelOffsetY</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">xAxis</span><span class="p">().</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we initialize a leaflet map.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">);</span>
+</pre></div>
 
 
 <p>We define a function that will draw the map and adds a layer of heatmap representing the geographical distribution of events.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">drawMap</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">drawMap</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 
     <span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">31.75</span><span class="p">,</span> <span class="mi">110</span><span class="p">],</span> <span class="mi">4</span><span class="p">);</span>
     <span class="nx">mapLink</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt;&#39;</span><span class="p">;</span>
@@ -401,16 +401,16 @@
     <span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
 
 <span class="p">};</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>We call <code>drawMap()</code> function to display the map.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">drawMap</span><span class="p">();</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="nx">drawMap</span><span class="p">();</span>
+</pre></div>
 
 
 <p>Next we define the rules for updating the map. The code below makes sure that anytime we filter any DC.js charts, we redraw the map with the new filtered data.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dcCharts</span> <span class="o">=</span> <span class="p">[</span><span class="nx">timeChart</span><span class="p">,</span> <span class="nx">genderChart</span><span class="p">,</span> <span class="nx">ageSegmentChart</span><span class="p">,</span> <span class="nx">phoneBrandChart</span><span class="p">,</span> <span class="nx">locationChart</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><span class="nx">dcCharts</span> <span class="o">=</span> <span class="p">[</span><span class="nx">timeChart</span><span class="p">,</span> <span class="nx">genderChart</span><span class="p">,</span> <span class="nx">ageSegmentChart</span><span class="p">,</span> <span class="nx">phoneBrandChart</span><span class="p">,</span> <span class="nx">locationChart</span><span class="p">];</span>
 
 <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">dcCharts</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">dcChart</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">dcChart</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;filtered&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">chart</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
@@ -420,17 +420,17 @@
     <span class="nx">drawMap</span><span class="p">();</span>
     <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>And finally, we call the <code>dc.renderAll()</code> function for rendering all the charts.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
+</pre></div>
 
 
 <p>Inside the <code>index.html</code> file, we have to reference all the charts that we defined in the charts.js file. For example, if we want to show the timeline chart, we have to add the line below to the index.html file.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;time-chart&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;time-chart&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
 
 
 <h1>Conclusion</h1>

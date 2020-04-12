@@ -75,124 +75,9 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI escape sequences */
-/* The color values are a mix of
-   http://www.xcolors.net/dl/baskerville-ivorylight and
-   http://www.xcolors.net/dl/euphrasia */
-.ansi-black-fg {
-  color: #3E424D;
-}
-.ansi-black-bg {
-  background-color: #3E424D;
-}
-.ansi-black-intense-fg {
-  color: #282C36;
-}
-.ansi-black-intense-bg {
-  background-color: #282C36;
-}
-.ansi-red-fg {
-  color: #E75C58;
-}
-.ansi-red-bg {
-  background-color: #E75C58;
-}
-.ansi-red-intense-fg {
-  color: #B22B31;
-}
-.ansi-red-intense-bg {
-  background-color: #B22B31;
-}
-.ansi-green-fg {
-  color: #00A250;
-}
-.ansi-green-bg {
-  background-color: #00A250;
-}
-.ansi-green-intense-fg {
-  color: #007427;
-}
-.ansi-green-intense-bg {
-  background-color: #007427;
-}
-.ansi-yellow-fg {
-  color: #DDB62B;
-}
-.ansi-yellow-bg {
-  background-color: #DDB62B;
-}
-.ansi-yellow-intense-fg {
-  color: #B27D12;
-}
-.ansi-yellow-intense-bg {
-  background-color: #B27D12;
-}
-.ansi-blue-fg {
-  color: #208FFB;
-}
-.ansi-blue-bg {
-  background-color: #208FFB;
-}
-.ansi-blue-intense-fg {
-  color: #0065CA;
-}
-.ansi-blue-intense-bg {
-  background-color: #0065CA;
-}
-.ansi-magenta-fg {
-  color: #D160C4;
-}
-.ansi-magenta-bg {
-  background-color: #D160C4;
-}
-.ansi-magenta-intense-fg {
-  color: #A03196;
-}
-.ansi-magenta-intense-bg {
-  background-color: #A03196;
-}
-.ansi-cyan-fg {
-  color: #60C6C8;
-}
-.ansi-cyan-bg {
-  background-color: #60C6C8;
-}
-.ansi-cyan-intense-fg {
-  color: #258F8F;
-}
-.ansi-cyan-intense-bg {
-  background-color: #258F8F;
-}
-.ansi-white-fg {
-  color: #C5C1B4;
-}
-.ansi-white-bg {
-  background-color: #C5C1B4;
-}
-.ansi-white-intense-fg {
-  color: #A1A6B2;
-}
-.ansi-white-intense-bg {
-  background-color: #A1A6B2;
-}
-.ansi-default-inverse-fg {
-  color: #FFFFFF;
-}
-.ansi-default-inverse-bg {
-  background-color: #000000;
-}
-.ansi-bold {
-  font-weight: bold;
-}
-.ansi-underline {
-  text-decoration: underline;
-}
-/* The following styles are deprecated an will be removed in a future version */
+/* CSS font colors for translated ANSI colors. */
 .ansibold {
   font-weight: bold;
-}
-.ansi-inverse {
-  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -271,20 +156,12 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  position: relative;
-  overflow: visible;
-}
-div.cell:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: transparent;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
 }
 div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -297,39 +174,27 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected,
-div.cell.selected.jupyter-soft-selected {
+div.cell.selected {
   border-color: #ababab;
-}
-div.cell.selected:before,
-div.cell.selected.jupyter-soft-selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #42A5F5;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
 }
 @media print {
-  div.cell.selected,
-  div.cell.selected.jupyter-soft-selected {
+  div.cell.selected {
     border-color: transparent;
   }
 }
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-}
-.edit_mode div.cell.selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -525,9 +390,7 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  /* Note that this should set vertical padding only, since CodeMirror assumes
-       that horizontal padding will be set on CodeMirror pre */
-  padding: 0.4em 0;
+  padding: 0.4em;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -537,24 +400,11 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
-    use .CodeMirror-lines for vertical */
-  padding: 0 0.4em;
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
   border: 0;
   border-radius: 0;
-}
-.CodeMirror-cursor {
-  border-left: 1.4px solid black;
-}
-@media screen and (min-width: 2138px) and (max-width: 4319px) {
-  .CodeMirror-cursor {
-    border-left: 2px solid black;
-  }
-}
-@media screen and (min-width: 4320px) {
-  .CodeMirror-cursor {
-    border-left: 4px solid black;
-  }
 }
 /*
 
@@ -802,9 +652,6 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
-div.output_area .mglyph > img {
-  max-width: none;
-}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -843,7 +690,7 @@ div.output_area .mglyph > img {
 }
 div.output_area pre {
   margin: 0;
-  padding: 1px 0 1px 0;
+  padding: 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -965,10 +812,6 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
-.rendered_html ul:not(.list-inline),
-.rendered_html ol:not(.list-inline) {
-  padding-left: 2em;
-}
 
 
 
@@ -985,24 +828,16 @@ div.output_unrecognized a:hover {
 }
 
 
-
-
-
 .rendered_html pre,
-
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
+.rendered_html td,
 
-.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
+
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1018,11 +853,6 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
-
-.rendered_html * + .alert {
-  margin-top: 1em;
-}
-[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1073,15 +903,8 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
-.text_cell.rendered .rendered_html tr,
-.text_cell.rendered .rendered_html th,
-.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
-}
-.text_cell .dropzone .input_area {
-  border: 2px dashed #bababa;
-  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1181,45 +1004,82 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In a few years, massive open online courses, most commonly referred to as MOOCs, have exploded in popularity. These online courses provide high quality content taught by the best professors in their respective fields. With more that 20 million students, Coursera is one of the leaders of the MOOC movement. Coursera provides a platform that connects leading universities with students worldwide. I took my first Coursera course back in 2012, and since then I try to take one course a month.</p>
 <p>In 2015, Coursera has around 1000 courses offered by 100+ universities in more than 10 languages. With this huge number of courses, it became difficult to decide on what course to take.</p>
 <p>In this tutorial, I will combine coursera data together with social media data to assess the popularity of courses. To to this, I will use the Coursera API to retrieve the course catalogue, I will use the sharecount.com API to get social media metrics for each course, and I will use python's <code>pandas</code> library to query and order the courses by popularity.</p>
-<p><img src="/images/coursera_mining.png" alt="Alt Text"></p>
-<p><img src="/images/coursera_demo.gif" alt="Alt Text"></p>
+<p><img alt="Alt Text" src="/images/coursera_mining.png"/></p>
+<p><img alt="Alt Text" src="/images/coursera_demo.gif"/></p>
 <p>The source code for this tutorial can be found in this <a href="https://github.com/adilmoujahid/Coursera_Analytics">github repository</a>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="1.-Getting-courses-data">1. Getting courses data<a class="anchor-link" href="#1.-Getting-courses-data">&#182;</a></h1><p>Coursera provides an <a href="https://tech.coursera.org/app-platform/catalog/">API</a> for accessing the courses, universities, categories, instructors and sessions data. For this tutorial, we will be using the courses, universities and categories data.</p>
+<h1 id="1.-Getting-courses-data">1. Getting courses data<a class="anchor-link" href="#1.-Getting-courses-data">¶</a></h1><p>Coursera provides an <a href="https://tech.coursera.org/app-platform/catalog/">API</a> for accessing the courses, universities, categories, instructors and sessions data. For this tutorial, we will be using the courses, universities and categories data.</p>
 <p>in a Python shell, we start by importing the 3 following libraries: <code>urllib2</code>, <code>json</code>, and <code>pandas</code>. Both <code>urllib2</code> and <code>json</code> libraries are part of the core python libraries and don't need to be installed separately.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we access the coursera API and download the course catalogue. For each course, we are interested in 3 fields:</p>
 <ul>
@@ -1228,604 +1088,516 @@ h6:hover .anchor-link {
 <li><code>language</code>: The language code for the course. (e.g. 'en' means English.)</li>
 </ul>
 <p>We also include in the query <code>universities</code> and <code>categories</code> parameters. This will return the ids that matches each course with their corresponding universities and categories. Below are the <code>Python</code> commands to do so.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://api.coursera.org/api/catalog.v1/courses?fields=shortName,name,language&amp;includes=universities,categories&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">'https://api.coursera.org/api/catalog.v1/courses?fields=shortName,name,language&includes=universities,categories'</span><span class="p">)</span>
 <span class="n">courses_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">courses_response</span><span class="p">)</span>
-<span class="n">courses_data</span> <span class="o">=</span> <span class="n">courses_data</span><span class="p">[</span><span class="s1">&#39;elements&#39;</span><span class="p">]</span>
+<span class="n">courses_data</span> <span class="o">=</span> <span class="n">courses_data</span><span class="p">[</span><span class="s1">'elements'</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we want to get the data about the first course in the <code>courses_data</code> dictionary, we simply execute the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{u&#39;id&#39;: 2163,
- u&#39;language&#39;: u&#39;en&#39;,
- u&#39;links&#39;: {u&#39;categories&#39;: [8, 10, 19, 20], u&#39;universities&#39;: [65]},
- u&#39;name&#39;: u&#39;The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation&#39;,
- u&#39;shortName&#39;: u&#39;perceptivehunting&#39;}</pre>
-</div>
-
-</div>
-
+<pre>{u'id': 2163,
+ u'language': u'en',
+ u'links': {u'categories': [8, 10, 19, 20], u'universities': [65]},
+ u'name': u'The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation',
+ u'shortName': u'perceptivehunting'}</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The first course in the <code>courses_data</code> dictionary is 'The Land Ethic Reclaimed: Perceptive Hunting, Aldo Leopold, and Conservation', offered in English by the university with id=65, and under categories 8, 10, 19 and 20.</p>
 <p>Next, we retrieve the universities and categories data from the Coursera API. For the universities data, we are interested in the university name and its location.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://api.coursera.org/api/catalog.v1/universities?fields=name,locationCountry&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">'https://api.coursera.org/api/catalog.v1/universities?fields=name,locationCountry'</span><span class="p">)</span>
 <span class="n">universities_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">universities_response</span><span class="p">)</span>
-<span class="n">universities_data</span> <span class="o">=</span> <span class="n">universities_data</span><span class="p">[</span><span class="s1">&#39;elements&#39;</span><span class="p">]</span>
+<span class="n">universities_data</span> <span class="o">=</span> <span class="n">universities_data</span><span class="p">[</span><span class="s1">'elements'</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can get the data about the first university from <code>universities_data</code> by executing the following command:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[5]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{u&#39;id&#39;: 234,
- u&#39;links&#39;: {},
- u&#39;locationCountry&#39;: u&#39;CN&#39;,
- u&#39;name&#39;: u&#34;Xi&#39;an Jiaotong University&#34;,
- u&#39;shortName&#39;: u&#39;xjtu&#39;}</pre>
-</div>
-
-</div>
-
+<pre>{u'id': 234,
+ u'links': {},
+ u'locationCountry': u'CN',
+ u'name': u"Xi'an Jiaotong University",
+ u'shortName': u'xjtu'}</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similarly, we can get the courses categories data by executing the following commands.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://api.coursera.org/api/catalog.v1/categories&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">'https://api.coursera.org/api/catalog.v1/categories'</span><span class="p">)</span>
 <span class="n">categories_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">categories_response</span><span class="p">)</span>
-<span class="n">categories_data</span> <span class="o">=</span> <span class="n">categories_data</span><span class="p">[</span><span class="s1">&#39;elements&#39;</span><span class="p">]</span>
+<span class="n">categories_data</span> <span class="o">=</span> <span class="n">categories_data</span><span class="p">[</span><span class="s1">'elements'</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can get the data about the the first category from <code>categories_data</code> by executing the following command:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[7]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{u&#39;id&#39;: 5, u&#39;links&#39;: {}, u&#39;name&#39;: u&#39;Mathematics&#39;, u&#39;shortName&#39;: u&#39;math&#39;}</pre>
-</div>
-
-</div>
-
+<pre>{u'id': 5, u'links': {}, u'name': u'Mathematics', u'shortName': u'math'}</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="2.-Structuring-the-data">2. Structuring the data<a class="anchor-link" href="#2.-Structuring-the-data">&#182;</a></h1><p>In this section, we will structure the <code>courses_data</code>, <code>universities_data</code> and <code>categories_data</code> into <code>pandas</code> DataFrames, and we will map the universities and categories ids with the corresponding names. By the end of this section, we will have one <code>pandas</code> DataFrame called <code>courses_df</code> that will have all the necessary data in a well structured format.</p>
-<h2 id="2.1.-Putting-the-data-into-Pandas-DataFrames">2.1. Putting the data into Pandas DataFrames<a class="anchor-link" href="#2.1.-Putting-the-data-into-Pandas-DataFrames">&#182;</a></h2><p>First, we start by creating a <code>pandas</code> DataFrame for the courses data.</p>
-
+<h1 id="2.-Structuring-the-data">2. Structuring the data<a class="anchor-link" href="#2.-Structuring-the-data">¶</a></h1><p>In this section, we will structure the <code>courses_data</code>, <code>universities_data</code> and <code>categories_data</code> into <code>pandas</code> DataFrames, and we will map the universities and categories ids with the corresponding names. By the end of this section, we will have one <code>pandas</code> DataFrame called <code>courses_df</code> that will have all the necessary data in a well structured format.</p>
+<h2 id="2.1.-Putting-the-data-into-Pandas-DataFrames">2.1. Putting the data into Pandas DataFrames<a class="anchor-link" href="#2.1.-Putting-the-data-into-Pandas-DataFrames">¶</a></h2><p>First, we start by creating a <code>pandas</code> DataFrame for the courses data.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we add the <code>course_name</code>, <code>course_language</code>, <code>course_short_name</code>, <code>categories</code> and <code>universities</code> columns to the <code>courses_df</code> DataFrame.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_language&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_short_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;shortName&#39;</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;links&#39;</span><span class="p">][</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;categories&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;universities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;links&#39;</span><span class="p">][</span><span class="s1">&#39;universities&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;universities&#39;</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">&#39;links&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_name'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_language'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'language'</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_short_name'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'shortName'</span><span class="p">],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'categories'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'links'</span><span class="p">][</span><span class="s1">'categories'</span><span class="p">]</span> <span class="k">if</span> <span class="s1">'categories'</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'links'</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'universities'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_data</span><span class="p">:</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'links'</span><span class="p">][</span><span class="s1">'universities'</span><span class="p">]</span> <span class="k">if</span> <span class="s1">'universities'</span> <span class="ow">in</span> <span class="n">course_data</span><span class="p">[</span><span class="s1">'links'</span><span class="p">]</span> <span class="k">else</span> <span class="p">[],</span> <span class="n">courses_data</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can print the first 5 rows from the <code>courses_df</code> DataFrame by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[10]:</div>
-
-
-
+<div class="prompt output_prompt">Out[10]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>course_name</th>
-      <th>course_language</th>
-      <th>course_short_name</th>
-      <th>categories</th>
-      <th>universities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td> The Land Ethic Reclaimed: Perceptive Hunting, ...</td>
-      <td> en</td>
-      <td>  perceptivehunting</td>
-      <td> [8, 10, 19, 20]</td>
-      <td>  [65]</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>  Contraception: Choices, Culture and Consequences</td>
-      <td> en</td>
-      <td>      contraception</td>
-      <td>          [3, 8]</td>
-      <td>  [10]</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>    Introduction to Computational Arts: Processing</td>
-      <td> en</td>
-      <td> compartsprocessing</td>
-      <td>  [1, 4, 18, 22]</td>
-      <td> [117]</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>           Introduction to Programming with MATLAB</td>
-      <td> en</td>
-      <td>             matlab</td>
-      <td>        [12, 15]</td>
-      <td>  [37]</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>                   Experimentation for Improvement</td>
-      <td> en</td>
-      <td>        experiments</td>
-      <td>  [4, 5, 15, 16]</td>
-      <td> [148]</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>course_name</th>
+<th>course_language</th>
+<th>course_short_name</th>
+<th>categories</th>
+<th>universities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> The Land Ethic Reclaimed: Perceptive Hunting, ...</td>
+<td> en</td>
+<td>  perceptivehunting</td>
+<td> [8, 10, 19, 20]</td>
+<td>  [65]</td>
+</tr>
+<tr>
+<th>1</th>
+<td>  Contraception: Choices, Culture and Consequences</td>
+<td> en</td>
+<td>      contraception</td>
+<td>          [3, 8]</td>
+<td>  [10]</td>
+</tr>
+<tr>
+<th>2</th>
+<td>    Introduction to Computational Arts: Processing</td>
+<td> en</td>
+<td> compartsprocessing</td>
+<td>  [1, 4, 18, 22]</td>
+<td> [117]</td>
+</tr>
+<tr>
+<th>3</th>
+<td>           Introduction to Programming with MATLAB</td>
+<td> en</td>
+<td>             matlab</td>
+<td>        [12, 15]</td>
+<td>  [37]</td>
+</tr>
+<tr>
+<th>4</th>
+<td>                   Experimentation for Improvement</td>
+<td> en</td>
+<td>        experiments</td>
+<td>  [4, 5, 15, 16]</td>
+<td> [148]</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similarly, we create a <code>python</code> DataFrame for the universities data, and we add the <code>university_id</code>, <code>university_name</code> and <code>university_location_country</code> columns to it.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">universities_df</span><span class="p">[</span><span class="s1">&#39;university_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
-<span class="n">universities_df</span><span class="p">[</span><span class="s1">&#39;university_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
-<span class="n">universities_df</span><span class="p">[</span><span class="s1">&#39;university_location_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s1">&#39;locationCountry&#39;</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="n">universities_df</span><span class="p">[</span><span class="s1">'university_id'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="n">universities_df</span><span class="p">[</span><span class="s1">'university_name'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
+<span class="n">universities_df</span><span class="p">[</span><span class="s1">'university_location_country'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">university_data</span><span class="p">:</span> <span class="n">university_data</span><span class="p">[</span><span class="s1">'locationCountry'</span><span class="p">],</span> <span class="n">universities_data</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we change the <code>universities_df</code> index to <code>university_id</code>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_df</span> <span class="o">=</span> <span class="n">universities_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;university_id&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_df</span> <span class="o">=</span> <span class="n">universities_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'university_id'</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can print the first 5 rows from the <code>universities_df</code> DataFrame by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">universities_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
+<div class="prompt output_prompt">Out[13]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>university_name</th>
-      <th>university_location_country</th>
-    </tr>
-    <tr>
-      <th>university_id</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>234</th>
-      <td>               Xi'an Jiaotong University</td>
-      <td> CN</td>
-    </tr>
-    <tr>
-      <th>120</th>
-      <td>                University of New Mexico</td>
-      <td> US</td>
-    </tr>
-    <tr>
-      <th>10 </th>
-      <td> University of California, San Francisco</td>
-      <td> US</td>
-    </tr>
-    <tr>
-      <th>56 </th>
-      <td>    University of California, Santa Cruz</td>
-      <td> US</td>
-    </tr>
-    <tr>
-      <th>24 </th>
-      <td>          Hebrew University of Jerusalem</td>
-      <td>   </td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>university_name</th>
+<th>university_location_country</th>
+</tr>
+<tr>
+<th>university_id</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>234</th>
+<td>               Xi'an Jiaotong University</td>
+<td> CN</td>
+</tr>
+<tr>
+<th>120</th>
+<td>                University of New Mexico</td>
+<td> US</td>
+</tr>
+<tr>
+<th>10 </th>
+<td> University of California, San Francisco</td>
+<td> US</td>
+</tr>
+<tr>
+<th>56 </th>
+<td>    University of California, Santa Cruz</td>
+<td> US</td>
+</tr>
+<tr>
+<th>24 </th>
+<td>          Hebrew University of Jerusalem</td>
+<td> </td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we create a <code>python</code> DataFrame for the categories data, and we add the <code>category_id</code> and <code>category_name</code> columns to it.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">categories_df</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
-<span class="n">categories_df</span><span class="p">[</span><span class="s1">&#39;category_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
+<span class="n">categories_df</span><span class="p">[</span><span class="s1">'category_id'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
+<span class="n">categories_df</span><span class="p">[</span><span class="s1">'category_name'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">category_data</span><span class="p">:</span> <span class="n">category_data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="n">categories_data</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similarly, we change the <code>categories_df</code> index to <code>category_id</code>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_df</span> <span class="o">=</span> <span class="n">categories_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;category_id&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_df</span> <span class="o">=</span> <span class="n">categories_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'category_id'</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can print the first 5 rows from the <code>categories_df</code> DataFrame by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">categories_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
+<div class="prompt output_prompt">Out[16]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category_name</th>
-    </tr>
-    <tr>
-      <th>category_id</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5 </th>
-      <td>             Mathematics</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td> Biology &amp; Life Sciences</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>               Chemistry</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td> Energy &amp; Earth Sciences</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>               Education</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>category_name</th>
+</tr>
+<tr>
+<th>category_id</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>5 </th>
+<td>             Mathematics</td>
+</tr>
+<tr>
+<th>10</th>
+<td> Biology & Life Sciences</td>
+</tr>
+<tr>
+<th>24</th>
+<td>               Chemistry</td>
+</tr>
+<tr>
+<th>25</th>
+<td> Energy & Earth Sciences</td>
+</tr>
+<tr>
+<th>14</th>
+<td>               Education</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.2.-Mapping-ids-with-the-corresponding-names">2.2. Mapping ids with the corresponding names<a class="anchor-link" href="#2.2.-Mapping-ids-with-the-corresponding-names">&#182;</a></h2><p>In the <code>courses_df</code> DataFrame, the universities and the categories are referred to by their ids and not by their name. To change that, we start by defining a function that change the ids to their corresponding names.</p>
-
+<h2 id="2.2.-Mapping-ids-with-the-corresponding-names">2.2. Mapping ids with the corresponding names<a class="anchor-link" href="#2.2.-Mapping-ids-with-the-corresponding-names">¶</a></h2><p>In the <code>courses_df</code> DataFrame, the universities and the categories are referred to by their ids and not by their name. To change that, we start by defining a function that change the ids to their corresponding names.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">map_ids_names</span><span class="p">(</span><span class="n">ids_array</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
     <span class="n">names_array</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">object_id</span> <span class="ow">in</span> <span class="n">ids_array</span><span class="p">:</span>
@@ -1835,792 +1607,711 @@ h6:hover .anchor-link {
             <span class="k">continue</span>
     <span class="k">return</span> <span class="n">names_array</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For example, we can print the categories with ids [4,5,15,16] by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">map_ids_names</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s1">&#39;category_name&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">map_ids_names</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s1">'category_name'</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[18]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[u&#39;Information, Tech &amp; Design&#39;,
- u&#39;Mathematics&#39;,
- u&#39;Engineering&#39;,
- u&#39;Statistics and Data Analysis&#39;]</pre>
-</div>
-
-</div>
-
+<pre>[u'Information, Tech & Design',
+ u'Mathematics',
+ u'Engineering',
+ u'Statistics and Data Analysis']</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similarly, we can print the name of the university with id 234 by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">map_ids_names</span><span class="p">([</span><span class="mi">234</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s1">&#39;university_name&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">map_ids_names</span><span class="p">([</span><span class="mi">234</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s1">'university_name'</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[19]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[19]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[u&#34;Xi&#39;an Jiaotong University&#34;]</pre>
-</div>
-
-</div>
-
+<pre>[u"Xi'an Jiaotong University"]</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we add both the categories and universities name to the <code>courses_df</code> DataFrame.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;categories_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s1">&#39;category_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;universities_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;universities&#39;</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s1">&#39;university_name&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'categories_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'categories'</span><span class="p">],</span> <span class="n">categories_df</span><span class="p">,</span> <span class="s1">'category_name'</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'universities_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">courses_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">map_ids_names</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'universities'</span><span class="p">],</span> <span class="n">universities_df</span><span class="p">,</span> <span class="s1">'university_name'</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.3.-Adding-course-URLs-to-the-data">2.3. Adding course URLs to the data<a class="anchor-link" href="#2.3.-Adding-course-URLs-to-the-data">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The URL to each Coursera course looks like <code>https://www.coursera.org/course/&lt;shortName&gt;</code>. We can add the URLs to the <code>courses_df</code> DataFrame by executing the command below.</p>
-
+<h2 id="2.3.-Adding-course-URLs-to-the-data">2.3. Adding course URLs to the data<a class="anchor-link" href="#2.3.-Adding-course-URLs-to-the-data">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The URL to each Coursera course looks like <code>https://www.coursera.org/course/<shortName></code>. We can add the URLs to the <code>courses_df</code> DataFrame by executing the command below.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;https://www.coursera.org/course/&#39;</span> <span class="o">+</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_short_name&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_url'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'https://www.coursera.org/course/'</span> <span class="o">+</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_short_name'</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can print the first 5 rows from the <code>courses_df</code> DataFrame by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[22]:</div>
-
-
-
+<div class="prompt output_prompt">Out[22]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>course_name</th>
-      <th>course_language</th>
-      <th>course_short_name</th>
-      <th>categories</th>
-      <th>universities</th>
-      <th>categories_name</th>
-      <th>universities_name</th>
-      <th>course_url</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td> The Land Ethic Reclaimed: Perceptive Hunting, ...</td>
-      <td> en</td>
-      <td>  perceptivehunting</td>
-      <td> [8, 10, 19, 20]</td>
-      <td>  [65]</td>
-      <td> [Health &amp; Society, Biology &amp; Life Sciences, Fo...</td>
-      <td>         [University of Wisconsin–Madison]</td>
-      <td> https://www.coursera.org/course/perceptivehunting</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>  Contraception: Choices, Culture and Consequences</td>
-      <td> en</td>
-      <td>      contraception</td>
-      <td>          [3, 8]</td>
-      <td>  [10]</td>
-      <td>                      [Medicine, Health &amp; Society]</td>
-      <td> [University of California, San Francisco]</td>
-      <td>     https://www.coursera.org/course/contraception</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>    Introduction to Computational Arts: Processing</td>
-      <td> en</td>
-      <td> compartsprocessing</td>
-      <td>  [1, 4, 18, 22]</td>
-      <td> [117]</td>
-      <td> [Computer Science: Theory, Information, Tech &amp;...</td>
-      <td>            [State University of New York]</td>
-      <td> https://www.coursera.org/course/compartsproces...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>           Introduction to Programming with MATLAB</td>
-      <td> en</td>
-      <td>             matlab</td>
-      <td>        [12, 15]</td>
-      <td>  [37]</td>
-      <td> [Computer Science: Software Engineering, Engin...</td>
-      <td>                   [Vanderbilt University]</td>
-      <td>            https://www.coursera.org/course/matlab</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>                   Experimentation for Improvement</td>
-      <td> en</td>
-      <td>        experiments</td>
-      <td>  [4, 5, 15, 16]</td>
-      <td> [148]</td>
-      <td> [Information, Tech &amp; Design, Mathematics, Engi...</td>
-      <td>                     [McMaster University]</td>
-      <td>       https://www.coursera.org/course/experiments</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>course_name</th>
+<th>course_language</th>
+<th>course_short_name</th>
+<th>categories</th>
+<th>universities</th>
+<th>categories_name</th>
+<th>universities_name</th>
+<th>course_url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> The Land Ethic Reclaimed: Perceptive Hunting, ...</td>
+<td> en</td>
+<td>  perceptivehunting</td>
+<td> [8, 10, 19, 20]</td>
+<td>  [65]</td>
+<td> [Health & Society, Biology & Life Sciences, Fo...</td>
+<td>         [University of Wisconsin–Madison]</td>
+<td> https://www.coursera.org/course/perceptivehunting</td>
+</tr>
+<tr>
+<th>1</th>
+<td>  Contraception: Choices, Culture and Consequences</td>
+<td> en</td>
+<td>      contraception</td>
+<td>          [3, 8]</td>
+<td>  [10]</td>
+<td>                      [Medicine, Health & Society]</td>
+<td> [University of California, San Francisco]</td>
+<td>     https://www.coursera.org/course/contraception</td>
+</tr>
+<tr>
+<th>2</th>
+<td>    Introduction to Computational Arts: Processing</td>
+<td> en</td>
+<td> compartsprocessing</td>
+<td>  [1, 4, 18, 22]</td>
+<td> [117]</td>
+<td> [Computer Science: Theory, Information, Tech &...</td>
+<td>            [State University of New York]</td>
+<td> https://www.coursera.org/course/compartsproces...</td>
+</tr>
+<tr>
+<th>3</th>
+<td>           Introduction to Programming with MATLAB</td>
+<td> en</td>
+<td>             matlab</td>
+<td>        [12, 15]</td>
+<td>  [37]</td>
+<td> [Computer Science: Software Engineering, Engin...</td>
+<td>                   [Vanderbilt University]</td>
+<td>            https://www.coursera.org/course/matlab</td>
+</tr>
+<tr>
+<th>4</th>
+<td>                   Experimentation for Improvement</td>
+<td> en</td>
+<td>        experiments</td>
+<td>  [4, 5, 15, 16]</td>
+<td> [148]</td>
+<td> [Information, Tech & Design, Mathematics, Engi...</td>
+<td>                     [McMaster University]</td>
+<td>       https://www.coursera.org/course/experiments</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="3.-Getting-social-sharing-counts">3. Getting social sharing counts<a class="anchor-link" href="#3.-Getting-social-sharing-counts">&#182;</a></h1><h2 id="3.1.-Getting-social-counts-from-sharedcount.com">3.1. Getting social counts from sharedcount.com<a class="anchor-link" href="#3.1.-Getting-social-counts-from-sharedcount.com">&#182;</a></h2><p>SharedCount is a service that looks up the number of times a given URL has been shared on major social networks. We can get the  social shares number of any web page by going to sharedcount.com, entering the page URL in the input field and pressing the "Analyze" button. Below is the output of the very popular Machine Learning course from Stanford that has the URL <code>https://www.coursera.org/course/ml</code>.</p>
-<p><img src="/images/coursera-sharedcount.png" alt="Alt Text"></p>
-<h2 id="3.2.-Getting-social-counts-using-the-sharedcount.com-API">3.2. Getting social counts using the sharedcount.com API<a class="anchor-link" href="#3.2.-Getting-social-counts-using-the-sharedcount.com-API">&#182;</a></h2><p>In our dataset, we want to get the social share of more than 1000 courses. Looking up each course URL from the browser is not efficient. Fortunately, sharedcount.com provides an API that we can use for automating this process. In order to use the API, you should create an account and get your API key. The API allows a daily quota of 10,000 requests which more than enough for this use case. We start by defining a function that returns the social shares from sharecount.com</p>
-
+<h1 id="3.-Getting-social-sharing-counts">3. Getting social sharing counts<a class="anchor-link" href="#3.-Getting-social-sharing-counts">¶</a></h1><h2 id="3.1.-Getting-social-counts-from-sharedcount.com">3.1. Getting social counts from sharedcount.com<a class="anchor-link" href="#3.1.-Getting-social-counts-from-sharedcount.com">¶</a></h2><p>SharedCount is a service that looks up the number of times a given URL has been shared on major social networks. We can get the  social shares number of any web page by going to sharedcount.com, entering the page URL in the input field and pressing the "Analyze" button. Below is the output of the very popular Machine Learning course from Stanford that has the URL <code>https://www.coursera.org/course/ml</code>.</p>
+<p><img alt="Alt Text" src="/images/coursera-sharedcount.png"/></p>
+<h2 id="3.2.-Getting-social-counts-using-the-sharedcount.com-API">3.2. Getting social counts using the sharedcount.com API<a class="anchor-link" href="#3.2.-Getting-social-counts-using-the-sharedcount.com-API">¶</a></h2><p>In our dataset, we want to get the social share of more than 1000 courses. Looking up each course URL from the browser is not efficient. Fortunately, sharedcount.com provides an API that we can use for automating this process. In order to use the API, you should create an account and get your API key. The API allows a daily quota of 10,000 requests which more than enough for this use case. We start by defining a function that returns the social shares from sharecount.com</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">get_social_metrics</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">api_key</span><span class="p">):</span>
-    <span class="n">sharedcount_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://free.sharedcount.com/?url=&#39;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;&amp;apikey=&#39;</span> <span class="o">+</span> <span class="n">api_key</span><span class="p">)</span>
+    <span class="n">sharedcount_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">'https://free.sharedcount.com/?url='</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s1">'&apikey='</span> <span class="o">+</span> <span class="n">api_key</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sharedcount_response</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next we define a variable that holds the API key. Make sure to enter your API key.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">SHAREDCOUNT_API_KEY</span> <span class="o">=</span> <span class="s1">&#39;XXXXXXXXXXXXXXXX&#39;</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">SHAREDCOUNT_API_KEY</span> <span class="o">=</span> <span class="s1">'XXXXXXXXXXXXXXXX'</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;sharedcount_metrics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_url</span><span class="p">:</span> <span class="n">get_social_metrics</span><span class="p">(</span><span class="n">course_url</span><span class="p">,</span> <span class="n">SHAREDCOUNT_API_KEY</span><span class="p">),</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_url&#39;</span><span class="p">])</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'sharedcount_metrics'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">course_url</span><span class="p">:</span> <span class="n">get_social_metrics</span><span class="p">(</span><span class="n">course_url</span><span class="p">,</span> <span class="n">SHAREDCOUNT_API_KEY</span><span class="p">),</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_url'</span><span class="p">])</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this tutorial, we will be only using the social share count from Twitter, LinkedIn and Facebook, We can add this information to the <code>courses_df</code> DataFrame by executing the commands below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;twitter_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sharedcount</span><span class="p">:</span> <span class="n">sharedcount</span><span class="p">[</span><span class="s1">&#39;Twitter&#39;</span><span class="p">],</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;sharedcount_metrics&#39;</span><span class="p">])</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;linkedin_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sharedcount</span><span class="p">:</span> <span class="n">sharedcount</span><span class="p">[</span><span class="s1">&#39;LinkedIn&#39;</span><span class="p">],</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;sharedcount_metrics&#39;</span><span class="p">])</span>
-<span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;facebook_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sharedcount</span><span class="p">:</span> <span class="n">sharedcount</span><span class="p">[</span><span class="s1">&#39;Facebook&#39;</span><span class="p">][</span><span class="s1">&#39;total_count&#39;</span><span class="p">],</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;sharedcount_metrics&#39;</span><span class="p">])</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'twitter_count'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sharedcount</span><span class="p">:</span> <span class="n">sharedcount</span><span class="p">[</span><span class="s1">'Twitter'</span><span class="p">],</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">'sharedcount_metrics'</span><span class="p">])</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'linkedin_count'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sharedcount</span><span class="p">:</span> <span class="n">sharedcount</span><span class="p">[</span><span class="s1">'LinkedIn'</span><span class="p">],</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">'sharedcount_metrics'</span><span class="p">])</span>
+<span class="n">courses_df</span><span class="p">[</span><span class="s1">'facebook_count'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sharedcount</span><span class="p">:</span> <span class="n">sharedcount</span><span class="p">[</span><span class="s1">'Facebook'</span><span class="p">][</span><span class="s1">'total_count'</span><span class="p">],</span> <span class="n">courses_df</span><span class="p">[</span><span class="s1">'sharedcount_metrics'</span><span class="p">])</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can print the first 5 rows from the <code>courses_df</code> DataFrame by executing the command below.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">courses_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[27]:</div>
-
-
-
+<div class="prompt output_prompt">Out[27]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>course_name</th>
-      <th>course_language</th>
-      <th>course_short_name</th>
-      <th>categories</th>
-      <th>universities</th>
-      <th>categories_name</th>
-      <th>universities_name</th>
-      <th>course_url</th>
-      <th>sharedcount_metrics</th>
-      <th>twitter_count</th>
-      <th>linkedin_count</th>
-      <th>facebook_count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td> The Land Ethic Reclaimed: Perceptive Hunting, ...</td>
-      <td> en</td>
-      <td>  perceptivehunting</td>
-      <td> [8, 10, 19, 20]</td>
-      <td>  [65]</td>
-      <td> [Health &amp; Society, Biology &amp; Life Sciences, Fo...</td>
-      <td>         [University of Wisconsin–Madison]</td>
-      <td> https://www.coursera.org/course/perceptivehunting</td>
-      <td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
-      <td>  92</td>
-      <td>   1</td>
-      <td> 1032</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>  Contraception: Choices, Culture and Consequences</td>
-      <td> en</td>
-      <td>      contraception</td>
-      <td>          [3, 8]</td>
-      <td>  [10]</td>
-      <td>                      [Medicine, Health &amp; Society]</td>
-      <td> [University of California, San Francisco]</td>
-      <td>     https://www.coursera.org/course/contraception</td>
-      <td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
-      <td> 199</td>
-      <td>   3</td>
-      <td> 1704</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>    Introduction to Computational Arts: Processing</td>
-      <td> en</td>
-      <td> compartsprocessing</td>
-      <td>  [1, 4, 18, 22]</td>
-      <td> [117]</td>
-      <td> [Computer Science: Theory, Information, Tech &amp;...</td>
-      <td>            [State University of New York]</td>
-      <td> https://www.coursera.org/course/compartsproces...</td>
-      <td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
-      <td> 168</td>
-      <td>   1</td>
-      <td> 1009</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>           Introduction to Programming with MATLAB</td>
-      <td> en</td>
-      <td>             matlab</td>
-      <td>        [12, 15]</td>
-      <td>  [37]</td>
-      <td> [Computer Science: Software Engineering, Engin...</td>
-      <td>                   [Vanderbilt University]</td>
-      <td>            https://www.coursera.org/course/matlab</td>
-      <td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
-      <td>   1</td>
-      <td>   0</td>
-      <td>   12</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>                   Experimentation for Improvement</td>
-      <td> en</td>
-      <td>        experiments</td>
-      <td>  [4, 5, 15, 16]</td>
-      <td> [148]</td>
-      <td> [Information, Tech &amp; Design, Mathematics, Engi...</td>
-      <td>                     [McMaster University]</td>
-      <td>       https://www.coursera.org/course/experiments</td>
-      <td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
-      <td>  48</td>
-      <td> 122</td>
-      <td>  314</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>course_name</th>
+<th>course_language</th>
+<th>course_short_name</th>
+<th>categories</th>
+<th>universities</th>
+<th>categories_name</th>
+<th>universities_name</th>
+<th>course_url</th>
+<th>sharedcount_metrics</th>
+<th>twitter_count</th>
+<th>linkedin_count</th>
+<th>facebook_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> The Land Ethic Reclaimed: Perceptive Hunting, ...</td>
+<td> en</td>
+<td>  perceptivehunting</td>
+<td> [8, 10, 19, 20]</td>
+<td>  [65]</td>
+<td> [Health & Society, Biology & Life Sciences, Fo...</td>
+<td>         [University of Wisconsin–Madison]</td>
+<td> https://www.coursera.org/course/perceptivehunting</td>
+<td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
+<td>  92</td>
+<td>   1</td>
+<td> 1032</td>
+</tr>
+<tr>
+<th>1</th>
+<td>  Contraception: Choices, Culture and Consequences</td>
+<td> en</td>
+<td>      contraception</td>
+<td>          [3, 8]</td>
+<td>  [10]</td>
+<td>                      [Medicine, Health & Society]</td>
+<td> [University of California, San Francisco]</td>
+<td>     https://www.coursera.org/course/contraception</td>
+<td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
+<td> 199</td>
+<td>   3</td>
+<td> 1704</td>
+</tr>
+<tr>
+<th>2</th>
+<td>    Introduction to Computational Arts: Processing</td>
+<td> en</td>
+<td> compartsprocessing</td>
+<td>  [1, 4, 18, 22]</td>
+<td> [117]</td>
+<td> [Computer Science: Theory, Information, Tech &...</td>
+<td>            [State University of New York]</td>
+<td> https://www.coursera.org/course/compartsproces...</td>
+<td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
+<td> 168</td>
+<td>   1</td>
+<td> 1009</td>
+</tr>
+<tr>
+<th>3</th>
+<td>           Introduction to Programming with MATLAB</td>
+<td> en</td>
+<td>             matlab</td>
+<td>        [12, 15]</td>
+<td>  [37]</td>
+<td> [Computer Science: Software Engineering, Engin...</td>
+<td>                   [Vanderbilt University]</td>
+<td>            https://www.coursera.org/course/matlab</td>
+<td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
+<td>   1</td>
+<td>   0</td>
+<td>   12</td>
+</tr>
+<tr>
+<th>4</th>
+<td>                   Experimentation for Improvement</td>
+<td> en</td>
+<td>        experiments</td>
+<td>  [4, 5, 15, 16]</td>
+<td> [148]</td>
+<td> [Information, Tech & Design, Mathematics, Engi...</td>
+<td>                     [McMaster University]</td>
+<td>       https://www.coursera.org/course/experiments</td>
+<td> {u'StumbleUpon': 0, u'Reddit': 0, u'Delicious'...</td>
+<td>  48</td>
+<td> 122</td>
+<td>  314</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="4.-Querying-the-data">4. Querying the data<a class="anchor-link" href="#4.-Querying-the-data">&#182;</a></h1><p>Now that we have all Coursera courses with the corresponding number of social shares structured in a <code>Pandas</code> DataFrame, we can write queries that return the top courses for a specific category or language.</p>
-<h2 id="4.1.-Getting-the-top-10-most-popular-English-courses-by-Twitter-count">4.1. Getting the top 10 most popular English courses by Twitter count<a class="anchor-link" href="#4.1.-Getting-the-top-10-most-popular-English-courses-by-Twitter-count">&#182;</a></h2>
+<h1 id="4.-Querying-the-data">4. Querying the data<a class="anchor-link" href="#4.-Querying-the-data">¶</a></h1><p>Now that we have all Coursera courses with the corresponding number of social shares structured in a <code>Pandas</code> DataFrame, we can write queries that return the top courses for a specific category or language.</p>
+<h2 id="4.1.-Getting-the-top-10-most-popular-English-courses-by-Twitter-count">4.1. Getting the top 10 most popular English courses by Twitter count<a class="anchor-link" href="#4.1.-Getting-the-top-10-most-popular-English-courses-by-Twitter-count">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cols_to_show</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;course_name&#39;</span><span class="p">,</span> <span class="s1">&#39;universities_name&#39;</span><span class="p">,</span> <span class="s1">&#39;categories_name&#39;</span><span class="p">,</span> <span class="s1">&#39;twitter_count&#39;</span><span class="p">,</span> <span class="s1">&#39;linkedin_count&#39;</span><span class="p">,</span> <span class="s1">&#39;facebook_count&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cols_to_show</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'course_name'</span><span class="p">,</span> <span class="s1">'universities_name'</span><span class="p">,</span> <span class="s1">'categories_name'</span><span class="p">,</span> <span class="s1">'twitter_count'</span><span class="p">,</span> <span class="s1">'linkedin_count'</span><span class="p">,</span> <span class="s1">'facebook_count'</span><span class="p">]</span>
 <span class="c1">#Get English courses</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">courses_df</span><span class="p">[</span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_language&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;en&#39;</span><span class="p">]</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">courses_df</span><span class="p">[</span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_language'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'en'</span><span class="p">]</span>
 <span class="c1">#Sort the courses by twitter count and get the top 10 courses</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;twitter_count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'twitter_count'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">query</span><span class="p">[</span><span class="n">cols_to_show</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[28]:</div>
-
-
-
+<div class="prompt output_prompt">Out[28]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>course_name</th>
-      <th>universities_name</th>
-      <th>categories_name</th>
-      <th>twitter_count</th>
-      <th>linkedin_count</th>
-      <th>facebook_count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>428</th>
-      <td>                                      Gamification</td>
-      <td>               [University of Pennsylvania]</td>
-      <td> [Information, Tech &amp; Design, Business &amp; Manage...</td>
-      <td> 10302</td>
-      <td> 8358</td>
-      <td> 23322</td>
-    </tr>
-    <tr>
-      <th>209</th>
-      <td>        Functional Programming Principles in Scala</td>
-      <td> [École Polytechnique Fédérale de Lausanne]</td>
-      <td>          [Computer Science: Software Engineering]</td>
-      <td>  6712</td>
-      <td>  699</td>
-      <td>  9922</td>
-    </tr>
-    <tr>
-      <th>389</th>
-      <td>                                  Machine Learning</td>
-      <td>                      [Stanford University]</td>
-      <td> [Statistics and Data Analysis, Computer Scienc...</td>
-      <td>  5792</td>
-      <td>  306</td>
-      <td> 21879</td>
-    </tr>
-    <tr>
-      <th>321</th>
-      <td>                                    Cryptography I</td>
-      <td>                      [Stanford University]</td>
-      <td> [Computer Science: Theory, Computer Science: S...</td>
-      <td>  4367</td>
-      <td> 8358</td>
-      <td> 15066</td>
-    </tr>
-    <tr>
-      <th>258</th>
-      <td>                           Social Network Analysis</td>
-      <td>                   [University of Michigan]</td>
-      <td> [Information, Tech &amp; Design, Computer Science:...</td>
-      <td>  3895</td>
-      <td>   39</td>
-      <td> 10315</td>
-    </tr>
-    <tr>
-      <th>857</th>
-      <td>                Principles of Reactive Programming</td>
-      <td> [École Polytechnique Fédérale de Lausanne]</td>
-      <td>          [Computer Science: Software Engineering]</td>
-      <td>  3216</td>
-      <td> 8358</td>
-      <td>  2739</td>
-    </tr>
-    <tr>
-      <th>761</th>
-      <td>              Think Again: How to Reason and Argue</td>
-      <td>                          [Duke University]</td>
-      <td>   [Humanities , Teacher Professional Development]</td>
-      <td>  2950</td>
-      <td>  160</td>
-      <td>     0</td>
-    </tr>
-    <tr>
-      <th>685</th>
-      <td>                                    Model Thinking</td>
-      <td>                   [University of Michigan]</td>
-      <td>                [Economics &amp; Finance, Humanities ]</td>
-      <td>  2721</td>
-      <td>  370</td>
-      <td> 10485</td>
-    </tr>
-    <tr>
-      <th>23 </th>
-      <td> An Introduction to Interactive Programming in ...</td>
-      <td>                          [Rice University]</td>
-      <td>          [Computer Science: Software Engineering]</td>
-      <td>  2630</td>
-      <td> 8358</td>
-      <td>   430</td>
-    </tr>
-    <tr>
-      <th>33 </th>
-      <td>                   E-learning and Digital Cultures</td>
-      <td>              [The University of Edinburgh]</td>
-      <td>                                       [Education]</td>
-      <td>  2629</td>
-      <td> 8358</td>
-      <td>  5186</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>course_name</th>
+<th>universities_name</th>
+<th>categories_name</th>
+<th>twitter_count</th>
+<th>linkedin_count</th>
+<th>facebook_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>428</th>
+<td>                                      Gamification</td>
+<td>               [University of Pennsylvania]</td>
+<td> [Information, Tech & Design, Business & Manage...</td>
+<td> 10302</td>
+<td> 8358</td>
+<td> 23322</td>
+</tr>
+<tr>
+<th>209</th>
+<td>        Functional Programming Principles in Scala</td>
+<td> [École Polytechnique Fédérale de Lausanne]</td>
+<td>          [Computer Science: Software Engineering]</td>
+<td>  6712</td>
+<td>  699</td>
+<td>  9922</td>
+</tr>
+<tr>
+<th>389</th>
+<td>                                  Machine Learning</td>
+<td>                      [Stanford University]</td>
+<td> [Statistics and Data Analysis, Computer Scienc...</td>
+<td>  5792</td>
+<td>  306</td>
+<td> 21879</td>
+</tr>
+<tr>
+<th>321</th>
+<td>                                    Cryptography I</td>
+<td>                      [Stanford University]</td>
+<td> [Computer Science: Theory, Computer Science: S...</td>
+<td>  4367</td>
+<td> 8358</td>
+<td> 15066</td>
+</tr>
+<tr>
+<th>258</th>
+<td>                           Social Network Analysis</td>
+<td>                   [University of Michigan]</td>
+<td> [Information, Tech & Design, Computer Science:...</td>
+<td>  3895</td>
+<td>   39</td>
+<td> 10315</td>
+</tr>
+<tr>
+<th>857</th>
+<td>                Principles of Reactive Programming</td>
+<td> [École Polytechnique Fédérale de Lausanne]</td>
+<td>          [Computer Science: Software Engineering]</td>
+<td>  3216</td>
+<td> 8358</td>
+<td>  2739</td>
+</tr>
+<tr>
+<th>761</th>
+<td>              Think Again: How to Reason and Argue</td>
+<td>                          [Duke University]</td>
+<td>   [Humanities , Teacher Professional Development]</td>
+<td>  2950</td>
+<td>  160</td>
+<td>     0</td>
+</tr>
+<tr>
+<th>685</th>
+<td>                                    Model Thinking</td>
+<td>                   [University of Michigan]</td>
+<td>                [Economics & Finance, Humanities ]</td>
+<td>  2721</td>
+<td>  370</td>
+<td> 10485</td>
+</tr>
+<tr>
+<th>23 </th>
+<td> An Introduction to Interactive Programming in ...</td>
+<td>                          [Rice University]</td>
+<td>          [Computer Science: Software Engineering]</td>
+<td>  2630</td>
+<td> 8358</td>
+<td>   430</td>
+</tr>
+<tr>
+<th>33 </th>
+<td>                   E-learning and Digital Cultures</td>
+<td>              [The University of Edinburgh]</td>
+<td>                                       [Education]</td>
+<td>  2629</td>
+<td> 8358</td>
+<td>  5186</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.1.-Getting-the-top-10-most-popular-English-courses-in-&quot;Statistics-and-Data-Analysis&quot;-by-Twitter-count">4.1. Getting the top 10 most popular English courses in "Statistics and Data Analysis" by Twitter count<a class="anchor-link" href="#4.1.-Getting-the-top-10-most-popular-English-courses-in-&quot;Statistics-and-Data-Analysis&quot;-by-Twitter-count">&#182;</a></h2>
+<h2 id='4.1.-Getting-the-top-10-most-popular-English-courses-in-"Statistics-and-Data-Analysis"-by-Twitter-count'>4.1. Getting the top 10 most popular English courses in "Statistics and Data Analysis" by Twitter count<a class="anchor-link" href='#4.1.-Getting-the-top-10-most-popular-English-courses-in-"Statistics-and-Data-Analysis"-by-Twitter-count'>¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Get English courses</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">courses_df</span><span class="p">[</span><span class="n">courses_df</span><span class="p">[</span><span class="s1">&#39;course_language&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;en&#39;</span><span class="p">]</span>
-<span class="c1">#Filter the &quot;Statistics and Data Analysis&quot; courses</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="n">query</span><span class="p">[</span><span class="s1">&#39;categories_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">categories_name</span><span class="p">:</span> <span class="s1">&#39;Statistics and Data Analysis&#39;</span> <span class="ow">in</span> <span class="n">categories_name</span><span class="p">)]</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">courses_df</span><span class="p">[</span><span class="n">courses_df</span><span class="p">[</span><span class="s1">'course_language'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'en'</span><span class="p">]</span>
+<span class="c1">#Filter the "Statistics and Data Analysis" courses</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="n">query</span><span class="p">[</span><span class="s1">'categories_name'</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">categories_name</span><span class="p">:</span> <span class="s1">'Statistics and Data Analysis'</span> <span class="ow">in</span> <span class="n">categories_name</span><span class="p">)]</span>
 <span class="c1">#Sort the courses by twitter count and get the top 10 courses</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;twitter_count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'twitter_count'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">query</span><span class="p">[</span><span class="n">cols_to_show</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[29]:</div>
-
-
-
+<div class="prompt output_prompt">Out[29]:</div>
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>course_name</th>
-      <th>universities_name</th>
-      <th>categories_name</th>
-      <th>twitter_count</th>
-      <th>linkedin_count</th>
-      <th>facebook_count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>389</th>
-      <td>                                 Machine Learning</td>
-      <td>               [Stanford University]</td>
-      <td> [Statistics and Data Analysis, Computer Scienc...</td>
-      <td> 5792</td>
-      <td>  306</td>
-      <td> 21879</td>
-    </tr>
-    <tr>
-      <th>791</th>
-      <td>                              Startup Engineering</td>
-      <td>               [Stanford University]</td>
-      <td> [Computer Science: Software Engineering, Busin...</td>
-      <td> 2572</td>
-      <td>  248</td>
-      <td>  7845</td>
-    </tr>
-    <tr>
-      <th>622</th>
-      <td>                      Computing for Data Analysis</td>
-      <td>          [Johns Hopkins University]</td>
-      <td>  [Health &amp; Society, Statistics and Data Analysis]</td>
-      <td> 2166</td>
-      <td>  252</td>
-      <td>  8787</td>
-    </tr>
-    <tr>
-      <th>168</th>
-      <td>                     Introduction to Data Science</td>
-      <td>          [University of Washington]</td>
-      <td> [Information, Tech &amp; Design, Computer Science:...</td>
-      <td> 1586</td>
-      <td>  480</td>
-      <td>  4593</td>
-    </tr>
-    <tr>
-      <th>96 </th>
-      <td>                                   Statistics One</td>
-      <td>              [Princeton University]</td>
-      <td>                    [Statistics and Data Analysis]</td>
-      <td> 1496</td>
-      <td> 8358</td>
-      <td>  7305</td>
-    </tr>
-    <tr>
-      <th>187</th>
-      <td>                                    Data Analysis</td>
-      <td>          [Johns Hopkins University]</td>
-      <td>  [Health &amp; Society, Statistics and Data Analysis]</td>
-      <td> 1485</td>
-      <td>  145</td>
-      <td>  4891</td>
-    </tr>
-    <tr>
-      <th>753</th>
-      <td>               Maps and the Geospatial Revolution</td>
-      <td> [The Pennsylvania State University]</td>
-      <td> [Information, Tech &amp; Design, Statistics and Da...</td>
-      <td> 1363</td>
-      <td>  250</td>
-      <td>  6754</td>
-    </tr>
-    <tr>
-      <th>492</th>
-      <td> Creativity, Innovation, and Change | 创意，创新, 与 变革</td>
-      <td> [The Pennsylvania State University]</td>
-      <td> [Computer Science: Theory, Economics &amp; Finance...</td>
-      <td> 1226</td>
-      <td>  300</td>
-      <td>  9518</td>
-    </tr>
-    <tr>
-      <th>106</th>
-      <td>                     The Data Scientist’s Toolbox</td>
-      <td>          [Johns Hopkins University]</td>
-      <td>                    [Statistics and Data Analysis]</td>
-      <td>  815</td>
-      <td>  388</td>
-      <td>  3936</td>
-    </tr>
-    <tr>
-      <th>886</th>
-      <td>                                    R Programming</td>
-      <td>          [Johns Hopkins University]</td>
-      <td> [Information, Tech &amp; Design, Statistics and Da...</td>
-      <td>  757</td>
-      <td> 8358</td>
-      <td>  7031</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>course_name</th>
+<th>universities_name</th>
+<th>categories_name</th>
+<th>twitter_count</th>
+<th>linkedin_count</th>
+<th>facebook_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>389</th>
+<td>                                 Machine Learning</td>
+<td>               [Stanford University]</td>
+<td> [Statistics and Data Analysis, Computer Scienc...</td>
+<td> 5792</td>
+<td>  306</td>
+<td> 21879</td>
+</tr>
+<tr>
+<th>791</th>
+<td>                              Startup Engineering</td>
+<td>               [Stanford University]</td>
+<td> [Computer Science: Software Engineering, Busin...</td>
+<td> 2572</td>
+<td>  248</td>
+<td>  7845</td>
+</tr>
+<tr>
+<th>622</th>
+<td>                      Computing for Data Analysis</td>
+<td>          [Johns Hopkins University]</td>
+<td>  [Health & Society, Statistics and Data Analysis]</td>
+<td> 2166</td>
+<td>  252</td>
+<td>  8787</td>
+</tr>
+<tr>
+<th>168</th>
+<td>                     Introduction to Data Science</td>
+<td>          [University of Washington]</td>
+<td> [Information, Tech & Design, Computer Science:...</td>
+<td> 1586</td>
+<td>  480</td>
+<td>  4593</td>
+</tr>
+<tr>
+<th>96 </th>
+<td>                                   Statistics One</td>
+<td>              [Princeton University]</td>
+<td>                    [Statistics and Data Analysis]</td>
+<td> 1496</td>
+<td> 8358</td>
+<td>  7305</td>
+</tr>
+<tr>
+<th>187</th>
+<td>                                    Data Analysis</td>
+<td>          [Johns Hopkins University]</td>
+<td>  [Health & Society, Statistics and Data Analysis]</td>
+<td> 1485</td>
+<td>  145</td>
+<td>  4891</td>
+</tr>
+<tr>
+<th>753</th>
+<td>               Maps and the Geospatial Revolution</td>
+<td> [The Pennsylvania State University]</td>
+<td> [Information, Tech & Design, Statistics and Da...</td>
+<td> 1363</td>
+<td>  250</td>
+<td>  6754</td>
+</tr>
+<tr>
+<th>492</th>
+<td> Creativity, Innovation, and Change | 创意，创新, 与 变革</td>
+<td> [The Pennsylvania State University]</td>
+<td> [Computer Science: Theory, Economics & Finance...</td>
+<td> 1226</td>
+<td>  300</td>
+<td>  9518</td>
+</tr>
+<tr>
+<th>106</th>
+<td>                     The Data Scientist’s Toolbox</td>
+<td>          [Johns Hopkins University]</td>
+<td>                    [Statistics and Data Analysis]</td>
+<td>  815</td>
+<td>  388</td>
+<td>  3936</td>
+</tr>
+<tr>
+<th>886</th>
+<td>                                    R Programming</td>
+<td>          [Johns Hopkins University]</td>
+<td> [Information, Tech & Design, Statistics and Da...</td>
+<td>  757</td>
+<td> 8358</td>
+<td>  7031</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><p>In this tutorial, we learned how to use the Coursera API to get the courses catalogue and how to use the sharedcount.com API to get social shares metrics for each course. The technique introduced in this tutorial can be leveraged to other use cases that requires a popularity ranking system for measuring the relevance of a list of links.</p>
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h1><p>In this tutorial, we learned how to use the Coursera API to get the courses catalogue and how to use the sharedcount.com API to get social shares metrics for each course. The technique introduced in this tutorial can be leveraged to other use cases that requires a popularity ranking system for measuring the relevance of a list of links.</p>
 <p>The source code for this tutorial can be found in this <a href="https://github.com/adilmoujahid/Coursera_Analytics">github repository</a>.</p>
-
 </div>
 </div>
 </div>
- 
-
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

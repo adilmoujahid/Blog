@@ -120,7 +120,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 <p><img alt="Alt Text" src="/images/arduino_schema.png"></p>
 </div>
 <p>Next, open the IDE, copy the code below and upload the logic to the Arduino board. The code below implements a simple logic that configure the Arduino board to read the light intensity every second (1000 milliseconds) from the photocell (that is connected to the analogue input 0), and print the measurement to the serial monitor.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#define CDS_INPUT 0 </span>
+<div class="highlight"><pre><span></span><span class="cp">#define CDS_INPUT 0 </span>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
@@ -133,7 +133,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 
   <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>To see the measurements, open the serial monitor from the Arduino IDE.</p>
@@ -147,7 +147,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 <p>In section 2, we used Arduino’s serial monitor to display the measurements. In this section, we will build a node.js server that gets light intensities from Arduino and displays these measurements on the terminal. </p>
 <p>To build this server, we need one node library called <code>serialport</code>. from your terminal, execute <code>npm install serialport</code> to install the library.</p>
 <p>Next, create a file called <code>server1.js</code> and copy into it the code below. Make sure to put the correct port name in line 2. You can get this value from Arduino IDE &gt; Tools &gt; Serial Port.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">serialport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;serialport&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">serialport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;serialport&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">portName</span> <span class="o">=</span> <span class="s1">&#39;/dev/tty.usbmodem1411&#39;</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">sp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">serialport</span><span class="p">.</span><span class="nx">SerialPort</span><span class="p">(</span><span class="nx">portName</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">baudRate</span><span class="o">:</span> <span class="mi">9600</span><span class="p">,</span>
@@ -161,7 +161,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 <span class="nx">sp</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>To start the node.js server, from you terminal go to the folder where <code>server1.js</code> is saved, and execute <code>node server1.js</code>. You will see the measurements displayed on the terminal.</p>
@@ -183,7 +183,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 <p>In this section, we will build a node.js server that will get the measurements from Arduino and send the data to Plotly. To do this, we need to install Plotly library for node.js by executing <code>npm install plotly</code> from the terminal.</p>
 <h2>Connecting Node.js to Plotly</h2>
 <p>Create a file called server2.js and copy into it the code below. Make sure to put the correct plotly username name, API key and token in lines 2-3; and the correct Arduino port name in line 5.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">serialport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;serialport&#39;</span><span class="p">),</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">serialport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;serialport&#39;</span><span class="p">),</span>
     <span class="nx">plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly&#39;</span><span class="p">)(</span><span class="s1">&#39;Plotly_UserName&#39;</span><span class="p">,</span><span class="s1">&#39;Plotly_API&#39;</span><span class="p">),</span>
     <span class="nx">token</span> <span class="o">=</span> <span class="s1">&#39;Plotly_Token&#39;</span><span class="p">;</span>
 
@@ -225,7 +225,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
     <span class="nx">stream</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">streamObject</span><span class="o">+</span><span class="s1">&#39;\n&#39;</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>To start the node.js server, from you terminal go to the folder where server2.js is saved, and execute <code>node server2.js</code>. </p>

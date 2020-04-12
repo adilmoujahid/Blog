@@ -92,22 +92,22 @@ We will be using two files from this dataset: <code>Salaries.csv</code> and <cod
 To execute the code from this tutorial, you will need Python 2.7 and the following Python Libraries: Numpy, Scipy, Pandas and Matplotlib and statsmodels. </p>
 <h2>3. Reading and understading the data</h2>
 <p>We will start by importing the required libraries using the commands below:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we will read the <code>Teams.csv</code> file to a Pandas DataFrame called <code>teams</code>. This file contains teams statistics from 1871 to 2013. The dataset has 2745 data points. Each data point has 48 attributes. </p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Teams.csv&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Teams.csv&#39;</span><span class="p">)</span>
+</pre></div>
 
 
 <p>Next, we will select a subset of the data starting from 1985, with 15 Attributes only. For the remaining of this tutorial we will use only this subset and throw the rest of the data.</p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;yearID&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1985</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;yearID&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1985</span><span class="p">]</span>
 <span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[[</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;RA&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;HBP&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">,</span> <span class="s1">&#39;HR&#39;</span><span class="p">,</span> <span class="s1">&#39;2B&#39;</span><span class="p">,</span> <span class="s1">&#39;3B&#39;</span><span class="p">]]</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Below is an explanation of the <code>teams</code> DataFrame attribtues.</p>
@@ -129,48 +129,48 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 <li><code>3B</code>: Triples</li>
 </ul>
 <p>Next, we will change the <code>teams</code> DataFrame index to <code>('yearID', 'teamID')</code>. </p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">])</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">])</span>
+</pre></div>
 
 
 <p>This index change will make our queries easier. For example, we can check the number of wins by the Oakland Athletics in 2001 by running the command below. This should return 102. </p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
+</pre></div>
 
 
 <p>Next, we will read the <code>Salaries.csv</code> to a Pandas DataFrame called <code>salaries</code>. The <code>salaries</code> DataFrame contains the salaries of all baseball players from 1985 till 2013. The DataFrame has 5 columns: <code>yearID</code>, <code>teamID</code>, <code>lgID</code>, <code>playerID</code>, <code>salary</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">salaries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Salaries.csv&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">salaries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Salaries.csv&#39;</span><span class="p">)</span>
+</pre></div>
 
 
 <p>We are interested in calculating baseball teams payroll. We can do so by running the command below.</p>
-<div class="highlight"><pre><span></span><code><span class="n">salaries_by_yearID_teamID</span> <span class="o">=</span> <span class="n">salaries</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">])[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">salaries_by_yearID_teamID</span> <span class="o">=</span> <span class="n">salaries</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;yearID&#39;</span><span class="p">,</span> <span class="s1">&#39;teamID&#39;</span><span class="p">])[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
 
 
 <p>Now we can check the payroll of the Oakland Athletics in 2001 by running the command below. This should return 33810750. </p>
-<div class="highlight"><pre><span></span><code><span class="n">salaries_by_yearID_teamID</span><span class="p">[</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">salaries_by_yearID_teamID</span><span class="p">[</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
+</pre></div>
 
 
 <p>Next, we will add the payroll data to <code>teams</code> DataFrame. We can do so using the command below.</p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">salaries_by_yearID_teamID</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">teams</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">salaries_by_yearID_teamID</span><span class="p">)</span>
+</pre></div>
 
 
 <p>The payroll data is now stored in a column called <code>salary</code>. Now we can check the payroll of the Oakland Athletics in 2001 by running the command below.</p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">,</span> <span class="s1">&#39;OAK&#39;</span><span class="p">]</span>
+</pre></div>
 
 
 <p>Next we will plot the relationship between salaries and number of wins. We can do so for the year 2001 by using the command below.</p>
-<div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">],</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">],</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">2001</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>The following two functions are used to plot the relationship between salaries with labels and axis formating; as well as highlighting the Oakland Athletics, the New York Yankees, and the Boston Red Sox data.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">millions</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">millions</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
     <span class="s1">&#39;The two args are the value and tick position&#39;</span>
     <span class="k">return</span> <span class="s1">&#39;$</span><span class="si">%1.1f</span><span class="s1">M&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">)</span>
 
@@ -207,12 +207,12 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Wins&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Salaries - Wins: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>We can run the <code>plot_spending_wins</code> by passing the <code>teams</code> DataFrame and the <code>year</code> variable. For example, for plotting 2001 salaries and number of wins relationship, we execute the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">plot_spending_wins</span><span class="p">(</span><span class="n">teams</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">plot_spending_wins</span><span class="p">(</span><span class="n">teams</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)</span>
+</pre></div>
 
 
 <h2>4. Bill Beane's Formula</h2>
@@ -225,20 +225,20 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 <p>Slugging Percentage is a measure of the power of a hitter. It can ve calculated using the formula below:</p>
 <p><center><code>SLG = H+2B+(2*3B)+(3*HR)/AB</code></center></p>
 <p>We will add these 3 measures to our <code>teams</code> DataFrame by running the following commands:</p>
-<div class="highlight"><pre><span></span><code><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span>
 <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;OBP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;HBP&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;BB&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;HBP&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;SF&#39;</span><span class="p">])</span>
 <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;SLG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;2B&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;3B&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">teams</span><span class="p">[</span><span class="s1">&#39;HR&#39;</span><span class="p">]))</span> <span class="o">/</span> <span class="n">teams</span><span class="p">[</span><span class="s1">&#39;AB&#39;</span><span class="p">]</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we will use a linear regression model to verify which baseball stats are more important to predict runs. We will build 3 different models: The first one will have as features <code>OBP</code>, <code>SLG</code> and <code>BA</code>. The second model will have as features <code>OBP</code> and <code>SLG</code>. The last one will have as feature <code>BA</code> only.</p>
 <p>We will use Python's statsmodels library for building these models. We start first by importing the library by running:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+</pre></div>
 
 
 <p>Next we will build our models:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#First Model</span>
+<div class="highlight"><pre><span></span><span class="c1">#First Model</span>
 <span class="n">runs_reg_model1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;R~OBP+SLG+BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
 <span class="n">runs_reg1</span> <span class="o">=</span> <span class="n">runs_reg_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="c1">#Second Model</span>
@@ -247,14 +247,14 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 <span class="c1">#Third Model</span>
 <span class="n">runs_reg_model3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;R~BA&quot;</span><span class="p">,</span><span class="n">teams</span><span class="p">)</span>
 <span class="n">runs_reg3</span> <span class="o">=</span> <span class="n">runs_reg_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>We can look at a summary statistic of these models by running:</p>
-<div class="highlight"><pre><span></span><code><span class="n">runs_reg1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">runs_reg1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 <span class="n">runs_reg2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 <span class="n">runs_reg3</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>The first model has an Adjusted R-squared of 0.918, with 95% confidence interval of BA between -283 and 468. This is counterintuitive, since we expect the BA value to be positive. This is due to a multicollinearity between the variables.</p>

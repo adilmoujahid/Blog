@@ -99,118 +99,118 @@
 <h2>Storing the data in MongoDB and running queries from a mongo shell</h2>
 <p>The commands that follow are run on Mac OS. For Windows or other operating systems users, the commands shouldn’t be that different. If you have any problem executing the commands, leave a message in the comments section at the end of this page.</p>
 <p>After installing MongoDB, open a Terminal window, and run the command below to start the database.</p>
-<div class="highlight"><pre><span></span><code>$ mongodb
-</code></pre></div>
+<div class="highlight"><pre><span></span>$ mongodb
+</pre></div>
 
 
 <p>Next, open another Terminal window, go the folder where you stored the dataset, and run the command below to copy the dataset to MongoDB. The data will be stored in a database called <code>donorschoose</code> under a collection called <code>projects</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">mongoimport</span> <span class="o">-</span><span class="n">d</span> <span class="n">donorschoose</span> <span class="o">-</span><span class="n">c</span> <span class="n">projects</span> <span class="o">--</span><span class="nb">type</span> <span class="n">csv</span> <span class="o">--</span><span class="nb">file</span> <span class="n">opendata_projects</span><span class="o">.</span><span class="n">csv</span> <span class="err">—</span><span class="n">headerline</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">mongoimport</span> <span class="o">-</span><span class="n">d</span> <span class="n">donorschoose</span> <span class="o">-</span><span class="n">c</span> <span class="n">projects</span> <span class="o">--</span><span class="nb">type</span> <span class="n">csv</span> <span class="o">--</span><span class="nb">file</span> <span class="n">opendata_projects</span><span class="o">.</span><span class="n">csv</span> <span class="err">—</span><span class="n">headerline</span>
+</pre></div>
 
 
 <p>Next, run the command below to start a <code>mongo</code> shell. This <code>mongo</code> shell allows us to interact with the database and query the data.</p>
-<div class="highlight"><pre><span></span><code>$ mongo
-</code></pre></div>
+<div class="highlight"><pre><span></span>$ mongo
+</pre></div>
 
 
 <p>In the <code>mongo</code> shell, run the command below to choose the database <code>donorschoose</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt; use donorschoose</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt; use donorschoose
+</pre></div>
 
 
 <p>Next run the command below to return all collections that are stored in <code>donorschoose</code> DB. This will return <code>projects</code> since it’s the only collection that we stored inside <code>donorschoose</code> DB.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt; show collections</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt; show collections
+</pre></div>
 
 
 <p>Next run the command below to retrieve one random record from the <code>donorschoose</code> DB. </p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt; db.projects.findOne()</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt; db.projects.findOne()
+</pre></div>
 
 
 <p>The command above returns the following record with 45 key-values. 44 key-values are from the original data, and the key <code>"_id"</code> with its value is a unique id assigned automatically by MongoDB.</p>
 <p><code>{"_id" : ObjectId("54954c1441606439933b93d8"), "_projectid" : "\"e565fb42185c6e9f22806ad9d5ac8a77\"", "_teacher_acctid" : "\"2e17c8c91cb58132d8103a9aa8797e80\"", "_schoolid" : "\"45e7ddbdd7023f1eb65a6cc028d7414f\"", "school_ncesid" : NumberLong("360009001332"), "school_latitude" : 40.841691, "school_longitude" : -73.875457, "school_city" : "Bronx", "school_state" : "NY", "school_zip" : 10460, "school_metro" : "urban", "school_district" : "New York City Dept Of Ed", "school_county" : "Bronx", "school_charter" : "f", "school_magnet" : "f", "school_year_round" : "f", "school_nlns" : "f", "school_kipp" : "f", "school_charter_ready_promise" : "f", "teacher_prefix" : "Mr.", "teacher_teach_for_america" : "f", "teacher_ny_teaching_fellow" : "f", "primary_focus_subject" : "Literacy", "primary_focus_area" : "Literacy &amp; Language", "secondary_focus_subject" : "", "secondary_focus_area" : "", "resource_type" : "Books", "poverty_level" : "highest poverty", "grade_level" : "Grades 9-12", "vendor_shipping_charges" : "", "sales_tax" : "", "payment_processing_charges" : "", "fulfillment_labor_materials" : "", "total_price_excluding_optional_support" : 280.02, "total_price_including_optional_support" : 341.49, "students_reached" : 0, "total_donations" : 308, "num_donors" : 1, "eligible_double_your_impact_match" : "f", "eligible_almost_home_match" : "f", "funding_status" : "completed", "date_posted" : "2007-03-08", "date_completed" : "2007-03-08", "date_thank_you_packet_mailed" : "2007-03-08", "date_expiration" : "2003-12-31"}</code></p>
 <p>In this tutorial, we are interested only the 5 attributes: <code>school_state</code>, <code>resource_type</code>, <code>poverty_level</code>, <code>date_posted</code> and <code>total_donations</code>. We can query one random record and return only these 5 attributes by running the following command.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt; db.projects.findOne({}, {school_state:1, resource_type:1, poverty_level:1, date_posted:1, total_donations:1, funding_status:1, _id:0})</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt; db.projects.findOne({}, {school_state:1, resource_type:1, poverty_level:1, date_posted:1, total_donations:1, funding_status:1, _id:0})
+</pre></div>
 
 
 <p>This returns <code>{"school_state" : "NY", "resource_type" : "Books", "poverty_level" : "highest poverty", "total_donations" : 308, "funding_status" : "completed", "date_posted" : "2007-03-08"}</code>.</p>
 <p>We can get all records with the 5 attributes by running the following command.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt; db.projects.find({}, {school_state:1, resource_type:1, poverty_level:1, date_posted:1, total_donations:1, funding_status:1, _id:0})</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt; db.projects.find({}, {school_state:1, resource_type:1, poverty_level:1, date_posted:1, total_donations:1, funding_status:1, _id:0})
+</pre></div>
 
 
 <h2>Interacting with MongoDB using Python</h2>
 <p>In the previous section, we queried MongoDB database using the <code>mongo</code> shell. Next, we will do the same by using <code>python</code> programming language. Understanding how to query MongoDB using <code>python</code> is important because we’re planning to build our server using <code>python</code>, and we will include within the server code MongoDB queries.</p>
 <p>We will be using Python 2.7 and a Python library called <code>PyMongo</code> for connecting to MongoDB and querying the data. You should install <a href="http://api.mongodb.org/python/current/installation.html"><code>Pymongo</code></a> first before executing the commands below.</p>
 <p>Start a <code>python</code> shell by running the command below from your Terminal window.</p>
-<div class="highlight"><pre><span></span><code>$ python
-</code></pre></div>
+<div class="highlight"><pre><span></span>$ python
+</pre></div>
 
 
 <p>Next import the <code>Connection</code> method from <code>PyMongo</code> by running the command below. This method will allow us to connect to MongoDB and query the data.</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+</pre></div>
 
 
 <p>Next, we will define 4 variables that represent respectively MongoDB IP address, MongoDB port, MongoDB database name and MongoDB collection name.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt;&gt;&gt; MONGODB_HOST = &#39;localhost&#39;</span>
-<span class="err">&gt;&gt;&gt; MONGODB_PORT = 27017</span>
-<span class="err">&gt;&gt;&gt; DBS_NAME = &#39;donorschoose&#39;</span>
-<span class="err">&gt;&gt;&gt; COLLECTION_NAME = &#39;projects&#39;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; MONGODB_HOST = &#39;localhost&#39;
+&gt;&gt;&gt; MONGODB_PORT = 27017
+&gt;&gt;&gt; DBS_NAME = &#39;donorschoose&#39;
+&gt;&gt;&gt; COLLECTION_NAME = &#39;projects&#39;
+</pre></div>
 
 
 <p>Next, we will define the 5 attributes that we will use for our query. Note that we had to explicitly set the records unique id <code>_id</code> to <code>False</code>. If we don't do so, it will be included in the query's response.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt;&gt;&gt; FIELDS = {&#39;school_state&#39;: True, &#39;resource_type&#39;: True, &#39;poverty_level&#39;: True, &#39;date_posted&#39;: True, &#39;total_donations&#39;: True, &#39;_id&#39;: False}</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; FIELDS = {&#39;school_state&#39;: True, &#39;resource_type&#39;: True, &#39;poverty_level&#39;: True, &#39;date_posted&#39;: True, &#39;total_donations&#39;: True, &#39;_id&#39;: False}
+</pre></div>
 
 
 <p>And finally, let's connect to MongoDB and retrieve all the records along the 5 attributes that we are interested in. We can do so by running the following.</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MongoClient</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MONGODB_PORT</span><span class="p">)</span><span class="w"></span>
-<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">connection</span><span class="o">[</span><span class="n">DBS_NAME</span><span class="o">][</span><span class="n">COLLECTION_NAME</span><span class="o">]</span><span class="w"></span>
-<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">projects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
+&gt;&gt;&gt; collection = connection[DBS_NAME][COLLECTION_NAME]
+&gt;&gt;&gt; projects = collection.find(projection=FIELDS)
+</pre></div>
 
 
 <p>All the records are stored in <code>projects</code>, we can print all them by running the following command.</p>
-<div class="highlight"><pre><span></span><code><span class="err">&gt;&gt;&gt; for project in projects:</span>
-<span class="err">&gt;&gt;&gt;     print project</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; for project in projects:
+&gt;&gt;&gt;     print project
+</pre></div>
 
 
 <h1>2. Building the server</h1>
 <p>For this tutorial, we will be using Python Flask for building a server that interact with MongoDB and render the html page that contains our charts. Flask is one of the most popular web frameworks for Python. It’s minimal and very easy to learn. Flask installation guidelines can be found in this <a href="http://flask.pocoo.org/docs/0.10/installation/">url</a>.</p>
 <p>We start by creating a folder called <code>project</code>. Inside the <code>project</code> folder, we create a folder called <code>templates</code>, and inside the <code>templates</code> folder we create an html file called <code>index.html</code>.</p>
 <p>Inside the <code>index.html</code> page, copy the code below.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello World!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello World!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
 
 
 <p>Next, we create another file called <code>app.py</code> inside the <code>project</code> folder. We copy the code below inside the <code>app.py</code> file. This is server side code.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 
 
 <p>From a Terminal window, go to the <code>project</code> folder, and start the server by running the following command.</p>
-<div class="highlight"><pre><span></span><code>$ python app.py
-</code></pre></div>
+<div class="highlight"><pre><span></span>$ python app.py
+</pre></div>
 
 
 <p>Now, if you open a browser and go to <code>http://localhost:5000/</code>, you will see the message <code>Hello World!</code>.</p>
 <p>Next, we will modify the <code>app.py</code> folder to include the MongoDB query to retieve all the records from MongoDB along the 5 attributes. You can see many lines of code from the previous MongoDB section. We added one <code>route</code> decorator <code>@app.route("/donorschoose/projects")</code> to map the URL <code>/donorschoose/projects</code> to the data from MongoDB.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -223,13 +223,13 @@
 <span class="n">MONGODB_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
 <span class="n">DBS_NAME</span> <span class="o">=</span> <span class="s1">&#39;donorschoose&#39;</span>
 <span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;projects&#39;</span>
-<span class="n">FIELDS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;school_state&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;resource_type&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;poverty_level&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;date_posted&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;total_donations&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;_id&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<span class="n">FIELDS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;school_state&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;resource_type&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;poverty_level&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;date_posted&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;total_donations&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;_id&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/donorschoose/projects&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/donorschoose/projects&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">donorschoose_projects</span><span class="p">():</span>
     <span class="n">connection</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span> <span class="n">MONGODB_PORT</span><span class="p">)</span>
     <span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="p">[</span><span class="n">DBS_NAME</span><span class="p">][</span><span class="n">COLLECTION_NAME</span><span class="p">]</span>
@@ -242,8 +242,8 @@
     <span class="k">return</span> <span class="n">json_projects</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 
 
 <p>If you start the server by running <code>python app.py</code> and go to <code>http://localhost:5000/donorschoose/projects</code>, you will see all the projects data printed in the browser. </p>
@@ -269,46 +269,46 @@
 <p>We also need to make a few modifications to the index.html (keen.io template). Inside index.html, we need to define all the Javascript and css dependencies, and we need to reference the charts from charts.js.</p>
 <h1>4. Building the charts</h1>
 <p>We will write all the code for building the charts inside the chart.js file. We start by using a <code>queue()</code> function from the <code>queue.js</code> library. The lines that start with <code>.defer</code> are for reading the projects data and US states json file. Inside the <code>.await</code> function we call a function named <code>makeGraphs</code> that we define later. This allows us to read both the projects and US states json data in parallel, and wait for all the data to be read before executing the <code>makeGraphs</code> function. The <code>makeGraphs</code> function contains the code for cleaning the data, building the crossfilter dimensions for filtering the data, and the dc.js charts. It takes 3 arguments, the first one is <code>error</code> which can be used for handling any error from the the <code>.defer</code> functions, and as second and third arguments <code>projectsJson</code>, <code>statesJson</code> which contain the data that we read from the <code>.defer</code> functions.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">queue</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="nx">queue</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">,</span> <span class="s2">&quot;/donorschoose/projects&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">,</span> <span class="s2">&quot;static/geojson/us-states.json&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">await</span><span class="p">(</span><span class="nx">makeGraphs</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
-<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">makeGraphs</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">projectsJson</span><span class="p">,</span> <span class="nx">statesJson</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">makeGraphs</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">projectsJson</span><span class="p">,</span> <span class="nx">statesJson</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">...</span>
 <span class="p">};</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Inside the makeGraphs function, we start by cleaning the projects data. We change the date type from <code>string</code> to <code>datetime</code> objects, and we set all projects date days to 1. All projects from the same month will have the same datetime value.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">donorschooseProjects</span> <span class="o">=</span> <span class="nx">projectsJson</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">donorschooseProjects</span> <span class="o">=</span> <span class="nx">projectsJson</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">dateFormat</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;%Y-%m-%d&quot;</span><span class="p">);</span>
 <span class="nx">donorschooseProjects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">dateFormat</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">]);</span>
     <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">].</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];</span>
 <span class="p">});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we create a Crossfilter instance.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">donorschooseProjects</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ndx</span> <span class="o">=</span> <span class="nx">crossfilter</span><span class="p">(</span><span class="nx">donorschooseProjects</span><span class="p">);</span>
+</pre></div>
 
 
 <p>Next, we define our 5 data dimensions. </p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">dateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">resourceTypeDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;resource_type&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">povertyLevelDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;poverty_level&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">stateDim</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;school_state&quot;</span><span class="p">];</span> <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">totalDonationsDim</span>  <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">dimension</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];</span> <span class="p">});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we define 6 data groups.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">numProjectsByDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span> 
 <span class="kd">var</span> <span class="nx">numProjectsByResourceType</span> <span class="o">=</span> <span class="nx">resourceTypeDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">numProjectsByPovertyLevel</span> <span class="o">=</span> <span class="nx">povertyLevelDim</span><span class="p">.</span><span class="nx">group</span><span class="p">();</span>
@@ -316,28 +316,28 @@
     <span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];</span>
 <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">totalDonations</span> <span class="o">=</span> <span class="nx">ndx</span><span class="p">.</span><span class="nx">groupAll</span><span class="p">().</span><span class="nx">reduceSum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">d</span><span class="p">[</span><span class="s2">&quot;total_donations&quot;</span><span class="p">];});</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we define 3 values: The maximum donation in all states, the date of the first and last posts.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">max_state</span> <span class="o">=</span> <span class="nx">totalDonationsByState</span><span class="p">.</span><span class="nx">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">max_state</span> <span class="o">=</span> <span class="nx">totalDonationsByState</span><span class="p">.</span><span class="nx">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">minDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">bottom</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span>
 <span class="kd">var</span> <span class="nx">maxDate</span> <span class="o">=</span> <span class="nx">dateDim</span><span class="p">.</span><span class="nx">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;date_posted&quot;</span><span class="p">];</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we define 6 dc charts. The first one is a bar chart that will show the number of projects by date. The second and third charts will show the number of projects broken down by the resource type and poverty level of school. The fourth graph will show a US map color-coded by the toal amount of donations for each US state. And the last two are numbers that will show the total number of projects and the total donations in USD.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">timeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">barChart</span><span class="p">(</span><span class="s2">&quot;#time-chart&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">timeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">barChart</span><span class="p">(</span><span class="s2">&quot;#time-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">resourceTypeChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#resource-type-row-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">povertyLevelChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">rowChart</span><span class="p">(</span><span class="s2">&quot;#poverty-level-row-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">usChart</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">geoChoroplethChart</span><span class="p">(</span><span class="s2">&quot;#us-chart&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">numberProjectsND</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">numberDisplay</span><span class="p">(</span><span class="s2">&quot;#number-projects-nd&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">totalDonationsND</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">.</span><span class="nx">numberDisplay</span><span class="p">(</span><span class="s2">&quot;#total-donations-nd&quot;</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>For each chart, we pass the necessary parameters. </p>
-<div class="highlight"><pre><span></span><code><span class="nx">numberProjectsND</span>
+<div class="highlight"><pre><span></span><span class="nx">numberProjectsND</span>
     <span class="p">.</span><span class="nx">formatNumber</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">valueAccessor</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">;</span> <span class="p">})</span>
     <span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">all</span><span class="p">);</span>
@@ -391,17 +391,17 @@
                 <span class="o">+</span> <span class="s2">&quot;\n&quot;</span>
                 <span class="o">+</span> <span class="s2">&quot;Total Donations: &quot;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; $&quot;</span><span class="p">;</span>
     <span class="p">})</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>And finally, we call the <code>renderAll()</code> function for rendering all the charts.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="nx">dc</span><span class="p">.</span><span class="nx">renderAll</span><span class="p">();</span>
+</pre></div>
 
 
 <p>Within the <code>index.html</code> file, we have to reference all the charts that we defined in the <code>charts.js</code> file. For example, if we want to show the US map chart, we have to add the line below to the <code>index.html</code> file.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;us-chart&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;us-chart&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
 
 
 <h1>Conclusion</h1>

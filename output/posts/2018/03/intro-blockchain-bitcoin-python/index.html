@@ -434,7 +434,7 @@ function setup(block, chain) {
 <p>Below is some explanation of the most important parts in the <code>blockchain_client.py</code> code.</p>
 <p>We define a python class that we name <code>Transaction</code> that has 4 attributes <code>sender_address</code>, <code>sender_private_key</code>, <code>recipient_address</code>, <code>value</code>. These are the 4 pieces of information that a sender needs to create a transaction. </p>
 <p>The <code>to_dict()</code> method returns the transaction information in a Python dictionary format (without the sender's private key). The <code>sign_transaction()</code> method takes the transaction information (without the sender's private key) and signs it using the sender's private key.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Transaction</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Transaction</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender_address</span><span class="p">,</span> <span class="n">sender_private_key</span><span class="p">,</span> <span class="n">recipient_address</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sender_address</span> <span class="o">=</span> <span class="n">sender_address</span>
@@ -458,42 +458,42 @@ function setup(block, chain) {
         <span class="n">signer</span> <span class="o">=</span> <span class="n">PKCS1_v1_5</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">private_key</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">SHA</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">signer</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">h</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>The line below initate a <code>Python Flask</code> app that we will use to create different APIs to interact with the blockchain and its client.</p>
-<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
 
 
 <p>Below we define the 3 <code>Flask</code> routes that returns html pages. One html page for each tab.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
   <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;./index.html&#39;</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/make/transaction&#39;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/make/transaction&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">make_transaction</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;./make_transaction.html&#39;</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/view/transactions&#39;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/view/transactions&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">view_transaction</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;./view_transactions.html&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Below we define an API that generates wallets (Private/Public keys pairs).</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/wallet/new&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/wallet/new&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">new_wallet</span><span class="p">():</span>
   <span class="n">random_gen</span> <span class="o">=</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">read</span>
   <span class="n">private_key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="n">random_gen</span><span class="p">)</span>
   <span class="n">public_key</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">publickey</span><span class="p">()</span>
   <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">private_key</span><span class="o">.</span><span class="n">exportKey</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;DER&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;public_key&#39;</span><span class="p">:</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">public_key</span><span class="o">.</span><span class="n">exportKey</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;DER&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">private_key</span><span class="o">.</span><span class="n">exportKey</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;DER&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;public_key&#39;</span><span class="p">:</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">public_key</span><span class="o">.</span><span class="n">exportKey</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;DER&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><br></p>
@@ -503,7 +503,7 @@ function setup(block, chain) {
 
 <p><br></p>
 <p>Below we define an API that takes as input <code>sender_address</code>, <code>sender_private_key</code>, <code>recipient_address</code>, <code>value</code>, and returns the transaction (without private key) and the signature.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/generate/transaction&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/generate/transaction&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">generate_transaction</span><span class="p">():</span>
 
   <span class="n">sender_address</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;sender_address&#39;</span><span class="p">]</span>
@@ -516,7 +516,7 @@ function setup(block, chain) {
   <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;transaction&#39;</span><span class="p">:</span> <span class="n">transaction</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="n">transaction</span><span class="o">.</span><span class="n">sign_transaction</span><span class="p">()}</span>
 
   <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><br></p>
@@ -557,7 +557,7 @@ function setup(block, chain) {
 <li><code>valid_chain(chain)</code>: checks if a bockchain is valid.</li>
 <li><code>resolve_conflicts()</code>: Resolves conflicts between blockchain's nodes by replacing a chain with the longest one in the network.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Blockchain</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Blockchain</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
@@ -624,29 +624,29 @@ function setup(block, chain) {
 <span class="sd">        by replacing our chain with the longest one in the network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>The line below initate a <code>Python Flask</code> app that we will use to create different APIs to interact with the blockchain.</p>
-<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Next, we initiate a Blockchain instance.</p>
-<div class="highlight"><pre><span></span><code><span class="n">blockchain</span> <span class="o">=</span> <span class="n">Blockchain</span><span class="p">()</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">blockchain</span> <span class="o">=</span> <span class="n">Blockchain</span><span class="p">()</span>
+</pre></div>
 
 
 <p>Below we define the 2 <code>Flask</code> routes that return the html pages for our blockchain frontend dashboard.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;./index.html&#39;</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/configure&#39;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/configure&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">configure</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;./configure.html&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Below we define <code>Flask</code> APIs to manage transactions and mining the blockchain.</p>
@@ -656,7 +656,7 @@ function setup(block, chain) {
 <li><code>'/chain'</code>: This API returns all blockchain data.</li>
 <li><code>'/mine'</code>: This API runs the proof of work algorithm, and adds the new block of transactions to the blockchain.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/transactions/new&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/transactions/new&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">new_transaction</span><span class="p">():</span>
     <span class="n">values</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span>
 
@@ -667,14 +667,14 @@ function setup(block, chain) {
     <span class="c1"># Create a new Transaction</span>
     <span class="n">transaction_result</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">submit_transaction</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;sender_address&#39;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s1">&#39;recipient_address&#39;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s1">&#39;signature&#39;</span><span class="p">])</span>
 
-    <span class="k">if</span> <span class="n">transaction_result</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">transaction_result</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Invalid Transaction!&#39;</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">406</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Transaction will be added to Block &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">transaction_result</span><span class="p">)}</span>
         <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">201</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/transactions/get&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/transactions/get&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_transactions</span><span class="p">():</span>
     <span class="c1">#Get transactions from transactions pool</span>
     <span class="n">transactions</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">transactions</span>
@@ -682,7 +682,7 @@ function setup(block, chain) {
     <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;transactions&#39;</span><span class="p">:</span> <span class="n">transactions</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/chain&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/chain&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">full_chain</span><span class="p">():</span>
     <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;chain&#39;</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">,</span>
@@ -690,7 +690,7 @@ function setup(block, chain) {
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/mine&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/mine&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">mine</span><span class="p">():</span>
     <span class="c1"># We run the proof of work algorithm to get the next proof...</span>
     <span class="n">last_block</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -711,7 +711,7 @@ function setup(block, chain) {
         <span class="s1">&#39;previous_hash&#39;</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">&#39;previous_hash&#39;</span><span class="p">],</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><br></p>
@@ -726,12 +726,12 @@ function setup(block, chain) {
 <li><code>'/nodes/resolve'</code>: This API resolves conflicts between blockchain nodes by replacing a local chain with the longest one available in the network.</li>
 <li><code>'/nodes/get'</code>: This API returns the list of nodes.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/nodes/register&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/nodes/register&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">register_nodes</span><span class="p">():</span>
     <span class="n">values</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nodes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">nodes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">nodes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;Error: Please supply a valid list of nodes&quot;</span><span class="p">,</span> <span class="mi">400</span>
 
     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
@@ -744,7 +744,7 @@ function setup(block, chain) {
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">201</span>
 
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/nodes/resolve&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/nodes/resolve&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">consensus</span><span class="p">():</span>
     <span class="n">replaced</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">resolve_conflicts</span><span class="p">()</span>
 
@@ -761,12 +761,12 @@ function setup(block, chain) {
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
 
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/nodes/get&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/nodes/get&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_nodes</span><span class="p">():</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">blockchain</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
     <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nodes&#39;</span><span class="p">:</span> <span class="n">nodes</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><br></p>
