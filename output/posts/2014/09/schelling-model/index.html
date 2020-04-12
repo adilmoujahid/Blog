@@ -89,15 +89,15 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 <h1>3. Python Implementation of Schelling Model</h1>
 <p>Back in the 70s, Schelling used pennies and nickels on a piece of paper for his simulation. We'll use Python for building the same simulation.</p>
 <p>We start by importing the necessary libraries for running the simulations. All libraries except <code>Matplotlib</code> are installed by default in Python. </p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">copy</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Next, we define a class called <code>Schelling</code>. This class takes 6 parameters: the width and height of the city, the ratio of empty houses in the city, the similarity threshold, the number of iterations and the number of races. We define 4 methods within the <code>Schelling</code> class: <code>populate</code>, <code>is_unsatisfied</code>, <code>update</code>, <code>move_to_empty</code>, and <code>plot</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Schelling</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Schelling</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">,</span> <span class="n">races</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span> 
@@ -122,11 +122,11 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 
     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="o">....</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>populate</code> method is used at the beginning of the simulation. This method distributes randomly people in the grid. </p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">populate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">populate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)))</span>
     <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_houses</span><span class="p">)</span>
 
@@ -141,11 +141,11 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
                             <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">+</span> 
                             <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">houses_by_race</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">houses_by_race</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                         <span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>is_unsatisfied</code> method takes as arguments the <code>(x, y)</code> coordinates of a house, check the ratio of neighbors of similar color, and returns <code>True</code> if the ratio is above the happiness threshold, otherwise it returns <code>False</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_unsatisfied</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_unsatisfied</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 
     <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
     <span class="n">count_similar</span> <span class="o">=</span> <span class="mi">0</span>
@@ -193,14 +193,14 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
             <span class="n">count_different</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">count_similar</span><span class="o">+</span><span class="n">count_different</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">count_similar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">count_similar</span><span class="o">+</span><span class="n">count_different</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">happy_threshold</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>update</code> method checks if each person in the grid is unsatisfied, if yes it assigns the person to a randomly chosen empty house. It runs this process <code>n_iterations</code> times.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iterations</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_agents</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span>
         <span class="n">n_changes</span> <span class="o">=</span> <span class="mi">0</span>
@@ -213,25 +213,25 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
                 <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">empty_house</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
                 <span class="n">n_changes</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">print</span> <span class="n">n_changes</span>
+        <span class="nb">print</span> <span class="n">n_changes</span>
         <span class="k">if</span> <span class="n">n_changes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">break</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>move_to_empty</code> method takes as arguments the <code>(x, y)</code> coordinates of a house, and moves the person living in the <code>(x, y)</code> house to an empty house. This method is called within the <code>update</code> method to move the unsatisfied people to empty houses.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">move_to_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">move_to_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
     <span class="n">empty_house</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">updated_agents</span><span class="p">[</span><span class="n">empty_house</span><span class="p">]</span> <span class="o">=</span> <span class="n">race</span>
     <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">updated_agents</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">empty_house</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">empty_houses</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>plot</code> method is used to draw the whole city and people living in the city. We can call this method at anytime to check the distribution of people in the city. This method takes 2 arguments <code>title</code>, and <code>file_name</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
     <span class="c1">#If you want to run the simulation with more than 7 colors, you should set agent_colors accordingly</span>
     <span class="n">agent_colors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">}</span>
@@ -244,7 +244,7 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h1>4. Simulations</h1>
@@ -257,7 +257,7 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 <li>Number of races = 2</li>
 </ul>
 <p>We start by creating and populating the cities.</p>
-<div class="highlight"><pre><span></span><span class="n">schelling_1</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">schelling_1</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">schelling_1</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
 
 <span class="n">schelling_2</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -265,23 +265,23 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 
 <span class="n">schelling_3</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">schelling_3</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Next, we plot the city at the initial phase. Note that the Similarity threshold has no effect on the initial state of the city.</p>
-<div class="highlight"><pre><span></span><span class="n">schelling_1_1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Schelling Model with 2 colors: Initial State&#39;</span><span class="p">,</span> <span class="s1">&#39;schelling_2_initial.png&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">schelling_1_1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Schelling Model with 2 colors: Initial State&#39;</span><span class="p">,</span> <span class="s1">&#39;schelling_2_initial.png&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>Next, we run the <code>update</code> method, and we plot the final distribution for both Similarity thresholds.</p>
-<div class="highlight"><pre><span></span><span class="n">schelling_1</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">schelling_1</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="n">schelling_2</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="n">schelling_3</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
 <span class="n">schelling_1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Schelling Model with 2 colors: Final State with Similarity Threshold 30%&#39;</span><span class="p">,</span> <span class="s1">&#39;schelling_2_30_final.png&#39;</span><span class="p">)</span>
 <span class="n">schelling_2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Schelling Model with 2 colors: Final State with Similarity Threshold 50%&#39;</span><span class="p">,</span> <span class="s1">&#39;schelling_2_50_final.png&#39;</span><span class="p">)</span>
 <span class="n">schelling_3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Schelling Model with 2 colors: Final State with Similarity Threshold 80%&#39;</span><span class="p">,</span> <span class="s1">&#39;schelling_2_80_final.png&#39;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <div style="text-align:center">
@@ -300,7 +300,7 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 <h1>5. Measuring Segregation</h1>
 <p>In the simulation above, we used visual representations to confirm the segregation. However, we don't have any quantitative measure for calculating segregation. We will define this measure in this section, and we will run a few simulations to check the relationship between the happiness threshold and the segregation level.</p>
 <p>First we will add a method to the <code>Schelling</code> class called <code>calculate_similarity</code>. This method returns the calculate the similarity ratio for each agent and returns the mean similarity ratio. We will use the mean similarity ratio as a measure of segregation.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">similarity</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">:</span>
         <span class="n">count_similar</span> <span class="o">=</span> <span class="mi">0</span>
@@ -353,11 +353,11 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
         <span class="k">except</span><span class="p">:</span>
             <span class="n">similarity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Next, we will calculate the mean similarity ratio for different similarity thresholds, and we will plot the relationship between the similarity threshold and the similarity ratio.</p>
-<div class="highlight"><pre><span></span><span class="n">similarity_threshold_ratio</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight"><pre><span></span><code><span class="n">similarity_threshold_ratio</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]:</span>
     <span class="n">schelling</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">schelling</span><span class="o">.</span><span class="n">populate</span><span class="p">()</span>
@@ -372,7 +372,7 @@ Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Similarity Threshold&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Similarity Ratio&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;schelling_segregation_measure.png&#39;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <div style="text-align:center">
