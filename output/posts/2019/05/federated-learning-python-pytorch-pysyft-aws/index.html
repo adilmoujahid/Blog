@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+
+
+        <title>A Tutorial on Federated Learning using Python, Pytorch, PySyft and AWS // Adil Moujahid // Data Analytics and more</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
+
+                <div>
+                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+                    Follow @AdilMouja
+                </a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+
+                <h5>Published</h5>
+                <p>Wed 01 May 2019</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>A Tutorial on Federated Learning using Python, Pytorch, PySyft and AWS</h1>
+                    <br>
+                    <p class="post-meta">
+                        // tags                             <a class="post-category" href="../../../../tag/python/">python</a>
+                            <a class="post-category" href="../../../../tag/deep-learning/">deep learning</a>
+                            <a class="post-category" href="../../../../tag/machine-learning/">machine learning</a>
+                            <a class="post-category" href="../../../../tag/pytorch/">pytorch</a>
+                    </p>
+                </header>
+            </section>
+            <br>
+            <p>Federated learning is a distributed method for training machine learning models. The main idea behind federated learning is to train machine learning models on multiple clients without direct access to data. This approach solves 2 main issues in machine learning: Data collection and data privacy. </p>
+<p>Federated learning may seem too technical at first glance, but it could spark the developement of new machine learning use cases in which the access to data is difficult or the protection of sensitive information is necessary. From a business point of view, federated learning could provide a way for startups and smaller firms to compete with bigger ones in use cases that requires a large amount of data.</p>
+<p>The goal of this blog post is to give you a practical introduction to federated learning. To do this, we will use the MNIST dataset to train a machine learning model that can classify hand-written digits using a federated approach. We will use some Python code and Pytorch to build the machine learning model and a library called PySyft to distribute the training on multiple AWS instances.</p>
+<p>This post is divided into 2 main parts. The first part covers core concepts behind federated learning, its implications and some of its potential uses cases; while the second part is structured in a hands-on tutorial format. In the first part of the hands-on tutorial (section 2-1), we will build a hand-written digit classifier using Pytorch in a "traditional non-federated" way. In the second part of the tutorial (section 2-2), we will use Pysyft to train a similar model as in section 2-1 in a federated way.</p>
+<h1>1. What is Federated Learning?</h1>
+<p>The first mention of federated learning was in a <a href="https://arxiv.org/abs/1602.05629v3">paper</a> published by Google Research in 2016. The paper introduced federated learning as a new approach for training deep neural networks on decentralized data, and presented the results of an extensive empirical evaluation to demonstrate the robustness of the approach. </p>
+<p>In 2017, Google AI team published a <a href="https://ai.googleblog.com/2017/04/federated-learning-collaborative.html">blog post</a> where they announced the testing of federated learning in Android's Gboard (the Google Keyboard) to train and improve Gboard’s query suggestion model. </p>
+<p>Note that the paper introducing federated learning only covers neural networks models. Extending the federated learning approach to other types of machine learning models may or may not be possible depending on how the model get trained and how it can manage the data.</p>
+<p>To understand the value proposition of federated learning, we need to take a look at the traditional approach of training machine learning models and the drawbacks of this approach.</p>
+<h2>1.1. Traditional Approach of Training Machine Learning Models</h2>
+<p>A typical workflow for building a machine learning model goes as follows:</p>
+<ol>
+<li>
+<p><strong>Problem Definition:</strong> In this step, we define the problem that we want to solve using machine learning. For example, in the case of an image classification problem we need to decide on the categories (labels) in which we want to classify images.</p>
+</li>
+<li>
+<p><strong>Data Collection:</strong> In this step, we collect a dataset that matches the requirements defined in step 1. In the case of an image classification problem, we need to collect a dataset comprised of images and their corresponding labels.</p>
+</li>
+<li>
+<p><strong>Data Discovery:</strong> In this step, we look at the data from different angles in order to have a better understanding of the dataset. In the case an image classification problem, we can view some sample images to check the quality of the dataset, compute the number of images per category and check the sizes of the different images.</p>
+</li>
+<li>
+<p><strong>Data Cleaning:</strong> In this step, we clean data and make it ready to be used for training the machine learning model. This step could include: deleting bad data or outliers, resizing images and storing the data in the right format that can be processed by a machine learning model.</p>
+</li>
+<li>
+<p><strong>Model Training:</strong> In this step, we decide on a machine learning model and we use the clean data to train the model. The outcome of this step is a trained model that we can use on new unseen data to make predictions. This step could include other tasks such as model evaluation to compute the expected accuracy and assess the quality of the trained model.</p>
+</li>
+<li>
+<p><strong>Model Utilization:</strong> In this step, we use the trained machine learning model on new unseen data. This can be done either by accessing the trained model directly or through an API.</p>
+</li>
+</ol>
+            <div class="hr"></div>
+            
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+                #mc_embed_signup{background:#F1F3F3; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                #mc-embedded-subscribe.button{background-color: #0f52ba;}
+                /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+            <form action="//adilmoujahid.us10.list-manage.com/subscribe/post?u=28846a375fbf5c13a93712283&amp;id=a45c6ff723" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+                <label for="mce-EMAIL">Subscribe to my Data in Practice Newsletter</label>
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_28846a375fbf5c13a93712283_a45c6ff723" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+
+            <!--End mc_embed_signup-->
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+
+
+</html>
