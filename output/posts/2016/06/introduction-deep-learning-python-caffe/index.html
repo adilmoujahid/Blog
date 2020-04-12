@@ -172,13 +172,13 @@ CNNs have special layers called convolutional layers and pooling layers that all
 <p>If you're not familiar with AWS, this <a href="http://cs231n.github.io/aws-tutorial/">guide</a> will help you set up an AWS EC2 instance. </p>
 <p>Please note, that the AMI recommended in the guide is no longer available. I prepared a new AMI (ami-64d31209) with all the necessary software installed. I also created a <a href="https://github.com/adilmoujahid/deeplearning-cats-dogs-tutorial/blob/master/aws-ec2-setup.md">guide</a> for installing Caffe and Anaconda on an AWS EC2 instance or an Ubuntu machine with GPU.</p>
 <p>After setting up an AWS instance, we connect to it and clone the github repository that contains the necessary Python code and Caffe configuration files for the tutorial. From your terminal, execute the following command.</p>
-<div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">adilmoujahid</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="p">.</span><span class="n">git</span>
+<div class="highlight"><pre><span></span>git clone https://github.com/adilmoujahid/deeplearning-cats-dogs-tutorial.git
 </pre></div>
 
 
 <p>Next, we create an <code>input</code> folder for storing the training and test images.</p>
-<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span>
-<span class="n">mkdir</span> <span class="k">input</span>
+<div class="highlight"><pre><span></span>cd deeplearning-cats-dogs-tutorial
+mkdir input
 </pre></div>
 
 
@@ -194,15 +194,15 @@ CNNs have special layers called convolutional layers and pooling layers that all
 <p>After the training phase, we will use the <code>.caffemodel</code> trained model to make predictions of new unseen data. We will write a Python script to this.</p>
 <h2>4.4 Data Preparation</h2>
 <p>We start by copying the train.zip and test1.zip (that we downloaded to our local machine) to the <code>input</code> folder in the AWS instance. We can do this using the <code>scp</code> command from a MAC or linux machine. If you're running Windows, you can use a program such as <a href="https://winscp.net/eng/download.php">Winscp</a>. After copying the data, we unzip the files by executing the following commands:</p>
-<div class="highlight"><pre><span></span><span class="n">unzip</span> <span class="o">~/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="k">input</span><span class="o">/</span><span class="n">train</span><span class="p">.</span><span class="n">zip</span>
-<span class="n">unzip</span> <span class="o">~/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="k">input</span><span class="o">/</span><span class="n">test1</span><span class="p">.</span><span class="n">zip</span>
-<span class="n">rm</span> <span class="o">~/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="k">input</span><span class="cm">/*.zip</span>
+<div class="highlight"><pre><span></span>unzip ~/deeplearning-cats-dogs-tutorial/input/train.zip
+unzip ~/deeplearning-cats-dogs-tutorial/input/test1.zip
+rm ~/deeplearning-cats-dogs-tutorial/input/*.zip
 </pre></div>
 
 
 <p>Next, we run <code>create_lmdb.py</code>.</p>
-<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">code</span>
-<span class="n">python</span> <span class="n">create_lmdb</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre><span></span>cd ~/deeplearning-cats-dogs-tutorial/code
+python create_lmdb.py
 </pre></div>
 
 
@@ -265,7 +265,7 @@ CNNs have special layers called convolutional layers and pooling layers that all
 <p>The code above takes 5/6 of the training images, transforms and stores them in train_lmdb. The code for storing validation data follows the same structure.</p>
 <h3>Generating the mean image of training data</h3>
 <p>We execute the command below to generate the mean image of training data. We will substract the mean image from each input image to ensure every feature pixel has zero mean. This is a common preprocessing step in supervised machine learning.</p>
-<div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">caffe</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">compute_image_mean</span> <span class="o">-</span><span class="n">backend</span><span class="o">=</span><span class="n">lmdb</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="k">input</span><span class="o">/</span><span class="n">train_lmdb</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="k">input</span><span class="o">/</span><span class="n">mean</span><span class="p">.</span><span class="n">binaryproto</span>
+<div class="highlight"><pre><span></span>/home/ubuntu/caffe/build/tools/compute_image_mean -backend=lmdb /home/ubuntu/deeplearning-cats-dogs-tutorial/input/train_lmdb /home/ubuntu/deeplearning-cats-dogs-tutorial/input/mean.binaryproto
 </pre></div>
 
 
@@ -716,7 +716,7 @@ solver_mode: GPU</code></pre>
 </div>
 <h2>4.6 Model Training</h2>
 <p>After defining the model and the solver, we can start training the model by executing the command below: </p>
-<div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">caffe</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">caffe</span> <span class="n">train</span> <span class="c1">--solver /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/solver_1.prototxt 2&gt;&amp;1 | tee /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/model_1_train.log</span>
+<div class="highlight"><pre><span></span>/home/ubuntu/caffe/build/tools/caffe train --solver /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/solver_1.prototxt 2&gt;&amp;1 | tee /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/model_1_train.log
 </pre></div>
 
 
@@ -726,7 +726,7 @@ solver_mode: GPU</code></pre>
 <h3>Plotting the learning curve</h3>
 <p>A learning curve is a plot of the training and test losses as a function of the number of iterations. These plots are very useful to visualize the train/validation losses and validation accuracy. </p>
 <p>We can see from the learning curve that the model achieved a validation accuracy of 90%, and it stopped improving after 3000 iterations. </p>
-<div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">plot_learning_curve</span><span class="p">.</span><span class="n">py</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">caffe_model_1</span><span class="o">/</span><span class="n">model_1_train</span><span class="p">.</span><span class="n">log</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">caffe_model_1</span><span class="o">/</span><span class="n">caffe_model_1_learning_curve</span><span class="p">.</span><span class="n">png</span>
+<div class="highlight"><pre><span></span>python /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/code/plot_learning_curve.py /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_models/caffe_model_1/model_1_train.log /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_models/caffe_model_1/caffe_model_1_learning_curve.png
 </pre></div>
 
 
@@ -742,8 +742,8 @@ solver_mode: GPU</code></pre>
 <li>Trained model weights: This is the file that we computed in the training phase. We will use <code>caffe_model_1_iter_10000.caffemodel</code>.</li>
 </ul>
 <p>To run the Python code, we need to execute the command below. The predictions will be stored under <code>deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_1/submission_model_1.csv</code>.</p>
-<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">code</span>
-<span class="n">python</span> <span class="n">make_predictions_1</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre><span></span>cd /home/ubuntu/deeplearning-cats-dogs-tutorial/code
+python make_predictions_1.py
 </pre></div>
 
 
@@ -800,8 +800,8 @@ solver_mode: GPU</code></pre>
 <p>We will use the fine-tuning strategy for training our model. </p>
 <h3>Download trained bvlc_reference_caffenet model</h3>
 <p>We can download the trained model by executing the command below.</p>
-<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">caffe</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">bvlc_reference_caffenet</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="p">.</span><span class="n">caffe</span><span class="p">.</span><span class="n">berkeleyvision</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">bvlc_reference_caffenet</span><span class="p">.</span><span class="n">caffemodel</span>
+<div class="highlight"><pre><span></span>cd /home/ubuntu/caffe/models/bvlc_reference_caffenet
+wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel
 </pre></div>
 
 
@@ -1242,13 +1242,13 @@ solver_mode: GPU</code></pre>
 </div>
 <h3>Model Training with Transfer Learning</h3>
 <p>After defining the model and the solver, we can start training the model by executing the command below. Note that we can pass the trained model's weights by using the argument <code>--weights</code>.</p>
-<div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">caffe</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">caffe</span> <span class="n">train</span> <span class="c1">--solver=/home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_2/solver_2.prototxt --weights /home/ubuntu/caffe/models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel 2&gt;&amp;1 | tee /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_2/model_2_train.log</span>
+<div class="highlight"><pre><span></span>/home/ubuntu/caffe/build/tools/caffe train --solver=/home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_2/solver_2.prototxt --weights /home/ubuntu/caffe/models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel 2&gt;&amp;1 | tee /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_2/model_2_train.log
 </pre></div>
 
 
 <h3>Plotting the Learning Curve</h3>
 <p>Similarly to the previous section, we can plot the learning curve by executing the command below. We can see from the learning curve that the model achieved an accuracy of ~97% after 1000 iterations only. This shows the power of transfer learning. We were able to get a higher accuracy with a smaller number of iterations.</p>
-<div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">plot_learning_curve</span><span class="p">.</span><span class="n">py</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">caffe_model_2</span><span class="o">/</span><span class="n">model_2_train</span><span class="p">.</span><span class="n">log</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">deeplearning</span><span class="o">-</span><span class="n">cats</span><span class="o">-</span><span class="n">dogs</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">caffe_models</span><span class="o">/</span><span class="n">caffe_model_2</span><span class="o">/</span><span class="n">caffe_model_2_learning_curve</span><span class="p">.</span><span class="n">png</span>
+<div class="highlight"><pre><span></span>python /home/ubuntu/deeplearning-cats-dogs-tutorial/code/plot_learning_curve.py /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_2/model_2_train.log /home/ubuntu/deeplearning-cats-dogs-tutorial/caffe_models/caffe_model_2/caffe_model_2_learning_curve.png
 </pre></div>
 
 

@@ -114,30 +114,30 @@
 
 
 <p>In the <code>mongo</code> shell, run the command below to choose the database <code>donorschoose</code>.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">donorschoose</span>
+<div class="highlight"><pre><span></span>&gt; use donorschoose
 </pre></div>
 
 
 <p>Next run the command below to return all collections that are stored in <code>donorschoose</code> DB. This will return <code>projects</code> since it’s the only collection that we stored inside <code>donorschoose</code> DB.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="k">show</span> <span class="nv">collections</span>
+<div class="highlight"><pre><span></span>&gt; show collections
 </pre></div>
 
 
 <p>Next run the command below to retrieve one random record from the <code>donorschoose</code> DB. </p>
-<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">projects</span><span class="p">.</span><span class="n">findOne</span><span class="p">()</span>
+<div class="highlight"><pre><span></span>&gt; db.projects.findOne()
 </pre></div>
 
 
 <p>The command above returns the following record with 45 key-values. 44 key-values are from the original data, and the key <code>"_id"</code> with its value is a unique id assigned automatically by MongoDB.</p>
 <p><code>{"_id" : ObjectId("54954c1441606439933b93d8"), "_projectid" : "\"e565fb42185c6e9f22806ad9d5ac8a77\"", "_teacher_acctid" : "\"2e17c8c91cb58132d8103a9aa8797e80\"", "_schoolid" : "\"45e7ddbdd7023f1eb65a6cc028d7414f\"", "school_ncesid" : NumberLong("360009001332"), "school_latitude" : 40.841691, "school_longitude" : -73.875457, "school_city" : "Bronx", "school_state" : "NY", "school_zip" : 10460, "school_metro" : "urban", "school_district" : "New York City Dept Of Ed", "school_county" : "Bronx", "school_charter" : "f", "school_magnet" : "f", "school_year_round" : "f", "school_nlns" : "f", "school_kipp" : "f", "school_charter_ready_promise" : "f", "teacher_prefix" : "Mr.", "teacher_teach_for_america" : "f", "teacher_ny_teaching_fellow" : "f", "primary_focus_subject" : "Literacy", "primary_focus_area" : "Literacy &amp; Language", "secondary_focus_subject" : "", "secondary_focus_area" : "", "resource_type" : "Books", "poverty_level" : "highest poverty", "grade_level" : "Grades 9-12", "vendor_shipping_charges" : "", "sales_tax" : "", "payment_processing_charges" : "", "fulfillment_labor_materials" : "", "total_price_excluding_optional_support" : 280.02, "total_price_including_optional_support" : 341.49, "students_reached" : 0, "total_donations" : 308, "num_donors" : 1, "eligible_double_your_impact_match" : "f", "eligible_almost_home_match" : "f", "funding_status" : "completed", "date_posted" : "2007-03-08", "date_completed" : "2007-03-08", "date_thank_you_packet_mailed" : "2007-03-08", "date_expiration" : "2003-12-31"}</code></p>
 <p>In this tutorial, we are interested only the 5 attributes: <code>school_state</code>, <code>resource_type</code>, <code>poverty_level</code>, <code>date_posted</code> and <code>total_donations</code>. We can query one random record and return only these 5 attributes by running the following command.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">projects</span><span class="p">.</span><span class="n">findOne</span><span class="p">(</span><span class="err">{}</span><span class="p">,</span> <span class="err">{</span><span class="n">school_state</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">resource_type</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">poverty_level</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">date_posted</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_donations</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">funding_status</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">_id</span><span class="p">:</span><span class="mi">0</span><span class="err">}</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>&gt; db.projects.findOne({}, {school_state:1, resource_type:1, poverty_level:1, date_posted:1, total_donations:1, funding_status:1, _id:0})
 </pre></div>
 
 
 <p>This returns <code>{"school_state" : "NY", "resource_type" : "Books", "poverty_level" : "highest poverty", "total_donations" : 308, "funding_status" : "completed", "date_posted" : "2007-03-08"}</code>.</p>
 <p>We can get all records with the 5 attributes by running the following command.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">projects</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="err">{}</span><span class="p">,</span> <span class="err">{</span><span class="n">school_state</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">resource_type</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">poverty_level</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">date_posted</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_donations</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">funding_status</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">_id</span><span class="p">:</span><span class="mi">0</span><span class="err">}</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>&gt; db.projects.find({}, {school_state:1, resource_type:1, poverty_level:1, date_posted:1, total_donations:1, funding_status:1, _id:0})
 </pre></div>
 
 
@@ -155,28 +155,28 @@
 
 
 <p>Next, we will define 4 variables that represent respectively MongoDB IP address, MongoDB port, MongoDB database name and MongoDB collection name.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">MONGODB_HOST</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">MONGODB_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">DBS_NAME</span> <span class="o">=</span> <span class="s1">&#39;donorschoose&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;projects&#39;</span>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; MONGODB_HOST = &#39;localhost&#39;
+&gt;&gt;&gt; MONGODB_PORT = 27017
+&gt;&gt;&gt; DBS_NAME = &#39;donorschoose&#39;
+&gt;&gt;&gt; COLLECTION_NAME = &#39;projects&#39;
 </pre></div>
 
 
 <p>Next, we will define the 5 attributes that we will use for our query. Note that we had to explicitly set the records unique id <code>_id</code> to <code>False</code>. If we don't do so, it will be included in the query's response.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">FIELDS</span> <span class="o">=</span> <span class="err">{</span><span class="s1">&#39;school_state&#39;</span><span class="p">:</span> <span class="k">True</span><span class="p">,</span> <span class="s1">&#39;resource_type&#39;</span><span class="p">:</span> <span class="k">True</span><span class="p">,</span> <span class="s1">&#39;poverty_level&#39;</span><span class="p">:</span> <span class="k">True</span><span class="p">,</span> <span class="s1">&#39;date_posted&#39;</span><span class="p">:</span> <span class="k">True</span><span class="p">,</span> <span class="s1">&#39;total_donations&#39;</span><span class="p">:</span> <span class="k">True</span><span class="p">,</span> <span class="s1">&#39;_id&#39;</span><span class="p">:</span> <span class="k">False</span><span class="err">}</span>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; FIELDS = {&#39;school_state&#39;: True, &#39;resource_type&#39;: True, &#39;poverty_level&#39;: True, &#39;date_posted&#39;: True, &#39;total_donations&#39;: True, &#39;_id&#39;: False}
 </pre></div>
 
 
 <p>And finally, let's connect to MongoDB and retrieve all the records along the 5 attributes that we are interested in. We can do so by running the following.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MongoClient</span><span class="p">(</span><span class="n">MONGODB_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MONGODB_PORT</span><span class="p">)</span><span class="w"></span>
-<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">connection</span><span class="o">[</span><span class="n">DBS_NAME</span><span class="o">][</span><span class="n">COLLECTION_NAME</span><span class="o">]</span><span class="w"></span>
-<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">projects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collection</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">FIELDS</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
+&gt;&gt;&gt; collection = connection[DBS_NAME][COLLECTION_NAME]
+&gt;&gt;&gt; projects = collection.find(projection=FIELDS)
 </pre></div>
 
 
 <p>All the records are stored in <code>projects</code>, we can print all them by running the following command.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="nv">project</span> <span class="nv">in</span> <span class="nv">projects</span>:
-<span class="o">&gt;&gt;&gt;</span>     <span class="nv">print</span> <span class="nv">project</span>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; for project in projects:
+&gt;&gt;&gt;     print project
 </pre></div>
 
 
