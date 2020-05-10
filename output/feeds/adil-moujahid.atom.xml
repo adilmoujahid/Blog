@@ -176,7 +176,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 
 &lt;p&gt;From a browser, we go to http://localhost:8501 to see the app.&lt;/p&gt;
 &lt;h1&gt;4. Simulations&lt;/h1&gt;
-&lt;p&gt;Now that we have our streamlit app ready, we can run our Schelling simulations. In the 3 simulations below, we changed the similarity threshold and we run the simulations from 10 iterations. &lt;/p&gt;
+&lt;p&gt;Now that we have our streamlit app ready, we can run our Schelling simulations. In the 3 simulations below, we changed the similarity threshold and we run the simulations for 10 iterations. &lt;/p&gt;
 &lt;div style="display:block;margin:auto;height:80%;width:80%"&gt;
   &lt;img src="/images/schelling2020/schelling-simulation-41.gif"&gt;
 &lt;/div&gt;
@@ -195,7 +195,7 @@ Source: &lt;a href="http://demographics.coopercenter.org/DotMap/index.html"&gt;h
 &lt;li&gt;Even with a relatively low similarity threshold (40%), we end up with a high segregation level (over 85%).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1&gt;5. Conclusion&lt;/h1&gt;
-&lt;p&gt;In this blog post, we saw how to implement Schelling segregation model in Python and Streamlit. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in cities doesn't necessarily translate into intolerance at the individual level. We also saw the power of Streamlit that allowed to build a powerful interactive web application using Python only. &lt;/p&gt;
+&lt;p&gt;In this blog post, we saw how to implement Schelling segregation model in Python and Streamlit. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in cities doesn't necessarily translate into intolerance at the individual level. We also saw the power of Streamlit that allowed us to build a powerful interactive web application using Python only. &lt;/p&gt;
 &lt;h1&gt;References&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.stat.berkeley.edu/~aldous/157/Papers/Schelling_Seg_Models.pdf"&gt;Thomas Schelling,  Dynamic models of segregation&lt;/a&gt;&lt;/li&gt;

@@ -220,7 +220,7 @@ From a browser, we go to http://localhost:8501 to see the app.
 
 #4. Simulations
 
-Now that we have our streamlit app ready, we can run our Schelling simulations. In the 3 simulations below, we changed the similarity threshold and we run the simulations from 10 iterations. 
+Now that we have our streamlit app ready, we can run our Schelling simulations. In the 3 simulations below, we changed the similarity threshold and we run the simulations for 10 iterations. 
 
 
 <div style="display:block;margin:auto;height:80%;width:80%">
@@ -242,7 +242,7 @@ From these simulations, we can see that:
 * Even with a relatively low similarity threshold (40%), we end up with a high segregation level (over 85%).
 
 #5. Conclusion
-In this blog post, we saw how to implement Schelling segregation model in Python and Streamlit. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in cities doesn't necessarily translate into intolerance at the individual level. We also saw the power of Streamlit that allowed to build a powerful interactive web application using Python only. 
+In this blog post, we saw how to implement Schelling segregation model in Python and Streamlit. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in cities doesn't necessarily translate into intolerance at the individual level. We also saw the power of Streamlit that allowed us to build a powerful interactive web application using Python only. 
 
 
 # References
