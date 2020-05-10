@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Data Analytics and more">
+
+
+
+
+        <title>An Implementation of Schelling Segregation Model using Python and Streamlit // Adil Moujahid // Data Analytics and more</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
+
+                <div>
+                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+                    Follow @AdilMouja
+                </a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+
+                <h5>Published</h5>
+                <p>Sun 10 May 2020</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>An Implementation of Schelling Segregation Model using Python and Streamlit</h1>
+                    <br>
+                    <p class="post-meta">
+                        // tags                             <a class="post-category" href="../../../../tag/python/">python</a>
+                            <a class="post-category" href="../../../../tag/streamlit/">streamlit</a>
+                            <a class="post-category" href="../../../../tag/simulation/">simulation</a>
+                    </p>
+                </header>
+            </section>
+            <br>
+            <p>In 1971, Thomas Schelling published a paper titled <a href="https://www.stat.berkeley.edu/~aldous/157/Papers/Schelling_Seg_Models.pdf">Dynamic models of segregation</a>. The paper introduced an agent-based model that helped studying segregation in multi-ethnics cities. The model showed that a high segregation level in cities doesn't necessarily translate into intolerance at the individual level. </p>
+<p>In this blog post, I will show how to implement Schelling's simulation using Python and a new open-source app framework called <a href="https://www.streamlit.io/">Streamlit</a>.</p>
+<p>In section 1, I'll introduce the case study. In section 2, I will explain how to implement Schelling's simulation using Python and Streamlit. In section 3, we will run a few simulations with different parameters and we will see how segregation at the city level doesn't necessarily translate into intolerance at the individual level.</p>
+<p>Below is an animated gif of the application that we will build. You can find the source code in this <a href="https://github.com/adilmoujahid/streamlit-schelling">github repository</a>.</p>
+<div style="display:block;margin:auto;height:80%;width:80%">
+  <img src="/images/schelling2020/schelling-simulation-43.gif">
+</div>
+
+<p><em>This post is an update of an older one that you can find <a href="http://adilmoujahid.com/posts/2014/09/schelling-model/">here</a>. This version contains a better implementation of Schelling simulation and an app that let us run Schelling's simulation in an interactive way.</em></p>
+<h1>1. The case study</h1>
+<p>If you look at the racial distribution of multi-ethnic cities, you'll see an incredible racial segregation. For example, the New York City map below represents data from the 2010 US Census color-coded by race. You can clearly see the racial segregation.</p>
+<p>Many would conclude from such phenomena that people are intolerant, and don't want to live next to people that are different from them. A deeper look, however, might provide some nuance. In the 70's, Thomas Schelling, the 2005 Economics Nobel Prize winner, was interested in this subject and built an agent-based model called the "Schelling segregation model" for explaining this phenomenon. With a very simple model, Schelling could show that what we see at the macro level may not in fact represent what's going down in the micro level.</p>
+<div style="text-align:left">
+<p><img alt="Alt Text" src="/images/NY_racial_map.jpg">
+Source: <a href="http://demographics.coopercenter.org/DotMap/index.html">http://demographics.coopercenter.org/DotMap/index.html</a></p>
+</div>
+<h1>2. Schelling Segregation Model: Setting and Definitions</h1>
+<p>In computer science, agent-based models are used to assess the effects of autonomous agents (i.e. individuals, groups or objects) on an overall system. They're very powerful analytical tools that can be used in situations where experiments aren't feasible or are very expensive to conduct. These models have a wide range of applications in the social sciences, computer science, economics and business.</p>
+<p>Agent-based models need three parameters: 1) Agents, 2) Behavior (rules) and 3) Metrics at the aggregated level. In the Schelling model, the agents are the people living in the city, the behavior is the house moving based on the similarity ratio and the metrics at the aggregated level is the similarity ratio.</p>
+<p>Let n be the number of races living in a city. We represent each race by a unique color and we represent the city by a grid where each cell represents a house. A house can be either empty or full. A full house can have have only one person living in it. If the house is empty, we color it in white. If the house is full, we color it by the color of the person living in it. We define the neighbors of a person to be the people living in the adjacent houses.</p>
+<p>Schelling's goal was to test what would happen if people had a small preference that their neighbors be of the same color (or even preference for some diversity). If the ratio of neighbors of the same race is above a certain threshold (that we call Similarity Threshold), we say that the person is satisfied. If not, we say that the person is unsatisfied.</p>
+<p>The Schelling simulation goes as follows. We start by randomly putting people in the city and we leave some houses empty. For each person living in the city, we check if he/she is satisfied. If satisfied, we don't do anything. If not, we move the person to an empty house. We run this simulation for a few iterations, and we check the final distribution of the people.</p>
+<h1>3. Implementation of Schelling's Model using Python and Streamlit</h1>
+<p>In this section, we will see how we can implement Schelling's model using Python and Streamlit. You can find the entire source code in this <a href="https://github.com/adilmoujahid/streamlit-schelling">github repository</a>.</p>
+<p>We start by defining a Python class called <code>Schelling</code> that takes as input 4 parameters:</p>
+<ul>
+<li><code>size</code>: The number of houses in the city.</li>
+<li><code>empty_ratio</code>: The ratio of empty houses in the city.</li>
+<li><code>similarity_threshold</code>: A threshold that we will use to determine if a person is happy in his/her neighborhood. If the ratio of similar neighbors to the entire neighborhood population is lower than the <code>similarity_threshold</code>, then the person moves to an empty house.</li>
+<li><code>n_neighbors</code>: The number of neighbors in each direction (top, bottom, left, right).  </li>
+</ul>
+<p>The constructor computes a <code>numpy</code> 2D array based on the <code>size</code> and <code>empty_ratio</code> parameters. We call this array: <code>city</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Schelling</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty_ratio</span> <span class="o">=</span> <span class="n">empty_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_threshold</span> <span class="o">=</span> <span class="n">similarity_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+
+        <span class="c1"># Ratio of races (-1, 1) and empty houses (0)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">empty_ratio</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">empty_ratio</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">]</span>
+        <span class="n">city_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">city</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">city_size</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">city</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">city_size</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">city_size</span><span class="p">))))</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">get_mean_similarity_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+
+
+<p>We also define 2 methods for the <code>Schelling</code> class:</p>
+<ul>
+<li><code>run()</code>: This method runs the Schelling simulation for one iteration. For each person in the city, we check if he/she's happy based on the <code>similarity_ratio</code> and the <code>similarity_threshold</code>. If the person is not happy that we move him/her to an empty house.</li>
+<li><code>get_mean_similarity_ratio()</code>: This method computes the average similarity ratio of the entire city. </li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">),</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">):</span>
+        <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">race</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">neighborhood</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">[</span><span class="n">row</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">:</span><span class="n">row</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">col</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">:</span><span class="n">col</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">]</span>
+            <span class="n">neighborhood_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">neighborhood</span><span class="p">)</span>
+            <span class="n">n_empty_houses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">neighborhood</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">neighborhood_size</span> <span class="o">!=</span> <span class="n">n_empty_houses</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">n_similar</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">neighborhood</span> <span class="o">==</span> <span class="n">race</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">similarity_ratio</span> <span class="o">=</span> <span class="n">n_similar</span> <span class="o">/</span> <span class="p">(</span><span class="n">neighborhood_size</span> <span class="o">-</span> <span class="n">n_empty_houses</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
+                <span class="n">is_unhappy</span> <span class="o">=</span> <span class="p">(</span><span class="n">similarity_ratio</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">similarity_threshold</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">is_unhappy</span><span class="p">:</span>
+                    <span class="n">empty_houses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">city</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">city</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="n">random_house</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">empty_houses</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">[</span><span class="n">random_house</span><span class="p">]</span> <span class="o">=</span> <span class="n">race</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_mean_similarity_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">similarity_ratio</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">),</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">):</span>
+        <span class="n">race</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">race</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">neighborhood</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">city</span><span class="p">[</span><span class="n">row</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">:</span><span class="n">row</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">col</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">:</span><span class="n">col</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">]</span>
+            <span class="n">neighborhood_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">neighborhood</span><span class="p">)</span>
+            <span class="n">n_empty_houses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">neighborhood</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">neighborhood_size</span> <span class="o">!=</span> <span class="n">n_empty_houses</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">n_similar</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">neighborhood</span> <span class="o">==</span> <span class="n">race</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">similarity_ratio</span> <span class="o">+=</span> <span class="n">n_similar</span> <span class="o">/</span> <span class="p">(</span><span class="n">neighborhood_size</span> <span class="o">-</span> <span class="n">n_empty_houses</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">similarity_ratio</span> <span class="o">/</span> <span class="n">count</span>
+</pre></div>
+
+
+<p>In order to make the simulation interactive, we will use a new open-source app framework called <a href="https://www.streamlit.io/">Streamlit</a>. Streamlit is a python library that can be installed using a <code>pip install</code> command. Stremlit is an easy to use library that allows us to create web applications using Python only and without writing HTML/JS/CSS code.</p>
+<p>We start by defining the title of our app.</p>
+<div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Schelling&#39;s Model of Segregation&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then, we create 4 sliders that we can use to choose the parameters of Schelling simulation in an interactive way.</p>
+<div class="highlight"><pre><span></span><span class="n">population_size</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Population Size&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">2500</span><span class="p">)</span>
+<span class="n">empty_ratio</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Empty Houses Ratio&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">similarity_threshold</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Similarity Threshold&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">n_iterations</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">number_input</span><span class="p">(</span><span class="s2">&quot;Number of Iterations&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We then create a <code>Schelling</code> instance and we calculate the average similarity ratio a the beginning of the simulation.</p>
+<div class="highlight"><pre><span></span><span class="n">schelling</span> <span class="o">=</span> <span class="n">Schelling</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">empty_ratio</span><span class="p">,</span> <span class="n">similarity_threshold</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">mean_similarity_ratio</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mean_similarity_ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">schelling</span><span class="o">.</span><span class="n">get_mean_similarity_ratio</span><span class="p">())</span>
+</pre></div>
+
+
+<p>We then plot the city and an empty graph that will show the average similarity ratio for each iteration of the simulation.</p>
+<div class="highlight"><pre><span></span><span class="c1">#Plot the graphs at initial stage</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Left hand side graph with Schelling simulation plot</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;royalblue&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">schelling</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Right hand side graph with Mean Similarity Ratio graph</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iterations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Similarity Ratio&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Similarity Ratio: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">schelling</span><span class="o">.</span><span class="n">get_mean_similarity_ratio</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">city_plot</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pyplot</span><span class="p">(</span><span class="n">plt</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The following line allows to add a progress bar to our simulation.</p>
+<div class="highlight"><pre><span></span><span class="n">progress_bar</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">progress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Finally, we define a streamlit button that once pushed, will run the simulation for <code>n_iterations</code> times.</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Run Simulation&#39;</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="p">):</span>
+        <span class="n">schelling</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="n">mean_similarity_ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">schelling</span><span class="o">.</span><span class="n">get_mean_similarity_ratio</span><span class="p">())</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">schelling</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iterations&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Similarity Ratio&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mean_similarity_ratio</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">mean_similarity_ratio</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Similarity Ratio: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">schelling</span><span class="o">.</span><span class="n">get_mean_similarity_ratio</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">city_plot</span><span class="o">.</span><span class="n">pyplot</span><span class="p">(</span><span class="n">plt</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+        <span class="n">progress_bar</span><span class="o">.</span><span class="n">progress</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mf">1.</span><span class="p">)</span><span class="o">/</span><span class="n">n_iterations</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In order to run the app, we just have to write the following command in a terminal. </p>
+<div class="highlight"><pre><span></span>streamlit run app.py
+</pre></div>
+
+
+<p>From a browser, we go to http://localhost:8501 to see the app.</p>
+<h1>4. Simulations</h1>
+<p>Now that we have our streamlit app ready, we can run our Schelling simulations. In the 3 simulations below, we changed the similarity threshold and we run the simulations from 10 iterations. </p>
+<div style="display:block;margin:auto;height:80%;width:80%">
+  <img src="/images/schelling2020/schelling-simulation-41.gif">
+</div>
+
+<div style="display:block;margin:auto;height:80%;width:80%">
+  <img src="/images/schelling2020/schelling-simulation-42.gif">
+</div>
+
+<div style="display:block;margin:auto;height:80%;width:80%">
+  <img src="/images/schelling2020/schelling-simulation-43.gif">
+</div>
+
+<p>From these simulations, we can see that:</p>
+<ul>
+<li>The higher the similarity threshold, the higher the level of segregation in the city.</li>
+<li>Even with a relatively low similarity threshold (40%), we end up with a high segregation level (over 85%).</li>
+</ul>
+<h1>5. Conclusion</h1>
+<p>In this blog post, we saw how to implement Schelling segregation model in Python and Streamlit. This very simple model helped us understand a very complex phenomena, namely segregation in multi-ethnics cities. We could show that a very high segregation level in cities doesn't necessarily translate into intolerance at the individual level. We also saw the power of Streamlit that allowed to build a powerful interactive web application using Python only. </p>
+<h1>References</h1>
+<ul>
+<li><a href="https://www.stat.berkeley.edu/~aldous/157/Papers/Schelling_Seg_Models.pdf">Thomas Schelling,  Dynamic models of segregation</a></li>
+<li><a href="http://adilmoujahid.com/posts/2014/09/schelling-model/">An Introduction to Agent-based Models: Simulating Segregation with Python</a></li>
+</ul>
+            <div class="hr"></div>
+            
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+                #mc_embed_signup{background:#F1F3F3; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                #mc-embedded-subscribe.button{background-color: #0f52ba;}
+                /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+            <form action="//adilmoujahid.us10.list-manage.com/subscribe/post?u=28846a375fbf5c13a93712283&amp;id=a45c6ff723" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+                <label for="mce-EMAIL">Subscribe to my Data in Practice Newsletter</label>
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_28846a375fbf5c13a93712283_a45c6ff723" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+
+            <!--End mc_embed_signup-->
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+
+
+</html>
