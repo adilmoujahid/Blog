@@ -1978,10 +1978,10 @@ Name: positions, dtype: object&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div id="db41f9fe-02fa-44a0-81fc-1019eb29f015"&gt;&lt;/div&gt;
+&lt;div id="c91a220e-94eb-472a-a321-a6f20b80356e"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#db41f9fe-02fa-44a0-81fc-1019eb29f015');
+var element = $('#c91a220e-94eb-472a-a321-a6f20b80356e');
 
 (function(root) {
   function now() {
@@ -2339,10 +2339,10 @@ var element = $('#db41f9fe-02fa-44a0-81fc-1019eb29f015');
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div id="ac66620c-435e-48a1-972b-02bc76330572"&gt;&lt;/div&gt;
+&lt;div id="a5da4d73-6093-4de9-a5eb-54d51a9f4e65"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#ac66620c-435e-48a1-972b-02bc76330572');
+var element = $('#a5da4d73-6093-4de9-a5eb-54d51a9f4e65');
 (function(root) {
   function embed_document(root) {
     
@@ -7845,7 +7845,7 @@ IoT is an interdisciplinary field, which requires working with electronics and s
 &lt;li&gt;One USB cable&lt;/li&gt;
 &lt;li&gt;One computer (MAC or Windows) with internet connection&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I recommend getting an &lt;a href="http://www.amazon.com/gp/product/B00BT0NDB8/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00BT0NDB8&amp;amp;linkCode=as2&amp;amp;tag=adilmoujahid-20&amp;amp;linkId=YIE327HRS23JUFIW"&gt;Arduino Kit&lt;/a&gt; that contains an Arduino board with other electronic parts and components. &lt;/p&gt;
+&lt;p&gt;I recommend getting an &lt;a href="http://www.amazon.com/gp/product/B00BT0NDB8"&gt;Arduino Kit&lt;/a&gt; that contains an Arduino board with other electronic parts and components. &lt;/p&gt;
 &lt;div style="text-align:center"&gt;
 &lt;p&gt;&lt;img alt="Alt Text" src="/images/iot_components.png"&gt;&lt;/p&gt;
 &lt;/div&gt;

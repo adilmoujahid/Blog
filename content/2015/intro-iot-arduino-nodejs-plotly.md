@@ -24,7 +24,7 @@ To keep things simple and focused, we will build a simple application that keeps
 * One USB cable
 * One computer (MAC or Windows) with internet connection
 
-I recommend getting an [Arduino Kit](http://www.amazon.com/gp/product/B00BT0NDB8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BT0NDB8&linkCode=as2&tag=adilmoujahid-20&linkId=YIE327HRS23JUFIW) that contains an Arduino board with other electronic parts and components. 
+I recommend getting an [Arduino Kit](http://www.amazon.com/gp/product/B00BT0NDB8) that contains an Arduino board with other electronic parts and components. 
 
 
 <div style="text-align:center" markdown="1">
