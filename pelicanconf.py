@@ -29,7 +29,7 @@ COVER_IMG_URL = '/images/cover-img.jpg'
 
 # Social widget
 SOCIAL = (('twitter', 'https://twitter.com/AdilMouja'),
-          ('linkedin', 'https://www.linkedin.com/pub/adil-moujahid/65/51/83a'),
+          ('linkedin', 'https://www.linkedin.com/in/adilmoujahid/'),
           ('github', 'https://github.com/adilmoujahid'),)
 
 # Blogroll
