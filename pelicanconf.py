@@ -20,7 +20,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 
-MENUITEMS = [('Posts', ''), ('Notes', 'notes'), ('About', 'pages/about.html')]
+MENUITEMS = [('Posts', ''), ('Notes', 'notes'), ('About', 'about')]
 #('Archive', 'archives.html')
 
 STATIC_PATHS = ['images', 'pdfs']
