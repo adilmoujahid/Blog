@@ -1,11 +1,11 @@
 title: About
 
-This is a personal blog I've started to share thoughts on data analytics and applied mathematics.
+My name is Adil Moujahid. I'm a data scientist by training, and currently am a technical manager at [everis](https://www.everis.com/global/en) Artificial Intelligence team.
 
-I am a data scientist in NTT DATA Corporation Japan. I work on building Big Data infrastructure solutions and data analytics algorithms. I also work on business analytics projects for different vertical industries.
 
-I hold a masters degree in Information Science and Electrical Engineering from Kyushu University - Japan. My undergraduate thesis was about the application of algorithms from information theory to financial data. During my graduate years, I worked on theoretical machine learning as well as practical application of machine learning techniques to data compression.
+Prior to joining everis; I worked as a data scientist at the R&D department of NTT DATA in Tokyo where I participated in various initiatives and projects related to data, analytics and artificial Intelligence.
 
-I also participate on a regular basis to data analytics competitions run by Kaggle.com. [Kaggle profile](https://www.kaggle.com/users/52887/adil) 
+I hold a Bachelor of Engineering degree in Electrical Engineering and Computer Science, and a Master of Engineering degree in Information Science and Electrical Engineering. Both from Kyushu University, Japan.
+
 
 *Disclaimer: All information presented in this site does not represent the thoughts, intentions, plans or strategies of any corporation, business or company. It is solely my opinion.*

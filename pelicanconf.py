@@ -20,9 +20,15 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 
-MENUITEMS = [('Archive', 'archives.html'), ('About', 'pages/about.html'), ]
+MENUITEMS = [('Posts', ''), ('Notes', 'notes'), ('About', 'pages/about.html')]
+#('Archive', 'archives.html')
 
 STATIC_PATHS = ['images', 'pdfs']
+
+PAGE_PATHS = ['pages']
+PAGE_URL = '{slug}/'
+PAGE_SAVE_AS = '{slug}/index.html'
+#SLUGIFY_SOURCE = 'basename'
 
 COVER_IMG_URL = '/images/cover-img.jpg'
 
