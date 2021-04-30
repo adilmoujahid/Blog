@@ -20,15 +20,16 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 
-MENUITEMS = [('Posts', ''), ('Notes', 'notes'), ('About', 'pages/about.html')]
+MENUITEMS = [('Posts', ''), ('Notes', 'notes'), ('About', 'about')]
 #('Archive', 'archives.html')
 
-STATIC_PATHS = ['images', 'pdfs']
+#STATIC_PATHS = ['images', 'files']
+
 
 PAGE_PATHS = ['pages']
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
-#SLUGIFY_SOURCE = 'basename'
+SLUGIFY_SOURCE = 'basename'
 
 COVER_IMG_URL = '/images/cover-img.jpg'
 
@@ -66,7 +67,7 @@ YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
 NEWEST_FIRST_ARCHIVES = False
 
 # Static paths will be copied without parsing their contents
-STATIC_PATHS = ['images', 'extra']
+STATIC_PATHS = ['images', 'extra', 'files']
 
 # Ipython setting
 NOTEBOOK_DIR = 'notebooks'
@@ -92,7 +93,7 @@ PLUGIN_PATHS = ['./plugins']
 MARKUP = ('md', 'ipynb')
 
 
-PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'pelican_gist', 'ipynb.liquid', 'pelican_javascript']
+PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'pelican_gist', 'ipynb.liquid', 'pelican_javascript', 'pelican-page-hierarchy']
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True

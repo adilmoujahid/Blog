@@ -1,7 +1,6 @@
 title: My notes
 Slug: notes
 
-You can find here my notes:
+Below you can find my personal notes on different topics in no particular order:
 
-* [Note 1]()
-* [Note 2]()
+* [Using Nginx for deploying and securing applications in the cloud](./nginx-security-cloud)
