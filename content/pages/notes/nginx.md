@@ -26,4 +26,7 @@ Nginx is a:
 ###6- Nginx advanced authentication with Python
 
 
+Nginx Cheatsheet: Nginx configurations that developers should know 
+
+https://vishnu.hashnode.dev/nginx-cheatsheet
 

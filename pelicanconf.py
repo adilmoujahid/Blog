@@ -72,8 +72,8 @@ STATIC_PATHS = ['images', 'extra', 'files']
 # Ipython setting
 NOTEBOOK_DIR = 'notebooks'
 #EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
-IPYNB_STOP_SUMMARY_TAGS = [('div', ('class', 'input')), ('div', ('class', 'output')), 
-						('div', ('content')), 'h1']
+IPYNB_STOP_SUMMARY_TAGS = [('div', ('class', 'input')), ('div', ('class', 'output'))]
+
 
 # Shift the installed location of a file
 EXTRA_PATH_METADATA = {
