@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adil Moujahid - Adil Moujahid</title><link href="/" rel="alternate"></link><link href="/feeds/adil-moujahid.atom.xml" rel="self"></link><id>/</id><updated>2022-04-24T00:00:00+09:00</updated><entry><title>In-Depth Analysis of Moonbirds NFTs using Python and Alchemy</title><link href="/posts/2022/04/data-analysis-moonbirds-nft-python-alchemy/" rel="alternate"></link><published>2022-04-24T00:00:00+09:00</published><updated>2022-04-24T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2022-04-24:/posts/2022/04/data-analysis-moonbirds-nft-python-alchemy/</id><summary type="html">&lt;p&gt;Moonbirds is the official PFP NFT project by the Proof collective. It consists of 10,000 utility-enabled PFPs that unlock different benefits depending on the traits and the locking period of the Moonbird NFT. In this blog post, we will use Python and Alchemy to do a deep dive analysis of the collection in its first week of trading.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adil Moujahid - Adil Moujahid</title><link href="/" rel="alternate"></link><link href="/feeds/adil-moujahid.atom.xml" rel="self"></link><id>/</id><updated>2022-04-24T00:00:00+09:00</updated><entry><title>In-Depth Analysis of Moonbirds NFTs using Python and Alchemy</title><link href="/posts/2022/04/data-analysis-moonbirds-nft-python-alchemy/" rel="alternate"></link><published>2022-04-24T00:00:00+09:00</published><updated>2022-04-24T00:00:00+09:00</updated><author><name>Adil Moujahid</name></author><id>tag:None,2022-04-24:/posts/2022/04/data-analysis-moonbirds-nft-python-alchemy/</id><summary type="html">&lt;p&gt;Moonbirds is the official PFP NFT project of the Proof collective. It consists of 10,000 utility-enabled PFPs that unlock different benefits depending on the traits and the locking period of the Moonbird NFT. In this blog post, we will use Python and Alchemy to do a deep dive analysis of the collection in its first week of trading.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -975,7 +975,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;a href="https://moonbirds.xyz/"&gt;Moonbirds&lt;/a&gt; is the official PFP NFT project by the &lt;a href="https://collective.proof.xyz/"&gt;Proof collective&lt;/a&gt;. It consists of 10,000 utility-enabled PFPs that unlock different benefits depending on the traits and the locking period of the Moonbird NFT.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://moonbirds.xyz/"&gt;Moonbirds&lt;/a&gt; is the official PFP NFT project of the &lt;a href="https://collective.proof.xyz/"&gt;Proof collective&lt;/a&gt;. It consists of 10,000 utility-enabled PFPs that unlock different benefits depending on the traits and the locking period of the Moonbird NFT.&lt;/p&gt;
 &lt;p&gt;The project went live on April 16th, 2022. 2,000 Moobirds were reserved for the Proof Collective Pass holders, &lt;a href="https://twitter.com/moonbirds_xyz/status/1516937783704580097"&gt;125 were reserved for the Moonbirds company wallet&lt;/a&gt;, and the remaining 7,875 were sold at 2.5 ETH to the winners of a raffle organized by Proof. Since its launch, the project has had immense success, breaking record after record,  and surpassing major NFT projects in total secondary sales volume and floor price. The project is ranked 9th in total secondary sales volume after one week of trading, and at the time of writing, the most expensive Moonbird sold for 1 Million USD, and the floor is above 100K USD.&lt;/p&gt;
 &lt;p&gt;In this blog post, we will use Python and Alchemy to do a deep dive analysis of the collection in its first week of trading. In section 1, we will cover how to download Moonbirds data using Python and Alchemy. In Section 2, we will do a deep dive analysis to understand better the sales trends, the price movements and the holders of Moonbirds.&lt;/p&gt;
 &lt;p&gt;The techniques from this tutorial can be used to analyze other NFT projects. You can find the source code and the data in this &lt;a href="https://github.com/adilmoujahid/moonbirds-data-analysis"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
@@ -7544,10 +7544,10 @@ Name: positions, dtype: object&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div id="33f96321-7566-4a2d-ab81-e83e8227d889"&gt;&lt;/div&gt;
+&lt;div id="4601c556-b293-4311-819b-1f99e4dd3312"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#33f96321-7566-4a2d-ab81-e83e8227d889');
+var element = $('#4601c556-b293-4311-819b-1f99e4dd3312');
 
 (function(root) {
   function now() {
@@ -7905,10 +7905,10 @@ var element = $('#33f96321-7566-4a2d-ab81-e83e8227d889');
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div id="aab52401-ecf9-4842-92cd-20155fbca206"&gt;&lt;/div&gt;
+&lt;div id="526659d2-96c1-425f-a716-ac919a74b300"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#aab52401-ecf9-4842-92cd-20155fbca206');
+var element = $('#526659d2-96c1-425f-a716-ac919a74b300');
 (function(root) {
   function embed_document(root) {
     
