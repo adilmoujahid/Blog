@@ -1188,7 +1188,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [13]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; inline
@@ -1199,7 +1199,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [14]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;warnings&lt;/span&gt;
@@ -1211,7 +1211,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [15]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [3]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;chain&lt;/span&gt;
@@ -1224,7 +1224,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [16]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [4]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
@@ -1237,7 +1237,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [17]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [5]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'ggplot'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1256,7 +1256,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [49]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [6]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;## Reading the data&lt;/span&gt;
@@ -1270,7 +1270,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [50]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [7]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#Parsing the dates&lt;/span&gt;
@@ -1299,7 +1299,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [51]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [8]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;start_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sales&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'date'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1314,7 +1314,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [46]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [9]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;format_number&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currency&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1344,7 +1344,7 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [47]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [10]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;max_sale_eth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sales&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'sale_price_eth'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1372,9 +1372,9 @@ pip3 install -r requirements.txt&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;The highest Moonbird sale between 2022-04-16 and 2022-04-23 is 350.00 ETH (1M USD).
-The average Moonbird sale between 2022-04-16 and 2022-04-23 is 16.02 ETH (49K USD).
-The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH (341M USD).
+&lt;pre&gt;The highest Moonbird sale between 2022-04-16 and 2022-04-16 is 350.00 ETH (1M USD).
+The average Moonbird sale between 2022-04-16 and 2022-04-16 is 16.02 ETH (49K USD).
+The total volume of Moonbird sales between 2022-04-16 and 2022-04-16 is 112K ETH (341M USD).
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1391,10 +1391,11 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [52]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [11]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sales&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'date'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;dates_currencies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;currency&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;' '&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;' '&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
@@ -1420,7 +1421,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
 &lt;div class="output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[52]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div&gt;
 &lt;style scoped=""&gt;
@@ -1455,7 +1456,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-23&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-16&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;37K ETH&lt;/td&gt;
 &lt;td&gt;10.08 ETH&lt;/td&gt;
@@ -1468,7 +1469,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;335K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-22&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-17&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;24K ETH&lt;/td&gt;
 &lt;td&gt;15.77 ETH&lt;/td&gt;
@@ -1481,7 +1482,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;414K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-21&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-18&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;11K ETH&lt;/td&gt;
 &lt;td&gt;22.12 ETH&lt;/td&gt;
@@ -1494,7 +1495,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;353K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-20&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-19&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;6K ETH&lt;/td&gt;
 &lt;td&gt;20.20 ETH&lt;/td&gt;
@@ -1507,7 +1508,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;254K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-19&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-20&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;8K ETH&lt;/td&gt;
 &lt;td&gt;24.89 ETH&lt;/td&gt;
@@ -1520,7 +1521,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;466K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-18&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-21&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;13K ETH&lt;/td&gt;
 &lt;td&gt;36.08 ETH&lt;/td&gt;
@@ -1533,7 +1534,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;539K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-17&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-22&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;6K ETH&lt;/td&gt;
 &lt;td&gt;36.80 ETH&lt;/td&gt;
@@ -1546,7 +1547,7 @@ The total volume of Moonbird sales between 2022-04-16 and 2022-04-23 is 112K ETH
 &lt;td&gt;612K USD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;th rowspan="2" valign="top"&gt;2022-04-16&lt;/th&gt;
+&lt;th rowspan="2" valign="top"&gt;2022-04-23&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;td&gt;7K ETH&lt;/td&gt;
 &lt;td&gt;42.47 ETH&lt;/td&gt;
@@ -7543,10 +7544,10 @@ Name: positions, dtype: object&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div id="4178f59f-5f5f-419c-9a92-43b0274a7529"&gt;&lt;/div&gt;
+&lt;div id="33f96321-7566-4a2d-ab81-e83e8227d889"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#4178f59f-5f5f-419c-9a92-43b0274a7529');
+var element = $('#33f96321-7566-4a2d-ab81-e83e8227d889');
 
 (function(root) {
   function now() {
@@ -7904,10 +7905,10 @@ var element = $('#4178f59f-5f5f-419c-9a92-43b0274a7529');
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div id="3a51c0c8-cc0e-4dd6-a2f8-2f0211244344"&gt;&lt;/div&gt;
+&lt;div id="aab52401-ecf9-4842-92cd-20155fbca206"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#3a51c0c8-cc0e-4dd6-a2f8-2f0211244344');
+var element = $('#aab52401-ecf9-4842-92cd-20155fbca206');
 (function(root) {
   function embed_document(root) {
     
