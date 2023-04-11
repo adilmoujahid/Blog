@@ -70,6 +70,11 @@ img.element.style {
   color: inherit;
 }
 
+.hl-ipython2 pre {background-color: #f7f7f7;
+  border: inherit;
+  color: inherit;
+}
+
 /* fix conflict with other sytlesheets */
 .highlight .m { margin: inherit; }
 
