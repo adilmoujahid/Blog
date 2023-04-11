@@ -1,0 +1,9 @@
+pelican==4.8.0
+pelican-gist==0.3.4
+pelican-liquid-tags==1.0.4
+markdown==3.3.7
+typogrify==2.0.7
+ghp-import==2.1.0
+ipython==8.12.0
+pytz==2023.3
+nbconvert==7.3.1

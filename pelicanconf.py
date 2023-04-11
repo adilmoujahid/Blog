@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
-
+from io import open
 
 AUTHOR = u'Adil Moujahid'
 SITENAME = u'Adil Moujahid'
@@ -71,7 +71,7 @@ STATIC_PATHS = ['images', 'extra', 'files']
 
 # Ipython setting
 NOTEBOOK_DIR = 'notebooks'
-#EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
+EXTRA_HEADER = open('_nb_header.html', encoding='utf-8').read()
 IPYNB_STOP_SUMMARY_TAGS = [('div', ('class', 'input')), ('div', ('class', 'output'))]
 
 
@@ -93,7 +93,8 @@ PLUGIN_PATHS = ['./plugins']
 MARKUP = ('md', 'ipynb')
 
 
-PLUGINS = ['gravatar', 'liquid_tags.youtube', 'liquid_tags.img', 'pelican_gist', 'ipynb.liquid', 'pelican_javascript', 'pelican-page-hierarchy']
+PLUGINS = ['gravatar', 'pelican_gist', 'pelican-page-hierarchy', 'pelican.plugins.liquid_tags', 'pelican_javascript']
+LIQUID_TAGS = ["img", "youtube",  "notebook"]
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
