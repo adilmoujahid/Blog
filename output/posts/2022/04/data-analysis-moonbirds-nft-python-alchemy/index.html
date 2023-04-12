@@ -17612,6 +17612,19 @@ The number of addresses that hold 1 Moonbird on 2022-04-23 is: 4838.
         $('body').on('click', 'a[href="#"]', function(event) {
             event.preventDefault();
         });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
     </script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

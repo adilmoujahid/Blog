@@ -455,6 +455,19 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
         $('body').on('click', 'a[href="#"]', function(event) {
             event.preventDefault();
         });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
     </script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

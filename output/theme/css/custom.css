@@ -79,4 +79,25 @@ img.element.style {
 .highlight .m { margin: inherit; }
 
 
+/* 12/04/2023 fix notebook's CSS and make it consistent with the other pages */
+.jp-RenderedHTMLCommon p {
+  margin-bottom: 1em;
+  max-width: 950px;
+  font-size: 110%;
+  line-height: 1.45;
+  color: #333332;
+  font-family: sans-serif;
+}
 
+.jp-InputPrompt.jp-InputArea-prompt.empty {
+  flex: 0 0;
+}
+
+/* 12/04/2023 fix CSS of sidebar of notebooks based articles */
+.sidebar a {
+  text-decoration: none;
+  color: rgb(142, 142, 214);
+}
+.sidebar p {
+  margin: 0 0 10px;
+}

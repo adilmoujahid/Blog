@@ -16669,9 +16669,9 @@ Name: positions, dtype: object</pre>
 
 
 
-<div id="13f3d55f-6205-4ef7-a275-5e492bd03f5e" class="jp-RenderedJavaScript jp-OutputArea-output " data-mime-type="application/javascript">
+<div id="62792f11-24d8-446f-bce9-9d7d55d105ee" class="jp-RenderedJavaScript jp-OutputArea-output " data-mime-type="application/javascript">
 <script type="text/javascript">
-var element = document.getElementById('13f3d55f-6205-4ef7-a275-5e492bd03f5e');
+var element = document.getElementById('62792f11-24d8-446f-bce9-9d7d55d105ee');
 
 (function(root) {
   function now() {
@@ -17074,9 +17074,9 @@ var element = document.getElementById('13f3d55f-6205-4ef7-a275-5e492bd03f5e');
 
 
 
-<div id="96405a1c-1824-467c-8c05-23604aa1333a" class="jp-RenderedJavaScript jp-OutputArea-output " data-mime-type="application/javascript">
+<div id="31e0f368-88af-41d6-bf0e-787548505475" class="jp-RenderedJavaScript jp-OutputArea-output " data-mime-type="application/javascript">
 <script type="text/javascript">
-var element = document.getElementById('96405a1c-1824-467c-8c05-23604aa1333a');
+var element = document.getElementById('31e0f368-88af-41d6-bf0e-787548505475');
 (function(root) {
   function embed_document(root) {
     
@@ -17519,6 +17519,19 @@ var element = document.getElementById('96405a1c-1824-467c-8c05-23604aa1333a');
         $('body').on('click', 'a[href="#"]', function(event) {
             event.preventDefault();
         });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
     </script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
