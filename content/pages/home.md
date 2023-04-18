@@ -35,5 +35,5 @@ Slug: home
 <h2 class="content-subhead">Selected Projects</h2>
 
 <ul class="selected-projects">
-    <li><a href=".projects/hello-nfts/">Hello, NFTs</a> is a project at aims at providing a comprehensive guide to creating and deploying an NFT on the Ethereum blockchain, covering all aspects of the process from start to finish.</li>
+    <li><a href=".projects/hello-nfts/">Hello, NFTs</a> is a project that aims at providing a comprehensive guide to creating and deploying an NFT on the Ethereum blockchain, covering all aspects of the process from start to finish.</li>
 </ul>
