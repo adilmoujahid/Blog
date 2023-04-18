@@ -1,11 +1,7 @@
 title: About
 
-My name is Adil Moujahid. I'm a data scientist by training, and currently am a technical manager at [everis](https://www.everis.com/global/en) Artificial Intelligence team.
+Hi there, I'm Adil Moujahid, a data scientist and technical manager at NTT DATA's Data and Intelligence team. My expertise lies in data analytics and artificial intelligence, but I also have a keen interest in blockchain technology and generative art, which I love to explore in my free time.
 
+Through this blog, I hope to share my knowledge and personal projects in these areas and connect with other enthusiasts. I hold a Bachelor of Engineering degree in Electrical Engineering and Computer Science, as well as a Master of Engineering degree in Information Science and Electrical Engineering, both earned from Kyushu University in Japan.
 
-Prior to joining everis; I worked as a data scientist at the R&D department of NTT DATA in Tokyo where I participated in various initiatives and projects related to data, analytics and artificial Intelligence.
-
-I hold a Bachelor of Engineering degree in Electrical Engineering and Computer Science, and a Master of Engineering degree in Information Science and Electrical Engineering. Both from Kyushu University, Japan.
-
-
-*Disclaimer: All information presented in this site does not represent the thoughts, intentions, plans or strategies of any corporation, business or company. It is solely my opinion.*
+*Just a quick disclaimer: all the information I present on this site reflects solely my own opinions and does not represent the thoughts, intentions, plans, or strategies of any corporation, business, or company.*

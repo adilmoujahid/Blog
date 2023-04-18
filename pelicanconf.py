@@ -31,7 +31,8 @@ PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
 SLUGIFY_SOURCE = 'basename'
 
-COVER_IMG_URL = '/images/cover-img.jpg'
+#COVER_IMG_URL = '/images/cover-img.jpg'
+COVER_IMG_URL = '/images/banner.png'
 
 
 # Social widget
@@ -98,3 +99,5 @@ LIQUID_TAGS = ["img", "youtube",  "notebook"]
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
+
+
