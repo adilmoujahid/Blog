@@ -5,7 +5,7 @@ from io import open
 
 AUTHOR = u'Adil Moujahid'
 SITENAME = u'Adil Moujahid'
-TAGLINE = u'Data Analytics and more'
+TAGLINE = u'Bridging Tech and Art'
 SITEURL = ''
 
 PATH = 'content'
@@ -20,10 +20,11 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 
-MENUITEMS = [('Posts', ''), ('Projects', 'projects'), ('Notes', 'notes'), ('About', 'about')]
+#MENUITEMS = [('Posts', 'posts'), ('Projects', 'projects'), ('Notes', 'notes'), ('About', 'about')]
+MENUITEMS = [('Posts', 'posts'), ('Projects', 'projects'), ('About', 'about')]
+
 #('Archive', 'archives.html')
 
-#STATIC_PATHS = ['images', 'files']
 
 
 PAGE_PATHS = ['pages']
@@ -70,6 +71,7 @@ NEWEST_FIRST_ARCHIVES = False
 # Static paths will be copied without parsing their contents
 STATIC_PATHS = ['images', 'extra', 'files']
 
+
 # Ipython setting
 NOTEBOOK_DIR = 'notebooks'
 EXTRA_HEADER = open('_nb_header.html', encoding='utf-8').read()
@@ -79,6 +81,7 @@ IPYNB_STOP_SUMMARY_TAGS = [('div', ('class', 'input')), ('div', ('class', 'outpu
 # Shift the installed location of a file
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
+    'extra/favicon.ico': {'path': 'favicon.ico'}
 }
 
 DEFAULT_PAGINATION = 10

@@ -24,16 +24,16 @@ Slug: home
 <h2 class="content-subhead">Selected Posts</h2>
 
 <ul class="selected-posts">
-    <li><a href="/url/to/post1">Post 1 Title</a></li>
-    <li><a href="/url/to/post2">Post 2 Title</a></li>
-    <li><a href="/url/to/post3">Post 3 Title</a></li>
+    <li><a href="./posts/2021/05/intro-nfts-solidity/">A Practical Introduction to NFTs using Solidity and Legos</a></li>
+    <li><a href="./posts/2018/03/intro-blockchain-bitcoin-python/">A Practical Introduction to Blockchain with Python</a></li>
+    <li><a href="./posts/2022/04/data-analysis-moonbirds-nft-python-alchemy/">In-Depth Analysis of Moonbirds NFTs using Python and Alchemy</a></li>
+    <li><a href="./posts/2020/06/streamlit-messi-ronaldo/">Analyzing Messi and Ronaldo's Games using Python and Streamlit</a></li>
+    <li>Access all posts <a href="./posts">&rarr; Here</a></li>
 </ul>
 
 <!-- Selected projects section -->
 <h2 class="content-subhead">Selected Projects</h2>
 
 <ul class="selected-projects">
-    <li><a href="/url/to/project1">Project 1 Title</a></li>
-    <li><a href="/url/to/project2">Project 2 Title</a></li>
-    <li><a href="/url/to/project3">Project 3 Title</a></li>
+    <li><a href=".projects/hello-nfts/">Hello, NFTs</a> is a project at aims at providing a comprehensive guide to creating and deploying an NFT on the Ethereum blockchain, covering all aspects of the process from start to finish.</li>
 </ul>
