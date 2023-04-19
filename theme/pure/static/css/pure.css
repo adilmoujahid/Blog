@@ -373,10 +373,11 @@
     align-items: center;
     justify-content: center;
     padding: 2em 0;
+    flex-wrap: wrap;
 }
 
 .bio-image {
-    flex: 0 0 400px; /* Adjust this value to resize the image container */
+    flex: 0 0 200px; /* Adjust this value to resize the image container */
     text-align: center;
     margin-right: 1em;
 }
@@ -386,6 +387,17 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
+/* Media query to change layout for smaller screens */
+@media (max-width: 1024px) { /* Adjust this value based on the breakpoint you desire */
+    .bio {
+        flex-direction: column;
+    }
+
+    .bio-image {
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+}
 
 .bio-text {
     flex: 1;
