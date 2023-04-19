@@ -377,16 +377,26 @@
 }
 
 .bio-image {
-    flex: 0 0 200px; /* Adjust this value to resize the image container */
+    flex: 1; /* Make the container adapt to half the size of .bio */
     text-align: center;
     margin-right: 1em;
 }
 
 .bio-image img {
-    max-width: 400px; /* Adjust this value to resize the image width */
+    width: 100%; /* Set the width to 100% of the container */
+    height: auto; /* Maintain the aspect ratio of the image */
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
+.bio-text {
+    flex: 1;
+    font-size: 90%;
+    text-align: justify;
+    font-family: sans-serif;
+    line-height: 1.45;
+    color: #333332;
+    padding: 1em;
+}
 /* Media query to change layout for smaller screens */
 @media (max-width: 1024px) { /* Adjust this value based on the breakpoint you desire */
     .bio {
@@ -399,15 +409,6 @@
     }
 }
 
-.bio-text {
-    flex: 1;
-    font-size: 90%;
-    text-align: justify;
-    font-family: sans-serif;
-    line-height: 1.45;
-    color: #333332;
-    padding: 1em;
-}
 
 
   .selected-posts {
