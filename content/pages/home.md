@@ -31,9 +31,18 @@ Slug: home
     <li>Access all posts <a href="./posts">&rarr; Here</a></li>
 </ul>
 
+</br>
+
 <!-- Selected projects section -->
 <h2 class="content-subhead">Selected Projects</h2>
 
 <ul class="selected-projects">
     <li><a href=".projects/hello-nfts/">Hello, NFTs</a> is a project that aims at providing a comprehensive guide to creating and deploying an NFT on the Ethereum blockchain, covering all aspects of the process from start to finish.</li>
+    <li><a href="https://github.com/adilmoujahid/blockchain-python-tutorial">blockchain-python-tutorial</a> is a practical guide to implementing a basic blockchain and its client using Python. It includes features such as multiple node addition, proof of work, conflict resolution, and transactions with RSA encryption. Additionally, the project contains two dashboards, "Blockchain Frontend" for miners and "Blockchain Client" for users to generate wallets and send coins.</li>
+    <li><a href="https://www.fxhash.xyz/generative/24620">Geometric Grid Fusion</a> is my first generative art project published on the fxhash platform and the Tezos blockchain. It's inspired by the works of Piet Mondrian and Sol Lewitt, this project experiments with lines and shapes to create a unique and visually interesting composition.</li>
 </ul>
+
+
+<!-- Sumo managed through sumo.com -->
+<span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+<!-- Sumo managed through sumo.com -->
