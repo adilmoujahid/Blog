@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Bridging Tech and Art">
+
+
+        
+<style type="text/css">
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+.highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
+.highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
+.highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
+.highlight .o { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator */
+.highlight .p { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation */
+.highlight .ch { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Single */
+.highlight .cs { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Special */
+.highlight .kc { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Type */
+.highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
+.highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
+.highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
+.highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
+.highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
+.highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
+.highlight .mh { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Hex */
+.highlight .mi { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer */
+.highlight .mo { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Oct */
+.highlight .sa { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Affix */
+.highlight .sb { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Backtick */
+.highlight .sc { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Char */
+.highlight .dl { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Delimiter */
+.highlight .sd { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Doc */
+.highlight .s2 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Double */
+.highlight .se { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Escape */
+.highlight .sh { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Heredoc */
+.highlight .si { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Interpol */
+.highlight .sx { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Other */
+.highlight .sr { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Regex */
+.highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
+.highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
+.highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        displayMath: [['$$','$$'], ["\\[","\\]"]]
+    }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+
+
+
+
+        <title>Fusion Bricks: Exploring Generative Art and LEGO Building // Adil Moujahid // Bridging Tech and Art</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../theme/css/pure.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../extra/favicon.ico" />
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('/images/banner.png')">
+        <div class="cover-body">
+            <header class="header">
+                <hgroup>
+                    <h1 class="brand-main"><a href="/">Adil Moujahid</a></h1>
+                    <p class="tagline">Bridging Tech and Art</p>
+                    <p class="links"><a href="../../posts">Posts</a></p>
+                    <p class="links"><a href="../../projects">Projects</a></p>
+                    <p class="links"><a href="../../about">About</a></p>
+                    <p class="social">
+                        <a href="https://twitter.com/AdilMouja">
+                            <i class="fa fa-twitter fa-3x"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adilmoujahid/">
+                            <i class="fa fa-linkedin fa-3x"></i>
+                        </a>
+                        <a href="https://github.com/adilmoujahid">
+                            <i class="fa fa-github fa-3x"></i>
+                        </a>
+                    <p>
+                </hgroup>
+            </header>
+        </div>
+    </div>
+</div>    <div class="pure-u-1">
+        <div class="content">
+            <h1 class="content-subhead">Fusion Bricks: Exploring Generative Art and LEGO Building</h1>
+            <p><p>In this project, I aimed to explore the convergence of generative art, pixel art, and LEGO creations. To achieve this, I redeveloped my initial fxhash project, <a href="https://www.fxhash.xyz/generative/24620">Geometric Grid Fusion</a>, using Pico-8 and then chose several outputs to construct with LEGO bricks.</p>
+<p><a href="https://www.lexaloffle.com/pico-8.php">PICO-8</a>, created by Lexaloffle Games, is a virtual machine and game engine that features a 128x128 pixel display and utilizes a 16-color palette. Although I typically employ p5.js for my generative art projects, I decided to explore PICO-8 and its potential for generative art in this particular endeavor. Given that the LEGO board I used has a 32x32 pixel grid and a limited range of brick colors, I chose a black, white, and grey color palette. Furthermore, the generative piece needed to fit within a 32x32 board.</p>
+<p></br></p>
+<h3>The Algorithm</h3>
+<p>The PICO-8 program generates a random, abstract pattern composed of rectangles and lines in black, white, and grey colors.</p>
+<p>The program begins with an empty 128x128 black canvas and divides it recursively into smaller rectangles of random sizes until a specified limit is reached. The width and height of the rectangles can be one of the following values: 64, 32, 16, or 8 pixels. This ensures that the final results can be seamlessly adapted to a 32x32 LEGO board.</p>
+<div style="display:block;margin:auto;height:75%;width:75%">
+    <img src="/images/fusion-bricks/grids.png">
+</div>
+
+<p></br></p>
+<p>For each rectangle, the algorithm determines whether to draw smaller squares or lines within it. The colors, as well as the direction of the lines (horizontal or vertical), are also randomly decided. The sizes of squares and lines are chosen randomly, taking into account the size of the corresponding rectangle.</p>
+<div style="display:block;margin:auto;height:70%;width:70%">
+    <img src="/images/fusion-bricks/rects-lines.png">
+</div>
+
+<p></br></p>
+<p>Below is a gif showcasing a few outputs of the PICO-8 generative algorithm, providing a glimpse into the range of abstract patterns and textures that the algorithm can generate. Each output is unique and showcases the unpredictable yet intriguing nature of generative art.</p>
+<div style="text-align:center;">
+    <img src="/images/fusion-bricks/ggflego.gif" style="height:60%;width:60%">
+</div>
+
+<p></br></p>
+<p>You can find the source code in <a href="https://github.com/adilmoujahid/fusion-bricks-pico8">this github repository</a>.</p>
+<h3>From Digital to Physical: Building the LEGO Art</h3>
+<p>After generating numerous abstract patterns through the PICO-8 algorithm, I selected two outputs that I found particularly compelling. The next stage of the project involved translating these digital designs into tangible LEGO constructions. I chose LEGO for this task because it offers a hands-on medium to interact with, and its grid-based nature pairs well with pixelated generative art.</p>
+<p>The two selected designs were:</p>
+<div style="display:block;margin:auto;height:80%;width:80%">
+    <img src="/images/fusion-bricks/selected_designs.png">
+</div>
+<p></br></p>
+<p>To facilitate the transition from digital to physical, I created a grid view of the selected designs, allowing me to calculate the exact number and sizes of bricks required for each design. With a detailed list in hand, I was then able to order the necessary bricks in the right quantities and colors. This step was essential to ensure a seamless building process, minimizing any potential disruptions due to a lack of specific bricks.</p>
+<div style="display:block;margin:auto;height:80%;width:80%">
+    <img src="/images/fusion-bricks/blueprint.png">
+</div>
+<p></br></p>
+<p>Building the LEGO art is a straightforward process. With the bricks sorted by color and size, all that was needed was to follow the grid blueprint. I built the designs layer by layer, closely adhering to the outlined pattern.</p>
+<div style="display:block;margin:auto;height:60%;width:60%">
+    <img src="/images/fusion-bricks/building_process.gif">
+</div>
+<p></br>
+Here are the final LEGO constructions, a material manifestation of the digital abstract patterns generated by the PICO-8 algorithm:</p>
+<div style="display:block;margin:auto;height:60%;width:60%">
+    <img src="/images/fusion-bricks/final_lego.jpeg">
+</div>
+<p></br></p>
+<p>This project showcased an intriguing fusion of generative art, pixel art, and LEGO building. Translating digital patterns into physical LEGO art was a rewarding process. It not only brought the designs to life but also added a new dimension of physical presence to the abstract patterns. This experiment has opened up new avenues for me to explore in the realm of generative art, and I look forward to creating more art in this fascinating intersection in the future.</p>
+<p><span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span></p></p>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-52651211-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+</body>
+
+
+</html>
