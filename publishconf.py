@@ -22,5 +22,5 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "adilmoujahid"
-GOOGLE_ANALYTICS = "UA-52651211-1"
+GOOGLE_ANALYTICS = "G-24GHYVXZ5F"
 ADDTHIS_PROFILE = "ra-54c667f5423e719f"
