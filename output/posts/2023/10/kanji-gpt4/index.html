@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Bridging Tech and Art">
+
+
+        
+<style type="text/css">
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+.highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
+.highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
+.highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
+.highlight .o { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator */
+.highlight .p { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation */
+.highlight .ch { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Single */
+.highlight .cs { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Special */
+.highlight .kc { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Type */
+.highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
+.highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
+.highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
+.highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
+.highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
+.highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
+.highlight .mh { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Hex */
+.highlight .mi { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer */
+.highlight .mo { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Oct */
+.highlight .sa { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Affix */
+.highlight .sb { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Backtick */
+.highlight .sc { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Char */
+.highlight .dl { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Delimiter */
+.highlight .sd { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Doc */
+.highlight .s2 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Double */
+.highlight .se { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Escape */
+.highlight .sh { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Heredoc */
+.highlight .si { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Interpol */
+.highlight .sx { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Other */
+.highlight .sr { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Regex */
+.highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
+.highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
+.highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        displayMath: [['$$','$$'], ["\\[","\\]"]]
+    }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+
+
+
+
+        <title>Building a Japanese Kanji Flashcard App using GPT-4, Python and Langchain // Adil Moujahid // Bridging Tech and Art</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
+    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../extra/favicon.ico" />
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+                </a>
+                <h2 class="article-info">Adil Moujahid</h2>
+                <small class="about-author"></small>
+
+                <!-- ko-fi -->
+                <div>
+                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                <br>
+
+                <div>
+                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+                    Follow @AdilMouja
+                </a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+
+                <h5>Published</h5>
+                <p>Wed 18 October 2023</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Building a Japanese Kanji Flashcard App using GPT-4, Python and Langchain</h1>
+                    <br>
+                    <p class="post-meta">
+                        // tags                             <a class="post-category" href="../../../../tag/ai/">ai</a>
+                            <a class="post-category" href="../../../../tag/gpt4/">gpt4</a>
+                    </p>
+                </header>
+            </section>
+            <br>
+            <p>GPT-4 has captivated mainstream attention in recent months, with applications like ChatGPT showcasing its extensive capabilities and setting the stage for a generational shift in technology.  The GPT-4 model can be accessed programmatically using an API, enabling the creation of diverse applications with rich, contextually relevant data. This blog post aims to demystify the process of building apps that leverage GPT-4. We will explore this by walking through the development of a Japanese Kanji Flashcard App, employing GPT-4 to build the app and supply it with valuable data. </p>
+<p>As we move forward, we'll explore the challenges of learning Japanese Kanji, utilize ChatGPT to build the front-end, employ GPT-4's data generation logic to dynamically fetch and format Kanji data, and ultimately, bring it all together into a unified app using Python and Flask.</p>
+<p>You can view the final result in the animated GIF below, and find the source code for this project in <a href="https://github.com/adilmoujahid/kanji-flashcard-app-gpt4">this GitHub repository</a>.</p>
+<p><br></p>
+<div style="display:block;margin:auto;height:70%;width:70%">
+  <img src="/images/kanji-gpt4/kanji-gpt4.gif">
+</div>
+
+<p><br></p>
+<h1>1. Defining the Use Case</h1>
+<p>When students begin the journey of learning Japanese, they are met with a fascinating yet complex writing system composed of three scripts: Hiragana, Katakana, and Kanji. Take, for example, the phrase "東京タワーは高いです。" (Tōkyō Tawā wa takai desu), where "東京" (Tokyo) is in Kanji, "タワー" (Tower) is in Katakana, and the connecting grammar is in Hiragana. This phrase translates to "Tokyo Tower is tall." The combination of scripts, each serving a different function —Kanji for most nouns, verbs, and adjectives, Katakana for foreign and borrowed words, and Hiragana mainly for grammatical functions— is a distinctive feature of the Japanese written language.</p>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/kanji-gpt4/hiragana-katakana-kanji.png">
+</div>
+
+<p>Hiragana and Katakana, each with 46 basic characters, are phonetic scripts, whereas Kanji, adapted from Chinese characters, bear meanings and often have multiple readings. While there are tens of thousands of Kanji characters, general literacy in Japan revolves around a set of 2,136 characters, as defined by the <a href="https://en.wikipedia.org/wiki/List_of_j%C5%8Dy%C5%8D_kanji">Joyo Kanji list</a>.</p>
+<p>In the table below, you can see the list of Hiragana and Katakana characters and their corresponding readings. In each box, the Hiragana character is displayed on the left, and the Katakana character on the right.</p>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/kanji-gpt4/hiragana-katakana-list.png">
+</div>
+
+<p>Below you can see a small sample of Kanji characters.</p>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/kanji-gpt4/kanji-sample.png">
+</div>
+
+<p>Addressing the challenges faced by students of Japanese Kanji, the objective is to build a Kanji Flashcard App empowered by GPT-4’s capabilities to facilitate the learning journey.  This app serves as a dynamic learning companion, enabling users to specify, in natural language, the particular Kanji they wish to explore. Harnessing the power of GPT-4, the app automatically curates a list of Kanji that aligns with the users' articulated needs and further assesses their abilities by offering multiple-choice readings of the words, ensuring an engaged and effective study experience.</p>
+<h1>2. Building the front-end</h1>
+<p>Our next step is to build the front-end for our Kanji Flashcard App, which we'll integrate with the GPT-4 API in section 4. To achieve this, we'll employ ChatGPT, utilizing the GPT-4 model, and apply the following prompt to generate our front-end's HTML/CSS/JS code.</p>
+<div class="highlight"><pre><span></span><code>Develop a flashcard app to facilitate the study of Japanese Kanji, utilizing HTML, JavaScript, and CSS for implementation. The app should have the following functionalities:
+1- Upon launching, the app presents a Japanese word in Kanji, accompanied by four buttons containing Hiragana readings: one correct and three incorrect options.
+2- When the user selects an answer, the corresponding button should be highlighted in green if it&#39;s correct, and in red if it&#39;s wrong, while also highlighting the correct button in green.
+3- Once an answer is selected, the app should display the English translation of the word, present the word within the context of a Japanese sentence, and also provide its English translation.
+4- Include a button to transition to the subsequent word.
+5- Populate the app with 10 different words in Kanji to test the app. The incorrect options should also be realistic and relevant to the correct answer.
+6- Make sure the app is centered on the screen and use simple styling.
+</code></pre></div>
+
+<p><br></p>
+<p>The gif below shows the front-end, entirely crafted with ChatGPT. This impressive result demonstrates the ability of GPT-4 to streamline the development process and make it more accessible, even for those with limited front-end experience.</p>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/kanji-gpt4/kanji_UI_1.gif">
+</div>
+
+<p><br></p>
+<h1>3. Building the Data Generation Logic</h1>
+<p>In this section, we will construct the backend logic for our Japanese Kanji Study Flashcard App using GPT-4. This backend will be responsible for fetching and formatting the Kanji data. To achieve this, we'll utilize Python in combination with LangChain. LangChain is a specialized framework designed for creating applications driven by large language models, including those from OpenAI. It offers various abstractions for interfacing with the API, crafting prompts, and structuring the returned outputs.</p>
+<p>We'll begin by importing the necessary libraries. From Langchain, we specifically need  <code>ChatOpenAI</code> to communicate with GPT-4 and <code>ChatPromptTemplate</code> to create a prompt template for our use case.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+</code></pre></div>
+
+<p>Following that, we specify the model ("gpt-4-0613") we intend to deploy. It's crucial to ensure our API key is correctly configured. After doing so, we establish a connection with GPT-4. For a comprehensive list of available OpenAI APIs, visit <a href="https://platform.openai.com/account/rate-limits">here</a>. For details on the API and instructions on acquiring an API key, you can refer to <a href="https://openai.com/product">this link</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">llm_model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4-0613&quot;</span>
+<span class="n">OPENAI_API_KEY</span> <span class="o">=</span> <span class="n">openai_API_key</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OPENAI_API_KEY</span>
+
+<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">llm_model</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Next, we construct a Langchain template specifically designed for our requirements. Think of Langchain templates as predefined forms. These forms allow us to structure a prompt for GPT-4, incorporating specific variables we wish to set before sending the request. For our purpose, the template will hold the prompt designed to retrieve and format Kanji words along with additional data. Our variable, in this instance, denoted by <code>{description}</code>, will represent the specific description of the Kanji we're interested in.</p>
+<div class="highlight"><pre><span></span><code><span class="n">string_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Give 2 words written in Kanji that are: ```</span><span class="si">{description}</span><span class="s2">```, </span><span class="se">\</span>
+<span class="s2">accompanied with its correct Hiragana reading and three incorrect Hiragana readings </span><span class="se">\</span>
+<span class="s2">that are realistic and relevant to the correct answer. </span><span class="se">\</span>
+<span class="s2">Also give me the English translation of the word, and present the word within the context </span><span class="se">\</span>
+<span class="s2">of a Japanese sentence, and also provide its English translation.</span>
+
+<span class="s2">Format the output as JSON with the data represented as an array of dictionaries with the following keys:</span>
+<span class="s2">&quot;word&quot;: str  // Japanese word written in Kanji</span>
+<span class="s2">&quot;correct&quot;: str  // Correct reading of the Kanji word in Hiragana</span>
+<span class="s2">&quot;incorrect&quot;: List[str] //Incorrect readings of the Kanji phrase</span>
+<span class="s2">&quot;english&quot;: str  // English translation of the Kanji word</span>
+<span class="s2">&quot;sentenceJP&quot;: str  // Example sentence in Japanese using the Kanji word</span>
+<span class="s2">&quot;sentenceEN&quot;: str  // English translation of the example sentence</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">prompt_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">string_template</span><span class="p">)</span>
+</code></pre></div>
+
+<p>With our template in hand, we can retrieve the Kanji words from GPT-4, for instance, asking for Kanji related to Economics. </p>
+<div class="highlight"><pre><span></span><code><span class="n">description_example</span> <span class="o">=</span> <span class="s2">&quot;related to Economics&quot;</span>
+<span class="n">kanji_request</span> <span class="o">=</span> <span class="n">prompt_template</span><span class="o">.</span><span class="n">format_messages</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">description_example</span><span class="p">)</span>
+
+<span class="n">kanji_response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span><span class="n">kanji_request</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kanji_response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In this case, we received a well-structured JSON. However, if the response doesn't match our desired format, Langchain offers a variety of <a href="https://python.langchain.com/docs/modules/model_io/output_parsers/">output parsers</a> to help shape the output accordingly.</p>
+<div class="highlight"><pre><span></span><code>[
+  {
+    &quot;word&quot;: &quot;経済&quot;,
+    &quot;correct&quot;: &quot;けいざい&quot;,
+    &quot;incorrect&quot;: [&quot;けいせい&quot;, &quot;えいざい&quot;, &quot;けんざい&quot;],
+    &quot;english&quot;: &quot;economics&quot;,
+    &quot;sentenceJP&quot;: &quot;経済の状況を理解するためのデータが必要です。&quot;,
+    &quot;sentenceEN&quot;: &quot;We need data to understand the economic situation.&quot;
+  },
+  {
+    &quot;word&quot;: &quot;財政&quot;,
+    &quot;correct&quot;: &quot;ざいせい&quot;,
+    &quot;incorrect&quot;: [&quot;さいせい&quot;, &quot;ざいぜい&quot;, &quot;ざいしょう&quot;],
+    &quot;english&quot;: &quot;finance&quot;,
+    &quot;sentenceJP&quot;: &quot;政府は財政問題に対応するための新たな策を立てます。&quot;,
+    &quot;sentenceEN&quot;: &quot;The government will devise new measures to deal with financial problems.&quot;
+  }
+]
+</code></pre></div>
+
+<h1>4. Putting it Together</h1>
+<p>With our data generation ready, we now need to connect it to our front-end. We'll use Flask for this. Flask will turn our data generation logic into an API and also manage our front-end. The code is short, under 50 lines, with two main routes: the root route <code>(/)</code> to serve the front-end and the <code>/get_words</code> route to invoke our data generation logic based on front-end input and return the Kanji data in JSON format.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">llm_model</span> <span class="o">=</span> <span class="s2">&quot;gpt-4-0613&quot;</span>
+<span class="n">OPENAI_API_KEY</span> <span class="o">=</span> <span class="n">openai_API_key</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OPENAI_API_KEY</span>
+
+<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">llm_model</span><span class="p">)</span>
+
+
+<span class="n">string_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Give 2 words written in Kanji that are: ```</span><span class="si">{description}</span><span class="s2">```, </span><span class="se">\</span>
+<span class="s2">accompanied with its correct Hiragana reading and three incorrect Hiragana readings </span><span class="se">\</span>
+<span class="s2">that are realistic and relevant to the correct answer. </span><span class="se">\</span>
+<span class="s2">Also give me the English translation of the word, and present the word within the context </span><span class="se">\</span>
+<span class="s2">of a Japanese sentence, and also provide its English translation.</span>
+
+<span class="s2">Format the output as JSON with the data represented as an array of dictionaries with the following keys:</span>
+<span class="s2">&quot;word&quot;: str  // Japanese word written in Kanji</span>
+<span class="s2">&quot;correct&quot;: str  // Correct reading of the Kanji word in Hiragana</span>
+<span class="s2">&quot;incorrect&quot;: List[str] //Incorrect readings of the Kanji phrase</span>
+<span class="s2">&quot;english&quot;: str  // English translation of the Kanji word</span>
+<span class="s2">&quot;sentenceJP&quot;: str  // Example sentence in Japanese using the Kanji word</span>
+<span class="s2">&quot;sentenceEN&quot;: str  // English translation of the example sentence</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">prompt_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">string_template</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/get_words&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_word</span><span class="p">():</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">words_request</span> <span class="o">=</span> <span class="n">prompt_template</span><span class="o">.</span><span class="n">format_messages</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+    <span class="n">words_response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span><span class="n">words_request</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">words_response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+
+<p>On the front-end side, we introduce minor changes: an input field and a button enabling users to specify the type of Kanji they wish to explore, accompanied by a loading spinner indicating the data retrieval process.</p>
+<p>To start the app, run the command <code>python app.py</code> from a terminal, and then navigate to http://127.0.0.1:5000 in your preferred browser.</p>
+<div style="display:block;margin:auto;height:70%;width:70%">
+  <img src="/images/kanji-gpt4/kanji-gpt4.gif">
+</div>
+
+<h1>5. Ideas for Optimization and Scaling our App</h1>
+<p>The app we've constructed is fully functional and works well for studying Kanji. Nonetheless, there are certain cost and performance considerations that we need to pay attention to.</p>
+<h3>Cost</h3>
+<p>OpenAI's pricing model charges based on tokens consumed during API calls. As of this writing:</p>
+<ul>
+<li>GPT-4 (8K context) is priced at <strong>$0.03 per 1K tokens</strong> for inputs and <strong>$0.06 per 1K tokens</strong> for outputs.</li>
+<li>GPT-3.5 Turbo (4K context) is priced at <strong>$0.0015 per 1K tokens</strong> for inputs and <strong>$0.002 per 1K tokens</strong> for outputs.</li>
+<li>You can find OpenAI pricing details <a href="https://openai.com/pricing">here</a>.</li>
+</ul>
+<p>For our specific scenario, a prompt that fetches and formats 5 Kanji words via GPT-4 utilizes approximately 188 input tokens and 176 output tokens, which translates to a total expense of $0.0162.</p>
+<p>To get the number of tokens consumed and cost in USD, you can execute the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">langchain.callbacks</span> <span class="kn">import</span> <span class="n">get_openai_callback</span>
+
+<span class="k">with</span> <span class="n">get_openai_callback</span><span class="p">()</span> <span class="k">as</span> <span class="n">cb</span><span class="p">:</span>
+    <span class="n">description_example</span> <span class="o">=</span> <span class="s2">&quot;related to Economics&quot;</span>
+    <span class="n">kanji_request</span> <span class="o">=</span> <span class="n">prompt_template</span><span class="o">.</span><span class="n">format_messages</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">description_example</span><span class="p">)</span>
+    <span class="n">kanji_response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span><span class="n">kanji_request</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
+</code></pre></div>
+
+<p>While this cost structure might seem acceptable for a few API calls, scaling the app to cater to a larger user base would escalate these expenses.</p>
+<h3>Execution Time</h3>
+<p>It takes about 17.2 seconds to fetch and format 5 Kanji words using GPT-4. Such latency can negatively impact user experience.</p>
+<p>To optimize and scale our app efficiently, we could consider an approach that combines our data sources with GPT-4 API calls and simplifies the prompts and output formats. For instance, we could obtain all characters from the Joyo Kanji list and use GPT-4 for one-time translations and sentence examples. Then, the prompts can be simplified by asking GPT-4 to fetch Kanji words related to a specific topic without needing translations or sentence examples. Afterward, we can match these Kanji with our pre-generated sentences. This method could potentially speed up the execution time and reduce token usage.</p>
+<h1>Conclusion</h1>
+<p>In conclusion, GPT-4 is changing the game in app development, especially when it comes to handling data. Our Japanese Flashcard App shows just how handy GPT-4 can be. Instead of manually gathering data, developers can use GPT-4 to quickly get the info they need. This not only speeds up the building process but ensures the app is filled with useful content. With tools like GPT-4, creating data-rich apps has never been easier or more efficient. </p>
+            <div class="hr"></div>
+            
+            
+            <!-- Sumo managed through sumo.com -->
+                <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+            <!-- Sumo managed through sumo.com -->
+        
+
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24GHYVXZ5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-24GHYVXZ5F');
+    </script>
+</body>
+
+
+</html>

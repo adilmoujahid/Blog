@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Bridging Tech and Art">
+
+
+        
+<style type="text/css">
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+.highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
+.highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
+.highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
+.highlight .o { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator */
+.highlight .p { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation */
+.highlight .ch { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Single */
+.highlight .cs { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Special */
+.highlight .kc { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Type */
+.highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
+.highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
+.highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
+.highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
+.highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
+.highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
+.highlight .mh { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Hex */
+.highlight .mi { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer */
+.highlight .mo { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Oct */
+.highlight .sa { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Affix */
+.highlight .sb { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Backtick */
+.highlight .sc { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Char */
+.highlight .dl { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Delimiter */
+.highlight .sd { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Doc */
+.highlight .s2 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Double */
+.highlight .se { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Escape */
+.highlight .sh { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Heredoc */
+.highlight .si { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Interpol */
+.highlight .sx { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Other */
+.highlight .sr { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Regex */
+.highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
+.highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
+.highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        displayMath: [['$$','$$'], ["\\[","\\]"]]
+    }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+
+
+
+
+        <title>ai category // Adil Moujahid // Bridging Tech and Art</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/pure.css">
+    <link rel="stylesheet" href="../../theme/css/pure.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../extra/favicon.ico" />
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('/images/banner.png')">
+        <div class="cover-body">
+            <header class="header">
+                <hgroup>
+                    <h1 class="brand-main"><a href="/">Adil Moujahid</a></h1>
+                    <p class="tagline">Bridging Tech and Art</p>
+                    <p class="links"><a href="../../posts">Posts</a></p>
+                    <p class="links"><a href="../../projects">Projects</a></p>
+                    <p class="links"><a href="../../about">About</a></p>
+                    <p class="social">
+                        <a href="https://twitter.com/AdilMouja">
+                            <i class="fa fa-twitter fa-3x"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adilmoujahid/">
+                            <i class="fa fa-linkedin fa-3x"></i>
+                        </a>
+                        <a href="https://github.com/adilmoujahid">
+                            <i class="fa fa-github fa-3x"></i>
+                        </a>
+                    <p>
+                </hgroup>
+            </header>
+        </div>
+    </div>
+</div>    <div class="pure-u-1">
+        <div class="content">
+            <h1 class="content-subhead">
+Posts in 'ai'            </h1>
+
+                    <!-- Bio and picture section -->
+<div class="bio">
+    <div class="bio-image">
+        <img src="./images/adil-homepage.jpg" alt="Adil Moujahid">
+    </div>
+    <div class="bio-text">
+        <p> Hello and welcome to my personal blog! My name is Adil Moujahid, and I am a data scientist and creative coder with a keen interest in the intersection of emerging technologies and creative expression. In particular, I am interested by the possibilities presented by artificial intelligence, blockchain, and generative art. 
+        </br>
+        </br>
+        Through this blog, I hope to create a space where I can share my knowledge and experiences in these fields. I also aim to showcase some of my personal projects, and provide insights into the latest trends and developments in the tech industry.
+        </br>
+        </br>
+        But more than that, I hope that this blog will serve as a platform for building meaningful connections with fellow enthusiasts. I believe that the best way to learn and grow in any field is through collaboration and sharing ideas with others.
+        </p>
+    </div>
+</div>
+
+<!-- Selected posts section -->
+<h2 class="content-subhead">Selected Posts</h2>
+
+<ul class="selected-posts">
+    <li><a href="./posts/2023/10/kanji-gpt4/">Building a Japanese Kanji Flashcard App using GPT-4, Python and Langchain</a></li>
+    <li><a href="./posts/2021/05/intro-nfts-solidity/">A Practical Introduction to NFTs using Solidity and Legos</a></li>
+    <li><a href="./posts/2018/03/intro-blockchain-bitcoin-python/">A Practical Introduction to Blockchain with Python</a></li>
+    <li><a href="./posts/2022/04/data-analysis-moonbirds-nft-python-alchemy/">In-Depth Analysis of Moonbirds NFTs using Python and Alchemy</a></li>
+    <li><a href="./posts/2020/06/streamlit-messi-ronaldo/">Analyzing Messi and Ronaldo's Games using Python and Streamlit</a></li>
+    <li>Access all posts <a href="./posts">&rarr; Here</a></li>
+</ul>
+
+<p></br></p>
+<!-- Selected projects section -->
+<h2 class="content-subhead">Selected Projects</h2>
+
+<ul class="selected-projects">
+    <li><a href="https://github.com/adilmoujahid/kanji-flashcard-app-gpt4">kanji-flashcard-app-gpt4</a> is a Japanese Kanji Flashcard App built using Python and Langchain, enhanced with the intelligence of GPT-4.</li>
+    <li><a href="./projects/hello-nfts/">Hello, NFTs</a> is a project that aims at providing a comprehensive guide to creating and deploying an NFT on the Ethereum blockchain, covering all aspects of the process from start to finish.</li>
+    <li><a href="https://github.com/adilmoujahid/blockchain-python-tutorial">blockchain-python-tutorial</a> is a practical guide to implementing a basic blockchain and its client using Python. It includes features such as multiple node addition, proof of work, conflict resolution, and transactions with RSA encryption. Additionally, the project contains two dashboards, "Blockchain Frontend" for miners and "Blockchain Client" for users to generate wallets and send coins.</li>
+    <li><a href="https://www.fxhash.xyz/generative/24620">Geometric Grid Fusion</a> is my first generative art project published on the fxhash platform and the Tezos blockchain. It's inspired by the works of Piet Mondrian and Sol Lewitt, this project experiments with lines and shapes to create a unique and visually interesting composition.</li>
+    <li><a href="./projects/fusion-bricks/">Fusion Bricks</a> is a project in which I aimed to explore the convergence of generative art, pixel art, and LEGO creations. To achieve this, I redeveloped my initial fxhash project, <a href="https://www.fxhash.xyz/generative/24620"> Geometric Grid Fusion</a>, using Pico-8 and then chose several outputs to construct with LEGO bricks.</li>
+</ul>
+
+<!-- Sumo managed through sumo.com -->
+<p><span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span></p>
+<!-- Sumo managed through sumo.com -->
+
+<footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24GHYVXZ5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-24GHYVXZ5F');
+    </script>
+</body>
+
+
+</html>
