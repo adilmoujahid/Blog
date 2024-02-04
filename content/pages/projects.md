@@ -16,6 +16,9 @@ With my personal projects, I explore emerging technologies such as AI, blockchai
 <h2 class="content-subhead">Generative Art</h2>
 
 <ul class="selected-projects">
+
+    <li><a href="./genuary2024/">Genuary 2024</a> Genuary is an annual challenge that combines the rigor of coding with the beauty of art, pushing participants to create a new piece of generative art each day of January. In January 2024, I embarked on this creative journey for the second time, motivated by the daily practice to sharpen my coding and artistic skills.</li>
+    
     <li><a href="https://www.fxhash.xyz/generative/24620">Geometric Grid Fusion</a> is my first generative art project published on the fxhash platform and the Tezos blockchain. It's inspired by the works of Piet Mondrian and Sol Lewitt, this project experiments with lines and shapes to create a unique and visually interesting composition.</li>
 
     <li><a href="./fusion-bricks/">Fusion Bricks</a> is a project in which I aimed to explore the convergence of generative art, pixel art, and LEGO creations. To achieve this, I redeveloped my initial fxhash project, <a href="https://www.fxhash.xyz/generative/24620"> Geometric Grid Fusion</a>, using Pico-8 and then chose several outputs to construct with LEGO bricks.</li>

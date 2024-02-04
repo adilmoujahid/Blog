@@ -1,4 +1,8 @@
 {% extends 'index.html' %}
+{% block head_css %}
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/genuary.css">
+{% endblock %}
+
 {% block title %}{{ page.title|striptags }} // {{ super() }}{% endblock title %}
 
 {% block content %}
