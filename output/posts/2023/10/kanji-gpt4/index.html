@@ -202,6 +202,7 @@ jQuery(document).ready(function($) {
                     <p class="post-meta">
                         // tags                             <a class="post-category" href="../../../../tag/ai/">ai</a>
                             <a class="post-category" href="../../../../tag/gpt4/">gpt4</a>
+                            <a class="post-category" href="../../../../tag/japanese/">japanese</a>
                     </p>
                 </header>
             </section>
@@ -232,7 +233,7 @@ jQuery(document).ready(function($) {
   <img src="/images/kanji-gpt4/kanji-sample.png">
 </div>
 
-<p>Addressing the challenges faced by students of Japanese Kanji, the objective is to build a Kanji Flashcard App empowered by GPT-4’s capabilities to facilitate the learning journey.  This app serves as a dynamic learning companion, enabling users to specify, in natural language, the particular Kanji they wish to explore. Harnessing the power of GPT-4, the app automatically curates a list of Kanji that aligns with the users' articulated needs and further assesses their abilities by offering multiple-choice readings of the words, ensuring an engaged and effective study experience.</p>
+<p>Addressing the challenges faced by students of Japanese Kanji, the objective is to build a Kanji Flashcard App empowered by GPT-4's capabilities to facilitate the learning journey.  This app serves as a dynamic learning companion, enabling users to specify, in natural language, the particular Kanji they wish to explore. Harnessing the power of GPT-4, the app automatically curates a list of Kanji that aligns with the users' articulated needs and further assesses their abilities by offering multiple-choice readings of the words, ensuring an engaged and effective study experience.</p>
 <h1>2. Building the front-end</h1>
 <p>Our next step is to build the front-end for our Kanji Flashcard App, which we'll integrate with the GPT-4 API in section 4. To achieve this, we'll employ ChatGPT, utilizing the GPT-4 model, and apply the following prompt to generate our front-end's HTML/CSS/JS code.</p>
 <div class="highlight"><pre><span></span><code>Develop a flashcard app to facilitate the study of Japanese Kanji, utilizing HTML, JavaScript, and CSS for implementation. The app should have the following functionalities:
@@ -397,6 +398,12 @@ jQuery(document).ready(function($) {
 <p>To optimize and scale our app efficiently, we could consider an approach that combines our data sources with GPT-4 API calls and simplifies the prompts and output formats. For instance, we could obtain all characters from the Joyo Kanji list and use GPT-4 for one-time translations and sentence examples. Then, the prompts can be simplified by asking GPT-4 to fetch Kanji words related to a specific topic without needing translations or sentence examples. Afterward, we can match these Kanji with our pre-generated sentences. This method could potentially speed up the execution time and reduce token usage.</p>
 <h1>Conclusion</h1>
 <p>In conclusion, GPT-4 is changing the game in app development, especially when it comes to handling data. Our Japanese Flashcard App shows just how handy GPT-4 can be. Instead of manually gathering data, developers can use GPT-4 to quickly get the info they need. This not only speeds up the building process but ensures the app is filled with useful content. With tools like GPT-4, creating data-rich apps has never been easier or more efficient. </p>
+<hr>
+<div style="background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 25px 0;">
+  <h3 style="color: #0F52BA; margin-top: 0;">Looking to study Japanese Kanji more deeply?</h3>
+  <p>Check out <a href="https://www.kanjimaster.ai" style="color: #0F52BA; font-weight: bold; text-decoration: underline;">KanjiMaster.ai</a>, a platform I built for Japanese learners to master kanji efficiently through an engaging and adaptive experience.</p>
+  <p>If you're interested in the Japanese writing system in general, check out <a href="https://www.kanjimaster.ai/blog/japanese-writing-system-hiragana-katakana-kanji" style="color: #0F52BA; font-weight: bold; text-decoration: underline;">this detailed guide on Hiragana, Katakana, and Kanji</a>.</p>
+</div>
             <div class="hr"></div>
             
             

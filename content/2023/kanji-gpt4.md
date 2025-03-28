@@ -3,7 +3,7 @@ Slug: kanji-gpt4
 Email: adil.mouja@gmail.com
 Date: 2023-10-18
 Category: ai
-Tags: ai, gpt4
+Tags: ai, gpt4, japanese
 Summary: GPT-4 can be harnessed via API to build various applications, and this article explores its use by developing a Japanese Kanji flashcard app. The guide focuses on effectively utilizing GPT-4 to supply the app with valuable and contextually relevant data.
 
 GPT-4 has captivated mainstream attention in recent months, with applications like ChatGPT showcasing its extensive capabilities and setting the stage for a generational shift in technology.  The GPT-4 model can be accessed programmatically using an API, enabling the creation of diverse applications with rich, contextually relevant data. This blog post aims to demystify the process of building apps that leverage GPT-4. We will explore this by walking through the development of a Japanese Kanji Flashcard App, employing GPT-4 to build the app and supply it with valuable data. 
@@ -44,7 +44,7 @@ Below you can see a small sample of Kanji characters.
   <img src="/images/kanji-gpt4/kanji-sample.png">
 </div>
 
-Addressing the challenges faced by students of Japanese Kanji, the objective is to build a Kanji Flashcard App empowered by GPT-4’s capabilities to facilitate the learning journey.  This app serves as a dynamic learning companion, enabling users to specify, in natural language, the particular Kanji they wish to explore. Harnessing the power of GPT-4, the app automatically curates a list of Kanji that aligns with the users' articulated needs and further assesses their abilities by offering multiple-choice readings of the words, ensuring an engaged and effective study experience.
+Addressing the challenges faced by students of Japanese Kanji, the objective is to build a Kanji Flashcard App empowered by GPT-4's capabilities to facilitate the learning journey.  This app serves as a dynamic learning companion, enabling users to specify, in natural language, the particular Kanji they wish to explore. Harnessing the power of GPT-4, the app automatically curates a list of Kanji that aligns with the users' articulated needs and further assesses their abilities by offering multiple-choice readings of the words, ensuring an engaged and effective study experience.
 
 
 #2. Building the front-end
@@ -246,3 +246,11 @@ To optimize and scale our app efficiently, we could consider an approach that co
 
 #Conclusion
 In conclusion, GPT-4 is changing the game in app development, especially when it comes to handling data. Our Japanese Flashcard App shows just how handy GPT-4 can be. Instead of manually gathering data, developers can use GPT-4 to quickly get the info they need. This not only speeds up the building process but ensures the app is filled with useful content. With tools like GPT-4, creating data-rich apps has never been easier or more efficient. 
+
+---
+
+<div style="background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 25px 0;">
+  <h3 style="color: #0F52BA; margin-top: 0;">Looking to study Japanese Kanji more deeply?</h3>
+  <p>Check out <a href="https://www.kanjimaster.ai" style="color: #0F52BA; font-weight: bold; text-decoration: underline;">KanjiMaster.ai</a>, a platform I built for Japanese learners to master kanji efficiently through an engaging and adaptive experience.</p>
+  <p>If you're interested in the Japanese writing system in general, check out <a href="https://www.kanjimaster.ai/blog/japanese-writing-system-hiragana-katakana-kanji" style="color: #0F52BA; font-weight: bold; text-decoration: underline;">this detailed guide on Hiragana, Katakana, and Kanji</a>.</p>
+</div>
