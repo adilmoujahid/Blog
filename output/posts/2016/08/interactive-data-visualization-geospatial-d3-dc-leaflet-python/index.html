@@ -150,8 +150,8 @@ jQuery(document).ready(function($) {
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../../theme/css/pure.css">
-    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
-    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+<link rel="stylesheet" href="../../../../theme/css/pygments.css">
+<link rel="stylesheet" href="../../../../theme/css/custom.css">
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -165,52 +165,53 @@ jQuery(document).ready(function($) {
 
 <body>
 <div class="pure-g-r" id="layout">
-    <div class="sidebar sidebar-article pure-u">
-        <header class="header-article">
-            <hgroup>
-                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
-                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
-                </a>
-                <h2 class="article-info">Adil Moujahid</h2>
-                <small class="about-author"></small>
+  <div class="sidebar sidebar-article pure-u">
+    <header class="header-article">
+      <hgroup>
+        <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+          <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+        </a>
+        <h2 class="article-info">Adil Moujahid</h2>
+        <small class="about-author"></small>
 
-                <!-- ko-fi -->
-                <div>
-                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-                </div>
-                <br>
+        <!-- ko-fi -->
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'W7W4K1LZ'); kofiwidget2.draw();</script>
+        <br>
+        <br>
 
-                <div>
-                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
-                    Follow @AdilMouja
-                </a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                </div>
+        <div>
+          <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+            Follow @AdilMouja
+          </a>
+          <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
 
-                <h5>Published</h5>
-                <p>Sat 13 August 2016</p>
-                <a href="/">&larr;Home</a>
-            </hgroup>
+        <h5>Published</h5>
+        <p>Sat 13 August 2016</p>
+        <a href="/">&larr;Home</a>
+      </hgroup>
+    </header>
+  </div>
+  <div class="pure-u">
+    <div class="content">
+      <section class="post">
+        <header class="post-header">
+          <h1>Interactive Data Visualization of Geospatial Data using D3.js, DC.js, Leaflet.js and Python</h1>
+          <br>
+          <p class="post-meta">
+            // tags             <a class="post-category" href="../../../../tag/python/">python</a>
+            <a class="post-category" href="../../../../tag/javascript/">javascript</a>
+            <a class="post-category" href="../../../../tag/data-visualization/">data visualization</a>
+            <a class="post-category" href="../../../../tag/d3js/">d3.js</a>
+            <a class="post-category" href="../../../../tag/dcjs/">dc.js</a>
+            <a class="post-category" href="../../../../tag/leafletjs/">leaflet.js</a>
+          </p>
         </header>
-    </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>Interactive Data Visualization of Geospatial Data using D3.js, DC.js, Leaflet.js and Python</h1>
-                    <br>
-                    <p class="post-meta">
-                        // tags                             <a class="post-category" href="../../../../tag/python/">python</a>
-                            <a class="post-category" href="../../../../tag/javascript/">javascript</a>
-                            <a class="post-category" href="../../../../tag/data-visualization/">data visualization</a>
-                            <a class="post-category" href="../../../../tag/d3js/">d3.js</a>
-                            <a class="post-category" href="../../../../tag/dcjs/">dc.js</a>
-                            <a class="post-category" href="../../../../tag/leafletjs/">leaflet.js</a>
-                    </p>
-                </header>
-            </section>
-            <br>
-            <p>The goal of this tutorial is to introduce the steps for building an interactive visualization of geospatial data.</p>
+      </section>
+      <br>
+      <p>The goal of this tutorial is to introduce the steps for building an interactive visualization of geospatial data.</p>
 <p>To do this, we will use a dataset from a Kaggle competition to build a data visualization that shows the distribution of mobile phone users in China. We will also create additional charts that show the usage patterns, the most popular phone brands, and users’ age segments and gender. We will be able to filter the data by the different attributes and see the results reflected in the map and all charts.</p>
 <p>We will cover a wide range of technologies in this tutorial: Pandas for cleaning the data, Flask for building the server, Javascript libraries d3.js, dc.js and crossfilter.js for building the charts and Leaflet.js for building the map.</p>
 <p>The source code for this tutorial can be found in this <a href="https://github.com/adilmoujahid/kaggle-talkingdata-visualization">github repository</a>.</p>
@@ -548,15 +549,15 @@ jQuery(document).ready(function($) {
 
 <h1>Conclusion</h1>
 <p>In this tutorial, we learned how to build an interactive data visualization of geospatial data by combining DC.js charts with Leaflet.js. If you liked this tutorial, we might want to check a <a href="http://adilmoujahid.com/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/">similar one</a> where I used MongoDB as a data source instead of csv files.</p>
-            <div class="hr"></div>
-            
-            
-            <!-- Sumo managed through sumo.com -->
-                <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
-            <!-- Sumo managed through sumo.com -->
-        
+      <div class="hr"></div>
 
-            <a href="#" class="go-top">Go Top</a>
+
+      <!-- Sumo managed through sumo.com -->
+      <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+      <!-- Sumo managed through sumo.com -->
+
+
+      <a href="#" class="go-top">Go Top</a>
 <div class="comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -577,8 +578,8 @@ jQuery(document).ready(function($) {
         Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
         for <a href="http://blog.getpelican.com/">Pelican</a>
     </p>
-</footer>        </div>
-    </div>
+</footer>    </div>
+  </div>
 </div>
     <script>
         var $top = $('.go-top');

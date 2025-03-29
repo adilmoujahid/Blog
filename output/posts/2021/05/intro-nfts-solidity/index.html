@@ -150,8 +150,8 @@ jQuery(document).ready(function($) {
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../../theme/css/pure.css">
-    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
-    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+<link rel="stylesheet" href="../../../../theme/css/pygments.css">
+<link rel="stylesheet" href="../../../../theme/css/custom.css">
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -165,49 +165,50 @@ jQuery(document).ready(function($) {
 
 <body>
 <div class="pure-g-r" id="layout">
-    <div class="sidebar sidebar-article pure-u">
-        <header class="header-article">
-            <hgroup>
-                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
-                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
-                </a>
-                <h2 class="article-info">Adil Moujahid</h2>
-                <small class="about-author"></small>
+  <div class="sidebar sidebar-article pure-u">
+    <header class="header-article">
+      <hgroup>
+        <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+          <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+        </a>
+        <h2 class="article-info">Adil Moujahid</h2>
+        <small class="about-author"></small>
 
-                <!-- ko-fi -->
-                <div>
-                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-                </div>
-                <br>
+        <!-- ko-fi -->
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'W7W4K1LZ'); kofiwidget2.draw();</script>
+        <br>
+        <br>
 
-                <div>
-                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
-                    Follow @AdilMouja
-                </a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                </div>
+        <div>
+          <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+            Follow @AdilMouja
+          </a>
+          <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
 
-                <h5>Published</h5>
-                <p>Mon 10 May 2021</p>
-                <a href="/">&larr;Home</a>
-            </hgroup>
+        <h5>Published</h5>
+        <p>Mon 10 May 2021</p>
+        <a href="/">&larr;Home</a>
+      </hgroup>
+    </header>
+  </div>
+  <div class="pure-u">
+    <div class="content">
+      <section class="post">
+        <header class="post-header">
+          <h1>A Practical Introduction to NFTs using Solidity and Legos</h1>
+          <br>
+          <p class="post-meta">
+            // tags             <a class="post-category" href="../../../../tag/solidity/">solidity</a>
+            <a class="post-category" href="../../../../tag/blockchain/">blockchain</a>
+            <a class="post-category" href="../../../../tag/nft/">nft</a>
+          </p>
         </header>
-    </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>A Practical Introduction to NFTs using Solidity and Legos</h1>
-                    <br>
-                    <p class="post-meta">
-                        // tags                             <a class="post-category" href="../../../../tag/solidity/">solidity</a>
-                            <a class="post-category" href="../../../../tag/blockchain/">blockchain</a>
-                            <a class="post-category" href="../../../../tag/nft/">nft</a>
-                    </p>
-                </header>
-            </section>
-            <br>
-            <p>Non-fungible tokens, more commonly known as NFTs, are the new big trend in the crypto and blockchain industry. NFTs were all over the news in the last few months, with stories of digital art using the technology selling for millions of dollars.</p>
+      </section>
+      <br>
+      <p>Non-fungible tokens, more commonly known as NFTs, are the new big trend in the crypto and blockchain industry. NFTs were all over the news in the last few months, with stories of digital art using the technology selling for millions of dollars.</p>
 <p>With NFTs, we can uniquely identify and represent the ownership of assets using the blockchain. We can also use NFTs to trade these assets and implement sophisticated contracts like royalty payments. We’re still in the early days of this technology but we’re already seeing a wide wide range of applicability in virtual worlds, domain names, collectibles, and art. </p>
 <p>Putting aside all the hype around the price of some of these digital assets, the goal of this tutorial is to give you a practical introduction to NFTs. To do this, we will start in section 1 with a short introduction to blockchain, Ethereum, and smart contracts. In section 2, we will go deeper into the technology covering its history, landscape and, tools; and understanding the steps for making an NFT on the Ethereum blockchain. In section 3, we will go hands-on with the creation of a digital asset and the deployment of an NFT that represents our creation on the Ethereum blockchain. In section 4, we will create a physical object that represents our asset and we will look at some of the limitations of NFTs.</p>
 <p>Following the tradition of using <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">“Hello, World!” programs</a> to introduce new topics in programming, I created the GIF below of an animated text that says: “Hello, NFTs!”. We will create an NFT that represents our newly created GIF and we will deploy it on the Ethereum blockchain. To make this tutorial more interesting and understand the limitations of NFTs, I created the physical object below which is a LEGO-based QR code that is linked to a <a href="http://adilmoujahid.com/projects/hello-nfts/">webpage</a> that shows information about our NFTs and our new digital asset. </p>
@@ -833,15 +834,15 @@ We click on the <code>Write</code> button</p>
 <p>[11] <a href="https://en.wikipedia.org/wiki/Everydays:_the_First_5000_Days">Everydays: the First 5000 Days - Wikipedia</a></p>
 <p>[12] <a href="https://docs.openzeppelin.com/contracts/4.x/erc721">OpenZeppelin ERC721</a></p>
 <p>[13] <a href="https://www.reddit.com/r/NFT/comments/m04ec8/nfts_for_physical_art/">Reddit post about NFTs for Physical art</a></p>
-            <div class="hr"></div>
-            
-            
-            <!-- Sumo managed through sumo.com -->
-                <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
-            <!-- Sumo managed through sumo.com -->
-        
+      <div class="hr"></div>
 
-            <a href="#" class="go-top">Go Top</a>
+
+      <!-- Sumo managed through sumo.com -->
+      <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+      <!-- Sumo managed through sumo.com -->
+
+
+      <a href="#" class="go-top">Go Top</a>
 <div class="comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -862,8 +863,8 @@ We click on the <code>Write</code> button</p>
         Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
         for <a href="http://blog.getpelican.com/">Pelican</a>
     </p>
-</footer>        </div>
-    </div>
+</footer>    </div>
+  </div>
 </div>
     <script>
         var $top = $('.go-top');

@@ -150,8 +150,8 @@ jQuery(document).ready(function($) {
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../../theme/css/pure.css">
-    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
-    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+<link rel="stylesheet" href="../../../../theme/css/pygments.css">
+<link rel="stylesheet" href="../../../../theme/css/custom.css">
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -165,49 +165,50 @@ jQuery(document).ready(function($) {
 
 <body>
 <div class="pure-g-r" id="layout">
-    <div class="sidebar sidebar-article pure-u">
-        <header class="header-article">
-            <hgroup>
-                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
-                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
-                </a>
-                <h2 class="article-info">Adil Moujahid</h2>
-                <small class="about-author"></small>
+  <div class="sidebar sidebar-article pure-u">
+    <header class="header-article">
+      <hgroup>
+        <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+          <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+        </a>
+        <h2 class="article-info">Adil Moujahid</h2>
+        <small class="about-author"></small>
 
-                <!-- ko-fi -->
-                <div>
-                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-                </div>
-                <br>
+        <!-- ko-fi -->
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'W7W4K1LZ'); kofiwidget2.draw();</script>
+        <br>
+        <br>
 
-                <div>
-                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
-                    Follow @AdilMouja
-                </a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                </div>
+        <div>
+          <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+            Follow @AdilMouja
+          </a>
+          <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
 
-                <h5>Published</h5>
-                <p>Sun 13 July 2014</p>
-                <a href="/">&larr;Home</a>
-            </hgroup>
+        <h5>Published</h5>
+        <p>Sun 13 July 2014</p>
+        <a href="/">&larr;Home</a>
+      </hgroup>
+    </header>
+  </div>
+  <div class="pure-u">
+    <div class="content">
+      <section class="post">
+        <header class="post-header">
+          <h1>Baseball Analytics: An Introduction to Sabermetrics using Python</h1>
+          <br>
+          <p class="post-meta">
+            // tags             <a class="post-category" href="../../../../tag/python/">python</a>
+            <a class="post-category" href="../../../../tag/modelling/">modelling</a>
+            <a class="post-category" href="../../../../tag/pandas/">pandas</a>
+          </p>
         </header>
-    </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>Baseball Analytics: An Introduction to Sabermetrics using Python</h1>
-                    <br>
-                    <p class="post-meta">
-                        // tags                             <a class="post-category" href="../../../../tag/python/">python</a>
-                            <a class="post-category" href="../../../../tag/modelling/">modelling</a>
-                            <a class="post-category" href="../../../../tag/pandas/">pandas</a>
-                    </p>
-                </header>
-            </section>
-            <br>
-            <p>Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. The term Sabermetrics comes from saber (Society for American Baseball Research) and metrics (as in econometrics).</p>
+      </section>
+      <br>
+      <p>Sabermetrics is the apllication of statistical analysis to baseball data in order to measure in-game activity. The term Sabermetrics comes from saber (Society for American Baseball Research) and metrics (as in econometrics).</p>
 <p>In 2003, Michael Lewis published Moneyball about Billy Beane, the Oakland Athletics General Manager since 1997. The book was centered around Billy Beane's use of Sabemetrics to identify and recruit under-valued baseball players. With this strategy, his team could achieve as many wins as teams with more than double the payroll. The figures below show the relationship between team salaries and number of wins for years: 1997, 2001, 2003, 2013. The green dot represents the Oakland Athletics, the blue dot represents the New York Yankees, and the red dot represents The Boston Red Sox. We can see that the Oakland Athletics went from the underperforming team in 1997, to became a highly competitive team with a comparable number of wins to the New York Yankees. The  Oakland Athletics made it to the play-offs in 4 successive years: 2000,2001,2002,2003. </p>
 <p>In 2011, the movie Moneyball based on Lewis' book was released starring Brad Pitt in the role of Beane.</p>
 <div style="text-align:left">
@@ -388,15 +389,15 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
 <h2>References</h2>
 <p>http://www.swing-smarter-baseball-hitting-drills.com/oakland-as.html</p>
 <p>MITx: 15.071x The Analytics Edge</p>
-            <div class="hr"></div>
-            
-            
-            <!-- Sumo managed through sumo.com -->
-                <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
-            <!-- Sumo managed through sumo.com -->
-        
+      <div class="hr"></div>
 
-            <a href="#" class="go-top">Go Top</a>
+
+      <!-- Sumo managed through sumo.com -->
+      <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+      <!-- Sumo managed through sumo.com -->
+
+
+      <a href="#" class="go-top">Go Top</a>
 <div class="comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -417,8 +418,8 @@ To execute the code from this tutorial, you will need Python 2.7 and the followi
         Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
         for <a href="http://blog.getpelican.com/">Pelican</a>
     </p>
-</footer>        </div>
-    </div>
+</footer>    </div>
+  </div>
 </div>
     <script>
         var $top = $('.go-top');

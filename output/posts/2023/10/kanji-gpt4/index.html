@@ -150,8 +150,8 @@ jQuery(document).ready(function($) {
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../../theme/css/pure.css">
-    <link rel="stylesheet" href="../../../../theme/css/pygments.css">
-    <link rel="stylesheet" href="../../../../theme/css/custom.css">
+<link rel="stylesheet" href="../../../../theme/css/pygments.css">
+<link rel="stylesheet" href="../../../../theme/css/custom.css">
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -165,49 +165,50 @@ jQuery(document).ready(function($) {
 
 <body>
 <div class="pure-g-r" id="layout">
-    <div class="sidebar sidebar-article pure-u">
-        <header class="header-article">
-            <hgroup>
-                <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
-                        <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
-                </a>
-                <h2 class="article-info">Adil Moujahid</h2>
-                <small class="about-author"></small>
+  <div class="sidebar sidebar-article pure-u">
+    <header class="header-article">
+      <hgroup>
+        <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+          <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+        </a>
+        <h2 class="article-info">Adil Moujahid</h2>
+        <small class="about-author"></small>
 
-                <!-- ko-fi -->
-                <div>
-                    <a href='https://ko-fi.com/W7W4K1LZ' target='_blank'><img height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' style='border:0px;height:32px;' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-                </div>
-                <br>
+        <!-- ko-fi -->
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'W7W4K1LZ'); kofiwidget2.draw();</script>
+        <br>
+        <br>
 
-                <div>
-                <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
-                    Follow @AdilMouja
-                </a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                </div>
+        <div>
+          <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+            Follow @AdilMouja
+          </a>
+          <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
 
-                <h5>Published</h5>
-                <p>Wed 18 October 2023</p>
-                <a href="/">&larr;Home</a>
-            </hgroup>
+        <h5>Published</h5>
+        <p>Wed 18 October 2023</p>
+        <a href="/">&larr;Home</a>
+      </hgroup>
+    </header>
+  </div>
+  <div class="pure-u">
+    <div class="content">
+      <section class="post">
+        <header class="post-header">
+          <h1>Building a Japanese Kanji Flashcard App using GPT-4, Python and Langchain</h1>
+          <br>
+          <p class="post-meta">
+            // tags             <a class="post-category" href="../../../../tag/ai/">ai</a>
+            <a class="post-category" href="../../../../tag/gpt4/">gpt4</a>
+            <a class="post-category" href="../../../../tag/japanese/">japanese</a>
+          </p>
         </header>
-    </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>Building a Japanese Kanji Flashcard App using GPT-4, Python and Langchain</h1>
-                    <br>
-                    <p class="post-meta">
-                        // tags                             <a class="post-category" href="../../../../tag/ai/">ai</a>
-                            <a class="post-category" href="../../../../tag/gpt4/">gpt4</a>
-                            <a class="post-category" href="../../../../tag/japanese/">japanese</a>
-                    </p>
-                </header>
-            </section>
-            <br>
-            <p>GPT-4 has captivated mainstream attention in recent months, with applications like ChatGPT showcasing its extensive capabilities and setting the stage for a generational shift in technology.  The GPT-4 model can be accessed programmatically using an API, enabling the creation of diverse applications with rich, contextually relevant data. This blog post aims to demystify the process of building apps that leverage GPT-4. We will explore this by walking through the development of a Japanese Kanji Flashcard App, employing GPT-4 to build the app and supply it with valuable data. </p>
+      </section>
+      <br>
+      <p>GPT-4 has captivated mainstream attention in recent months, with applications like ChatGPT showcasing its extensive capabilities and setting the stage for a generational shift in technology.  The GPT-4 model can be accessed programmatically using an API, enabling the creation of diverse applications with rich, contextually relevant data. This blog post aims to demystify the process of building apps that leverage GPT-4. We will explore this by walking through the development of a Japanese Kanji Flashcard App, employing GPT-4 to build the app and supply it with valuable data. </p>
 <p>As we move forward, we'll explore the challenges of learning Japanese Kanji, utilize ChatGPT to build the front-end, employ GPT-4's data generation logic to dynamically fetch and format Kanji data, and ultimately, bring it all together into a unified app using Python and Flask.</p>
 <p>You can view the final result in the animated GIF below, and find the source code for this project in <a href="https://github.com/adilmoujahid/kanji-flashcard-app-gpt4">this GitHub repository</a>.</p>
 <p><br></p>
@@ -404,15 +405,15 @@ jQuery(document).ready(function($) {
   <p>Check out <a href="https://www.kanjimaster.ai" style="color: #0F52BA; font-weight: bold; text-decoration: underline;">KanjiMaster.ai</a>, a platform I built for Japanese learners to master kanji efficiently through an engaging and adaptive experience.</p>
   <p>If you're interested in the Japanese writing system in general, check out <a href="https://www.kanjimaster.ai/blog/japanese-writing-system-hiragana-katakana-kanji" style="color: #0F52BA; font-weight: bold; text-decoration: underline;">this detailed guide on Hiragana, Katakana, and Kanji</a>.</p>
 </div>
-            <div class="hr"></div>
-            
-            
-            <!-- Sumo managed through sumo.com -->
-                <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
-            <!-- Sumo managed through sumo.com -->
-        
+      <div class="hr"></div>
 
-            <a href="#" class="go-top">Go Top</a>
+
+      <!-- Sumo managed through sumo.com -->
+      <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+      <!-- Sumo managed through sumo.com -->
+
+
+      <a href="#" class="go-top">Go Top</a>
 <div class="comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -433,8 +434,8 @@ jQuery(document).ready(function($) {
         Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
         for <a href="http://blog.getpelican.com/">Pelican</a>
     </p>
-</footer>        </div>
-    </div>
+</footer>    </div>
+  </div>
 </div>
     <script>
         var $top = $('.go-top');
