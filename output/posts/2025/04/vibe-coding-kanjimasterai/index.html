@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Bridging Tech and Art">
+
+
+        
+<style type="text/css">
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+.highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
+.highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
+.highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
+.highlight .o { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator */
+.highlight .p { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation */
+.highlight .ch { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Single */
+.highlight .cs { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Special */
+.highlight .kc { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Type */
+.highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
+.highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
+.highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
+.highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
+.highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
+.highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
+.highlight .mh { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Hex */
+.highlight .mi { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer */
+.highlight .mo { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Oct */
+.highlight .sa { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Affix */
+.highlight .sb { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Backtick */
+.highlight .sc { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Char */
+.highlight .dl { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Delimiter */
+.highlight .sd { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Doc */
+.highlight .s2 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Double */
+.highlight .se { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Escape */
+.highlight .sh { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Heredoc */
+.highlight .si { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Interpol */
+.highlight .sx { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Other */
+.highlight .sr { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Regex */
+.highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
+.highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
+.highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        displayMath: [['$$','$$'], ["\\[","\\]"]]
+    }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+
+
+
+
+        <title>How I Built and Launched a Japanese Kanji Learning App Using Vibe Coding // Adil Moujahid // Bridging Tech and Art</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+<link rel="stylesheet" href="../../../../theme/css/pygments.css">
+<link rel="stylesheet" href="../../../../theme/css/custom.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../extra/favicon.ico" />
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+  <div class="sidebar sidebar-article pure-u">
+    <header class="header-article">
+      <hgroup>
+        <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+          <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+        </a>
+        <h2 class="article-info">Adil Moujahid</h2>
+        <small class="about-author"></small>
+
+        <!-- ko-fi -->
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'W7W4K1LZ'); kofiwidget2.draw();</script>
+        <br>
+        <br>
+
+        <div>
+          <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+            Follow @AdilMouja
+          </a>
+          <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
+
+        <h5>Published</h5>
+        <p>Thu 03 April 2025</p>
+        <a href="/">&larr;Home</a>
+      </hgroup>
+    </header>
+  </div>
+  <div class="pure-u">
+    <div class="content">
+      <section class="post">
+        <header class="post-header">
+          <h1>How I Built and Launched a Japanese Kanji Learning App Using Vibe Coding</h1>
+          <br>
+          <p class="post-meta">
+            // tags             <a class="post-category" href="../../../../tag/ai/">ai</a>
+            <a class="post-category" href="../../../../tag/gpt4/">gpt4</a>
+            <a class="post-category" href="../../../../tag/japanese/">japanese</a>
+          </p>
+        </header>
+      </section>
+      <br>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What's Vibe coding?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Vibe coding is an AI-assisted programming technique where developers describe tasks in natural language and AI generates the corresponding code. The term was officially coined by Andrej Karpathy in February 2025. It involves using tools like Cursor IDE with Anthropic's Claude Sonnet to rapidly develop applications by describing functionality in natural language."
+    }
+  }]
+}
+</script>
+
+<p>Twenty years ago, at 18, I moved from Morocco to Japan to pursue a degree in computer science at a Japanese university. My journey started with an intensive one-year Japanese course. Everything seemed manageable—except for Kanji (if you're not familiar with the Japanese writing system, check out <a href="https://www.kanjimaster.ai/blog/japanese-writing-system-hiragana-katakana-kanji">this guide</a>).</p>
+<p>Anyone who's learned Japanese knows the struggle. The thousands of characters, multiple readings, and nuanced meanings make Kanji incredibly challenging. Back then, I kept thinking:</p>
+<div style="text-align: center; font-style: italic; font-size: 1.2em; margin: 20px 0; padding: 10px; border-left: 4px solid #ccc;">
+"There must be a better way to learn Kanji."
+</div>
+<p>This wish stayed with me for two decades, patiently waiting for technology to catch up.</p>
+<h1>The Spark: GPT-4 and My First Kanji App (2023)</h1>
+<p>In March 2023, OpenAI released GPT-4, and like many others, I was immediately intrigued. Given my background as a developer mainly in Python, data engineering, machine learning, and AI, I quickly experimented with GPT-4's API.
+I built a simple Python and vanilla JavaScript app to auto-generate multiple-choice quizzes for Kanji characters. </p>
+<p><br></p>
+<div style="display:block;margin:auto;height:60%;width:60%">
+  <img src="/images/kanji-gpt4/kanji-gpt4.gif">
+</div>
+
+<p><br></p>
+<p>To my surprise, it worked well. Encouraged by the results, I wrote about my experience <a href="/posts/2023/10/kanji-gpt4/">here</a>. </p>
+<p>The positive feedback convinced me the idea had great potential.Yet, it still felt like just a prototype. I wanted more.</p>
+<h1>The Turning Point: Discovering Vibe Coding and Cursor (Summer 2024)</h1>
+<p>By mid-2024, "vibe coding"—an AI-assisted programming technique where developers describe tasks in natural language and AI generates the corresponding code—had started gaining popularity. The term was officially coined by Andrej Karpathy in February 2025.</p>
+<p><br></p>
+<div style="display: flex; justify-content: center; width: 100%; max-width: 550px; margin: 0 auto;">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">There&#39;s a new kind of coding I call &quot;vibe coding&quot;, where you fully give in to the vibes, embrace exponentials, and forget that the code even exists. It&#39;s possible because the LLMs (e.g. Cursor Composer w Sonnet) are getting too good. Also I just talk to Composer with SuperWhisper…</p>&mdash; Andrej Karpathy (@karpathy) <a href="https://twitter.com/karpathy/status/1886192184808149383?ref_src=twsrc%5Etfw">February 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<p><br></p>
+<p>Cursor IDE with Anthropic's Claude Sonnet, quickly became a preferred tool among developers exploring this innovative approach.</p>
+<p>Despite my extensive Python and AI background, I had no real experience with modern JavaScript frameworks like React or Next.js. To quickly get up to speed, I took a 4-hour YouTube crash course on React and Next.js. This short course was surprisingly enough to grasp the key concepts and structure.
+Feeling ready, I dove into building a full-fledged app: <a href="https://kanjimaster.ai/">KanjiMaster.ai</a>.</p>
+<h1>Step 1: Defining the Tech Stack</h1>
+<p>Before diving into the implementation details, here's the tech stack I chose:</p>
+<ul>
+<li>Full-Stack Framework: <a href="https://nextjs.org/">Next.js</a> – Modern React framework for building performant, SEO-friendly web applications.</li>
+<li>Database: <a href="https://supabase.com/">Supabase</a> – Open-source Firebase alternative built on PostgreSQL, providing easy database management and built-in APIs.</li>
+<li>Authentication: <a href="https://supabase.com/docs/guides/auth">Supabase Auth</a> – seamless integration, supporting Google login and passwordless email-based login.</li>
+<li>Payments &amp; Subscriptions: <a href="https://stripe.com/">Stripe</a> – Reliable and secure handling of subscriptions and payments.</li>
+<li>Transactional Emails: <a href="https://resend.com/">Resend</a> – Simple and effective email delivery for user communications.</li>
+<li>Analytics &amp; Product Insights: <a href="https://posthog.com/">PostHog</a> – Open-source analytics to monitor user behavior and app usage.</li>
+<li>Hosting &amp; Deployment: <a href="https://vercel.com/">Vercel</a> – Fast, scalable, and effortless deployment optimized specifically for Next.js.</li>
+<li>Development IDE: <a href="http://cursor.com/">Cursor</a> – AI-powered IDE for fast, efficient vibe coding.</li>
+</ul>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/vibe-coding-kanjimasterai/technology_stack.png">
+</div>
+
+<p>This carefully selected stack allowed me to iterate quickly and efficiently, enabling a solo developer like myself to manage the entire product lifecycle from inception to launch.</p>
+<h1>Step 2: Generating High-Quality Kanji Data with GPT-4o</h1>
+<p>I started by generating robust content. I extracted <a href="https://en.wikipedia.org/wiki/List_of_j%C5%8Dy%C5%8D_kanji">the Jōyō Kanji list</a> from Wikipedia and enriched it using GPT-4o. Using Python scripts, I asked GPT-4o to generate detailed structured data for each Kanji:</p>
+<ul>
+<li>On'yomi and Kun'yomi readings</li>
+<li>Example sentences</li>
+<li>Difficulty ratings &amp; JLPT levels</li>
+<li>Word distractors for quizzes</li>
+<li>...</li>
+</ul>
+<p>Example Python prompt:</p>
+<div class="highlight"><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Generate detailed information about the kanji </span><span class="si">{kanji}</span><span class="s2">.</span>
+<span class="s2">    Provide comprehensive information in the following JSON format:</span>
+<span class="s2">    {{</span>
+<span class="s2">        &quot;kanji&quot;: &quot;</span><span class="si">{kanji}</span><span class="s2">&quot;,</span>
+<span class="s2">        &quot;radical&quot;: &quot;string (the primary radical component)&quot;,</span>
+<span class="s2">        &quot;strokes&quot;: integer (number of strokes),</span>
+<span class="s2">        &quot;jlpt_level&quot;: &quot;string (JLPT Level)&quot;,</span>
+<span class="s2">        &quot;grade_level&quot;: integer (1-6 for elementary school grades, 7 for secondary school),</span>
+<span class="s2">        &quot;meaning&quot;: &quot;string (English meaning)&quot;,</span>
+<span class="s2">        &quot;onyomi&quot;: &quot;string (katakana readings)&quot;,</span>
+<span class="s2">        &quot;kunyomi&quot;: &quot;string (hiragana readings)&quot;,</span>
+<span class="s2">        &quot;onyomi_romaji&quot;: &quot;string (romaji of onyomi)&quot;,</span>
+<span class="s2">        &quot;kunyomi_romaji&quot;: &quot;string (romaji of kunyomi)&quot;,</span>
+<span class="s2">    }}&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;kanji&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Though GPT-4o's results were excellent, I did manual spot-checking to ensure quality, iterating and refining until the data felt strong enough for initial launch. Below are example of a Kanji and a Kanji Compound from the database.</p>
+<div style="display:block;margin:auto;height:90%;width:90%">
+  <img src="/images/vibe-coding-kanjimasterai/Kanji_compound.png">
+</div>
+
+<h1>Step 3: Designing Clear Data Models and APIs</h1>
+<p>Thanks to my background, designing the data models, database schema (using Supabase/Postgres), and API structure came naturally. This solid foundation was crucial for the AI-driven development that followed.</p>
+<p>My initial app requirements included:</p>
+<ul>
+<li>Kanji and Kanji Compounds dictionary</li>
+<li>Kanji Collections</li>
+<li>Lessons</li>
+<li>Quizzes</li>
+<li>User profiles with progress tracking</li>
+<li>Payments and subscriptions (Stripe integration)</li>
+<li>Secure authentication (Supabase Auth)</li>
+</ul>
+<h1>Step 4: Building KanjiMaster.ai using vibe coding</h1>
+<p>Using Cursor IDE, I described the desired functionality clearly in natural language, and GPT handled the rest, generating roughly 95% of the code.</p>
+<p>Example vibe coding comments:</p>
+<div class="highlight"><pre><span></span><code>Generate<span class="w"> </span>a<span class="w"> </span>dashboard<span class="w"> </span>that<span class="w"> </span>takes<span class="w"> </span>as<span class="w"> </span>input<span class="w"> </span>quizzes<span class="w"> </span>data<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span>user<span class="w"> </span>and<span class="w"> </span>displays<span class="w"> </span>key<span class="w"> </span>metrics,<span class="w"> </span>such<span class="w"> </span>as<span class="w"> </span>Learning<span class="w"> </span>Streak,<span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>Kanji<span class="w"> </span>Mastered,<span class="w"> </span>and<span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>Quizzes<span class="w"> </span>Taken.<span class="w"> </span>Retrieve<span class="w"> </span>available<span class="w"> </span>tables<span class="w"> </span>using<span class="w"> </span>Supabase<span class="w"> </span>MCP,<span class="w"> </span>and<span class="w"> </span>refer<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>API<span class="w"> </span>folder<span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>suitable<span class="w"> </span>APIs<span class="w"> </span><span class="k">for</span><span class="w"> </span>this<span class="w"> </span>task.
+</code></pre></div>
+
+<p>Cursor generated reliable, performant code with minimal manual intervention, significantly accelerating my development process.</p>
+<p>Below are a few screenshots of the final product.</p>
+<div style="display:block;margin:auto;width:90%;margin-top:20px;margin-bottom:20px;">
+  <div style="text-align:center;margin-bottom:10px;font-style:italic;">Scroll horizontally to view all screenshots →</div>
+  <div style="display:flex;overflow-x:scroll;gap:15px;padding:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_1.png" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_2.png" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_3.png" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_4.png" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+  </div>
+  <div style="text-align:center;margin-top:10px;color:#666;">Scroll horizontally to view all screenshots →</div>
+</div>
+
+<h3>Debugging and the Importance of Structured Logs</h3>
+<p>Initially, debugging via Cursor felt like magic, but I quickly learned that clarity was key. Sometimes, I'd lazily paste logs into Cursor, expecting miracles—this often failed.</p>
+<p>However, when I structured my debugging process, simplified the problem, and provided clear, minimal logs, Cursor became incredibly effective. Systematic debugging made AI assistance immensely productive.</p>
+<h1>Step 5: Deploying Seamlessly to Vercel</h1>
+<p>When it came to deployment, I chose Vercel. The experience was seamless—I simply connected my GitHub repository, and within minutes, my Next.js app was live with automatic deployments and a scalable serverless architecture. The effortless deployment process allowed me to focus entirely on product development and iteration.</p>
+<h1>Step 6: Launching and Early Marketing Strategy</h1>
+<p>Months before launch, I secured the domain KanjiMaster.ai, established social media presence (particularly <a href="https://www.instagram.com/kanjimasterai/">Instagram</a>), and began producing AI-driven content to build a small community. I set up a simple landing page and collected emails organically, aided by a modest ad campaign (~$50). Below is a screenshot from the @kanjimasterai Instagram account.</p>
+<p><br></p>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/vibe-coding-kanjimasterai/ig.png">
+</div>
+
+<p><br></p>
+<p><a href="https://www.kanjimaster.ai/">KanjiMaster.ai</a> launched with content structured into five distinct Kanji collections, each aligned with the JLPT (Japanese Language Proficiency Test) levels. I adopted a freemium model:</p>
+<ul>
+<li>Free Tier: Full access to JLPT N5 (the easiest Kanji)</li>
+<li>Premium Tier: Complete access to all collections (JLPT N4 to N1)<ul>
+<li>Pricing: \$9.99/month or \$99.99/year</li>
+<li>Included a 7-day free trial for premium content.</li>
+</ul>
+</li>
+</ul>
+<div style="display:block;margin:auto;height:100%;width:100%">
+  <img src="/images/vibe-coding-kanjimasterai/pricing.png">
+</div>
+
+<p><br></p>
+<p>Upon launch, I emailed my subscriber list, posted across social media, which quickly generated initial traction.</p>
+<h3>One Month Post-Launch Stats:</h3>
+<ul>
+<li>120 total users (primarily organic)</li>
+<li>A handful of paying subscribers (mostly supportive friends)</li>
+<li>Steady organic traffic from SEO-driven content. I published my first blog post <a href="https://www.kanjimaster.ai/blog/japanese-writing-system-hiragana-katakana-kanji">"The Japanese Writing System Explained: Hiragana, Katakana &amp; Kanji"</a> which did well on Hacker News and generated some traffic.</li>
+</ul>
+<h1>Step 7: Post-Launch Enhancements (Internal Admin Tools)</h1>
+<p>After deployment, managing users and data efficiently became essential. To streamline this, I built two internal admin apps (also via vibe coding):</p>
+<ol>
+<li>CRM App: Managed interactions, user feedback, and communication logs, significantly enhancing customer support and user engagement.</li>
+<li>Data Management App: Allowed easy corrections of Kanji data, dramatically reducing iteration time for content improvements.</li>
+</ol>
+<p>These internal tools became indispensable for maintaining quality and staying closely connected with users post-launch.</p>
+<div style="display:block;margin:auto;width:90%;margin-top:20px;margin-bottom:20px;">
+  <div style="text-align:center;margin-bottom:10px;font-style:italic;">Scroll horizontally to view all screenshots →</div>
+  <div style="display:flex;overflow-x:scroll;gap:15px;padding:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_5.jpeg" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_6.png" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+    <img src="/images/vibe-coding-kanjimasterai/screenshot_7.png" style="width:100%;max-width:600px;scroll-snap-align:start;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+  </div>
+  <div style="text-align:center;margin-top:10px;color:#666;">Scroll horizontally to view all screenshots →</div>
+</div>
+
+<h1>Recommendations for Effective Vibe Coding:</h1>
+<p>For developers interested in leveraging vibe coding and AI effectively, here's my advice:</p>
+<p>1.<strong>Master the fundamentals first</strong>: Before diving into vibe coding, ensure you understand:</p>
+<ul>
+<li>How web applications work (client-server architecture)</li>
+<li>Database concepts and data modeling</li>
+<li>Authentication and security principles</li>
+<li>API design and REST principles</li>
+<li>Basic front-end concepts (DOM, state management, routing)</li>
+</ul>
+<p>2.<strong>Understand your tech stack thoroughly</strong>: </p>
+<ul>
+<li>Know what each component does (e.g., Next.js for SSR/routing, Supabase for backend/auth)</li>
+<li>Learn the core concepts of your main framework (4 hours was sufficient for React &amp; Next.js basics)</li>
+<li>Research and choose tools that work well together</li>
+<li>Stay updated with best practices for each technology</li>
+</ul>
+<p>3.<strong>Focus on architecture and integration</strong>:</p>
+<ul>
+<li>Plan how different pieces will work together</li>
+<li>Design clear data flows between components</li>
+<li>Consider scalability and maintainability from the start</li>
+</ul>
+<p>4.<strong>Optimize your AI interactions</strong>:</p>
+<ul>
+<li>Provide clear context about your tech stack and constraints</li>
+<li>Break complex features into smaller, focused tasks</li>
+<li>Systematic debugging with clear, structured logs</li>
+</ul>
+<p>For specific tips on working with Cursor effectively, this advice from @ericzakariasson captures it well:</p>
+<div style="display: flex; justify-content: center; width: 100%; max-width: 550px; margin: 20px auto;">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Some tips for working effectively with Cursor:<br><br>1. Be specific about the tech stack and any constraints<br>2. Break down complex features into smaller tasks<br>3. Review and understand the generated code<br>4. Keep track of your architecture decisions<br><br>The more context you provide, the better the results.</p>&mdash; Eric Zakariasson (@ericzakariasson) <a href="https://twitter.com/ericzakariasson/status/1906820861568442564">September 26, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<h1>Lessons Learned and Next Steps</h1>
+<p>Key insights from launching KanjiMaster.ai:</p>
+<ul>
+<li>AI drastically lowers the barrier to adopting new tech stacks.</li>
+<li>Pre-launch marketing and community building significantly boost launch success.</li>
+<li>Freemium conversion requires continual refinement and deep user engagement.</li>
+<li>Robust internal tooling drastically improves post-launch productivity.</li>
+</ul>
+<p>My immediate next steps include direct user engagement, refining product-market fit, and continuously improving content quality and SEO.</p>
+<h1>Wrapping Up: Realizing a Twenty-Year-Old Dream</h1>
+<p>Two decades ago, I struggled deeply with Kanji learning. Today, leveraging AI, vibe coding, a modern tech stack, KanjiMaster.ai has finally become a reality.</p>
+<p>By sharing my journey, I hope it encourages you to revisit your own long-held ideas—today's tools might finally make them achievable.</p>
+<p>Explore <a href="https://kanjimaster.ai/">KanjiMaster.ai</a>, or feel free to reach out — I'd love your thoughts and feedback!</p>
+      <div class="hr"></div>
+
+
+      <!-- Sumo managed through sumo.com -->
+      <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+      <!-- Sumo managed through sumo.com -->
+
+
+      <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    </div>
+  </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24GHYVXZ5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-24GHYVXZ5F');
+    </script>
+</body>
+
+
+</html>

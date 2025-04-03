@@ -1,434 +1,459 @@
     * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
     }
 
     a {
-        text-decoration: none;
-        color: rgb(142, 142, 214);
+      text-decoration: none;
+      color: rgb(142, 142, 214);
     }
+
     a:hover,
     a:focus {
-        text-decoration: underline;
+      text-decoration: underline;
     }
 
 
 
     .comments {
-        padding: 50px 0 0;
+      padding: 50px 0 0;
     }
 
     .banner {
-        background-position: center;
-        background-size: cover;
-        height: 300px;
-        width: 100%;
+      background-position: center;
+      background-size: cover;
+      height: 300px;
+      width: 100%;
     }
 
     pre {
-        padding: 15px 15px 15px 15px;
-        font-size: 90%;
-        box-shadow: 2px 2px 2px #888;
+      padding: 15px 15px 15px 15px;
+      font-size: 90%;
+      box-shadow: 2px 2px 2px #888;
     }
 
     .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        width: 25%;
-        margin-left: -25%;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 25%;
+      margin-left: -25%;
     }
 
     .cover-img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-position: center;
-        background-repeat: no-repeat;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        -webkit-box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
-        -moz-box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
-        box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      -webkit-box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.3);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.3);
     }
 
     .cover-body {
-        position: absolute;
-        bottom: 0;
-        max-width: 100%;
-        padding-bottom: 0;
-        padding-top: 100px;
-        background-image: linear-gradient(to top,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
+      position: absolute;
+      bottom: 0;
+      max-width: 100%;
+      padding-bottom: 0;
+      padding-top: 100px;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0) 100%);
     }
 
     .brand-title,
     .brand-tagline {
-        margin: 0;
+      margin: 0;
     }
+
     .brand-title {
-        text-transform: uppercase;
+      text-transform: uppercase;
     }
 
     .article-info {
-        padding-top: 15px;
-        clear: right;
-        font-weight: 300;
-        color: rgb(0, 0, 0);
-        word-wrap: break-word;
+      padding-top: 15px;
+      clear: right;
+      font-weight: 300;
+      color: rgb(0, 0, 0);
+      word-wrap: break-word;
     }
 
     .article-avatar {
-        width: 120px;
-        height: 120px;
-        border-radius: 60px;
-        float: right;
-        margin-left: 1em;
-        border: 3px solid #fff;
-        z-index: 500;
-        background-color: #fff;
-        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-        -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-        box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      float: right;
+      margin-left: 1em;
+      border: 3px solid #fff;
+      z-index: 500;
+      background-color: #fff;
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
 
     .about-author {
-        display: block;
-        width: 85%;
-        padding: 0 0px;
-        float: right;
-        margin-bottom: 35px;
+      display: block;
+      width: 85%;
+      padding: 0 0px;
+      float: right;
+      margin-bottom: 35px;
     }
-        hr {
-            border: 1px solid #f2f2f0;
-            width: 10%;
-            margin-top: 20px;
-            margin-right: 0px;
-        }
+
+    hr {
+      border: 1px solid #f2f2f0;
+      width: 10%;
+      margin-top: 20px;
+      margin-right: 0px;
+    }
 
     .header-article {
-        width: 767px;
-        max-width: 100%;
-        text-align: right;
-        padding-top: 4em;
+      width: 767px;
+      max-width: 100%;
+      text-align: right;
+      padding-top: 4em;
     }
 
     .header-article h5 {
-        clear: both;
+      clear: both;
     }
 
     .header {
-        text-align: left;
-        width: 767px;
-        max-width: 100%;
+      text-align: left;
+      width: 767px;
+      max-width: 100%;
     }
 
     .brand-main a {
-        text-transform: uppercase;
-        text-decoration: none;
-        margin-left: 15px;
-        font-size: 25px;
-        color: #fff;
-        border-bottom: 1px solid rgba(255,255,255,0.3);
-        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 25px;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      font-family: "freight-sans-pro", "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
     }
 
     .tagline {
-        margin-left: 15px;
-        margin-top: -15px;
-        line-height: 15px;
-        font-size: 80%;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        color: #fff;
+      margin-left: 15px;
+      margin-top: -15px;
+      line-height: 15px;
+      font-size: 80%;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      color: #fff;
     }
 
     .social {
-        display: inline-block;
+      display: inline-block;
     }
+
     .social a {
-        text-decoration: none;
-        margin-left: 15px;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        color: #fff;
+      text-decoration: none;
+      margin-left: 15px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      color: #fff;
     }
 
     .links a {
-        font-size: 15px;
-        padding-left: 15px;
-        font-family: sans-serif;
-        letter-spacing: 2px;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        text-decoration: none;
-        color: #fff;
+      font-size: 15px;
+      padding-left: 15px;
+      font-family: sans-serif;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      color: #fff;
     }
 
     .content-subhead {
-        text-transform: uppercase;
-        color: #000000;
-        border-bottom: 1px solid #eee;
-        padding: 0.4em 0;
-        font-size: 100%;
-        font-weight: 500;
-        letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #000000;
+      border-bottom: 1px solid #eee;
+      padding: 0.4em 0;
+      font-size: 100%;
+      font-weight: 500;
+      letter-spacing: 0.1em;
     }
 
     .content {
-        padding: 2em 3em 0;
-        max-width: 950px;
-        font-size: 110%;
-        line-height: 1.45;
-        color: #333332;
+      padding: 2em 3em 0;
+      max-width: 950px;
+      font-size: 120%;
+      line-height: 1.45;
+      color: #333332;
     }
 
     .post {
-        padding-bottom: 1em;
-        border-bottom: 1px solid #f2f2f0;
+      padding-bottom: 1em;
+      border-bottom: 1px solid #f2f2f0;
     }
+
     .post-title {
-        font-size: 1.5em;
-        color: #333332;
-        letter-spacing: -1px;
+      font-size: 1.5em;
+      color: #333332;
+      letter-spacing: -1px;
     }
+
     .post-meta {
-        color: #999;
-        font-size: 90%;
-        margin-top: -10px;
+      color: #999;
+      font-size: 90%;
+      margin-top: -10px;
     }
 
     .post-category {
-        margin: 0 0.1em;
-        padding: 0.2em 0.6em;
-        color: #fff;
-        background: #999;
-        font-size: 90%;
+      margin: 0 0.1em;
+      padding: 0.2em 0.6em;
+      color: #fff;
+      background: #999;
+      font-size: 90%;
     }
 
     .archive-item {
-        padding: 10px 0;
-        border-bottom: 1px solid #f2f2f0;
+      padding: 10px 0;
+      border-bottom: 1px solid #f2f2f0;
     }
 
     .archive-date {
-        margin: 0;
+      margin: 0;
     }
 
     .archive-post {
-        line-height: 130%;
+      line-height: 130%;
     }
 
     .avatar {
-        float: right;
-        border-radius: 50px;
-        margin-left: 16px;
-        margin-top: 7px;
-        width: 70px;
-        height: 70px;
+      float: right;
+      border-radius: 50px;
+      margin-left: 16px;
+      margin-top: 7px;
+      width: 70px;
+      height: 70px;
     }
 
     .archive-meta {
-        color: #999;
-        font-size: 80%;
-        margin: -1px 0 0 0;
+      color: #999;
+      font-size: 80%;
+      margin: -1px 0 0 0;
     }
 
     .footer {
-        text-align: center;
-        padding: 2em 0;
-        font-size: 75%;
+      text-align: center;
+      padding: 2em 0;
+      font-size: 75%;
     }
+
     .footer .pure-menu a:hover,
     .footer .pure-menu a:focus {
-        background: none;
+      background: none;
     }
 
     .pagination-wrapper {
-        padding-top: 6px;
+      padding-top: 6px;
     }
-    .pagination-left, .pagination-right {
-        position: absolute;
-        top: 0;
-    }
-    .pagination {
-        font-size: 80%;
-        text-align: center;
-        position: relative;
-        width: 450px;
-        margin: 0 auto;
-        max-width: 100%;
-    }
-    .pagination-left {
-        left: 0;
-    }
+
+    .pagination-left,
     .pagination-right {
-        right: 0;
+      position: absolute;
+      top: 0;
+    }
+
+    .pagination {
+      font-size: 80%;
+      text-align: center;
+      position: relative;
+      width: 450px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .pagination-left {
+      left: 0;
+    }
+
+    .pagination-right {
+      right: 0;
     }
 
     .go-top {
-        position: fixed;
-        bottom: 2em;
-        right: 2em;
-        text-decoration: none;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.3);
-        font-size: 12px;
-        padding: 1em;
-        display: none;
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      padding: 1em;
+      display: none;
     }
 
     .go-top:hover {
-        background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     .highlight pre {
-        font-size: 75%;
+      font-size: 75%;
     }
 
     /* LAYOUT CSS */
     #layout {
-        padding-left: 25%; /* "left col (nav + list)" width */
-        position: relative;
+      padding-left: 25%;
+      /* "left col (nav + list)" width */
+      position: relative;
     }
+
     @media (max-width: 767px) {
-        .sidebar {
-            width: 100%;
-            position: relative;
-            margin: 0;
-            height: 325px;
-        }
-        .sidebar.sidebar-article {
-            height: auto;
-            border-bottom: 1px #dededc solid;
-            padding-bottom: 35px;
-        }
+      .sidebar {
+        width: 100%;
+        position: relative;
+        margin: 0;
+        height: 325px;
+      }
 
-        .content {
-            padding: 1em 1.5em 0;
-            font-size: 85%;
-        }
+      .sidebar.sidebar-article {
+        height: auto;
+        border-bottom: 1px #dededc solid;
+        padding-bottom: 35px;
+      }
 
-        .cover-img {
-            background-position: 0;
-            background-size: cover;
-        }
+      .content {
+        padding: 1em 1.5em 0;
+        font-size: 100%;
+      }
 
-        .avatar {
-            width: 45px;
-            height: 45px;
-        }
+      .cover-img {
+        background-position: 0;
+        background-size: cover;
+      }
 
-        .article-avatar {
-            float: none
-        }
+      .avatar {
+        width: 45px;
+        height: 45px;
+      }
 
-        .about-author {
-            width: 100%;
-            padding: 0 100px;
-        }
+      .article-avatar {
+        float: none
+      }
 
-        .cover-body {
-            padding-bottom: 5%;
-            padding-top: 0;
-        }
+      .about-author {
+        width: 100%;
+        padding: 0 100px;
+      }
 
-        .header,
-        .header-article {
-            text-align: center;
-            top: auto;
-            position: static;
-        }
+      .cover-body {
+        padding-bottom: 5%;
+        padding-top: 0;
+      }
 
-        hr {
-            border: 1px solid #f2f2f0;
-            width: inherit;
-            margin: 25px auto;
-        }
+      .header,
+      .header-article {
+        text-align: center;
+        top: auto;
+        position: static;
+      }
 
-        #layout {
-            padding: 0;
-        }
+      hr {
+        border: 1px solid #f2f2f0;
+        width: inherit;
+        margin: 25px auto;
+      }
+
+      #layout {
+        padding: 0;
+      }
     }
 
     @media (max-width: 480px) {
-        .cover-img {
-            background-position: 0;
-        }
+      .cover-img {
+        background-position: 0;
+      }
     }
 
 
-    .gist {width:700px !important;}
-    .gist-file
-    .gist-data {max-height: 500px; max-width: 700px;}
-    
+    .gist {
+      width: 700px !important;
+    }
 
-    
-/* Added 18/04/2023 CSS for homepage */
+    .gist-file .gist-data {
+      max-height: 500px;
+      max-width: 700px;
+    }
 
-.bio {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2em 0;
-    flex-wrap: wrap;
-}
 
-.bio-image {
-    flex: 1; /* Make the container adapt to half the size of .bio */
-    text-align: center;
-    margin-right: 1em;
-}
 
-.bio-image img {
-    width: 100%; /* Set the width to 100% of the container */
-    height: auto; /* Maintain the aspect ratio of the image */
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-}
+    /* Added 18/04/2023 CSS for homepage */
 
-.bio-text {
-    flex: 1;
-    font-size: 90%;
-    text-align: justify;
-    font-family: sans-serif;
-    line-height: 1.45;
-    color: #333332;
-    padding: 1em;
-}
-/* Media query to change layout for smaller screens */
-@media (max-width: 1024px) { /* Adjust this value based on the breakpoint you desire */
     .bio {
-        flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2em 0;
+      flex-wrap: wrap;
     }
 
     .bio-image {
+      flex: 1;
+      /* Make the container adapt to half the size of .bio */
+      text-align: center;
+      margin-right: 1em;
+    }
+
+    .bio-image img {
+      width: 100%;
+      /* Set the width to 100% of the container */
+      height: auto;
+      /* Maintain the aspect ratio of the image */
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .bio-text {
+      flex: 1;
+      font-size: 90%;
+      text-align: justify;
+      font-family: sans-serif;
+      line-height: 1.45;
+      color: #333332;
+      padding: 1em;
+    }
+
+    /* Media query to change layout for smaller screens */
+    @media (max-width: 1024px) {
+
+      /* Adjust this value based on the breakpoint you desire */
+      .bio {
+        flex-direction: column;
+      }
+
+      .bio-image {
         margin-right: 0;
         margin-bottom: 1em;
+      }
     }
-}
 
 
-  .selected-posts {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .selected-posts li {
-    margin: 10px 0;
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-  
-  .selected-projects {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .selected-projects li {
-    margin: 10px 0;
-    list-style-type: disc;
-    margin-left: 20px;
-  }
+    .selected-posts {
+      list-style-type: none;
+      padding-left: 0;
+    }
 
+    .selected-posts li {
+      margin: 10px 0;
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    .selected-projects {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .selected-projects li {
+      margin: 10px 0;
+      list-style-type: disc;
+      margin-left: 20px;
+    }
