@@ -4,7 +4,7 @@ Email: adil.mouja@gmail.com
 Date: 2025-04-03
 Category: ai
 Tags: ai, gpt4, japanese
-Summary: 
+Summary: This article details how I leveraged vibe coding and modern AI tools to build KanjiMaster.ai, transforming a twenty-year-old dream of creating a better way to learn Japanese Kanji into reality.
 
 <script type="application/ld+json">
 {
