@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adil Moujahid, Bridging Tech and Art">
+
+
+        
+<style type="text/css">
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+.highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
+.highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
+.highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
+.highlight .o { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator */
+.highlight .p { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation */
+.highlight .ch { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Single */
+.highlight .cs { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Special */
+.highlight .kc { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Type */
+.highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
+.highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
+.highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
+.highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
+.highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
+.highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
+.highlight .mh { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Hex */
+.highlight .mi { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer */
+.highlight .mo { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Oct */
+.highlight .sa { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Affix */
+.highlight .sb { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Backtick */
+.highlight .sc { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Char */
+.highlight .dl { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Delimiter */
+.highlight .sd { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Doc */
+.highlight .s2 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Double */
+.highlight .se { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Escape */
+.highlight .sh { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Heredoc */
+.highlight .si { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Interpol */
+.highlight .sx { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Other */
+.highlight .sr { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Regex */
+.highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
+.highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
+.highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        displayMath: [['$$','$$'], ["\\[","\\]"]]
+    }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+
+
+
+
+        <title>Building a p5.js Editor Controlled by Claude and an MCP Server // Adil Moujahid // Bridging Tech and Art</title>
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../theme/css/pure.css">
+<link rel="stylesheet" href="../../../../theme/css/pygments.css">
+<link rel="stylesheet" href="../../../../theme/css/custom.css">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+    <script src="//load.sumome.com/" data-sumo-site-id="4ce3990f4d6fb482b4d97fa9208bd2242f7bb8c711ce30290794390dbe7ed180" async></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../extra/favicon.ico" />
+
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+  <div class="sidebar sidebar-article pure-u">
+    <header class="header-article">
+      <hgroup>
+        <a href="../../../../author/adil-moujahid.html" title="See posts by Adil Moujahid">
+          <img class="avatar" alt="Adil Moujahid" src="http://www.gravatar.com/avatar/2ac2a00f5911cc8234778be41c835e13">
+        </a>
+        <h2 class="article-info">Adil Moujahid</h2>
+        <small class="about-author"></small>
+
+        <!-- ko-fi -->
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'W7W4K1LZ'); kofiwidget2.draw();</script>
+        <br>
+        <br>
+
+        <div>
+          <a href="https://twitter.com/AdilMouja" class="twitter-follow-button" data-show-count="false">
+            Follow @AdilMouja
+          </a>
+          <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
+
+        <h5>Published</h5>
+        <p>Wed 01 January 2025</p>
+        <a href="/">&larr;Home</a>
+      </hgroup>
+    </header>
+  </div>
+  <div class="pure-u">
+    <div class="content">
+      <section class="post">
+        <header class="post-header">
+          <h1>Building a p5.js Editor Controlled by Claude and an MCP Server</h1>
+          <br>
+          <p class="post-meta">
+            // tags             <a class="post-category" href="../../../../tag/ai/">ai</a>
+            <a class="post-category" href="../../../../tag/p5js/">p5js</a>
+            <a class="post-category" href="../../../../tag/creative-coding/">creative-coding</a>
+            <a class="post-category" href="../../../../tag/mcp/">mcp</a>
+            <a class="post-category" href="../../../../tag/claude/">claude</a>
+          </p>
+        </header>
+      </section>
+      <br>
+      <p>Model Context Protocol (MCP) servers are having a moment. Every developer on Twitter seems to be building one, and for good reason — they let you plug your own logic directly into LLMs like Claude. But most examples I've seen are basic: weather APIs, file readers, simple calculators.</p>
+<p>I wanted to see how far I could push this technology. <em>What if you could sketch with prompts instead of code?</em></p>
+<p>That question led me down a rabbit hole that resulted in building a complete p5.js editor controlled entirely through natural language via Claude Desktop. Instead of typing <code>ellipse(50, 50, 80, 80)</code>, I can now tell Claude "draw a bouncing ball" and watch it happen in real-time.</p>
+<p>This isn't another "Hello World" MCP demo. It's a full-featured creative coding environment with file management, live preview, console output, and 13 different AI tools that let Claude control every aspect of the editor. I wanted to stress-test what's possible when you give Claude real control over real software.</p>
+<p>![Demo of the p5.js editor being controlled by Claude Desktop]</p>
+<h2>The Use Case: Creative Coding Meets AI</h2>
+<p>I've been using <a href="https://p5js.org/">p5.js</a> for my generative art projects, including my <a href="https://adilmoujahid.com/projects/genuary2024/">Genuary 2024 series</a>. p5.js is a JavaScript library that makes coding accessible for artists, designers, and beginners by providing simple functions for drawing, animation, and interaction.</p>
+<p>But here's the thing: even with p5.js's beginner-friendly API, there's still a barrier between having a creative idea and seeing it come to life. You need to remember function names, parameter orders, and coordinate systems. What if that barrier could be removed entirely?</p>
+<p><strong>Claude Desktop</strong> is Anthropic's native app that brings Claude's conversational AI directly to your computer. Its most powerful feature is tool use — Claude can connect to MCP (Model Context Protocol) servers running locally and interact with them through defined tools and resources.</p>
+<p>The vision was simple: <em>Sketch controlled by code → code controlled by Claude → Claude controlled by prompts.</em></p>
+<h2>MCP Servers 101: Plugging Your Logic into LLMs</h2>
+<p>Model Context Protocol (MCP) is an open standard created by Anthropic in November 2024 that's rapidly being adopted across the AI industry. Think of MCP as "a USB-C port for AI applications" — just as USB-C provides a standardized way to connect devices to peripherals, MCP provides a standardized way to connect AI models to different data sources and tools.</p>
+<p><strong>Why MCP vs just calling APIs directly:</strong></p>
+<p>You absolutely can build tools that call APIs — but MCP solves several problems that emerge when you do this at scale:</p>
+<ul>
+<li>
+<p><strong>Tool Discovery</strong>: With APIs, you hard-code each integration. With MCP, Claude can ask "what tools are available?" and get a live list. Add a new MCP server, and Claude instantly knows about its tools without code changes.</p>
+</li>
+<li>
+<p><strong>Parameter Validation</strong>: APIs return raw errors when you mess up parameters. MCP servers validate inputs before execution and return structured errors Claude can understand and recover from.</p>
+</li>
+<li>
+<p><strong>Unified Authentication</strong>: Each API has its own auth (API keys, OAuth, etc.). MCP standardizes this with OAuth 2.1, so Claude handles auth the same way across all tools.</p>
+</li>
+<li>
+<p><strong>Session Management</strong>: APIs are stateless request/response. MCP supports streaming and long-lived sessions, perfect for multi-turn agent conversations.</p>
+</li>
+<li>
+<p><strong>Error Handling</strong>: When an API call fails, Claude gets a cryptic HTTP error. MCP servers can provide context-aware error messages that help Claude try alternative approaches.</p>
+</li>
+</ul>
+<p>Think of it this way: you <em>could</em> give Claude 50 different API documentations and hope it calls them correctly. Or you can implement MCP once and let Claude discover and use tools reliably. MCP is the difference between "here's 50 different ways to do things" and "here's one consistent way to do anything."</p>
+<p><strong>Industry adoption is happening fast:</strong></p>
+<ul>
+<li><strong>Microsoft</strong> integrated MCP into Copilot Studio for enterprise agents</li>
+<li><strong>OpenAI</strong> added MCP support to their Agents SDK  </li>
+<li><strong>Development tools</strong> like Zed, Replit, Codeium, and Sourcegraph are integrating MCP</li>
+<li><strong>Companies like Block and Apollo</strong> are using MCP in production systems</li>
+</ul>
+<p>MCP defines three core concepts:</p>
+<ul>
+<li><strong>Resources</strong>: Read-only data sources (like REST GET endpoints)</li>
+<li><strong>Tools</strong>: Actions LLMs can perform (like REST POST endpoints)  </li>
+<li><strong>Prompts</strong>: Reusable templates for structuring LLM interactions</li>
+</ul>
+<p>Here's what a minimal MCP server looks like:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">McpServer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@modelcontextprotocol/sdk/server/mcp.js&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">StdioServerTransport</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@modelcontextprotocol/sdk/server/stdio.js&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zod&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">McpServer</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;demo-server&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<span class="p">});</span>
+
+<span class="c1">// Define a tool</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">tool</span><span class="p">(</span>
+<span class="w">  </span><span class="s2">&quot;add_numbers&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">z.number</span><span class="p">().</span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;First number&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">z.number</span><span class="p">().</span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Second number&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="sb">`Result: </span><span class="si">${</span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">);</span>
+
+<span class="c1">// Connect via stdio (what Claude Desktop uses)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">transport</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">StdioServerTransport</span><span class="p">();</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">server</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">transport</span><span class="p">);</span>
+</code></pre></div>
+
+<h2>The Idea: A Claude-Controlled p5.js Editor</h2>
+<p>I've spent many hours in the <a href="https://editor.p5js.org/">p5.js web editor</a> creating generative art. It's a fantastic tool — live preview, file management, sharing capabilities — but it still requires you to write code manually. What if I could recreate that same editor experience, but powered by AI?</p>
+<p>The vision: build a p5.js editor that looks and feels like the official one, but where Claude can control everything through natural language. Instead of typing code, you'd describe what you want and watch it appear.</p>
+<p>The architecture I envisioned was straightforward:</p>
+<div class="highlight"><pre><span></span><code>Claude Desktop ──stdio──► MCP Server ──WebSocket──► WebSocket Bridge ──WebSocket──► p5.js Editor
+</code></pre></div>
+
+<p>Claude would use natural language to invoke tools on my MCP server, which would translate those into WebSocket commands sent to a live web-based p5.js editor. The editor would update in real-time, creating a seamless prompt-to-sketch experience — all the power of the official p5.js editor, but driven by conversation instead of code.</p>
+<h2>Building the p5.js Editor</h2>
+<p>I started with the frontend: a modern Next.js application with a full-featured p5.js IDE.</p>
+<h3>Core Features</h3>
+<p>The editor needed to be production-ready, not just a demo. Here's what I built:</p>
+<ul>
+<li><strong>Multi-file support</strong>: Create, edit, and manage JavaScript, HTML, and CSS files</li>
+<li><strong>Live preview</strong>: Iframe-based canvas with instant code execution</li>
+<li><strong>Real-time console</strong>: Capture <code>console.log</code>, errors, and warnings from the running sketch</li>
+<li><strong>Project management</strong>: Save/load projects with localStorage persistence</li>
+<li><strong>Tabbed interface</strong>: Work with multiple files simultaneously</li>
+</ul>
+<h3>Vibe Coding the Editor</h3>
+<p>Building the editor was surprisingly straightforward thanks to "vibe coding" — an AI-assisted programming technique where you describe tasks in natural language and AI generates the corresponding code. The term was officially coined by Andrej Karpathy in February 2025:</p>
+<p><br></p>
+<div style="display: flex; justify-content: center; width: 100%; max-width: 550px; margin: 0 auto;">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">There&#39;s a new kind of coding I call &quot;vibe coding&quot;, where you fully give in to the vibes, embrace exponentials, and forget that the code even exists. It&#39;s possible because the LLMs (e.g. Cursor Composer w Sonnet) are getting too good. Also I just talk to Composer with SuperWhisper…</p>&mdash; Andrej Karpathy (@karpathy) <a href="https://twitter.com/karpathy/status/1886192184808149383?ref_src=twsrc%5Etfw">February 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<p><br></p>
+<p>Using Cursor IDE with Claude, I described what I needed: a modern p5.js editor with file management, live preview, console output, and tabbed interface. With a few iterations and minimal debugging, I had a working editor that looked and felt like the official p5.js editor, but with a more modern aesthetic.</p>
+<p>The beauty of vibe coding is that you focus on <em>what</em> you want rather than <em>how</em> to build it. Instead of wrestling with React state management or iframe sandboxing details, I could describe the desired functionality and let Claude handle the implementation. This let me iterate quickly on the user experience while the AI handled the technical complexity.</p>
+<h3>WebSocket Integration</h3>
+<p>The editor includes a <code>WebSocketListener</code> component that connects to a bridge server and listens for MCP commands:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Handle incoming MCP commands</span>
+<span class="nx">newSocket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;codeUpdate&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;📝 [MCP] Received code update&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">onCodeUpdate</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">newSocket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;startExecution&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;▶️ [MCP] Received start execution command&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">onExecutionControl</span><span class="o">?</span><span class="p">.(</span><span class="s1">&#39;start&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">newSocket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;clearConsole&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;🧹 [MCP] Received clear console command&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">onConsoleControl</span><span class="o">?</span><span class="p">.(</span><span class="s1">&#39;clear&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2>Building the MCP Server</h2>
+<p>The MCP server is the brain of the operation. It exposes 13 different tools that Claude can use to control the editor:</p>
+<h3>Code Management Tools</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">server</span><span class="p">.</span><span class="nx">tool</span><span class="p">(</span>
+<span class="w">  </span><span class="s2">&quot;update_code&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;The p5.js code to update in the editor&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">optional</span><span class="p">().</span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Optional description of changes&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">code</span><span class="p">,</span><span class="w"> </span><span class="nx">description</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">sendToEditor</span><span class="p">(</span><span class="s1">&#39;codeUpdate&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">code</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">success</span><span class="w"> </span>
+<span class="w">          </span><span class="o">?</span><span class="w"> </span><span class="sb">`✅ Code updated successfully</span><span class="si">${</span><span class="nx">description</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`: </span><span class="si">${</span><span class="nx">description</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;❌ Failed to update code&quot;</span>
+<span class="w">      </span><span class="p">}]</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3>Execution Control Tools</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">server</span><span class="p">.</span><span class="nx">tool</span><span class="p">(</span><span class="s2">&quot;start_execution&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">sendToEditor</span><span class="p">(</span><span class="s1">&#39;startExecution&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;▶️ Started execution&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;❌ Failed to start&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">tool</span><span class="p">(</span><span class="s2">&quot;stop_execution&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">sendToEditor</span><span class="p">(</span><span class="s1">&#39;stopExecution&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;⏹️ Stopped execution&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;❌ Failed to stop&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3>File Management Tools</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">server</span><span class="p">.</span><span class="nx">tool</span><span class="p">(</span>
+<span class="w">  </span><span class="s2">&quot;create_file&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Name of the new file&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="kt">z.string</span><span class="p">().</span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Initial content for the file&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">sendToEditor</span><span class="p">(</span><span class="s1">&#39;createFile&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="sb">`📄 Created file: </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sb">`❌ Failed to create file`</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p>The complete list includes tools for console management, layout control, navigation, and connection status checking.</p>
+<h3>WebSocket Communication</h3>
+<p>The MCP server connects to the editor via Socket.IO:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">io</span><span class="p">,</span><span class="w"> </span><span class="nx">Socket</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;socket.io-client&quot;</span><span class="p">;</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">editorSocket</span><span class="o">:</span><span class="w"> </span><span class="kt">Socket</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">EDITOR_WEBSOCKET_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost:3001&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">connectToEditor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">editorSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="nx">EDITOR_WEBSOCKET_URL</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">transports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;websocket&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">reconnection</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">reconnectionDelay</span><span class="o">:</span><span class="w"> </span><span class="kt">5000</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">editorSocket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;✅ Connected to p5.js editor&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">sendToEditor</span><span class="p">(</span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">data?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">editorSocket</span><span class="o">?</span><span class="p">.</span><span class="nx">connected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">resolve</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">editorSocket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">resolve</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Wiring Claude to the Server: The WebSocket Bridge</h2>
+<p>Here's where things get interesting. Claude Desktop connects to MCP servers via stdio (standard input/output), but my web editor needs WebSocket communication. I needed a bridge.</p>
+<p>The <code>websocket-bridge-server.js</code> acts as a relay between the MCP server and the web editor:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+
+<span class="c1">// Create Socket.IO server on port 3001</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="mf">3001</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:3000&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Next.js dev server</span>
+<span class="w">    </span><span class="nx">methods</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`✅ Client connected: </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Forward MCP commands to webapp</span>
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;codeUpdate&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;📝 [MCP→WebApp] Code update received, forwarding...&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;codeUpdate&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;startExecution&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;▶️ [MCP→WebApp] Start execution command, forwarding...&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;startExecution&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// ... handle all other MCP events</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>This bridge server logs every command for debugging and forwards them between the MCP server and any connected web clients.</p>
+<h2>Using the System: Prompts → Sketches</h2>
+<p>Once everything is wired up, the experience is magical. Here are real examples of what you can do:</p>
+<p><strong>"Update the code to create a bouncing ball animation"</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Claude generates and sends this code:</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">xSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">ySpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">createCanvas</span><span class="p">(</span><span class="mf">400</span><span class="p">,</span><span class="w"> </span><span class="mf">400</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">background</span><span class="p">(</span><span class="mf">220</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Update position</span>
+<span class="w">  </span><span class="nx">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">xSpeed</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">ySpeed</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Bounce off edges</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">25</span><span class="p">)</span><span class="w"> </span><span class="nx">xSpeed</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">25</span><span class="p">)</span><span class="w"> </span><span class="nx">ySpeed</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Draw ball</span>
+<span class="w">  </span><span class="nx">fill</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ellipse</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>"Create a colorful particle system with 100 particles"</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Claude creates a sophisticated particle system:</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">particles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">createCanvas</span><span class="p">(</span><span class="mf">800</span><span class="p">,</span><span class="w"> </span><span class="mf">600</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">particles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Particle</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">background</span><span class="p">(</span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">,</span><span class="w"> </span><span class="mf">25</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">particle</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">particles</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">particle</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">particle</span><span class="p">.</span><span class="nx">display</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">Particle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">random</span><span class="p">(</span><span class="nx">width</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">random</span><span class="p">(</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">vx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">vy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color</span><span class="p">(</span><span class="nx">random</span><span class="p">(</span><span class="mf">255</span><span class="p">),</span><span class="w"> </span><span class="nx">random</span><span class="p">(</span><span class="mf">255</span><span class="p">),</span><span class="w"> </span><span class="nx">random</span><span class="p">(</span><span class="mf">255</span><span class="p">),</span><span class="w"> </span><span class="mf">150</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">vx</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">vy</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">vx</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">vy</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">display</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fill</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">noStroke</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">ellipse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>"Clear the console and create a new file called 'utils.js' with helper functions"</strong></p>
+<p>Claude can chain multiple commands:
+1. Clears the console
+2. Creates a new file
+3. Adds utility functions
+4. Switches to that file</p>
+<p>The entire workflow feels natural — like having a coding assistant that can actually <em>do</em> things instead of just suggesting them.</p>
+<h2>The Complete Workflow</h2>
+<p>Here's how to use the system:</p>
+<ol>
+<li><strong>Start the webapp</strong>: <code>npm run dev</code> (runs on http://localhost:3000)</li>
+<li><strong>Start the WebSocket bridge</strong>: <code>node websocket-bridge-server.js</code> (runs on port 3001)</li>
+<li><strong>Open a project</strong> and click "Enable MCP"</li>
+<li><strong>Configure Claude Desktop</strong> with the MCP server</li>
+<li><strong>Start creating</strong>: Use natural language in Claude Desktop</li>
+</ol>
+<p>The configuration for Claude Desktop looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;p5js-editor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;node&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/absolute/path/to/p5js-mcp-server-ts/dist/index.js&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Lessons Learned and Next Steps</h2>
+<h3>What Worked Well</h3>
+<p><strong>MCP is incredibly powerful</strong>: The ability to give Claude real tools that affect real software opens up possibilities I hadn't considered. It's not just about code generation — it's about creating AI-controlled workflows.</p>
+<p><strong>WebSocket bridges are essential</strong>: Most real applications need real-time communication, not just stdio. The bridge pattern works well for connecting MCP servers to web applications.</p>
+<p><strong>TypeScript + Zod validation</strong>: The MCP TypeScript SDK with Zod schemas makes building robust tools straightforward. Claude gets clear parameter descriptions, and you get runtime validation.</p>
+<h3>What Surprised Me</h3>
+<p><strong>Claude's tool orchestration</strong>: Claude is remarkably good at chaining multiple tools together. It understands when to clear the console before updating code, or when to stop execution before making changes.</p>
+<p><strong>Debugging complexity</strong>: With four moving parts (Claude Desktop, MCP server, WebSocket bridge, webapp), debugging requires careful logging at each layer. The bridge server's verbose logging was essential.</p>
+<p><strong>Performance is excellent</strong>: Real-time code updates feel instant. The WebSocket communication adds minimal latency.</p>
+<h3>Next Steps</h3>
+<p>There are several directions this could evolve:</p>
+<ol>
+<li><strong>Enhanced AI prompts</strong>: Add MCP prompts for common p5.js patterns (animations, interactions, generative art)</li>
+<li><strong>Code analysis</strong>: Let Claude read and understand existing code before making changes</li>
+<li><strong>Asset management</strong>: Tools for uploading images, sounds, and other assets</li>
+<li><strong>Collaboration features</strong>: Multiple users controlling the same editor</li>
+<li><strong>Export capabilities</strong>: Generate standalone HTML files or save to GitHub</li>
+</ol>
+<h2>Technical Architecture Summary</h2>
+<p>The final system consists of:</p>
+<ul>
+<li><strong>Frontend</strong>: Next.js 14 with Shadcn UI components</li>
+<li><strong>MCP Server</strong>: TypeScript with Socket.IO client</li>
+<li><strong>WebSocket Bridge</strong>: Node.js Socket.IO server</li>
+<li><strong>Communication</strong>: Real-time WebSocket events</li>
+<li><strong>Storage</strong>: localStorage for project persistence</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Building this p5.js editor taught me that MCP servers aren't just about connecting Claude to APIs — they're about creating entirely new ways to interact with software. When you remove the friction between creative ideas and their implementation, you unlock new possibilities for both learning and creating.</p>
+<p>The code is <a href="https://github.com/your-repo">available on GitHub</a> with full setup instructions. Try it out, and let me know what you build!</p>
+<p><em>What will you create when the barrier between thought and code disappears?</em></p>
+<hr>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Building a p5.js Editor Controlled by Claude and an MCP Server",
+  "description": "A comprehensive guide to building a full-featured p5.js editor controlled entirely through natural language via Claude Desktop and a custom MCP server.",
+  "author": {
+    "@type": "Person",
+    "name": "Adil Moujahid",
+    "email": "adil.mouja@gmail.com"
+  },
+  "datePublished": "2025-01-01",
+  "keywords": ["MCP", "Claude Desktop", "p5.js", "AI", "Creative Coding", "WebSocket", "TypeScript"],
+  "programmingLanguage": ["TypeScript", "JavaScript"],
+  "operatingSystem": "Cross-platform",
+  "applicationCategory": "DeveloperApplication"
+}
+</script>
+      <div class="hr"></div>
+
+
+      <!-- Sumo managed through sumo.com -->
+      <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+      <!-- Sumo managed through sumo.com -->
+
+
+      <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "adilmoujahid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Adil Moujahid &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    </div>
+  </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+
+        //Added on 2023-04-12 to fix the CSS of jupyter notebook (padding issue)
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPrompt = document.querySelector('.jp-InputPrompt.jp-InputArea-prompt');
+            
+            if (inputPrompt.textContent.trim() === '') {
+                inputPrompt.classList.add('empty');
+            } else {
+                inputPrompt.classList.remove('empty');
+            }
+        });
+
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24GHYVXZ5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-24GHYVXZ5F');
+    </script>
+</body>
+
+
+</html>
