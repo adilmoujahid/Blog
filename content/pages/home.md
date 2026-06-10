@@ -2,14 +2,13 @@ Title: Homepage
 Date: 2023-04-18
 Slug: home
 
-
 <!-- Bio and picture section -->
 <div class="bio">
     <div class="bio-image">
         <img src="./images/adil-homepage.jpg" alt="Adil Moujahid">
     </div>
     <div class="bio-text">
-        <p> Hello and welcome to my personal blog! My name is Adil Moujahid, and I am a data scientist and creative coder with a keen interest in the intersection of emerging technologies and creative expression. In particular, I am interested by the possibilities presented by artificial intelligence, blockchain, and generative art. 
+        <p> Hello and welcome to my personal blog! My name is Adil Moujahid, and I am an AI engineer and creative coder with a keen interest in the intersection of emerging technologies and creative expression. In particular, I am fascinated by the possibilities presented by artificial intelligence — from large language models to AI agents — as well as generative art and blockchain technology. 
         </br>
         </br>
         Through this blog, I hope to create a space where I can share my knowledge and experiences in these fields. I also aim to showcase some of my personal projects, and provide insights into the latest trends and developments in the tech industry.
@@ -38,6 +37,7 @@ Slug: home
 <h2 class="content-subhead">Selected Projects</h2>
 
 <ul class="selected-projects">
+    <li><a href="https://riemann.adilmoujahid.com/">Riemann Explorer</a> is an interactive guide to the Riemann Hypothesis — the most famous unsolved problem in mathematics — that takes visitors from "what is a prime number?" to the research frontier through five levels of hands-on visualizations, requiring nothing beyond basic school math to start.</li>
     <li><a href="https://www.kanjimaster.ai/">KanjiMaster.ai</a> is an intelligent Japanese learning platform that offers comprehensive kanji collections, personalized learning paths, and interactive quizzes, designed to help learners master kanji efficiently through an engaging and adaptive experience.</li>
     <li><a href="https://github.com/adilmoujahid/kanji-flashcard-app-gpt4">kanji-flashcard-app-gpt4</a> is a Japanese Kanji Flashcard App built using Python and Langchain, enhanced with the intelligence of GPT-4.</li>
     <li><a href="./projects/hello-nfts/">Hello, NFTs</a> is a project that aims at providing a comprehensive guide to creating and deploying an NFT on the Ethereum blockchain, covering all aspects of the process from start to finish.</li>
@@ -47,7 +47,8 @@ Slug: home
     <li><a href="./projects/fusion-bricks/">Fusion Bricks</a> is a project in which I aimed to explore the convergence of generative art, pixel art, and LEGO creations. To achieve this, I redeveloped my initial fxhash project, <a href="https://www.fxhash.xyz/generative/24620"> Geometric Grid Fusion</a>, using Pico-8 and then chose several outputs to construct with LEGO bricks.</li>
 </ul>
 
-
 <!-- Sumo managed through sumo.com -->
+
 <span data-sumome-listbuilder-embed-id="593f1f61fd137dfe732a80686197b429a62e5c6e6bd62242966f34199d064e47"></span>
+
 <!-- Sumo managed through sumo.com -->
